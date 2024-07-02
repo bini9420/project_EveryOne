@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- master 수정 작업 -->
-
 <!-- SqlMapConfig.xml -->
 <!DOCTYPE configuration
-	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-	"https://mybatis.org/dtd/mybatis-3-config.dtd">
-
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+ 
 <configuration>
+
 	<mappers>
 		<mapper resource="mybatis/mall.xml"/>
+		<mapper resource="mybatis/member.xml"/>
 	</mappers>
+	
 </configuration>

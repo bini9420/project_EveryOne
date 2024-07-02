@@ -2,12 +2,17 @@ package mall.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import mall.model.CategoryBean;
 import mall.model.MallDao;
+import mall.model.ProductBean;
+import mall.model.WatchBean;
 
 @Controller
 public class MallMainController {
@@ -19,17 +24,15 @@ public class MallMainController {
 	MallDao mallDao;
 	
 	@RequestMapping(command)
-	public String mall(Model model) {
+	public String mall(Model model, HttpSession session) {
 		
-		List<String> categoryLists = mallDao.getAllCategory();
+		List<CategoryBean> categoryLists = mallDao.getAllCategory();
 		model.addAttribute("categoryLists", categoryLists);
 		
-		List<String> bestProducts = mallDao.getBestProduct();
+		List<ProductBean> bestProducts = mallDao.getBestProduct();
 		System.out.println(bestProducts.size());
 		model.addAttribute("bestProducts", bestProducts);
 		
-		List<String> watchLists = mallDao.getWatchProducts();
-		System.out.println(watchLists.size());
 		return getPage;
 	}
 }

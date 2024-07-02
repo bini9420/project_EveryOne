@@ -17,25 +17,18 @@ public class MallDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
-	private String product = "product.Product";
-	private String category = "category.Category";
+	private String namespace = "mall";
 	
-	public List<String> getAllCategory() {
-		List<String> categoryLists = new ArrayList<String>();
-		categoryLists = sqlSessionTemplate.selectList(category+".getAllCategory");
+	public List<CategoryBean> getAllCategory() {
+		List<CategoryBean> categoryLists = new ArrayList<CategoryBean>();
+		categoryLists = sqlSessionTemplate.selectList(namespace+".getAllCategory");
 		return categoryLists;
 	}
 
-	public List<String> getBestProduct() {
-		List<String> bestProducts = new ArrayList<String>();
-		bestProducts = sqlSessionTemplate.selectList(product+".getBestProduct");
+	public List<ProductBean> getBestProduct() {
+		List<ProductBean> bestProducts = new ArrayList<ProductBean>();
+		bestProducts = sqlSessionTemplate.selectList(namespace+".getBestProduct");
 		return bestProducts;
-	}
-
-	public List<String> getWatchProducts() {
-		List<String> watchLists = new ArrayList<String>();
-		watchLists = sqlSessionTemplate.selectList(product+".getWatchProducts");
-		return watchLists;
 	}
 	
 	

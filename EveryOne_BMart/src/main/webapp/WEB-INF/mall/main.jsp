@@ -84,6 +84,8 @@
 		</div>
 	</div>
 	
+	<!-- 로그인 했을 경우에만 최근본상품, 찜한 상품이 보임. -->
+	<%-- <c:if test="${loginInfo.id ne null}"> --%>
 	<hr style="margin: 0 auto; width: 80%; border: 1.5px solid #DCDCDC">
 	<div class="container px-4 px-lg-5 mt-5">
 		<div>
@@ -351,6 +353,7 @@
 			</div>
 		</div>
 	</div>
+	<%-- </c:if> --%>
 </section>
 
 <%@ include file="mall_bottom.jsp"%>

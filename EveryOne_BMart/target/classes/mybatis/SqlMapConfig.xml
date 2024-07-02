@@ -7,7 +7,6 @@
 
 <configuration>
 	<mappers>
-		<mapper resource="mybatis/category.xml"/>
-		<mapper resource="mybatis/product.xml"/>
+		<mapper resource="mybatis/mall.xml"/>
 	</mappers>
 </configuration>

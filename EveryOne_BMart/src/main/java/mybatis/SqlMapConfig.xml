@@ -8,5 +8,7 @@
 	"https://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-
+	<mappers>
+		<mapper resource="mybatis/mall.xml"/>
+	</mappers>
 </configuration>

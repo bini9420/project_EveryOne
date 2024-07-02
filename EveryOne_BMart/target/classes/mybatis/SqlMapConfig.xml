@@ -6,5 +6,8 @@
 	"https://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-
+	<mappers>
+		<mapper resource="mybatis/category.xml"/>
+		<mapper resource="mybatis/product.xml"/>
+	</mappers>
 </configuration>

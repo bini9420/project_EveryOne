@@ -53,14 +53,14 @@ public class MallMainController {
 			}
 			
 			//찜한 상품 조회
-			List<InterestBean> interestLists = mallDao.getInterestLists(loginInfo.getId());
-			System.out.println("id_interestLists: "+loginInfo.getId()+"_"+interestLists.size());
+			List<InterestBean> ilists = mallDao.getInterestLists(loginInfo.getId());
+			System.out.println("ilists: "+ilists.size());
 			
-			ArrayList<InterestBean> interestProductLists = new ArrayList<InterestBean>();
-			for(int i=0;i<interestLists.size();i++) {
-				InterestBean interestProductInfo = mallDao.getInterestProductInfo(interestLists.get(i).getPnum());
-				interestProductLists.add(i,interestProductInfo);
-				model.addAttribute("interestProductLists",interestProductLists);
+			ArrayList<ProductBean> interestProductLists = new ArrayList<ProductBean>();
+			for(int i=0;i<ilists.size();i++) {
+				ProductBean interestProductInfo = mallDao.getInterestProductInfo(ilists.get(i).getPnum());
+				interestProductLists.add(i, interestProductInfo);
+				model.addAttribute("interestProductLists", interestProductLists);
 			}
 		}
 		

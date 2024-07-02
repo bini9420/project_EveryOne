@@ -7,6 +7,6 @@
 
 <mapper namespace="interest.Interest">
 	<select id="getInterestLists" resultType="mall.model.InterestBean">
-		select * from interest where id = #{id} order by inum desc
+		select * from interest where id=#{id} order by inum desc
 	</select>
 </mapper>

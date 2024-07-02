@@ -47,13 +47,13 @@ public class MallDao {
 	}
 
 	public List<InterestBean> getInterestLists(String id) {
-		List<InterestBean> interestLists = new ArrayList<InterestBean>();
-		interestLists = sqlSessionTemplate.selectList(interest+".getInterestLists", id);
-		return interestLists;
+		List<InterestBean> ilists = new ArrayList<InterestBean>();
+		ilists = sqlSessionTemplate.selectList(interest+".getInterestLists", id);
+		return ilists;
 	}
 
-	public InterestBean getInterestProductInfo(int pnum) {
-		InterestBean interestProductInfo = new InterestBean();
+	public ProductBean getInterestProductInfo(int pnum) {
+		ProductBean interestProductInfo = new ProductBean();
 		interestProductInfo = sqlSessionTemplate.selectOne(product+".getInterestProductInfo", pnum);
 		return interestProductInfo;
 	}

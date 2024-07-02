@@ -25,7 +25,11 @@ public class MallMainController {
 		model.addAttribute("categoryLists", categoryLists);
 		
 		List<String> bestProducts = mallDao.getBestProduct();
+		System.out.println(bestProducts.size());
 		model.addAttribute("bestProducts", bestProducts);
+		
+		List<String> watchLists = mallDao.getWatchProducts();
+		System.out.println(watchLists.size());
 		return getPage;
 	}
 }

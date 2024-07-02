@@ -31,6 +31,12 @@ public class MallDao {
 		bestProducts = sqlSessionTemplate.selectList(product+".getBestProduct");
 		return bestProducts;
 	}
+
+	public List<String> getWatchProducts() {
+		List<String> watchLists = new ArrayList<String>();
+		watchLists = sqlSessionTemplate.selectList(product+".getWatchProducts");
+		return watchLists;
+	}
 	
 	
 }

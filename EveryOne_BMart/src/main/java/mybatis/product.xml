@@ -9,4 +9,8 @@
 	<select id="getBestProduct" resultType="mall.model.ProductBean">
 		select * from product order by ordercount desc
 	</select>
+	
+	<select id="getWatchProducts" resultType="mall.model.WatchBean">
+		select * from watch order by wnum desc
+	</select>
 </mapper>

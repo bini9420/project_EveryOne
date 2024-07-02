@@ -121,8 +121,24 @@ insert into product
 values(seqprod.nextval, 'admin', '냉동 닭정육 조각 - 닭다리살', null, 62000, '2kg 6팩', '자연을 그대로 담은 슬라이스 아몬드', '제조일로부터 24개월', '브라질',  77, '정육/수산/계란', sysdate, 0, 1);
 
 
+--최근 본 상품
+drop sequence wseq;
+create sequence wseq
+start with 1
+increment by 1
+minvalue 1
+nocache;
 
+drop table watch cascade constraints;
+create table watch(
+	wnum number primary key,
+	id varchar2(20) references member(id) on delete cascade,
+	pnum number references product(pnum) on delete cascade,
+	wdate date default sysdate
+);
 
+insert into watch values(wseq.nextval, 'park', 5, sysdate);
+insert into watch values(wseq.nextval, 'park', 3, sysdate);
 
 
 

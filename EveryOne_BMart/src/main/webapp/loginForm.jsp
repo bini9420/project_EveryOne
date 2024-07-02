@@ -5,19 +5,7 @@
 <%@include file="WEB-INF/common/common.jsp" %>
 
 
-<script>
-function loginWithGoogle() {
-    $.ajax({
-        url: '/login/getGoogleAuthUrl',
-        type: 'get',
-    }).done(function (res) {
-        location.href = res;
-    });
-}
 
-
-
-</script>
 
 
 <!DOCTYPE html>

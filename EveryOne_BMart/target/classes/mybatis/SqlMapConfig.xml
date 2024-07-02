@@ -8,7 +8,10 @@
 <configuration>
 
 	<mappers>
-		<mapper resource="mybatis/mall.xml"/>
+		<mapper resource="mybatis/category.xml"/>
+		<mapper resource="mybatis/product.xml"/>
+		<mapper resource="mybatis/watch.xml"/>
+		<mapper resource="mybatis/interest.xml"/>
 		<mapper resource="mybatis/member.xml"/>
 	</mappers>
 	

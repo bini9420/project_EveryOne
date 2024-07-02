@@ -3,7 +3,6 @@ package member.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import member.model.MemberBean;
@@ -24,7 +22,7 @@ public class MemberLoginController {
 
 	private final String command = "/loginForm.mb";
 	private final String getPage = "loginForm";
-	
+	private String gotoPage = "redirect:/main.mall";
 
 	@Autowired
 	MemberDao memberDao;
@@ -33,19 +31,14 @@ public class MemberLoginController {
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String loginForm() {
 		
-		System.out.println(this.getClass()+" GET");
+		//System.out.println(this.getClass()+" GET");
 		return getPage;
 	}
 
 	
-	
-	
-	
 	//loginForm.jsp에서 로그인 클릭
 	@RequestMapping(value=command, method=RequestMethod.POST)
-	public ModelAndView loginForm(MemberBean member, HttpSession session,HttpServletResponse response,Model model
-			
-			) {
+	public ModelAndView loginForm(MemberBean member, HttpSession session, HttpServletResponse response, Model model) {
 
 		
 		ModelAndView mav = new ModelAndView();
@@ -61,7 +54,6 @@ public class MemberLoginController {
 				out.println("alert('해당 아이디는 존재하지 않습니다. 아이디를 다시 입력해주세요.');");
 				out.println("</script>");
 				out.flush();
-			
 				return new ModelAndView( getPage ) ;
 				
 			}else{ // 해당 아이디가 존재한다.
@@ -71,8 +63,7 @@ public class MemberLoginController {
 					System.out.println("비번 일치");
 					System.out.println("destination:"+(String)session.getAttribute("destination"));
 					
-					
-					return new ModelAndView( (String)session.getAttribute("destination") ) ;
+					return new ModelAndView( gotoPage ) ;
 					
 				}else { // 비번 불일치
 					System.out.println("비번 불일치");
@@ -84,11 +75,9 @@ public class MemberLoginController {
 					return new ModelAndView( getPage ) ;
 				}
 			}
-
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		return mav;
 	}
 }

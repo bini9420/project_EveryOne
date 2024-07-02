@@ -111,49 +111,61 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" >
 				<li class="nav-item">
+					<!-- home icon -->
 					<a class="nav-link active" aria-current="page" href="main.mall">
 						<i class="fi fi-rr-home icon"></i>
 					</a>
 				</li>
 				<li class="nav-item">
+					<!-- heart icon -->
 					<a class="nav-link active" aria-current="page" href="#!">
 						<i class="fi fi-rr-heart icon"></i>
 					</a>
 				</li>
 				<li class="nav-item">
+					<!-- cart icon -->
 					<a class="nav-link active" aria-current="page" href="#!">
 						<i class="fi fi-rr-shopping-basket icon"></i>
 						<!-- Counter - Messages -->
                         <span class="badge badge-danger badge-counter">7</span>
 					</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="#!">
-						<i class="fi fi-rr-user icon"></i>
-					</a>
-				</li>
-				<!-- 
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						<img src="resources/img/user.png" alt="user" class="top_icon">
+						<i class="fi fi-rr-user icon"></i>
+						<c:if test="${loginInfo ne null}">
+							<font size="3" style="font-weight: bold">${loginInfo.name}님</font>
+						</c:if>
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<li>
-							<a class="dropdown-item" href="#!">
-								<img src="resources/img/user.png" alt="user" class="dropdown_icon">
-								Profile
-							</a>
-						</li>
-						<li><hr class="dropdown-divider" /></li>
-						<li>
-							<a class="dropdown-item" href="#!">
-								<img src="resources/img/logout.png" alt="logout" class="dropdown_icon">
-								Logout
-							</a>
-						</li>
+						<c:if test="${loginInfo eq null}">
+							<li>
+								<a class="dropdown-item" href="loginForm.mb">
+									<i class="fi fi-rr-users"> 로그인 </i>
+								</a>
+							</li>
+							<li><hr class="dropdown-divider" /></li>
+							<li>
+								<a class="dropdown-item" href="#!">
+									<i class="fi fi-rr-user-add"> 회원가입 </i>
+								</a>
+							</li>
+						</c:if>
+						<c:if test="${loginInfo ne null}">
+							<li>
+								<a class="dropdown-item" href="#!">
+									<i class="fi fi-rr-circle-user"> 마이페이지 </i>
+								</a>
+							</li>
+							<li><hr class="dropdown-divider" /></li>
+							<li>
+								<a class="dropdown-item" href="#!">
+									<i class="fi fi-rr-sign-out-alt"> 로그아웃 </i>
+								</a>
+							</li>
+						</c:if>
 					</ul>
 				</li>
-				 -->
 			</ul>
 		</div>
 	</div>
@@ -165,7 +177,8 @@
 		<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" >
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-					<i class="fi fi-rr-menu-burger icon"></i>카테고리
+					<i class="fi fi-rr-menu-burger icon"></i>
+					카테고리
 				</a>
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<c:forEach var="category" items="${categoryLists}">

@@ -124,10 +124,10 @@ values(seqprod.nextval, 'admin', '≥√µø ¥ﬂ¡§¿∞ ¡∂∞¢ - ¥ﬂ¥Ÿ∏ÆªÏ', null, 62000, '2k
 --√÷±Ÿ ∫ª ªÛ«∞
 drop sequence wseq;
 create sequence wseq
-start with 1
-increment by 1
-minvalue 1
-nocache;
+	start with 1
+	increment by 1
+	minvalue 1
+	nocache;
 
 drop table watch cascade constraints;
 create table watch(
@@ -142,7 +142,24 @@ insert into watch values(wseq.nextval, 'park', 3, sysdate);
 
 
 
+--¬Ú«— ªÛ«∞
+drop sequence iseq;
+create sequence iseq
+	start with 1
+	increment by 1
+	minvalue 1
+	nocache;
+	
+drop table interest cascade constraints;
+create table interest(
+	inum number primary key,
+	id varchar2(20) references member(id) on delete cascade,
+	pnum number references product(pnum) on delete cascade
+);
 
+insert into interest values(iseq.nextval, 'park', 1);
+insert into interest values(iseq.nextval, 'park', 3);
+insert into interest values(iseq.nextval, 'park', 5);
 
 
 

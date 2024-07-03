@@ -18,80 +18,15 @@
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-brands/css/uicons-brands.css'>
 	
 	<!-- Core theme CSS (includes Bootstrap)-->
-	<link href="resources/css/mall_style.css" rel="stylesheet" />
-	
-	<!-- search, carousel 등 -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+	<link href="resources/css/mall-style.css" rel="stylesheet" />
+	<!-- carousel --> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 	
 	<!-- fonts -->
 	<link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 	
-	<style>
-		.bottom_icon{
-			font-size: 35;
-			color: white;
-			margin: 0 15 0 0
-		}
-		.icon{
-			font-size: 28;
-			color: gray
-		}
-		.product{
-			font-size: 100;
-			color: gray
-		}
-		.search{
-			font-size: 18
-		}
-		.keyword{
-			margin: 35 10 0 20;
-			width : 300;
-			height: 40;
-			padding-left: 10
-		}
-		.footer1{
-			margin: 2 auto;
-			border-top: 1px solid #F5F5F5;
-			border-bottom: 1px solid #F5F5F5;
-			width: 100%;
-			text-align: center
-		}
-		.footer1 td{
-			padding: 10 30
-		}
-		.footer2 td{
-			padding: 10 100 10 0
-		}
-		.highlight{
-			font-weight: bold
-		}
-		.float{
-			position:fixed;
-			width:30px;
-			height:60px;
-			bottom:40px;
-			right:40px;
-			color:#D3D3D3;
-			text-align:center;
-			font-size: 45;
-		}
-		.float:hover{
-			text-decoration: none;
-			color: #2ac1bc
-		}
-		.my-float{
-			margin-top:22px;
-		}
-		a:hover{
-			text-decoration: none;
-			font-weight: bold;
-		}
-		.productImg{
-			width : 100;
-			margin : 10 0
-		}
-	</style>
+	<!-- 추가적인 스타일 작업 -->
+	<link href="resources/css/mall-style-plus.css" rel="stylesheet">
 </head>
 
 <!-- Navigation-->
@@ -100,7 +35,7 @@
 		<img src="resources/img/Bmart_logo.png" alt="B마트_logo" style="width:200; height: 60">&nbsp;&nbsp;
 		<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="plists.mall" method="post">
             <div class="input-group">
-                <input type="text" class="form-control bg-light border-0 small" placeholder="상품을 검색하세요(●'◡'●)"
+                <input type="text" class="form-control bg-light border-0 px-5" placeholder="상품을 검색하세요(●'◡'●)"
                     aria-label="Search" aria-describedby="basic-addon2" name="keyword">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">
@@ -109,9 +44,9 @@
                 </div>
             </div>
         </form>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" >
-				<li class="nav-item">
+		<div class="collapse navbar-collapse ms-lg-5" id="navbarSupportedContent">
+			<ul class="navbar-nav mb-2 mb-lg-0 ms-lg-5 ps-lg-5">
+				<li class="nav-item ms-lg-5">
 					<!-- home icon -->
 					<a class="nav-link active" aria-current="page" href="main.mall">
 						<i class="fi fi-rr-home icon"></i>
@@ -174,12 +109,11 @@
 
 <!-- category -->
 <nav class="navbar navbar-expand-lg">
-	<div class="container px-4 px-lg-5">
-		<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" >
-			<li class="nav-item dropdown">
+	<div class="container px-4 py-1" style="border-bottom: 1px solid #D3D3D3; border-top: 1px solid #D3D3D3">
+		<ul class="navbar-nav " >
+			<li class="nav-item dropdown mx-5">
 				<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-					<i class="fi fi-rr-menu-burger icon"></i>
-					카테고리
+					<font size="3" style="font-style: normal;">카테고리</font>
 				</a>
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<c:forEach var="category" items="${categoryLists}">
@@ -193,6 +127,21 @@
 					</c:forEach>
 				</ul>
 			</li>
+			<li class="nav-item mx-5" >
+				<a class="nav-link" aria-current="page" href="#!">
+					신상품
+				</a>
+			</li>
+			<li class="nav-item mx-5" >
+				<a class="nav-link" aria-current="page" href="#!">
+					베스트 상품
+				</a>
+			</li>
 		</ul>
 	</div>
 </nav>
+
+<!-- TOP button	 -->
+<a href="#" class="float">
+	<i class="fi fi-rr-arrow-small-up my-float"></i>
+</a>

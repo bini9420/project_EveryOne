@@ -4,37 +4,34 @@
 <%@ include file="mall_top.jsp"%>
 
 <!-- carousel -->
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="resources/img/banner1.png" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="resources/img/banner2.png" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="resources/img/banner3.png" alt="Third slide">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
+<div class="container">
+	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+		</ol>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img class="d-block w-100" src="resources/img/banner1.png" alt="First slide">
+			</div>
+			<div class="carousel-item">
+				<img class="d-block w-100" src="resources/img/banner2.png" alt="Second slide">
+			</div>
+			<div class="carousel-item">
+				<img class="d-block w-100" src="resources/img/banner3.png" alt="Third slide">
+			</div>
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
 </div>
-
-<!-- TOP button	 -->
-<a href="#" class="float">
-	<i class="fi fi-rs-arrow-circle-up my-float"></i>
-</a>
 
 <!-- Section-->
 <section class="py-5">
@@ -48,17 +45,15 @@
 					<div class="col mb-5">
 						<div class="card h-100 text-center">
 							<!-- Product image-->
-							<c:if test="${best.pimage ne null}">
-								<% String img = request.getContextPath()+"/image"; %>
-								<a href="#">
-								<img src="<%=img%>/${best.pimage}" alt="BestProductImg" class="productImg">
+							<a href="detail.mall?pnum=${best.pnum}">
+								<c:if test="${best.pimage ne null}">
+									<% String img = request.getContextPath()+"/image"; %>
+										<img src="<%=img%>/${best.pimage}" alt="BestProductImg" class="productImg">
+								</c:if>
+								<c:if test="${best.pimage eq null}">
+									<img src="resources/img/no-pictures.png" alt="BestProductImg" class="productImg">
+								</c:if>
 							</a>
-							</c:if>
-							<c:if test="${best.pimage eq null}">
-							<a href="#">
-								<img src="resources/img/no-pictures.png" alt="BestProductImg" class="productImg">
-							</a>
-							</c:if>
 							<!-- Product details-->
 							<div class="card-body p-4">
 								<div class="text-center">
@@ -71,7 +66,8 @@
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 								<div class="text-center">
-									<a class="btn btn-outline-dark mt-auto" href="#">장바구니 담기</a>
+									<a class="btn btn-outline-primary mt-auto" href="#">장바구니 담기</a>
+									<a class="btn btn-outline-danger mt-auto ms-lg-1" href="#"><i class="fi fi-rr-heart fs-5"></i></a>
 								</div>
 							</div>
 						</div>
@@ -95,17 +91,15 @@
 							<div class="col mb-5">
 								<div class="card h-100 text-center">
 									<!-- Product image-->
-									<c:if test="${watch.pimage ne null}">
-										<% String img = request.getContextPath()+"/image"; %>
-										<a href="#">
-										<img src="<%=img%>/${watch.pimage}" alt="WatchProductImg" class="productImg">
-									</a>
-									</c:if>
-									<c:if test="${watch.pimage eq null}">
 									<a href="#">
-										<img src="resources/img/no-pictures.png" alt="WatchProductImg" class="productImg">
+										<c:if test="${watch.pimage ne null}">
+											<% String img = request.getContextPath()+"/image"; %>
+												<img src="<%=img%>/${watch.pimage}" alt="watchProductImg" class="productImg">
+										</c:if>
+										<c:if test="${watch.pimage eq null}">
+											<img src="resources/img/no-pictures.png" alt="watchProductImg" class="productImg">
+										</c:if>
 									</a>
-									</c:if>
 									<!-- Product details-->
 									<div class="card-body p-4">
 										<div class="text-center">
@@ -118,7 +112,8 @@
 									<!-- Product actions-->
 									<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 										<div class="text-center">
-											<a class="btn btn-outline-dark mt-auto" href="#">장바구니 담기</a>
+											<a class="btn btn-outline-primary mt-auto" href="#">장바구니 담기</a>
+											<a class="btn btn-outline-danger mt-auto ms-lg-1" href="#"><i class="fi fi-rr-heart fs-5"></i></a>
 										</div>
 									</div>
 								</div>
@@ -148,17 +143,15 @@
 							<div class="col mb-5">
 								<div class="card h-100 text-center">
 									<!-- Product image-->
-									<c:if test="${interest.pimage ne null}">
-										<% String img = request.getContextPath()+"/image"; %>
-										<a href="#">
-										<img src="<%=img%>/${interest.pimage}" alt="InterestProductImg" class="productImg">
-									</a>
-									</c:if>
-									<c:if test="${interest.pimage eq null}">
 									<a href="#">
-										<img src="resources/img/no-pictures.png" alt="InterestProductImg" class="productImg">
+										<c:if test="${interest.pimage ne null}">
+											<% String img = request.getContextPath()+"/image"; %>
+												<img src="<%=img%>/${interest.pimage}" alt="interestProductImg" class="productImg">
+										</c:if>
+										<c:if test="${interest.pimage eq null}">
+											<img src="resources/img/no-pictures.png" alt="interestProductImg" class="productImg">
+										</c:if>
 									</a>
-									</c:if>
 									<!-- Product details-->
 									<div class="card-body p-4">
 										<div class="text-center">
@@ -171,7 +164,8 @@
 									<!-- Product actions-->
 									<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 										<div class="text-center">
-											<a class="btn btn-outline-dark mt-auto" href="#">장바구니 담기</a>
+											<a class="btn btn-outline-primary mt-auto" href="#">장바구니 담기</a>
+											<a class="btn btn-outline-danger mt-auto ms-lg-1" href="#"><i class="fi fi-rr-heart fs-5"></i></a>
 										</div>
 									</div>
 								</div>

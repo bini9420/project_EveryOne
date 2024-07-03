@@ -2,18 +2,23 @@
     pageEncoding="UTF-8"%>
 <!-- Footer-->
 <footer style="width: 100%">
-	<table class="footer1">
-		<tr>
-			<td><a href="#">공지사항</a></td>
-			<td>|</td>
-			<td><a href="#">입점문의</a></td>
-			<td>|</td>
-			<td><a href="#">...</a></td>
-		</tr>
-	</table>
-</footer>
-<footer style="background: #2ac1bc">
-	<div class="container">
+	<nav class="navbar navbar-expand-lg footer1">
+		<div class="container">
+			<ul class="navbar-nav mx-auto" >
+				<li class="nav-item mx-5" >
+					<a class="nav-link" aria-current="page" href="#!">
+						공지사항
+					</a>
+				</li>
+				<li class="nav-item mx-5" >
+					<a class="nav-link" aria-current="page" href="#!">
+						입점문의
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="bg-primary">
 		<table class="footer2 text-white">
 			<tr>
 				<td>

@@ -7,19 +7,25 @@
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+        	<!-- product image -->
             <div class="col-md-6">
-                <div class="small mb-1">SKU: BST-498</div>
-                <h1 class="display-5 fw-bolder">Shop item template</h1>
+            	<img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." />
+            </div>
+            <!-- product detail -->
+            <div class="col-md-6">
+                <h1 class="display-5 fw-bolder">${product.pname}</h1>
                 <div class="fs-5 mb-5">
-                    <span class="text-decoration-line-through">$45.00</span>
-                    <span>$40.00</span>
+                	<fmt:formatNumber value="${product.price}" pattern="##,###원"/>
                 </div>
-                <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
+                <p class="lead">
+                	${product.pcontent}
+                </p>
                 <div class="d-flex">
-                    <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                    <input type="button" class="form-control text-center me-2 fw-bolder" value="-" style="max-width: 3rem" />
+                    <input class="form-control text-center me-2" id="inputQuantity" type="text" value="1" style="max-width: 3rem" />
+                    <input type="button"  class="form-control text-center me-3 fw-bolder" value="+" style="max-width: 3rem" />
                     <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                        <i class="bi-cart-fill me-1"></i>
+                        <i class="fi fi-rr-shopping-basket me-1"></i>
                         Add to cart
                     </button>
                 </div>
@@ -27,7 +33,37 @@
         </div>
     </div>
 </section>
-<!-- Related items section-->
+
+<section class="container py-5">
+	<nav class="navbar navbar-expand-lg">
+		<div class="container py-1 bg-primary">
+			<ul class="navbar-nav mx-auto" >
+				<li class="nav-item mx-5" >
+					<a class="nav-link fw-bolder text-white fs-5" aria-current="page" href="#!">
+						상품상세
+					</a>
+				</li>
+				<li class="nav-item mx-5" >
+				</li>
+				<li class="nav-item mx-5" >
+				</li>
+				<li class="nav-item mx-5" >
+				</li>
+				<li class="nav-item mx-5" >
+					<a class="nav-link fw-bolder text-white fs-5" aria-current="page" href="#!">
+						상품리뷰
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+    <div class="px-4 px-lg-5 mb-5 text-center" style="background: #F5F5F5">
+       	상품 상세(원산지, 유통기한 등) 테이블
+    </div>
+</section>
+
+<!-- 최근 구매 내역 -->
 <section class="py-5 bg-light">
     <div class="container px-4 px-lg-5 mt-5">
         <h2 class="fw-bolder mb-4">Related products</h2>

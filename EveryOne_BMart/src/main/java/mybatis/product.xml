@@ -10,11 +10,7 @@
 		select * from product order by ordercount desc
 	</select>
 	
-	<select id="getWatchProductInfo" resultType="product">
-		select * from product where pnum=#{pnum}
-	</select>
-	
-	<select id="getInterestProductInfo" resultType="product">
+	<select id="getProductInfo" resultType="product">
 		select * from product where pnum=#{pnum}
 	</select>
 	

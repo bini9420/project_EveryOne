@@ -1,5 +1,5 @@
 --회원 테이블
-drop table member;
+drop table member cascade constraints;
 create table member(
 	id varchar2(20) primary key,
 	name varchar2(15) NOT NULL,
@@ -92,19 +92,40 @@ create table product(
 
 --B마트 상품
 insert into product 
-values(seqprod.nextval, 'admin', '알배기 배추 1봉', null, 3990, '통', '고소하고 달콤한 알배기 배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국산',  54, '과일/채소', sysdate, 0, 0);
+values(seqprod.nextval, 'admin', '알배기 배추 1봉', null, 3990, '통', '고소하고 달콤한 알배기 배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국산',  54, '과일/채소', sysdate, 5, 0);
 
 insert into product 
-values(seqprod.nextval, 'admin', '햇양파', null, 3790, '1.5kg', '단단하고 아삭한 양파', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  43, '과일/채소', sysdate, 0, 0);
+values(seqprod.nextval, 'admin', '햇양파', null, 3790, '1.5kg', '단단하고 아삭한 양파', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  43, '과일/채소', sysdate, 4, 0);
 
 insert into product 
-values(seqprod.nextval, 'admin', '조각 양배추', null, 1990, '500g', '신선하게 즐기는 조각 양배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 0, 0);
+values(seqprod.nextval, 'admin', '조각 양배추', null, 1990, '500g', '신선하게 즐기는 조각 양배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 2, 0);
 
 insert into product 
-values(seqprod.nextval, 'admin', '애사비 제로소다 오리지널', null, 10900, '500ml 6개', '국산 사과초모식초로 만든 탄산음료', null, null,  33, '음료/커피/생수', sysdate, 0, 0);
+values(seqprod.nextval, 'admin', '애사비 제로소다 오리지널', null, 10900, '500ml 6개', '국산 사과초모식초로 만든 탄산음료', null, null,  33, '음료/커피/생수', sysdate, 1, 0);
 
 insert into product 
-values(seqprod.nextval, 'admin', '제주 삼다수 그린 무라벨', null, 7600, '2L 6개', '매일 마시기 좋은 생수', null, null,  77, '음료/커피/생수', sysdate, 0, 0);
+values(seqprod.nextval, 'admin', '제주 삼다수 그린 무라벨', null, 7600, '2L 6개', '매일 마시기 좋은 생수', null, null,  77, '음료/커피/생수', sysdate, 8, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', 'test1', null, 1000, '500g', 'test1', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 2, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', 'test2', null, 2233, '500g', 'test2', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 2, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', 'test3', null, 1100, '500g', 'test3', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 5, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', 'test4', null, 2000, '500g', 'test4', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 8, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', 'test5', null, 790, '500g', 'test5', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 2, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', 'test6', null, 1000, '500g', 'test6', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 9, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', 'test7', null, 3400, '500g', 'test7', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 12, 0);
 
 
 --배민상회 상품
@@ -124,10 +145,10 @@ values(seqprod.nextval, 'admin', '냉동 닭정육 조각 - 닭다리살', null, 62000, '2k
 --최근 본 상품
 drop sequence wseq;
 create sequence wseq
-	start with 1
-	increment by 1
-	minvalue 1
-	nocache;
+start with 1
+increment by 1
+minvalue 1
+nocache;
 
 drop table watch cascade constraints;
 create table watch(
@@ -139,7 +160,6 @@ create table watch(
 
 insert into watch values(wseq.nextval, 'park', 5, sysdate);
 insert into watch values(wseq.nextval, 'park', 3, sysdate);
-
 
 
 --찜한 상품
@@ -161,19 +181,9 @@ insert into interest values(iseq.nextval, 'park', 1);
 insert into interest values(iseq.nextval, 'park', 3);
 insert into interest values(iseq.nextval, 'park', 5);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+commit;
+select * from member;
+select * from category;
+select * from product order by pnum;
+select * from watch order by wnum desc;
+select * from interest order by inum desc;

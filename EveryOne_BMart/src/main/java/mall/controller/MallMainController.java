@@ -47,7 +47,7 @@ public class MallMainController {
 			
 			ArrayList<ProductBean> watchProductLists = new ArrayList<ProductBean>();
 			for(int i=0;i<watchLists.size();i++) {
-				ProductBean watchProductInfo = mallDao.getWatchProductInfo(watchLists.get(i).getPnum());
+				ProductBean watchProductInfo = mallDao.getProductInfo(watchLists.get(i).getPnum());
 				watchProductLists.add(i, watchProductInfo);
 				model.addAttribute("watchProductLists", watchProductLists);
 			}
@@ -58,7 +58,7 @@ public class MallMainController {
 			
 			ArrayList<ProductBean> interestProductLists = new ArrayList<ProductBean>();
 			for(int i=0;i<ilists.size();i++) {
-				ProductBean interestProductInfo = mallDao.getInterestProductInfo(ilists.get(i).getPnum());
+				ProductBean interestProductInfo = mallDao.getProductInfo(ilists.get(i).getPnum());
 				interestProductLists.add(i, interestProductInfo);
 				model.addAttribute("interestProductLists", interestProductLists);
 			}

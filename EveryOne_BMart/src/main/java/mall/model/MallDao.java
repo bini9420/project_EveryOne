@@ -43,22 +43,16 @@ public class MallDao {
 		return watchLists;
 	}
 
-	public ProductBean getWatchProductInfo(int pnum) {
-		ProductBean watchProductInfo = new ProductBean();
-		watchProductInfo = sqlSessionTemplate.selectOne(product+".getWatchProductInfo", pnum);
-		return watchProductInfo;
+	public ProductBean getProductInfo(int pnum) {
+		ProductBean productInfo = new ProductBean();
+		productInfo = sqlSessionTemplate.selectOne(product+".getProductInfo", pnum);
+		return productInfo;
 	}
 
 	public List<InterestBean> getInterestLists(String id) {
 		List<InterestBean> ilists = new ArrayList<InterestBean>();
 		ilists = sqlSessionTemplate.selectList(interest+".getInterestLists", id);
 		return ilists;
-	}
-
-	public ProductBean getInterestProductInfo(int pnum) {
-		ProductBean interestProductInfo = new ProductBean();
-		interestProductInfo = sqlSessionTemplate.selectOne(product+".getInterestProductInfo", pnum);
-		return interestProductInfo;
 	}
 
 	public List<ProductBean> getProductByCategory(String category) {
@@ -83,20 +77,4 @@ public class MallDao {
 		return plistsRange;
 	}
 
-	public int getTotalCountByKeyword(SearchBean sb) {
-		int cnt = -1;
-		cnt = sqlSessionTemplate.selectOne(product+".getTotalCountByKeyword", sb);
-		System.out.println("cnt: "+cnt);
-		return cnt;
-	}
-
-	public List<ProductBean> getProductKeyword(SearchBean sb, Paging pageInfo) {
-		RowBounds rb = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
-		
-		List<ProductBean> plistsRange = new ArrayList<ProductBean>();
-		plistsRange = sqlSessionTemplate.selectList(product+".getProductKeyword", sb, rb);
-		System.out.println("plistsRange.size: "+plistsRange.size());
-		return plistsRange;
-	}
-	
 }

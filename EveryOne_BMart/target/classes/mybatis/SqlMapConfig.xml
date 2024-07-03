@@ -10,6 +10,8 @@
 	<mappers>
 		<mapper resource="mybatis/mall.xml"/>
 		<mapper resource="mybatis/member.xml"/>
+		<mapper resource="mybatis/product.xml"/>
+		
 	</mappers>
 	
 </configuration>

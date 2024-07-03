@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="product">
+	   <select id = "getTotalCount" resultType = "int" parameterType="hashmap">
+        select count(*) from product
+        
+        <if test = "whatColumn == 'all'">
+           where all like #{keyword}
+        </if>
+        <if test = "whatColumn == 'pname'">
+           where pname like #{keyword}
+        </if>
+        
+        <if test = "whatColumn == 'pnum'">
+           where pnum like #{keyword}
+        </if>
+        <if test = "whatColumn == 'price'">
+           where price like #{keyword}
+        </if>
+        <if test = "whatColumn == 'stock'">
+           where stock like #{keyword}
+        </if>
+        <if test = "whatColumn == 'pcategory'">
+           where pcategory like #{keyword}
+        </if>
+     </select>
+	
+	<select id = "getProductList" resultType = "mall.model.ProductBean">
+        select * from product  where mall=0
+        
+        <if test = "whatColumn == 'all'">
+           where all like #{keyword}
+        </if>
+        <if test = "whatColumn == 'pname'">
+          and pname like #{keyword}
+        </if>
+        
+        <if test = "whatColumn == 'pnum'">
+         and pnum like #{keyword}
+        </if>
+        <if test = "whatColumn == 'price'">
+           and price like #{keyword}
+        </if>
+        <if test = "whatColumn == 'stock'">
+           and stock like #{keyword}
+        </if>
+        <if test = "whatColumn == 'pcategory'">
+           and pcategory like #{keyword}
+        </if>
+        
+       
+        order by pnum desc
+     </select>
+     
+     <insert id="insertProduct">
+		insert into product(pnum, id, pname, pimage, price, capacity, pcontent, expritydate, origin, stock, pcategory, inputdate, ordercount, mall)
+		values(seqprod.nextval,#{id,jdbcType=VARCHAR} ,#{pname},#{pimage,jdbcType=VARCHAR}, #{price}, #{capacity}, #{pcontent}, #{expritydate}, #{origin},#{stock},#{pcategory},#{inputdate},#{ordercount},#{mall})
+	</insert>
+     
+   
+</mapper>
+
+<!-- product.xml -->

@@ -17,6 +17,73 @@
 		values(#{id},#{name},#{password},#{phone},#{email})
  	</insert>
 	 -->
+	 
+	 <select id="getTotalCount" resultType="int">
+		select count(*) from member
+		<if test="whatColumn == 'all'">
+			where name like #{keyword}
+			or id like #{keyword}
+			or email like #{keyword}
+			or addr1 like #{keyword}
+		</if>
+		<if test="whatColumn == 'name'">
+			where name like #{keyword}
+		</if>
+		<if test="whatColumn == 'id'">
+			where id like #{keyword}
+		</if>
+		<if test="whatColumn == 'email'">
+			where email like #{keyword}
+		</if>
+		<if test="whatColumn == 'addr1'">
+			where addr1 like #{keyword}
+		</if>
+	</select>
+	 
+	 <select id = "getMemberList" resultType = "member.model.MemberBean" parameterType = "hashmap">
+  		select * from member where ownercode=null
+  		<if test="whatColumn == 'all'">
+			where name like #{keyword}
+			or id like #{keyword}
+			or email like #{keyword}
+			or addr1 like #{keyword}
+		</if>
+		<if test="whatColumn == 'name'">
+			and name like #{keyword}
+		</if>
+		<if test="whatColumn == 'id'">
+			and id like #{keyword}
+		</if>
+		<if test="whatColumn == 'email'">
+			and email like #{keyword}
+		</if>
+		<if test="whatColumn == 'addr1'">
+			and addr1 like #{keyword}
+		</if>
+  	</select>
+  	
+  	<insert id="insertMember">
+ 		insert into member(id, name, password, phone, email,address, addr1,addr2, image,ownercode)
+		values(#{id},#{name},#{password},#{phone},#{email},#{address},#{addr1},#{addr2},#{image},#{ownercode})
+ 	</insert>
+	 
+	 
+ 	
+ 	<delete id="deleteMember">
+ 	    delete from member where id=#{id}
+ 	</delete>
+ 	
+ 	
+ <!--  	<update id="updateMember">
+		update member set name=#{name}, password=#{password}, gender=#{gender}, hobby=#{hobby}, address1=#{address1}, address2=#{address2}, mpoint=#{mpoint}
+		where id=#{id}
+	</update>
+	 -->
+	 <!-- <update id="updateMpoint">
+      update member set mpoint = mpoint + #{mpoint}
+      where id = #{id}
+   </update> -->
 </mapper>
 
 <!-- member.xml -->
+

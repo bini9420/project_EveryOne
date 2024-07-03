@@ -9,7 +9,8 @@ create table member(
 	address varchar2(30),
 	addr1 varchar2(30),
 	addr2 varchar2(30),
-	image varchar2(30)
+	image varchar2(30),
+	ownercode varchar2(30)
 );
 
 --°ü¸®ÀÚ

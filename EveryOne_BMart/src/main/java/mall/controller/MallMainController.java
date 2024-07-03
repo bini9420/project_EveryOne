@@ -30,7 +30,7 @@ public class MallMainController {
 	public String mall(Model model, HttpSession session) {
 		
 		List<CategoryBean> categoryLists = mallDao.getAllCategory();
-		model.addAttribute("categoryLists", categoryLists);
+		session.setAttribute("categoryLists", categoryLists);
 		
 		List<ProductBean> bestProducts = mallDao.getBestProduct();
 		//System.out.println("bestProducts: "+bestProducts.size());

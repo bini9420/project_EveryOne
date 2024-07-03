@@ -85,6 +85,7 @@
 		}
 		a:hover{
 			text-decoration: none;
+			font-weight: bold;
 		}
 		.productImg{
 			width : 100;
@@ -97,10 +98,10 @@
 <nav class="navbar navbar-expand-lg">
 	<div class="container px-4 px-lg-5">
 		<img src="resources/img/Bmart_logo.png" alt="B마트_logo" style="width:200; height: 60">&nbsp;&nbsp;
-		<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="main.mall" method="post">
+		<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="plists.mall" method="post">
             <div class="input-group">
-                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                    aria-label="Search" aria-describedby="basic-addon2">
+                <input type="text" class="form-control bg-light border-0 small" placeholder="상품을 검색하세요(●'◡'●)"
+                    aria-label="Search" aria-describedby="basic-addon2" name="keyword">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">
                         <i class="fi fi-rr-search search"></i>
@@ -184,7 +185,7 @@
 					<c:forEach var="category" items="${categoryLists}">
 						<c:if test="${category.num <= 12}">
 							<li>
-								<a class="dropdown-item" href="#!">
+								<a class="dropdown-item" href="plists.mall?category=${category.name}">
 									${category.name}
 								</a>
 							</li>

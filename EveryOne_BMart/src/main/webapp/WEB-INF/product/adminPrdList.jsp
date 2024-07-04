@@ -3,6 +3,18 @@
     pageEncoding="UTF-8"%>
 <%@include file="../common/common.jsp" %>    
 <%@include file="../admin/a_top.jsp"%>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+
+<style>
+	.plusbtn {
+  float: right;
+  margin-left: 10px; 
+   font-size: 2rem;
+}
+
+</style>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -64,13 +76,13 @@
  -->
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">상품목록</h1>
+                    <h1 class="h3 mb-2 text-gray-800">상품목록  </h1>
                    
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Product List</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Product List <a href="productInsert.prd" class="plusbtn"><i class="fi fi-br-plus-small"></i></a></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -79,10 +91,12 @@
                                         <tr>
                                             <th>상품번호</th>
                                             <th>카테고리</th>
-                                            <th>상품이름</th>
+                                            <th>상품명</th>
                                             <th>가격</th>
                                             <th>주문횟수</th>
                                             <th>재고</th>
+                                            <th>수정</th>
+                                            <th>삭제</th>
                                         </tr>
                                     </thead>
                                     
@@ -100,6 +114,8 @@
                                             <th>${prd.price }</th>
                                             <th>${prd.ordercount }</th>
                                             <th>${prd.stock }</th>
+                                            <th><a href="productUpdate.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&whatColumn=${param.whatColumn}&keyword=${param.keyword}">수정</a></th>
+                                            <th><a href="productDelete.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&whatColumn=${param.whatColumn}&keyword=${param.keyword}">삭제</a></th>
                                         </tr>
                                     </tfoot>
                                     

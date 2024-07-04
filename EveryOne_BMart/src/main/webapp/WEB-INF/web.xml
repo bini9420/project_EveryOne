@@ -99,7 +99,7 @@
 	</servlet-mapping>
 	
 	
-	<!-- 관리자  -->
+	<!-- 상품  -->
 	<servlet>
 		<servlet-name>product</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

@@ -5,7 +5,7 @@ public class Paging {
 	private int totalCount = 0 ; //총 레코드 건수
 	private int totalPage = 0 ; //전체 페이지 수
 	private int pageNumber = 0 ; //보여줄 페이지 번호
-	private int pageSize = 0 ; //한 페이지에 보여줄 건수
+	private int pageSize = 10 ; //한 페이지에 보여줄 건수
 	private int beginRow = 0 ; //현재 페이지의 시작 행
 	private int endRow = 0 ; //현재 페이지의 끝 행
 	private int pageCount = 3 ; // 한 화면에 보여줄 페이지 링크 수 (페이지 갯수)
@@ -191,7 +191,7 @@ public class Paging {
 		this.pageNumber = Integer.parseInt( _pageNumber ) ; 
 
 		if( _pageSize == null || _pageSize.equals("null") || _pageSize.equals("") ){
-			_pageSize = "2" ; // 한 페이지에 보여줄 레코드 갯수
+			_pageSize = "10" ; // 한 페이지에 보여줄 레코드 갯수
 		}		
 		this.pageSize = Integer.parseInt( _pageSize ) ;
 		

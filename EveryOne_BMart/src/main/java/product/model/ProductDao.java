@@ -54,15 +54,15 @@ public class ProductDao {
 	}
 
 	// 3¹ø(,,)
-	public ProductBean detailViewByNum(int num) {
+	public ProductBean detailViewByNum(int pnum) {
 		ProductBean pb = null;
-		pb = sqlSessionTemplate.selectOne(namespace + ".detailViewByNum", num);
+		pb = sqlSessionTemplate.selectOne(namespace + ".detailViewByNum", pnum);
 		return pb;
 	}//detailViewByNum
 
-	public int deleteProduct(int num) {
+	public int deleteProduct(int pnum) {
 		int cnt = -1;
-		cnt = sqlSessionTemplate.delete(namespace + ".deleteProduct", num);
+		cnt = sqlSessionTemplate.delete(namespace + ".deleteProduct", pnum);
 		System.out.println("deleteProduct cnt:"+cnt);
 		return cnt;
 

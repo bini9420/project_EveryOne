@@ -7,10 +7,16 @@
  
 <configuration>
 
+   <settings>
+        <setting name="jdbcTypeForNull" value="NULL" />
+    </settings>
+
+
 	<mappers>
 		<mapper resource="mybatis/mall.xml"/>
 		<mapper resource="mybatis/member.xml"/>
 		<mapper resource="mybatis/product.xml"/>
+		<mapper resource="mybatis/admin.xml"/>
 		
 	</mappers>
 	

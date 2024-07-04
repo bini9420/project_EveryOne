@@ -1,12 +1,25 @@
 package mall.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProductBean {
+	
+	
 	private int pnum;
 	private String id;
+	
+	@NotBlank(message = "상품명을 입력하세요")
 	private String pname;
 	private String pimage;
+	
+	
 	private int price;
+	
+	
 	private String capacity;
+	
+	@NotBlank(message = "상품설명을 입력하세요")
 	private String pcontent;
 	private String expritydate;
 	private String origin;
@@ -15,7 +28,31 @@ public class ProductBean {
 	private String inputdate;
 	private int ordercount;
 	private int mall;
+	private MultipartFile upload;
+	private String upload2;
 	
+	
+	
+	
+	public MultipartFile getUpload() {
+		return upload;
+	}
+	public void setUpload(MultipartFile upload) {
+		
+		this.upload = upload;
+		if(this.upload != null) {
+			System.out.println(upload.getName()); // upload
+			System.out.println(upload.getOriginalFilename()); // 남자시계.jpg
+			pimage = upload.getOriginalFilename(); // image = 남자시계.jpg
+		}
+		
+	}
+	public String getUpload2() {
+		return upload2;
+	}
+	public void setUpload2(String upload2) {
+		this.upload2 = upload2;
+	}
 	public int getPnum() {
 		return pnum;
 	}

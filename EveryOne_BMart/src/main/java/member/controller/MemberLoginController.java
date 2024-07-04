@@ -24,6 +24,7 @@ public class MemberLoginController {
 
 	private final String command = "/loginForm.mb";
 	private final String getPage = "loginForm";
+
 	
 
 	@Autowired
@@ -72,7 +73,19 @@ public class MemberLoginController {
 					System.out.println("destination:"+(String)session.getAttribute("destination"));
 					
 					
-					return new ModelAndView( (String)session.getAttribute("destination") ) ;
+					 String adminMainPage = "redirect:/adminMain.jsp"; // 관리자 메인 페이지 URL
+
+	                    return new ModelAndView(adminMainPage);
+					
+					
+					
+	                    
+	                    
+	                    
+	                  
+	        					
+	        						                    
+	                    
 					
 				}else { // 비번 불일치
 					System.out.println("비번 불일치");

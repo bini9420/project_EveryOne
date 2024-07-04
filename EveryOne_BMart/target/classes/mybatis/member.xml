@@ -40,7 +40,7 @@
 		</if>
 	</select>
 	 
-	 <select id = "getMemberList" resultType = "member.model.MemberBean" parameterType = "hashmap">
+	<!--  <select id = "getMemberList" resultType = "member.model.MemberBean" parameterType = "hashmap">
   		select * from member where ownercode=null
   		<if test="whatColumn == 'all'">
 			where name like #{keyword}
@@ -60,7 +60,7 @@
 		<if test="whatColumn == 'addr1'">
 			and addr1 like #{keyword}
 		</if>
-  	</select>
+  	</select> -->
   	
   	<insert id="insertMember">
  		insert into member(id, name, password, phone, email,address, addr1,addr2, image,ownercode)

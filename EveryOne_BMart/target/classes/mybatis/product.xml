@@ -3,6 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+
+
 <mapper namespace="product">
 	   <select id = "getTotalCount" resultType = "int" parameterType="hashmap">
         select count(*) from product
@@ -29,7 +31,7 @@
      </select>
 	
 	<select id = "getProductList" resultType = "mall.model.ProductBean">
-        select * from product  where mall=0
+        select * from product  
         
         <if test = "whatColumn == 'all'">
            where all like #{keyword}
@@ -56,10 +58,35 @@
      </select>
      
      <insert id="insertProduct">
-		insert into product(pnum, id, pname, pimage, price, capacity, pcontent, expritydate, origin, stock, pcategory, inputdate, ordercount, mall)
-		values(seqprod.nextval,#{id,jdbcType=VARCHAR} ,#{pname},#{pimage,jdbcType=VARCHAR}, #{price}, #{capacity}, #{pcontent}, #{expritydate}, #{origin},#{stock},#{pcategory},#{inputdate},#{ordercount},#{mall})
+		insert into product(pnum,pcategory, id, pname, pimage, price, capacity, pcontent, expritydate, origin, stock, inputdate, ordercount, mall)
+		values(seqprod.nextval,#{pcategory},#{id} ,#{pname},#{pimage}, #{price}, #{capacity}, #{pcontent}, #{expritydate}, #{origin},#{stock, jdbcType=INTEGER},sysdate,0,#{mall})
+		
 	</insert>
      
+    <delete id="deleteProduct">
+		delete from product where pnum=#{pnum}
+	</delete>
+   
+    
+     <!-- 상품 상세보기,상품 수정하기, 장바구니 목록의 상품 -->
+      <select id="detailViewByNum" resultType="mall.model.ProductBean">
+        select * from product
+        where pnum = #{pnum}
+     </select>
+     
+     
+	
+	 <update id="updateProduct">
+  		update product set pname = #{pname},price = #{price}, stock=#{stock},pimage = #{pimage}, 
+  		pcontent = #{pcontent} where pnum = #{pnum}
+  	</update>
+  <!-- 	
+  	<update id="updateStock">
+  		update products set stock = stock-#{stock} 
+  		where num = #{num}
+  	</update>  -->
+
+   
    
 </mapper>
 

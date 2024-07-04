@@ -22,7 +22,32 @@
 
     <!-- Custom styles for this template-->
     <link href="<%=request.getContextPath()%>/resources/css/sb-admin-2.min.css" rel="stylesheet">
+	<link rel="stylesheet"
+	href="https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-rounded/css/uicons-bold-rounded.css">
+	<!-- Custom styles for this page -->
+<link href="resources/vendor/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet">
+	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+	<style>
+.btn-outline-info {
+	float: right;
+	margin-left: 10px;
+	font-size: 2rem;
+	border:none;
+}
 
+.content {
+	width: 100%;
+	height: 100px; /* 높이를 조정할 수 있습니다 */
+	box-sizing: border-box; /* 패딩과 보더를 포함하여 크기를 계산합니다 */
+}
+
+
+ .err{
+        color : red;
+        font-size:9pt;
+        }
+</style>
 </head>
 
 <body id="page-top">
@@ -38,7 +63,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Admin <sup>2</sup></div>
             </a>
 
             <!-- Divider -->
@@ -88,10 +113,9 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">상품목록</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                        <a class="collapse-item" href="utilities-color.html">B마트</a>
+                        <a class="collapse-item" href="utilities-border.html">배민상회</a>
+                   
                     </div>
                 </div>
             </li>
@@ -347,7 +371,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${loginInfo.name }</span>
                                 <img class="img-profile rounded-circle"
                                     src="<%=request.getContextPath()%>/resources/img/undraw_profile.svg">
                             </a>

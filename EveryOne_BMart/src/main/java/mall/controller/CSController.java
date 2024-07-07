@@ -10,7 +10,7 @@ import mall.model.MallDao;
 public class CSController {
 
 	private final String command = "/cs.mall";
-	private final String getPage = "customerService";
+	private final String getPage = "cs_main";
 	
 	@Autowired
 	MallDao mallDao;

@@ -44,7 +44,7 @@
 		</div>
 		<div class="col-sm-6">
 			<div class="card" style="border: 0px">
-				<%@ include file="mypage-detail.jsp" %>
+				<%@ include file="mypage_detail.jsp" %>
 			</div>
 		</div>
 	</div>

@@ -34,45 +34,6 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg bg-primary">
 	<div class="container">
-		<i class="fi fi-rr-chatbot-speech-bubble text-white fst-normal fw-bolder mx-auto my-2" style="font-size: 35"> 고객센터</i>
+		<a href="cs.mall" class="mx-auto my-2"><i class="fi fi-rr-chatbot-speech-bubble text-white fst-normal fw-bolder" style="font-size: 35"> 고객센터</i></a>
 	</div>
 </nav>
-
-<!-- category -->
-<nav class="navbar navbar-expand-lg mx-auto" style="border-bottom: 1px solid #D3D3D3; box-shadow: 0px 3px 5px -2px gray">
-	<div class="container px-4">
-		<ul class="navbar-nav" >
-			<li class="nav-item dropdown mx-5">
-				<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-					<font size="3" style="font-style: normal;">배민B마트</font>
-				</a>
-				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<li>
-						<a class="dropdown-item" href="#">F&A</a>
-					</li>
-					<li>
-						<a class="dropdown-item" href="#">공지사항</a>
-					</li>
-				</ul>
-			</li>
-			<li class="nav-item dropdown mx-5">
-				<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-					<font size="3" style="font-style: normal;">배민상회</font>
-				</a>
-				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<li>
-						<a class="dropdown-item" href="#">F&A</a>
-					</li>
-					<li>
-						<a class="dropdown-item" href="#">공지사항</a>
-					</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</nav>
-
-<!-- TOP button	 -->
-<a href="#" class="float">
-	<i class="fi fi-rr-arrow-small-up my-float"></i>
-</a>

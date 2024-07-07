@@ -243,6 +243,35 @@ create table cart(
 );
 
 
+-- 주문 테이블
+drop sequence seqorder;
+create sequence seqorder
+start with 1
+increment by 1
+minvalue 1
+nocache;
+
+drop table orderInfo cascade constraints;
+create table orderInfo(
+	onum number primary key,
+	id varchar2(20) references member(id) on delete cascade,
+	pnum number references product(pnum) on delete cascade,
+  pamount number not null,
+  price number,
+  way varchar2(15),
+  status varchar2(15),
+	orderdate date default sysdate
+);
+  
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 3, '2024-06-01');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 3, '2024-06-01');
+
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 3, '2024-07-01');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 3, '2024-07-01');
+
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 2, 3, '2023-07-01');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 2, 3, '2023-07-01');
+
 
 commit;
 select * from member;
@@ -257,3 +286,6 @@ select * from interest order by inum desc;
 
 --최근 3일 이내에 등록한 상품 조회
 select count(*) from product where inputdate between sysdate-3 and sysdate and mall = 0;
+
+--월별 매출
+select to_char(orderdate, 'yyyy-mm') as 날짜, sum(o.pamount*p.price) as 매출 from orderInfo o inner join product p on o.pnum = p.pnum group by to_char(orderdate, 'yyyy-mm') order by 1;

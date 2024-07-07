@@ -16,18 +16,18 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-straight/css/uicons-regular-straight.css'>
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-thin-rounded/css/uicons-thin-rounded.css'>
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-brands/css/uicons-brands.css'>
 	
 	<!-- Core theme CSS (includes Bootstrap)-->
-	<link href="resources/css/mall-style.css" rel="stylesheet" />
-	<!-- carousel --> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-    <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+	<link href="resources/css/mall.css" rel="stylesheet" />
 	
 	<!-- fonts -->
 	<link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 	
-	<!--  -->
-	<link href="resources/css/mall-plus.css" rel="stylesheet" type="text/css">
+	<!-- 추가 css -->
+	<link href="resources/css/mall_plus.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -39,7 +39,7 @@
 	        <div class="input-group">
 				<input type="hidden" name="mall" value="${mall}">
 			    <input type="text" class="form-control bg-light border-0 px-3" placeholder="상품을 검색하세요(●'◡'●)"
-			        aria-label="Search" aria-describedby="basic-addon2" name="keyword">
+			        aria-label="Search" aria-describedby="basic-addon2" name="keyword" style="width: 250">
 			    <div class="input-group-append">
 			        <button class="btn btn-primary" type="submit">
 			            <i class="fi fi-rr-search search"></i>
@@ -49,30 +49,30 @@
        	</form>
 		<div class="collapse navbar-collapse ms-lg-5" id="navbarSupportedContent">
 			<ul class="navbar-nav mb-2 mb-lg-0 ms-lg-5 ps-lg-5">
-				<li class="nav-item ms-lg-5">
+				<li class="nav-item ms-lg-5 mx-1">
 					<!-- home icon -->
 					<a class="nav-link active" aria-current="page" href="main.mall">
 						<i class="fi fi-rr-home icon"></i>
 					</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item mx-1">
 					<!-- heart icon -->
 					<a class="nav-link active" aria-current="page" href="interest.mall">
 						<i class="fi fi-rr-heart icon"></i>
 					</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item mx-1">
 					<!-- cart icon -->
-					<a class="nav-link active" aria-current="page" href="cart.mall">
+					<a class="nav-link active position-relative" aria-current="page" href="cart.mall">
 						<i class="fi fi-rr-shopping-basket icon"></i>
 						<!-- Counter - Messages -->
 						<c:if test="${loginInfo ne null}">
-                        	<span class="badge badge-danger badge-counter">${cartTotalCount}</span>
+                        	<span class="position-absolute top-1 start-100 translate-middle badge rounded-pill btn-danger">${cartTotalCount}</span>
                         </c:if>
 					</a>
 				</li>
 				<c:if test="${loginInfo eq null}">
-					<li class="nav-item dropdown">
+					<li class="nav-item dropdown mx-1">
 						<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<i class="fi fi-rr-user icon"></i>
 						</a>

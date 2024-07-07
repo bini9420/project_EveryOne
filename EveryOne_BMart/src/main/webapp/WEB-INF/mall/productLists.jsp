@@ -88,43 +88,41 @@
 						                    </c:if>
 					                    </c:if>
 				                    </c:forEach>
-			                    	<c:if test="${category ne null}">
-					                    <c:if test="${flag}">
-											<a class="btn flex-shrink-0 py-2 px-3" style="color:white; border: 1px solid #FC7CB9; background: #FC7CB9" 
+				                    <c:if test="${flag}">
+			                    		<c:if test="${category ne null}">
+											<a class="btn flex-shrink-0 py-2 px-3 btn-danger"
 					                     	href="updateInterest.mall?page=category&index=del&id=${loginInfo.id}&pnum=${product.pnum}&category=${category}&range=${range}&mall=${mall}">
 												<i class="fi fi-rs-heart"></i>
 						                    </a>
 					                    </c:if>
-				                    	<c:if test="${not flag}">
-					                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:#FC7CB9; border: 1px solid #FC7CB9" 
-					                     	href="updateInterest.mall?page=category&index=in&id=${loginInfo.id}&pnum=${product.pnum}&category=${category}&range=${range}&mall=${mall}">
-						                    	<i class="fi fi-rs-heart"></i>
-						                    </a>
-					                    </c:if>
-									</c:if>
-									<c:if test="${keyword ne null}">
-										<c:if test="${flag}">
-											<a class="btn flex-shrink-0 py-2 px-3" style="color:white; border: 1px solid #FC7CB9; background: #FC7CB9" 
+										<c:if test="${keyword ne null}">
+											<a class="btn flex-shrink-0 py-2 px-3 btn-danger"
 					                     	href="updateInterest.mall?page=keyword&index=del&id=${loginInfo.id}&pnum=${product.pnum}&keyword=${keyword}&range=${range}&mall=${mall}">
 												<i class="fi fi-rs-heart"></i>
 						                    </a>
 					                    </c:if>
-				                    	<c:if test="${not flag}">
-					                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:#FC7CB9; border: 1px solid #FC7CB9" 
-											href="updateInterest.mall?page=keyword&index=in&id=${loginInfo.id}&pnum=${product.pnum}&keyword=${keyword}&range=${range}&mall=${mall}">
-						                    	<i class="fi fi-rs-heart"></i>
-						                    </a>
-					                    </c:if>
-									</c:if>
-									<c:if test="${keyword eq null && category eq null}">
-										<c:if test="${flag}">
-											<a class="btn flex-shrink-0 py-2 px-3" style="color:white; border: 1px solid #FC7CB9; background: #FC7CB9" 
+										<c:if test="${keyword eq null && category eq null}">
+											<a class="btn flex-shrink-0 py-2 px-3 btn-danger"
 					                    	href="updateInterest.mall?page=new&index=del&id=${loginInfo.id}&pnum=${product.pnum}&range=${range}&mall=${mall}">
 												<i class="fi fi-rs-heart"></i>
 						                    </a>
 					                    </c:if>
-				                    	<c:if test="${not flag}">
-					                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:#FC7CB9; border: 1px solid #FC7CB9" 
+									</c:if>
+			                    	<c:if test="${not flag}">
+			                    		<c:if test="${category ne null}">
+					                    	<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger" 
+					                     	href="updateInterest.mall?page=category&index=in&id=${loginInfo.id}&pnum=${product.pnum}&category=${category}&range=${range}&mall=${mall}">
+						                    	<i class="fi fi-rs-heart"></i>
+						                    </a>
+					                    </c:if>
+				                    	<c:if test="${keyword ne null}">
+					                    	<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger"
+											href="updateInterest.mall?page=keyword&index=in&id=${loginInfo.id}&pnum=${product.pnum}&keyword=${keyword}&range=${range}&mall=${mall}">
+						                    	<i class="fi fi-rs-heart"></i>
+						                    </a>
+					                    </c:if>
+				                    	<c:if test="${keyword eq null && category eq null}">
+					                    	<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger"
 					                    	href="updateInterest.mall?page=new&index=in&id=${loginInfo.id}&pnum=${product.pnum}&range=${range}&mall=${mall}">
 						                    	<i class="fi fi-rs-heart"></i>
 						                    </a>
@@ -134,19 +132,19 @@
 			                    <!-- 찜목록을 조회할 수 없을 때 -->
 			                    <c:if test="${fn:length(ilists) == 0}">
 				                    <c:if test="${category ne null}">
-					                    <a class="btn flex-shrink-0 py-2 px-3" style="color:#FC7CB9; border: 1px solid #FC7CB9"
+					                    <a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger"
 					                     href="updateInterest.mall?page=category&index=in&id=${loginInfo.id}&pnum=${product.pnum}&category=${category}&range=${range}&mall=${mall}">
 					                    	<i class="fi fi-rs-heart"></i>
 					                    </a>
 									</c:if>
 									<c:if test="${keyword ne null}">
-										<a class="btn flex-shrink-0 py-2 px-3" style="color:#FC7CB9; border: 1px solid #FC7CB9" 
+										<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger"
 										href="updateInterest.mall?page=keyword&index=in&id=${loginInfo.id}&pnum=${product.pnum}&keyword=${keyword}&range=${range}&mall=${mall}">
 					                    	<i class="fi fi-rs-heart"></i>
 					                    </a>
 									</c:if>
 									<c:if test="${keyword eq null && category eq null}">
-										<a class="btn flex-shrink-0 py-2 px-3" style="color:#FC7CB9; border: 1px solid #FC7CB9" 
+										<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger"
 										href="updateInterest.mall?page=new&index=in&id=${loginInfo.id}&pnum=${product.pnum}&range=${range}&mall=${mall}">
 					                    	<i class="fi fi-rs-heart"></i>
 					                    </a>

@@ -3,38 +3,51 @@
 
 <%@ include file="mall_top.jsp"%>
 
-<div class="container my-5">
-	<div class="card w-100 p-4" style="border: 0px; background:rgba(252, 250, 247, 0.85)">
-		<div class="fw-bolder fs-5"><font class="text-primary fw-bolder fs-5">반가워요!</font> ${loginInfo.name}님</div>
-		<hr>
-		<div>
-			<button class="btn btn-outline-secondary" type="button" onClick="#">개인정보 수정</button>
-			<button class="btn btn-outline-secondary" type="button" onClick="#">배송지 관리</button>
-		</div>
-		<nav class="navbar navbar-expand-lg mx-auto">
-			<div class="container px-4 py-1">
-				<ul class="navbar-nav">
-					<li class="nav-item mx-4">
-						<a class="nav-link" aria-current="page" href="#">
+<div class="container my-5 p-4" style="background: #FCFCF7">
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="card" style="border: 0px">
+				<div class="card-body" style="border-bottom: 8px solid #FCFCF7">
+					<h4 class="card-title fw-bolder pb-2">
+						<font class="text-primary">반가워요!</font> ${loginInfo.name}님
+						<a class="fw-normal ms-3 px-2 py-1" style="font-size: 16; border: 1px solid #F7F7F7" href="logout.mb">로그아웃</a>
+					</h4>
+				</div>
+				<div class="card-body">
+					<nav class="nav flex-column">
+						<font class="my-2" color="#186E6A">자주찾는메뉴</font>
+						<a class="nav-link text-muted" aria-current="page" href="mypage.mall?index=orderList">
 							<i class="fi fi-rr-document icon"></i>
 							주문내역
 						</a>
-					</li>
-					<li class="nav-item mx-4" >
-						<a class="nav-link text-info" aria-current="page" href="interest.mall">
-							<i class="fi fi-rr-heart icon text-info"></i>
+						<a class="nav-link text-muted" aria-current="page" href="interest.mall">
+							<i class="fi fi-rr-heart icon"></i>
 							찜한 상품
+							<span class="badge bg-primary rounded-pill">${fn:length(ilists)}</span>
 						</a>
-					</li>
-					<li class="nav-item mx-4" >
-						<a class="nav-link" aria-current="page" href="#">
-							<i class="fi fi-rr-member-list icon"></i>
-							리뷰
+						<hr>
+						<font class="my-2" color="#186E6A">쇼핑</font>
+						<a class="nav-link text-muted" aria-current="page" href="#">
+							상품 후기
 						</a>
-					</li>
-				</ul>
+						<hr>
+						<font class="my-2" color="#186E6A">내 정보관리</font>
+						<a class="nav-link text-muted" aria-current="page" href="#">
+							개인정보수정
+						</a>
+						<a class="nav-link text-muted" aria-current="page" href="#">
+							배송지 관리
+						</a>
+					</nav>
+				</div>
 			</div>
-		</nav>
+		</div>
+		<div class="col-sm-6">
+			<div class="card" style="border: 0px">
+				<%@ include file="mypage-detail.jsp" %>
+			</div>
+		</div>
 	</div>
 </div>
+
 <%@ include file="mall_bottom.jsp"%>

@@ -52,7 +52,7 @@
 	                    <input type="button" class="form-control text-center me-2 fw-bolder" value="-" style="max-width: 3rem" onClick="down()"/>
 	                    <input name="qty" class="form-control text-center me-2" id="inputQuantity" type="text" value="1" style="max-width: 3rem" />
 	                    <input type="button"  class="form-control text-center me-3 fw-bolder" value="+" style="max-width: 3rem" onClick="up('${product.stock}')"/>
-	                    <input class="btn btn-outline-info flex-shrink-0 me-2" type="submit" value="장바구니 담기">
+	                    <input class="btn btn-outline-primary flex-shrink-0 me-2" type="submit" value="장바구니 담기">
 	                    <!-- 로그인 해서 찜목록을 조회할 수 있을 때 -->
 						<c:if test="${fn:length(ilists) > 0}">
 							<!-- flag를 선언. 목록에 있으면 true, 없으면 false. -->
@@ -68,13 +68,13 @@
 			                    </c:if>
 		                    </c:forEach>
 		                    <c:if test="${flag}">
-		                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:white; border: 1px solid #FC7CB9; background: #FC7CB9" 
+		                    	<a class="btn flex-shrink-0 py-2 px-3 btn-danger"
 		                    	href="updateInterest.mall?page=detail&index=del&id=${loginInfo.id}&pnum=${product.pnum}">
 			                    	<i class="fi fi-rs-heart"></i>
 			                    </a>
 		                    </c:if>
 		                    <c:if test="${not flag}">
-		                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:#FC7CB9; border: 1px solid #FC7CB9" 
+		                    	<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger"
 		                    	href="updateInterest.mall?page=detail&index=in&id=${loginInfo.id}&pnum=${product.pnum}">
 			                    	<i class="fi fi-rs-heart"></i>
 			                    </a>
@@ -82,7 +82,7 @@
 	                    </c:if>
 	                    <!-- 찜목록을 조회할 수 없을 때 -->
 	                    <c:if test="${fn:length(ilists) == 0}">
-	                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:#FC7CB9; border: 1px solid #FC7CB9" 
+	                    	<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger" 
 	                    	href="updateInterest.mall?page=detail&index=in&id=${loginInfo.id}&pnum=${product.pnum}">
 		                    	<i class="fi fi-rs-heart"></i>
 		                    </a>
@@ -90,7 +90,7 @@
 	                </div>
                 </form>
                 <div class="fs-5 mt-5">
-                	<table class="detail text-center">
+                	<table class="detail text-center text-muted">
 			       		<tr>
 			       			<th colspan="8">상품 상세 설명</th>
 			       		</tr>

@@ -38,9 +38,21 @@
 					</p>
 				</td>
 				<td class="py-3 px-5">
-					<font class="fs-3 fw-bolder">고객센터</font><br>
-					<font class="fs-3 fw-bolder">1600-0025</font>
+					<font class="fs-4 fw-bolder">고객센터</font><br>
+					<font class="fs-4 fw-bolder">1600-0025</font>
 					<font class="fs-5 ms-3">오전 9시 ~ 새벽 1시</font>
+					
+					<p class="mt-3">
+						<a href="https://www.facebook.com/smartbaedal" target="blank">
+							<i class="fi fi-brands-facebook bottom_icon"></i>
+						</a>
+						<a href="https://www.instagram.com/baemin_official/" target="blank">
+							<i class="fi fi-brands-instagram bottom_icon"></i>
+						</a>
+						<a href="https://www.youtube.com/user/smartbaedal2" target="blank">
+							<i class="fi fi-brands-youtube bottom_icon"></i>
+						</a>
+					</p>
 				</td>
 			</tr>
 			<tr>
@@ -53,17 +65,6 @@
 					</p>
 				</td>
 				<td class="py-3 px-5">
-					<p>
-						<a href="https://www.facebook.com/smartbaedal" target="blank">
-							<i class="fi fi-brands-facebook bottom_icon"></i>
-						</a>
-						<a href="https://www.instagram.com/baemin_official/" target="blank">
-							<i class="fi fi-brands-instagram bottom_icon"></i>
-						</a>
-						<a href="https://www.youtube.com/user/smartbaedal2" target="blank">
-							<i class="fi fi-brands-youtube bottom_icon"></i>
-						</a>
-					</p>
 				</td>
 			</tr>
 		</table>

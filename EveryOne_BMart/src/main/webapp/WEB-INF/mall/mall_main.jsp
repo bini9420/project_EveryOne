@@ -4,34 +4,33 @@
 <%@ include file="mall_top.jsp"%>
 
 <!-- carousel -->
-<div class="container">
-	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-		<ol class="carousel-indicators">
-			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-		</ol>
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img class="d-block w-100" src="resources/img/banner1.png" alt="First slide">
-			</div>
-			<div class="carousel-item">
-				<img class="d-block w-100" src="resources/img/banner2.png" alt="Second slide">
-			</div>
-			<div class="carousel-item">
-				<img class="d-block w-100" src="resources/img/banner3.png" alt="Third slide">
-			</div>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+	<ol class="carousel-indicators">
+		<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+		<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+		<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+	</ol>
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+			<img class="d-block w-100" src="resources/img/banner1.png" alt="First slide">
 		</div>
-		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			<span class="sr-only">Previous</span>
-		</a>
-		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
+		<div class="carousel-item">
+			<img class="d-block w-100" src="resources/img/banner2.png" alt="Second slide">
+		</div>
+		<div class="carousel-item">
+			<img class="d-block w-100" src="resources/img/banner3.png" alt="Third slide">
+		</div>
 	</div>
+	<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
 </div>
+
 <!-- Section-->
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
@@ -84,13 +83,13 @@
 						                    </c:if>
 					                    </c:forEach>
 					                    <c:if test="${flag}">
-					                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:white; border: 1px solid #FC7CB9; background: #FC7CB9" 
+					                    	<a class="btn flex-shrink-0 py-2 px-3 btn-danger" 
 					                    	href="updateInterest.mall?page=main&index=del&id=${loginInfo.id}&pnum=${best.pnum}">
 						                    	<i class="fi fi-rs-heart"></i>
 						                    </a>
 					                    </c:if>
 					                    <c:if test="${not flag}">
-					                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:#FC7CB9; border: 1px solid #FC7CB9" 
+					                    	<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger" 
 					                    	href="updateInterest.mall?page=main&index=in&id=${loginInfo.id}&pnum=${best.pnum}">
 						                    	<i class="fi fi-rs-heart"></i>
 						                    </a>
@@ -98,7 +97,7 @@
 				                    </c:if>
 				                    <!-- 찜목록을 조회할 수 없을 때 -->
 				                    <c:if test="${fn:length(ilists) == 0}">
-				                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:#FC7CB9; border: 1px solid #FC7CB9" 
+				                    	<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger" 
 				                    	href="updateInterest.mall?page=main&index=in&id=${loginInfo.id}&pnum=${best.pnum}">
 					                    	<i class="fi fi-rs-heart"></i>
 					                    </a>
@@ -166,13 +165,13 @@
 								                    </c:if>
 							                    </c:forEach>
 							                    <c:if test="${flag}">
-							                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:white; border: 1px solid #FC7CB9; background: #FC7CB9" 
+							                    	<a class="btn flex-shrink-0 py-2 px-3 btn-danger" 
 							                    	href="updateInterest.mall?page=main&index=del&id=${loginInfo.id}&pnum=${watch.pnum}">
 								                    	<i class="fi fi-rs-heart"></i>
 								                    </a>
 							                    </c:if>
 							                    <c:if test="${not flag}">
-							                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:#FC7CB9; border: 1px solid #FC7CB9" 
+							                    	<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger"
 							                    	href="updateInterest.mall?page=main&index=in&id=${loginInfo.id}&pnum=${watch.pnum}">
 								                    	<i class="fi fi-rs-heart"></i>
 								                    </a>
@@ -180,7 +179,7 @@
 						                    </c:if>
 						                    <!-- 찜목록을 조회할 수 없을 때 -->
 						                    <c:if test="${fn:length(ilists) == 0}">
-						                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:#FC7CB9; border: 1px solid #FC7CB9" 
+						                    	<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger" 
 						                    	href="updateInterest.mall?page=main&index=in&id=${loginInfo.id}&pnum=${watch.pnum}">
 							                    	<i class="fi fi-rs-heart"></i>
 							                    </a>

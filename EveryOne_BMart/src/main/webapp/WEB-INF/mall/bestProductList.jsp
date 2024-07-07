@@ -57,13 +57,13 @@
 						                    </c:if>
 					                    </c:forEach>
 					                    <c:if test="${flag}">
-					                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:white; border: 1px solid #FC7CB9; background: #FC7CB9" 
+					                    	<a class="btn flex-shrink-0 py-2 px-3 btn-danger"
 					                    	href="updateInterest.mall?page=best&index=del&id=${loginInfo.id}&pnum=${product.pnum}">
 						                    	<i class="fi fi-rs-heart"></i>
 						                    </a>
 					                    </c:if>
 					                    <c:if test="${not flag}">
-					                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:#FC7CB9; border: 1px solid #FC7CB9" 
+					                    	<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger"
 					                    	href="updateInterest.mall?page=best&index=in&id=${loginInfo.id}&pnum=${product.pnum}">
 						                    	<i class="fi fi-rs-heart"></i>
 						                    </a>
@@ -71,7 +71,7 @@
 				                    </c:if>
 				                    <!-- 찜목록을 조회할 수 없을 때 -->
 				                    <c:if test="${fn:length(ilists) == 0}">
-				                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:#FC7CB9; border: 1px solid #FC7CB9" 
+				                    	<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger"
 				                    	href="updateInterest.mall?page=best&index=in&id=${loginInfo.id}&pnum=${product.pnum}">
 					                    	<i class="fi fi-rs-heart"></i>
 					                    </a>

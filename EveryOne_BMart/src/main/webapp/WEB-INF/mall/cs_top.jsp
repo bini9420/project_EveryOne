@@ -19,7 +19,7 @@
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-brands/css/uicons-brands.css'>
 	
 	<!-- Core theme CSS (includes Bootstrap)-->
-	<link href="resources/css/mall-style.css" rel="stylesheet" />
+	<link href="resources/css/mall.css" rel="stylesheet" />
 	<!-- carousel --> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 	
@@ -32,9 +32,9 @@
 </head>
 
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg bg-primary">
 	<div class="container">
-		<h2 class="fw-bolder text-info">고객센터</h2>
+		<i class="fi fi-rr-chatbot-speech-bubble text-white fst-normal fw-bolder mx-auto my-2" style="font-size: 35"> 고객센터</i>
 	</div>
 </nav>
 

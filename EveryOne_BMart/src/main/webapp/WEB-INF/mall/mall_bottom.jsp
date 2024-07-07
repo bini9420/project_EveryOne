@@ -6,12 +6,12 @@
 		<div class="container">
 			<ul class="navbar-nav mx-auto" >
 				<li class="nav-item mx-5" >
-					<a class="nav-link" aria-current="page" href="#!">
-						공지사항
+					<a class="nav-link" aria-current="page" href="cs.mall">
+						고객센터
 					</a>
 				</li>
 				<li class="nav-item mx-5" >
-					<a class="nav-link" aria-current="page" href="#!">
+					<a class="nav-link" aria-current="page">
 						이용약관
 					</a>
 				</li>

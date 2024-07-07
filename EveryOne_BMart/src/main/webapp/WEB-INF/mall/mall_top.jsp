@@ -33,7 +33,7 @@
 
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg">
-	<div class="container px-4 px-lg-5">
+	<div class="container">
 		<img src="resources/img/Bmart_logo.png" alt="B마트_logo" style="width:200; height: 60">&nbsp;&nbsp;
 		<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="plists.mall">
 	        <div class="input-group">
@@ -106,9 +106,9 @@
 </nav>
 
 <!-- category -->
-<nav class="navbar navbar-expand-lg">
-	<div class="container px-4 py-1" style="border-bottom: 1px solid #D3D3D3; border-top: 1px solid #D3D3D3">
-		<ul class="navbar-nav " >
+<nav class="navbar navbar-expand-lg mx-auto" style="border-bottom: 1px solid #D3D3D3; box-shadow: 0px 3px 5px -2px gray">
+	<div class="container px-4">
+		<ul class="navbar-nav" >
 			<li class="nav-item dropdown mx-5">
 				<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					<font size="3" style="font-style: normal;">카테고리</font>

@@ -201,64 +201,6 @@
 				</div>
 			</c:if>
 		</div>
-		
-		<hr style="margin: 0 auto; width: 80%; border: 1.5px solid #DCDCDC">
-		<div class="container px-4 px-lg-5 mt-5">
-			<h4 class="fw-bolder mb-2">[ 찜한 상품 ]</h4>
-			<c:if test="${interestProductLists ne null}">
-				<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
-					<c:forEach var="interest" items="${interestProductLists}" varStatus="status">
-						<c:if test="${status.count <= 4}">
-							<div class="col mb-5">
-								<div class="card h-100 text-center">
-									<c:if test="${interest.ad == 1}">
-										<div class="text-end pt-2 pe-2">
-											<img src="resources/img/ad.png" style="width: 30; height: 25">
-										</div>
-									</c:if>
-									<!-- Product image-->
-									<a href="detail.mall?pnum=${interest.pnum}">
-										<c:if test="${interest.pimage ne null}">
-											<% String img = request.getContextPath()+"/image"; %>
-												<img src="<%=img%>/${interest.pimage}" alt="interestProductImg" class="productImg">
-										</c:if>
-										<c:if test="${interest.pimage eq null}">
-											<img src="resources/img/no-pictures.png" alt="interestProductImg" class="productImg">
-										</c:if>
-									</a>
-									<!-- Product details-->
-									<div class="card-body p-4">
-										<div class="text-center">
-											<!-- Product name-->
-											<h5 class="fw-bolder"><a href="#">${interest.pname}</a></h5>
-											<!-- Product price-->
-											<fmt:formatNumber value="${interest.price}" pattern="##,###원"/>
-										</div>
-									</div>
-									<!-- Product actions-->
-									<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-										<div class="text-center">
-											<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?id=${loginInfo.id}&pnum=${interest.pnum}&qty=1">장바구니 담기</a>
-					                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:white; border: 1px solid #FC7CB9; background: #FC7CB9" 
-					                    	href="updateInterest.mall?page=main&index=del&id=${loginInfo.id}&pnum=${interest.pnum}">
-						                    	<i class="fi fi-rs-heart"></i>
-						                    </a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</c:if>
-					</c:forEach>
-				</div>
-			</c:if>
-			<c:if test="${interestProductLists eq null}">
-				<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-					<div class="mt-4 mb-4 text-center">
-						<font size="4">찜한 상품이 없습니다.</font>
-					</div>
-				</div>
-			</c:if>
-		</div>
 	</c:if>
 </section>
 

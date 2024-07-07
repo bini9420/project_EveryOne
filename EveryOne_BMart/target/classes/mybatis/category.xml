@@ -7,6 +7,6 @@
 
 <mapper namespace="category.Category">
 	<select id="getAllCategory" resultType="mall.model.CategoryBean">
-		select * from category
+		select * from bcategory
 	</select>
 </mapper>

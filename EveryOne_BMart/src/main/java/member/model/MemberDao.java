@@ -15,9 +15,10 @@ public class MemberDao {
 	
 	
 	private String namespace = "member.model.Member";
-	public MemberBean getMember(String id) {
+	
+	public MemberBean getBmartMember(String id) {
 		MemberBean member = null;
-		member = sqlSessionTemplate.selectOne(namespace + ".getMember", id);
+		member = sqlSessionTemplate.selectOne(namespace + ".getBmartMember", id);
 
 		return member;
 	}

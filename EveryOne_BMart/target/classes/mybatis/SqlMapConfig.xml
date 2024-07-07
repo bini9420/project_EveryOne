@@ -6,9 +6,13 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
  
 <configuration>
-
+	<!-- <settings> 
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings> -->
+	
 	<typeAliases>
 		<typeAlias type="mall.model.ProductBean" alias="product"/>
+		<typeAlias type="mall.model.WatchBean" alias="watch"/>
 	</typeAliases>
 
 	<mappers>
@@ -16,6 +20,7 @@
 		<mapper resource="mybatis/product.xml"/>
 		<mapper resource="mybatis/watch.xml"/>
 		<mapper resource="mybatis/interest.xml"/>
+		<mapper resource="mybatis/cart.xml"/>
 		<mapper resource="mybatis/member.xml"/>
 	</mappers>
 	

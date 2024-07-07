@@ -12,6 +12,11 @@
 				</li>
 				<li class="nav-item mx-5" >
 					<a class="nav-link" aria-current="page" href="#!">
+						이용약관
+					</a>
+				</li>
+				<li class="nav-item mx-5" >
+					<a class="nav-link" aria-current="page" href="#!">
 						입점문의
 					</a>
 				</li>
@@ -19,9 +24,9 @@
 		</div>
 	</nav>
 	<div class="bg-primary">
-		<table class="footer2 text-white">
+		<table class="text-white m-auto">
 			<tr>
-				<td>
+				<td class="py-3 px-5">
 					<p>
 					<font class="highlight">대표이사 :</font> 이국환<br>
 					<font class="highlight">주소 :</font> 서울특별시 송파구 위례성대로 2 장은빌딩 18층<br>
@@ -32,7 +37,22 @@
 					<font class="highlight">호스팅서비스제공자 :</font> (주)우아한형제들<br>
 					</p>
 				</td>
-				<td>
+				<td class="py-3 px-5">
+					<font class="fs-3 fw-bolder">고객센터</font><br>
+					<font class="fs-3 fw-bolder">1600-0025</font>
+					<font class="fs-5 ms-3">오전 9시 ~ 새벽 1시</font>
+				</td>
+			</tr>
+			<tr>
+				<td class="py-3 px-5">
+					<p>
+					(주)우아한형제들은 통신판매중개자이며, 통신판매의 당사자가 아닙니다.<br>
+					따라서 (주)우아한형제들은 상품, 거래정보 및 거래에 대하여 책임을 지지 않습니다.<br>
+					단, (주)우아한형제들이 판매자로 등록 판매한 상품은 판매자로서 책임을 부담합니다.<br><br>
+					상호명 : (주)우아한형제들
+					</p>
+				</td>
+				<td class="py-3 px-5">
 					<p>
 						<a href="https://www.facebook.com/smartbaedal" target="blank">
 							<i class="fi fi-brands-facebook bottom_icon"></i>
@@ -44,18 +64,6 @@
 							<i class="fi fi-brands-youtube bottom_icon"></i>
 						</a>
 					</p>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<p>
-					(주)우아한형제들은 통신판매중개자이며, 통신판매의 당사자가 아닙니다.<br>
-					따라서 (주)우아한형제들은 상품, 거래정보 및 거래에 대하여 책임을 지지 않습니다.<br>
-					단, (주)우아한형제들이 판매자로 등록 판매한 상품은 판매자로서 책임을 부담합니다.<br><br>
-					상호명 : (주)우아한형제들
-					</p>
-				</td>
-				<td>
 				</td>
 			</tr>
 		</table>

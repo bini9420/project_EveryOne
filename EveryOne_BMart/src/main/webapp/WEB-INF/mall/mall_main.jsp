@@ -32,18 +32,20 @@
 		</a>
 	</div>
 </div>
-
 <!-- Section-->
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
-		<div class="mb-2">
-			<font class="fw-bolder" size="5">[ BEST 상품 ]</font>&nbsp;&nbsp;
-		</div>
+		<h4 class="fw-bolder mb-2">[ BEST 상품 ]</h4>
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
-			<c:forEach var="best" items="${bestProducts}" varStatus="status">
+			<c:forEach var="best" items="${bMartBestProducts}" varStatus="status">
 				<c:if test="${status.count <= 4}">
 					<div class="col mb-5">
 						<div class="card h-100 text-center">
+							<c:if test="${best.ad == 1}">
+								<div class="text-end pt-2 pe-2">
+									<img src="resources/img/ad.png" style="width: 30; height: 25">
+								</div>
+							</c:if>
 							<!-- Product image-->
 							<a href="detail.mall?pnum=${best.pnum}">
 								<c:if test="${best.pimage ne null}">
@@ -66,8 +68,41 @@
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 								<div class="text-center">
-									<a class="btn btn-outline-primary mt-auto" href="#">장바구니 담기</a>
-									<a class="btn btn-outline-danger mt-auto ms-lg-1" href="#"><i class="fi fi-rr-heart fs-5"></i></a>
+									<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?id=${loginInfo.id}&pnum=${best.pnum}&qty=1">장바구니 담기</a>
+									<!-- 로그인 해서 찜목록을 조회할 수 있을 때 -->
+									<c:if test="${fn:length(ilists) > 0}">
+										<!-- flag를 선언. 목록에 있으면 true, 없으면 false. -->
+					                    <c:set var="flag" value="false"/>
+										<c:forEach var="iproduct" items="${ilists}">
+											<c:if test="${not flag}">
+												<c:if test="${best.pnum eq iproduct.pnum}">
+								                    <c:set var="flag" value="true"/>
+							                    </c:if>
+												<c:if test="${best.pnum ne iproduct.pnum}">
+								                    <c:set var="flag" value="false"/>
+							                    </c:if>
+						                    </c:if>
+					                    </c:forEach>
+					                    <c:if test="${flag}">
+					                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:white; border: 1px solid #FC7CB9; background: #FC7CB9" 
+					                    	href="updateInterest.mall?page=main&index=del&id=${loginInfo.id}&pnum=${best.pnum}">
+						                    	<i class="fi fi-rs-heart"></i>
+						                    </a>
+					                    </c:if>
+					                    <c:if test="${not flag}">
+					                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:#FC7CB9; border: 1px solid #FC7CB9" 
+					                    	href="updateInterest.mall?page=main&index=in&id=${loginInfo.id}&pnum=${best.pnum}">
+						                    	<i class="fi fi-rs-heart"></i>
+						                    </a>
+					                    </c:if>
+				                    </c:if>
+				                    <!-- 찜목록을 조회할 수 없을 때 -->
+				                    <c:if test="${fn:length(ilists) == 0}">
+				                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:#FC7CB9; border: 1px solid #FC7CB9" 
+				                    	href="updateInterest.mall?page=main&index=in&id=${loginInfo.id}&pnum=${best.pnum}">
+					                    	<i class="fi fi-rs-heart"></i>
+					                    </a>
+				                    </c:if>
 								</div>
 							</div>
 						</div>
@@ -81,17 +116,20 @@
 	<c:if test="${loginInfo.id ne null}">
 		<hr style="margin: 0 auto; width: 80%; border: 1.5px solid #DCDCDC">
 		<div class="container px-4 px-lg-5 mt-5">
-			<div class="mb-2">
-				<font class="fw-bolder" size="5">[ 최근 본 상품 ]</font>&nbsp;&nbsp;
-			</div>
+			<h4 class="fw-bolder mb-2">[ 최근 본 상품 ]</h4>
 			<c:if test="${watchProductLists ne null}">
 				<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
 					<c:forEach var="watch" items="${watchProductLists}" varStatus="status">
 						<c:if test="${status.count <= 4}">
 							<div class="col mb-5">
 								<div class="card h-100 text-center">
+									<c:if test="${watch.ad == 1}">
+										<div class="text-end pt-2 pe-2">
+											<img src="resources/img/ad.png" style="width: 30; height: 25">
+										</div>
+									</c:if>
 									<!-- Product image-->
-									<a href="#">
+									<a href="detail.mall?pnum=${watch.pnum}">
 										<c:if test="${watch.pimage ne null}">
 											<% String img = request.getContextPath()+"/image"; %>
 												<img src="<%=img%>/${watch.pimage}" alt="watchProductImg" class="productImg">
@@ -112,8 +150,41 @@
 									<!-- Product actions-->
 									<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 										<div class="text-center">
-											<a class="btn btn-outline-primary mt-auto" href="#">장바구니 담기</a>
-											<a class="btn btn-outline-danger mt-auto ms-lg-1" href="#"><i class="fi fi-rr-heart fs-5"></i></a>
+											<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?id=${loginInfo.id}&pnum=${watch.pnum}&qty=1">장바구니 담기</a>
+											<!-- 로그인 해서 찜목록을 조회할 수 있을 때 -->
+											<c:if test="${fn:length(ilists) > 0}">
+												<!-- flag를 선언. 목록에 있으면 true, 없으면 false. -->
+							                    <c:set var="flag" value="false"/>
+												<c:forEach var="iproduct" items="${ilists}">
+													<c:if test="${not flag}">
+														<c:if test="${watch.pnum eq iproduct.pnum}">
+										                    <c:set var="flag" value="true"/>
+									                    </c:if>
+														<c:if test="${watch.pnum ne iproduct.pnum}">
+										                    <c:set var="flag" value="false"/>
+									                    </c:if>
+								                    </c:if>
+							                    </c:forEach>
+							                    <c:if test="${flag}">
+							                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:white; border: 1px solid #FC7CB9; background: #FC7CB9" 
+							                    	href="updateInterest.mall?page=main&index=del&id=${loginInfo.id}&pnum=${watch.pnum}">
+								                    	<i class="fi fi-rs-heart"></i>
+								                    </a>
+							                    </c:if>
+							                    <c:if test="${not flag}">
+							                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:#FC7CB9; border: 1px solid #FC7CB9" 
+							                    	href="updateInterest.mall?page=main&index=in&id=${loginInfo.id}&pnum=${watch.pnum}">
+								                    	<i class="fi fi-rs-heart"></i>
+								                    </a>
+							                    </c:if>
+						                    </c:if>
+						                    <!-- 찜목록을 조회할 수 없을 때 -->
+						                    <c:if test="${fn:length(ilists) == 0}">
+						                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:#FC7CB9; border: 1px solid #FC7CB9" 
+						                    	href="updateInterest.mall?page=main&index=in&id=${loginInfo.id}&pnum=${watch.pnum}">
+							                    	<i class="fi fi-rs-heart"></i>
+							                    </a>
+						                    </c:if>
 										</div>
 									</div>
 								</div>
@@ -133,17 +204,20 @@
 		
 		<hr style="margin: 0 auto; width: 80%; border: 1.5px solid #DCDCDC">
 		<div class="container px-4 px-lg-5 mt-5">
-			<div class="mb-2">
-				<font class="fw-bolder" size="5">[ 찜한 상품 ]</font>&nbsp;&nbsp;
-			</div>
+			<h4 class="fw-bolder mb-2">[ 찜한 상품 ]</h4>
 			<c:if test="${interestProductLists ne null}">
 				<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
 					<c:forEach var="interest" items="${interestProductLists}" varStatus="status">
 						<c:if test="${status.count <= 4}">
 							<div class="col mb-5">
 								<div class="card h-100 text-center">
+									<c:if test="${interest.ad == 1}">
+										<div class="text-end pt-2 pe-2">
+											<img src="resources/img/ad.png" style="width: 30; height: 25">
+										</div>
+									</c:if>
 									<!-- Product image-->
-									<a href="#">
+									<a href="detail.mall?pnum=${interest.pnum}">
 										<c:if test="${interest.pimage ne null}">
 											<% String img = request.getContextPath()+"/image"; %>
 												<img src="<%=img%>/${interest.pimage}" alt="interestProductImg" class="productImg">
@@ -164,8 +238,11 @@
 									<!-- Product actions-->
 									<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 										<div class="text-center">
-											<a class="btn btn-outline-primary mt-auto" href="#">장바구니 담기</a>
-											<a class="btn btn-outline-danger mt-auto ms-lg-1" href="#"><i class="fi fi-rr-heart fs-5"></i></a>
+											<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?id=${loginInfo.id}&pnum=${interest.pnum}&qty=1">장바구니 담기</a>
+					                    	<a class="btn flex-shrink-0 py-2 px-3" style="color:white; border: 1px solid #FC7CB9; background: #FC7CB9" 
+					                    	href="updateInterest.mall?page=main&index=del&id=${loginInfo.id}&pnum=${interest.pnum}">
+						                    	<i class="fi fi-rs-heart"></i>
+						                    </a>
 										</div>
 									</div>
 								</div>

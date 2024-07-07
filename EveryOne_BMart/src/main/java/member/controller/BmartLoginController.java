@@ -18,15 +18,15 @@ import member.model.MemberDao;
 
 
 @Controller
-public class MemberLoginController {
+public class BmartLoginController {
 
-	private final String command = "/loginForm.mb";
+	private final String command = "/bmartLogin.mb";
 	private final String getPage = "loginForm";
 	private String gotoPage = "redirect:/main.mall";
 
 	@Autowired
 	MemberDao memberDao;
-
+	
 	
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String loginForm() {
@@ -43,7 +43,7 @@ public class MemberLoginController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		MemberBean mb = memberDao.getMember(member.getId());  
+		MemberBean mb = memberDao.getBmartMember(member.getId());  
 		System.out.println("mb:" + mb);
 
 		try {
@@ -58,11 +58,7 @@ public class MemberLoginController {
 				
 			}else{ // 해당 아이디가 존재한다.
 				if(mb.getPassword().equals(member.getPassword())) { // 비번 일치
-					
 					session.setAttribute("loginInfo", mb); // loginInfo:로그인한 사람의 정보
-					System.out.println("비번 일치");
-					System.out.println("destination:"+(String)session.getAttribute("destination"));
-					
 					return new ModelAndView( gotoPage ) ;
 					
 				}else { // 비번 불일치

@@ -2,14 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../common/common.jsp" %>
 <head>
-	<title>배민 B마트</title>
 	<meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<!-- Favicon-->
-	<link rel="icon" type="image/x-icon" href="resources/mall/assets/favicon.ico" />
+	
+	<!-- title icon-->
+	<link rel="icon" type="image/x-icon" href="resources/img/B.png" />
+	<title>배민 B마트</title>
 	
 	<!-- icons-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
@@ -25,25 +26,27 @@
 	<!-- fonts -->
 	<link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 	
-	<!-- 추가적인 스타일 작업 -->
-	<link href="resources/css/mall-style-plus.css" rel="stylesheet">
+	<!--  -->
+	<link href="resources/css/mall-plus.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg">
 	<div class="container px-4 px-lg-5">
 		<img src="resources/img/Bmart_logo.png" alt="B마트_logo" style="width:200; height: 60">&nbsp;&nbsp;
-		<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="plists.mall" method="post">
-            <div class="input-group">
-                <input type="text" class="form-control bg-light border-0 px-5" placeholder="상품을 검색하세요(●'◡'●)"
-                    aria-label="Search" aria-describedby="basic-addon2" name="keyword">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">
-                        <i class="fi fi-rr-search search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
+		<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="plists.mall">
+	        <div class="input-group">
+				<input type="hidden" name="mall" value="${mall}">
+			    <input type="text" class="form-control bg-light border-0 px-3" placeholder="상품을 검색하세요(●'◡'●)"
+			        aria-label="Search" aria-describedby="basic-addon2" name="keyword">
+			    <div class="input-group-append">
+			        <button class="btn btn-primary" type="submit">
+			            <i class="fi fi-rr-search search"></i>
+			        </button>
+			    </div>
+			</div>
+       	</form>
 		<div class="collapse navbar-collapse ms-lg-5" id="navbarSupportedContent">
 			<ul class="navbar-nav mb-2 mb-lg-0 ms-lg-5 ps-lg-5">
 				<li class="nav-item ms-lg-5">
@@ -54,29 +57,28 @@
 				</li>
 				<li class="nav-item">
 					<!-- heart icon -->
-					<a class="nav-link active" aria-current="page" href="#!">
+					<a class="nav-link active" aria-current="page" href="interest.mall">
 						<i class="fi fi-rr-heart icon"></i>
 					</a>
 				</li>
 				<li class="nav-item">
 					<!-- cart icon -->
-					<a class="nav-link active" aria-current="page" href="#!">
+					<a class="nav-link active" aria-current="page" href="cart.mall">
 						<i class="fi fi-rr-shopping-basket icon"></i>
 						<!-- Counter - Messages -->
-                        <span class="badge badge-danger badge-counter">7</span>
+						<c:if test="${loginInfo ne null}">
+                        	<span class="badge badge-danger badge-counter">${cartTotalCount}</span>
+                        </c:if>
 					</a>
 				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						<i class="fi fi-rr-user icon"></i>
-						<c:if test="${loginInfo ne null}">
-							<font size="3" style="font-weight: bold">${loginInfo.name}님</font>
-						</c:if>
-					</a>
-					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<c:if test="${loginInfo eq null}">
+				<c:if test="${loginInfo eq null}">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="fi fi-rr-user icon"></i>
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li>
-								<a class="dropdown-item" href="loginForm.mb">
+								<a class="dropdown-item" href="bmartLogin.mb">
 									<i class="fi fi-rr-users"> 로그인 </i>
 								</a>
 							</li>
@@ -86,22 +88,18 @@
 									<i class="fi fi-rr-user-add"> 회원가입 </i>
 								</a>
 							</li>
-						</c:if>
-						<c:if test="${loginInfo ne null}">
-							<li>
-								<a class="dropdown-item" href="#!">
-									<i class="fi fi-rr-circle-user"> 마이페이지 </i>
-								</a>
-							</li>
-							<li><hr class="dropdown-divider" /></li>
-							<li>
-								<a class="dropdown-item" href="#!">
-									<i class="fi fi-rr-sign-out-alt"> 로그아웃 </i>
-								</a>
-							</li>
-						</c:if>
-					</ul>
-				</li>
+						</ul>
+					</li>
+				</c:if>
+				<c:if test="${loginInfo ne null}">
+					<li class="nav-item">
+						<!-- heart icon -->
+						<a class="nav-link active" aria-current="page" href="mypage.mall">
+							<i class="fi fi-rr-user icon"></i>
+							<font class="fs-6 text-primary fw-bolder">${loginInfo.name} 님</font>
+						</a>
+					</li>
+				</c:if>
 			</ul>
 		</div>
 	</div>
@@ -116,24 +114,24 @@
 					<font size="3" style="font-style: normal;">카테고리</font>
 				</a>
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<c:forEach var="category" items="${categoryLists}">
-						<c:if test="${category.num <= 12}">
-							<li>
-								<a class="dropdown-item" href="plists.mall?category=${category.name}">
-									${category.name}
-								</a>
-							</li>
-						</c:if>
+					<c:forEach var="clists" items="${categoryLists}">
+						<li>
+							<a class="dropdown-item" href="plists.mall?category=${clists.category}&mall=${mall}">
+								${clists.category}
+							</a>
+						</li>
 					</c:forEach>
 				</ul>
 			</li>
 			<li class="nav-item mx-5" >
-				<a class="nav-link" aria-current="page" href="#!">
+				<a class="nav-link" aria-current="page" href="plists.mall?mall=${mall}">
+					<img src="resources/img/new.png" style="width: 25">
 					신상품
 				</a>
 			</li>
 			<li class="nav-item mx-5" >
-				<a class="nav-link" aria-current="page" href="#!">
+				<a class="nav-link" aria-current="page" href="bestLists.mall">
+					<img src="resources/img/hot.png" style="width: 25">
 					베스트 상품
 				</a>
 			</li>

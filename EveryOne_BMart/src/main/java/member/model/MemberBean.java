@@ -25,10 +25,10 @@ public class MemberBean {
 	@NotBlank(message = "이메일주소"+message)
 	private String email;
 	
-	private String address;
-	private String addr1;
-	private String addr2;
 	private String image;
+	private String ownercode;
+	private int state;
+	
 	public String getId() {
 		return id;
 	}
@@ -59,24 +59,6 @@ public class MemberBean {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getAddr1() {
-		return addr1;
-	}
-	public void setAddr1(String addr1) {
-		this.addr1 = addr1;
-	}
-	public String getAddr2() {
-		return addr2;
-	}
-	public void setAddr2(String addr2) {
-		this.addr2 = addr2;
-	}
 	public String getImage() {
 		return image;
 	}
@@ -86,28 +68,17 @@ public class MemberBean {
 	public String getMessage() {
 		return message;
 	}
-	public MemberBean() {
-		super();
+	public String getOwnercode() {
+		return ownercode;
 	}
-	public MemberBean(String id, String name, String password, String phone, String email, String address, String addr1,
-			String addr2, String image) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.password = password;
-		this.phone = phone;
-		this.email = email;
-		this.address = address;
-		this.addr1 = addr1;
-		this.addr2 = addr2;
-		this.image = image;
+	public void setOwnercode(String ownercode) {
+		this.ownercode = ownercode;
 	}
-	
-	
-	
-	
-	
-	
-	
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
 	
 }

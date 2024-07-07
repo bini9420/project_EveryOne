@@ -5,8 +5,20 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="watch.Watch">
-	<select id="getWatchLists" resultType="mall.model.WatchBean">
+<mapper namespace="watch">
+	<select id="getWatchLists" resultType="watch">
 		select * from watch where id=#{id} order by wnum desc
 	</select>
+	
+	<select id="getWatch" resultType="int">
+		select count(*) from watch where id=#{id} and pnum=#{pnum}
+	</select>
+	
+	<insert id="insertWatch">
+		insert into watch values(wseq.nextval, #{id}, #{pnum}, sysdate)
+	</insert>
+	
+	<update id="updateWatch">
+		update watch set wnum = wseq.nextval where id=#{id} and pnum=#{pnum}
+	</update>
 </mapper>

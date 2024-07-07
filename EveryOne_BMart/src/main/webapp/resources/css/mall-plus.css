@@ -34,7 +34,7 @@
 }
 
 .footer2 td {
-	padding: 10 100 10 80
+	padding: 10 25
 }
 
 .highlight {
@@ -78,4 +78,22 @@ a:hover {
 .productImg {
 	width: 100;
 	margin: 10 0
+}
+
+.detail {
+	border-collapse: collapse;
+}
+
+.detail td {
+	border-top: 1px solid #E0E0E0;
+	border-bottom: 1px solid #E0E0E0;
+	padding: 15
+}
+
+.detail th {
+	border-top: 1px solid #E0E0E0;
+	border-bottom: 1px solid #E0E0E0;
+	font-weight: normal;
+	background: #F5F5F5;
+	padding: 15 8
 }

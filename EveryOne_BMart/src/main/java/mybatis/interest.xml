@@ -9,4 +9,12 @@
 	<select id="getInterestLists" resultType="mall.model.InterestBean">
 		select * from interest where id=#{id} order by inum desc
 	</select>
+	
+	<delete id="deleteInterest">
+		delete from interest where id=#{id} and pnum=#{pnum}
+	</delete>
+	
+	<insert id="insertInterest">
+		insert into interest values(iseq.nextval, #{id}, #{pnum})
+	</insert>
 </mapper>

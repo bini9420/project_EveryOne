@@ -32,11 +32,11 @@ public class MallMainController {
 		List<CategoryBean> categoryLists = mallDao.getAllCategory();
 		session.setAttribute("categoryLists", categoryLists);
 		
-		List<ProductBean> bestProducts = mallDao.getBestProduct();
+		List<ProductBean> bMartBestProducts = mallDao.getBestProductByBmart();
 		//System.out.println("bestProducts: "+bestProducts.size());
-		model.addAttribute("bestProducts", bestProducts);
+		model.addAttribute("bMartBestProducts", bMartBestProducts);
 		
-		//최근 본 상품이랑 찜한 상품은 로그인 했을 때만 조회
+		//최근 본 상품이랑 찜한 상품은 로그인 했을 때만 조회 + 장바구니 상품 개수
 		if(session.getAttribute("loginInfo") != null) {
 			
 			MemberBean loginInfo = (MemberBean)session.getAttribute("loginInfo");
@@ -55,6 +55,7 @@ public class MallMainController {
 			//찜한 상품 조회
 			List<InterestBean> ilists = mallDao.getInterestLists(loginInfo.getId());
 			System.out.println("ilists: "+ilists.size());
+			session.setAttribute("ilists", ilists);
 			
 			ArrayList<ProductBean> interestProductLists = new ArrayList<ProductBean>();
 			for(int i=0;i<ilists.size();i++) {
@@ -62,8 +63,13 @@ public class MallMainController {
 				interestProductLists.add(i, interestProductInfo);
 				model.addAttribute("interestProductLists", interestProductLists);
 			}
+			
+			//장바구니 상품 개수 조회
+			int cartTotalCount = mallDao.getCartTotalCount(loginInfo.getId());
+			session.setAttribute("cartTotalCount", cartTotalCount);
 		}
 		
+		session.setAttribute("mall", 0);
 		return getPage;
 	}
 }

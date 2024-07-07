@@ -44,10 +44,10 @@ public class ProductUFormController {
 			HttpSession session,Model model) {
 
 		System.out.println(this.getClass()+" GET");
-		System.out.println(pnum);
-		System.out.println(pageNumber);
-		System.out.println(whatColumn);
-		System.out.println(keyword);
+		System.out.println("pnum:"+pnum);
+		System.out.println("pageNumber:"+pageNumber);
+		System.out.println("whatColumn:"+whatColumn);
+		System.out.println("keyword:"+keyword);
 		ModelAndView mav = new ModelAndView();
 			
 		//		ModelAndView mav = new ModelAndView();
@@ -83,6 +83,7 @@ public class ProductUFormController {
 			@RequestParam("keyword") String keyword
 			) {
 
+		System.out.println(this.getClass()+" POST");
 		ModelAndView mav = new ModelAndView();
 
 		if(result.hasErrors()) {

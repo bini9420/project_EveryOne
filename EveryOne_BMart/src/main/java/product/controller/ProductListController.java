@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ public class ProductListController {
 
 	private final String command = "productList.prd";
 	private final String getPage = "adminPrdList";
- 
+
 	@Autowired
 	ProductDao productDao; 
 
@@ -30,22 +31,35 @@ public class ProductListController {
 			@RequestParam(value="keyword", required=false) String keyword,
 			@RequestParam(value="pageNumber", required=false) String pageNumber,
 			HttpServletRequest request,
-			Model model) {
+			Model model,
+			HttpSession session
+			) {
 
-		System.out.println("ProductListController");
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("whatColumn", whatColumn);
-		map.put("keyword", "%" + keyword + "%");
 
-		int totalCount = productDao.getTotalCount(map);
-		String url = request.getContextPath() + this.command;
+		if(session.getAttribute("loginInfo") == null) { // 
 
-		Paging pageInfo = new Paging(pageNumber, null, totalCount, url, whatColumn, keyword);
+			return "redirect:/loginForm.mb"; //MemberLoginController=>memberLoginForm.jsp
+		}else {
 
-		List<ProductBean> productLists = productDao.getProductList(map, pageInfo);
-		model.addAttribute("productLists", productLists);
-		model.addAttribute("pageInfo", pageInfo);
 
-		return getPage;
+
+			System.out.println("ProductListController");
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("whatColumn", whatColumn);
+			map.put("keyword", "%" + keyword + "%");
+
+			int totalCount = productDao.getTotalCount(map);
+			String url = request.getContextPath() + this.command;
+
+			Paging pageInfo = new Paging(pageNumber, null, totalCount, url, whatColumn, keyword);
+
+			List<ProductBean> productLists = productDao.getProductList(map, pageInfo);
+
+			model.addAttribute("productLists", productLists);
+			model.addAttribute("pageInfo", pageInfo);
+
+			return getPage;
+		}
 	}
+
 }

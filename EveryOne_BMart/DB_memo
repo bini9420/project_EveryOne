@@ -1,17 +1,17 @@
 --회원 테이블
 drop table member cascade constraints;
 create table member(
-   id varchar2(20) primary key,
-   name varchar2(15) NOT NULL,
-   password varchar2(30) NOT NULL,
-   phone varchar2(30) NOT NULL,
-   email varchar2(50) NOT NULL,
-   address varchar2(30),
-   addr1 varchar2(30),
-   addr2 varchar2(30),
-   image varchar2(30),
-  ownercode varchar2(20),
-  state number default 0
+	id varchar2(20) primary key,
+	name varchar2(15) NOT NULL,
+	password varchar2(30) NOT NULL,
+	phone varchar2(30) NOT NULL,
+	email varchar2(50) NOT NULL,
+	address varchar2(30),
+	addr1 varchar2(30),
+	addr2 varchar2(30),
+	image varchar2(30),
+	ownercode number,
+	state number default 0
 );
 
 --관리자
@@ -35,35 +35,56 @@ insert into member(id, name, password, phone, email, ownercode) values('jungha',
 
 
 
-
---상품 카테고리 테이블
-drop sequence ca_seq;
-create sequence ca_seq
+--bmart 카테고리 테이블
+drop sequence bca_seq;
+create sequence bca_seq
 	increment by 1
 	start with 1
 	minvalue 1
 	nocache ;
 
-drop table category cascade constraints;
-create table category(
+drop table bcategory cascade constraints;
+create table bcategory(
 	num number,
-	name varchar2(30) primary key
+	category varchar2(30) primary key
 );
 
-insert into category values(ca_seq.nextval,'쌀/잡곡/견과');
-insert into category values(ca_seq.nextval,'밥/도시락');
-insert into category values(ca_seq.nextval,'국/탕/찌개');
-insert into category values(ca_seq.nextval,'음료/커피/생수');
-insert into category values(ca_seq.nextval,'요리/반찬');
-insert into category values(ca_seq.nextval,'정육/수산/계란');
-insert into category values(ca_seq.nextval,'라면/면');
-insert into category values(ca_seq.nextval,'과일/채소');
-insert into category values(ca_seq.nextval,'양념/장류/오일');
-insert into category values(ca_seq.nextval,'우유/유제품');
-insert into category values(ca_seq.nextval,'햄/어묵/통조림');
-insert into category values(ca_seq.nextval,'생활/기타');
-insert into category values(ca_seq.nextval,'배달용품');
-insert into category values(ca_seq.nextval,'주방용품');
+insert into bcategory values(bca_seq.nextval,'쌀/잡곡/견과');
+insert into bcategory values(bca_seq.nextval,'국/탕/찌개');
+insert into bcategory values(bca_seq.nextval,'음료/커피/생수');
+insert into bcategory values(bca_seq.nextval,'정육/수산/계란');
+insert into bcategory values(bca_seq.nextval,'라면/면');
+insert into bcategory values(bca_seq.nextval,'과일/채소');
+insert into bcategory values(bca_seq.nextval,'양념/장류/오일');
+insert into bcategory values(bca_seq.nextval,'우유/유제품');
+insert into bcategory values(bca_seq.nextval,'햄/어묵/통조림');
+insert into bcategory values(bca_seq.nextval,'생활/기타');
+
+
+
+--상회 카테고리 테이블
+drop sequence sca_seq;
+create sequence sca_seq
+	increment by 1
+	start with 1
+	minvalue 1
+	nocache ;
+
+drop table scategory cascade constraints;
+create table scategory(
+	num number,
+	category varchar2(30) primary key
+);
+
+insert into scategory values(sca_seq.nextval,'쌀/잡곡/견과');
+insert into scategory values(sca_seq.nextval,'야채/채소');
+insert into scategory values(sca_seq.nextval,'과일');
+insert into scategory values(sca_seq.nextval,'축산/계란');
+insert into scategory values(sca_seq.nextval,'수산/건어물');
+insert into scategory values(sca_seq.nextval,'베이커리/디저트');
+insert into scategory values(sca_seq.nextval,'유제품');
+insert into scategory values(sca_seq.nextval,'배달용품');
+insert into scategory values(sca_seq.nextval,'주방용품');
 
 
 
@@ -87,41 +108,64 @@ create table product(
 	expritydate varchar2(100),
 	origin varchar2(30),
 	stock number default 1,
-	pcategory varchar2(20) references category(name) on delete set null,
+	pcategory varchar2(30) not null,
 	inputdate date default sysdate,
 	ordercount number default 0,
-	mall number not null
+	mall number not null,
+	ad number default 0
 );
 
 --B마트 상품
 insert into product 
-values(seqprod.nextval, 'admin', '알배기 배추 1봉', null, 3990, '통', '고소하고 달콤한 알배기 배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국산',  54, '과일/채소', sysdate, 0, 0);
+values(seqprod.nextval, 'admin', '알배기 배추 1봉', null, 3990, '통', '고소하고 달콤한 알배기 배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국산',  54, '과일/채소', sysdate, 5, 0, 1);
 
 insert into product 
-values(seqprod.nextval, 'admin', '햇양파', null, 3790, '1.5kg', '단단하고 아삭한 양파', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  43, '과일/채소', sysdate, 0, 0);
+values(seqprod.nextval, 'admin', '햇양파', null, 3790, '1.5kg', '단단하고 아삭한 양파', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  43, '과일/채소', sysdate, 4, 0, 1);
 
 insert into product 
-values(seqprod.nextval, 'admin', '조각 양배추', null, 1990, '500g', '신선하게 즐기는 조각 양배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 0, 0);
+values(seqprod.nextval, 'admin', '조각 양배추', null, 1990, '500g', '신선하게 즐기는 조각 양배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 2, 0, 1);
 
 insert into product 
-values(seqprod.nextval, 'admin', '애사비 제로소다 오리지널', null, 10900, '500ml 6개', '국산 사과초모식초로 만든 탄산음료', null, null,  33, '음료/커피/생수', sysdate, 0, 0);
+values(seqprod.nextval, 'admin', '애사비 제로소다 오리지널', null, 10900, '500ml 6개', '국산 사과초모식초로 만든 탄산음료', null, null,  33, '음료/커피/생수', sysdate, 1, 0, 1);
 
 insert into product 
-values(seqprod.nextval, 'admin', '제주 삼다수 그린 무라벨', null, 7600, '2L 6개', '매일 마시기 좋은 생수', null, null,  77, '음료/커피/생수', sysdate, 0, 0);
+values(seqprod.nextval, 'admin', '제주 삼다수 그린 무라벨', null, 7600, '2L 6개', '매일 마시기 좋은 생수', null, null,  77, '음료/커피/생수', sysdate, 8, 0, 1);
+
+insert into product 
+values(seqprod.nextval, 'admin', '서울우유', null, 2900, '1000ml', '1등급이 무려 2개!', null, '국내산',  44, '우유/유제품', sysdate, 10, 0, 1);
+
+insert into product 
+values(seqprod.nextval, 'admin', 'test1', null, 2233, '500g', 'test2', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 2, 0, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', 'test2', null, 1100, '500g', 'test3', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 5, 0, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', 'test3', null, 2000, '500g', 'test4', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 8, 0, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', 'test4', null, 790, '500g', 'test5', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 2, 0, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', 'test5', null, 1000, '500g', 'test6', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 9, 0, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', 'test6', null, 3400, '500g', 'test7', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 12, 0, 0);
 
 
 --배민상회 상품
 insert into product 
-values(seqprod.nextval, 'admin', '햇빛담은쌀', null, 60000, '20kg', '맑고 깨끗한 자연환경에서 정성으로 키운 쌀', null, '국내산',  32, '쌀/잡곡/견과', sysdate, 0, 1);
+values(seqprod.nextval, 'admin', '햇빛담은쌀', null, 60000, '20kg', '맑고 깨끗한 자연환경에서 정성으로 키운 쌀', null, '국내산',  32, '쌀/잡곡/견과', sysdate, 7, 1, 0);
 
 insert into product 
-values(seqprod.nextval, 'admin', '생 아몬드 슬라이스', null, 12800, '1kg', '자연을 그대로 담은 슬라이스 아몬드', null, '해외|미국',  12, '쌀/잡곡/견과', sysdate, 0, 1);
+values(seqprod.nextval, 'admin', '생 아몬드 슬라이스', null, 12800, '1kg', '자연을 그대로 담은 슬라이스 아몬드', null, '해외|미국',  12, '쌀/잡곡/견과', sysdate, 3, 1, 0);
 
 insert into product 
-values(seqprod.nextval, 'admin', '냉면용기(소/BK/흑색)', null, 53000, '400ea', '1,050ml. 전자레인지 사용 가능', null, null,  55, '배달용품', sysdate, 0, 1);
+values(seqprod.nextval, 'admin', '냉면용기(소/BK/흑색)', null, 53000, '400ea', '1,050ml. 전자레인지 사용 가능', null, null,  55, '배달용품', sysdate, 2, 1, 0);
 
 insert into product 
-values(seqprod.nextval, 'admin', '냉동 닭정육 조각 - 닭다리살', null, 62000, '2kg 6팩', '자연을 그대로 담은 슬라이스 아몬드', '제조일로부터 24개월', '브라질',  77, '정육/수산/계란', sysdate, 0, 1);
+values(seqprod.nextval, 'admin', '냉동 닭정육 조각 - 닭다리살', null, 62000, '2kg 6팩', '자연을 그대로 담은 슬라이스 아몬드', '제조일로부터 24개월', '브라질',  77, '정육/수산/계란', sysdate, 10, 1, 0);
+
 
 
 --최근 본 상품
@@ -145,21 +189,103 @@ insert into watch values(wseq.nextval, 'park', 3, sysdate);
 
 
 
+--찜한 상품
+drop sequence iseq;
+create sequence iseq
+	start with 1
+	increment by 1
+	minvalue 1
+	nocache;
+	
+drop table interest cascade constraints;
+create table interest(
+	inum number primary key,
+	id varchar2(20) references member(id) on delete cascade,
+	pnum number references product(pnum) on delete cascade
+);
+
+insert into interest values(iseq.nextval, 'park', 1);
+insert into interest values(iseq.nextval, 'park', 3);
+insert into interest values(iseq.nextval, 'park', 5);
+
+
+
+--장바구니
+drop sequence cseq;
+create sequence cseq
+	start with 1
+	increment by 1
+	minvalue 1
+	nocache;
+	
+drop table cart cascade constraints;
+create table cart(
+	cnum number primary key,
+	id varchar2(20) references member(id) on delete cascade,
+	pnum number references product(pnum) on delete cascade,
+  qty number default 1
+);
+
+
+
+--리뷰 테이블
+drop sequence rseq;
+create sequence rseq
+   start with 1
+   increment by 1
+   minvalue 1
+   nocache;
+   
+drop table table cascade constraints;
+create table review (
+   rnum number primary key,
+   pnum number references product(pnum) on delete cascade
+   rcomment varchar2(500) not null,
+   image varchar2(200),
+   rdage date default sysdate,
+   score number not null,
+   onum number references orders(onum) on delete cascade,
+   id varchar2(20) references orders(id) on delete cascade,
+);
+
+
+-- 주문 테이블
+drop sequence seqorder;
+create sequence seqorder
+start with 1
+increment by 1
+minvalue 1
+nocache;
+
+drop table orderInfo cascade constraints;
+create table orderInfo(
+	onum number primary key,
+	id varchar2(20) references member(id) on delete cascade,
+	pnum number references product(pnum) on delete cascade,
+  pamount number not null,
+  price number,
+  way varchar2(15),
+  status varchar2(15),
+	orderdate date default sysdate
+);
+  
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 3, '2024-06-01');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 3, '2024-06-01');
+
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 3, '2024-07-01');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 3, '2024-07-01');
+
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 2, 3, '2023-07-01');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 2, 3, '2023-07-01');
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+commit;
+select * from member;
+select * from category;
+select * from product order by pnum;
+select * from watch order by wnum desc;
+select * from interest order by inum desc;
+select * from cart order by cnum desc;
+select * from interest order by inum desc;

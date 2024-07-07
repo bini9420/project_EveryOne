@@ -7,10 +7,7 @@
  
 <configuration>
 
-   <settings>
-        <setting name="jdbcTypeForNull" value="NULL" />
-    </settings>
-
+  
 
 	<mappers>
 		<mapper resource="mybatis/mall.xml"/>

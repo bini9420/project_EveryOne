@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sale">
+
+	<select id="monthSale" resultType="sale.model.SalesData">
+		select to_char(orderdate,
+		'yyyy-mm') as 년월, sum(o.pamount*p.price) as 매출
+		from orderInfo o inner
+		join product p on o.pnum = p.pnum
+		group by to_char(orderdate,
+		'yyyy-mm')
+		order by 1;
+	</select>
+
+	<select id="topSale" resultType="mall.model.ProductBean">
+		SELECT pname,ordercount
+		FROM (
+		SELECT pname, ordercount
+		FROM product
+		ORDER BY ordercount DESC
+		)
+		<![CDATA[ WHERE ROWNUM <= 5; ]]>
+	</select>
+
+</mapper>          
+     

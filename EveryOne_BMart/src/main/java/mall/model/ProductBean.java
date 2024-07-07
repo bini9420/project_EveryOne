@@ -43,7 +43,7 @@ public class ProductBean {
 		if(this.upload != null) {
 			System.out.println(upload.getName()); // upload
 			System.out.println(upload.getOriginalFilename()); // 남자시계.jpg
-			pimage = upload.getOriginalFilename(); // image = 남자시계.jpg
+			pimage = upload.getOriginalFilename(); // pimage = 남자시계.jpg
 		}
 		
 	}

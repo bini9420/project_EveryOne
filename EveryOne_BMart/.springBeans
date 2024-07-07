@@ -10,6 +10,7 @@
 		<config>src/main/webapp/WEB-INF/spring/appServlet/mall-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/admin-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/product-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/sale-servlet.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/member-servlet.xml</config>

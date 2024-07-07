@@ -5,6 +5,8 @@
 <%@include file="WEB-INF/common/common.jsp" %>
 
 
+<head>
+
 <script>
 function loginWithGoogle() {
     $.ajax({
@@ -18,12 +20,6 @@ function loginWithGoogle() {
 
 
 </script>
-
-
-<!DOCTYPE html>
-<html>
-
-<head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

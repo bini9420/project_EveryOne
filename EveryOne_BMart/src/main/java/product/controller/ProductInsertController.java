@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import mall.model.ProductBean;
-import member.model.MemberBean;
 import product.model.ProductDao;
 
 @Controller
@@ -34,34 +33,53 @@ public class ProductInsertController {
 	
 	// productList.jsp에서 추가하기 클릭
 	@RequestMapping(value = command, method = RequestMethod.GET)
-	public String insert() {
-		
-		
-		return getPage;
+	public String insert(HttpSession session) {
+		//로그인 성공하면 loginInfo 세션 설정
+		System.out.println("loginInfo:" + session.getAttribute("loginInfo")); // null
+		if(session.getAttribute("loginInfo") == null) { // 
+			
+			return "redirect:/loginForm.mb"; //MemberLoginController=>memberLoginForm.jsp
+		}else {
+			return getPage;
+		}
 	}
 	 
 	
 	//
 	@RequestMapping(value=command, method = RequestMethod.POST)
-	public ModelAndView insertForm(@ModelAttribute("product") @Valid ProductBean product, BindingResult result,HttpSession session) {
+	public ModelAndView insertForm(@ModelAttribute("product") @Valid ProductBean product, BindingResult result
+			
+	) {
 		         
+		System.out.println("prod.getPcategory():"+product.getPcategory());
+		System.out.println("prod.getPrice():"+product.getPrice());
 		System.out.println("prod.getId():"+product.getId());
-		System.out.println("prod.getImage():"+product.getPimage()); // null, 시계.jpg
+		System.out.println("prod.getPname():"+product.getPname());
+		System.out.println("prod.getPcontent():"+product.getPcontent());
+		System.out.println("prod.getPrice():"+product.getPrice());
+		System.out.println("prod.getPimage():"+product.getPimage()); // null, 시계.jpg
 		System.out.println("prod.getUpload():"+product.getUpload());
+		System.out.println("prod.getMall():"+product.getMall());
+		
 		MultipartFile multi = product.getUpload();
 		
+		
+		//int mallId = Integer.parseInt(mall);
+        //product.setMall(mallId);
 		String uploadPath = servletContext.getRealPath("/resources/uploadImage/");
 		System.out.println("uploadPath:" + uploadPath);
 		
-		MemberBean login = (MemberBean)session.getAttribute("loginInfo");
-		product.setId(login.getId());
+		
 		
 		ModelAndView mav = new ModelAndView();
 		
 		if(result.hasErrors()) {
+			System.out.println("insert error");
 			mav.setViewName(getPage);
 			return mav; 
 		}
+		
+		
 		
 		int cnt = -1;
 		cnt = productDao.insertProduct(product);

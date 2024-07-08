@@ -17,15 +17,10 @@
 		order by 1;
 	</select>
 
-	<select id="topSale" resultType="mall.model.ProductBean">
-		SELECT pname,ordercount
-		FROM (
-		SELECT pname, ordercount
-		FROM product
-		ORDER BY ordercount DESC
-		)
-		<![CDATA[ WHERE ROWNUM <= 5; ]]>
-	</select>
+	
+
+
+
 
 </mapper>          
      

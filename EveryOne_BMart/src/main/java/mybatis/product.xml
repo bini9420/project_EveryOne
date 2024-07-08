@@ -6,88 +6,97 @@
 
 
 <mapper namespace="product">
-	   <select id = "getTotalCount" resultType = "int" parameterType="hashmap">
-        select count(*) from product
-        
-        <if test = "whatColumn == 'all'">
-           where all like #{keyword}
-        </if>
-        <if test = "whatColumn == 'pname'">
-           where pname like #{keyword}
-        </if>
-        
-        <if test = "whatColumn == 'price'">
-           where price like #{keyword}
-        </if>
-        <if test = "whatColumn == 'stock'">
-           where stock like #{keyword}
-        </if>
-        <if test = "whatColumn == 'pcategory'">
-           where pcategory like #{keyword}
-        </if>
-     </select>
-	
-	<select id="getProductList" resultType="mall.model.ProductBean">
-    select * from product
-     <where>
-        <if test="whatColumn == 'all'">
-            (
-                pname like #{keyword} or
-            
-                price like #{keyword} or
-                stock like #{keyword} or
-                pcategory like #{keyword}
-            )
-        </if>
-        <if test="whatColumn == 'pname'">
-            pname like #{keyword}
-        </if>
-      
-        <if test="whatColumn == 'price'">
-            price like #{keyword}
-        </if>
-        <if test="whatColumn == 'stock'">
-            stock like #{keyword}
-        </if>
-        <if test="whatColumn == 'pcategory'">
-            pcategory like #{keyword}
-        </if>
-    </where> 
-    order by pnum desc
-</select>
-     
-     <insert id="insertProduct">
-		insert into product(pnum,pcategory, id, pname, pimage, price, capacity, pcontent, expritydate, origin, stock, inputdate, ordercount, mall)
-		values(seqprod.nextval,#{pcategory},#{id} ,#{pname}, #{pimage,jdbcType=VARCHAR}, #{price}, #{capacity}, #{pcontent}, #{expritydate}, #{origin},#{stock},sysdate,0,#{mall})
-		
-	</insert>
-     
-    <delete id="deleteProduct">
-		delete from product where pnum=#{pnum}
-		
-	</delete>
-   
-    
-     <!-- 상품 상세보기,상품 수정하기, 장바구니 목록의 상품 -->
-      <select id="detailViewByNum" resultType="mall.model.ProductBean">
-        select * from product
-        where pnum = #{pnum}
-     </select>
-     
-     
-	
-	 <update id="updateProduct">
-  		update product set pname = #{pname},price = #{price}, stock=#{stock},pimage = #{pimage}, 
-  		pcontent = #{pcontent} where pnum = #{pnum}
-  	</update>
-  <!-- 	
-  	<update id="updateStock">
-  		update products set stock = stock-#{stock} 
-  		where num = #{num}
-  	</update>  -->
+	<select id="getTotalCount" resultType="int"
+		parameterType="hashmap">
+		select count(*) from product
 
-   
-   
+		<if test="whatColumn == 'all'">
+			where all like #{keyword}
+		</if>
+		<if test="whatColumn == 'pname'">
+			where pname like #{keyword}
+		</if>
+
+		<if test="whatColumn == 'price'">
+			where price like #{keyword}
+		</if>
+		<if test="whatColumn == 'stock'">
+			where stock like #{keyword}
+		</if>
+		<if test="whatColumn == 'pcategory'">
+			where pcategory like #{keyword}
+		</if>
+	</select>
+
+	<select id="getProductList" resultType="mall.model.ProductBean">
+		select * from product
+		<where>
+			<if test="whatColumn == 'all'">
+				(
+				pname like #{keyword} or
+
+				price like #{keyword} or
+				stock like #{keyword} or
+				pcategory like #{keyword}
+				)
+			</if>
+			<if test="whatColumn == 'pname'">
+				pname like #{keyword}
+			</if>
+
+			<if test="whatColumn == 'price'">
+				price like #{keyword}
+			</if>
+			<if test="whatColumn == 'stock'">
+				stock like #{keyword}
+			</if>
+			<if test="whatColumn == 'pcategory'">
+				pcategory like #{keyword}
+			</if>
+		</where>
+		order by pnum desc
+	</select>
+
+	<insert id="insertProduct">
+		insert into product(pnum,pcategory, id, pname,
+		pimage, price, capacity, pcontent, expritydate, origin, stock,
+		inputdate, ordercount, mall)
+		values(seqprod.nextval,#{pcategory},#{id}
+		,#{pname}, #{pimage,jdbcType=VARCHAR}, #{price}, #{capacity},
+		#{pcontent}, #{expritydate}, #{origin},#{stock},sysdate,0,#{mall})
+
+	</insert>
+
+	<delete id="deleteProduct">
+		delete from product where pnum=#{pnum}
+
+	</delete>
+
+
+	<!-- 상품 상세보기,상품 수정하기, 장바구니 목록의 상품 -->
+	<select id="detailViewByNum" resultType="mall.model.ProductBean">
+		select * from product
+		where pnum = #{pnum}
+	</select>
+
+
+
+	<update id="updateProduct">
+		update product set pname = #{pname},price = #{price}, stock=#{stock},pimage
+		= #{pimage},
+		pcontent = #{pcontent} where pnum = #{pnum}
+	</update>
+	<!-- <update id="updateStock"> update products set stock = stock-#{stock} 
+		where num = #{num} </update> -->
+
+  <select id="getRangeTest" resultType="mall.model.ProductBean">
+      select rownum, pname, ordercount 
+      from (select rownum, pname, ordercount from product order by ordercount desc)
+      where rownum between 1 and 5
+   </select>
+
+
+
 </mapper>
 
 <!-- product.xml -->

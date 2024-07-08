@@ -2,19 +2,21 @@ package sale.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import mall.model.ProductBean;
 
-@Repository
+@Service
 public class SalesDao {
     
 	
 	private String namespace="sale";
+	private String namespace2="product";
 	
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
@@ -23,19 +25,16 @@ public class SalesDao {
     	
     	List<SalesData> lists= new ArrayList<SalesData>();
         
-    	lists= sqlSessionTemplate.selectList(namespace+".monthSale");
+    	lists= sqlSessionTemplate.selectList(namespace2+".monthSale");
     	return lists;
        
     }
-    
-    public List<ProductBean> getTopSale(){
-    	
-    	List<ProductBean> list = new ArrayList<ProductBean>(); 
-    	list =sqlSessionTemplate.selectList(namespace+".topSale");
-    	return list;
-    
-    }
 
-	
+    public List<ProductBean> getRangeTest() {
+        List<ProductBean> plists = new ArrayList<ProductBean>();
+        plists = sqlSessionTemplate.selectList(namespace2+".getRangeTest");
+        return plists;
+     }
     
+
 }

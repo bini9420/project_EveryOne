@@ -18,7 +18,7 @@
 		width : 80%;
 		height : 60%;
 	}
-	
+	                  
 	
 	
 	th, td, tr{

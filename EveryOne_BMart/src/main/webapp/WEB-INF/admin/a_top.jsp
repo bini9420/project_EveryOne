@@ -3,7 +3,7 @@
 <!-- top.jsp -->
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
 
 <meta charset="utf-8">
@@ -14,6 +14,14 @@
 <meta name="author" content="">
 
 <title>SB Admin 2 - Dashboard</title>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 
 <!-- Custom fonts for this template-->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"

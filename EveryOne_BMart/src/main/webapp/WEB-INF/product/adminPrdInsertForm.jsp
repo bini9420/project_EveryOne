@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="../common/common.jsp"%>
 <%@include file="../admin/a_top.jsp"%>
-
+       
 <script>
 	var f_selbox = new Array('B마트', '배민상회');
 

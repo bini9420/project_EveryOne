@@ -23,7 +23,7 @@
 					<font class="highlight">사업자등록번호 :</font> 120-87-65763 | 
 					<font class="highlight">통신판매업신고번호 :</font> 2012-서울송파-0515<br>
 					<font class="highlight">팩스 :</font> 050-6050-0400 | 
-					<font class="highlight">이메일 :</font> bmmart_op@woowahan.com<br>
+					<font class="highlight">이메일 :</font> bmmart_op@woowahan.com<br>        
 					<font class="highlight">호스팅서비스제공자 :</font> (주)우아한형제들<br>
 					</p>
 				</td>

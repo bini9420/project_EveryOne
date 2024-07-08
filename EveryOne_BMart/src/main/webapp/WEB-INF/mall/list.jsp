@@ -7,4 +7,4 @@
 
 
 
-<%@ include file="mall_bottom.jsp"%>
+<%@ include file="mall_bottom.jsp"%> 

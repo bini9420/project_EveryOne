@@ -64,4 +64,36 @@
 		<servlet-name>mall</servlet-name>
 		<url-pattern>*.mall</url-pattern>
 	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>document</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/document-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+			
+	<!-- 결재문서 -->			
+	<servlet-mapping>
+		<servlet-name>document</servlet-name>
+		<url-pattern>*.dc</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>state</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/state-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+			
+	<!-- 결재문서 상태 -->			
+	<servlet-mapping>
+		<servlet-name>state</servlet-name>
+		<url-pattern>*.st</url-pattern>
+	</servlet-mapping>
 </web-app>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="document.Document">
+	<select id="getAllDocument" resultType="document.model.DocumentBean">
+		select * from document 
+	    where 1=1
+	    <!-- dcategory에 대한 조건 추가 -->
+	    <if test="whatColumn != null and whatColumn != ''">
+	        and dcategory = #{whatColumn}
+	    </if>
+	    
+	    <!-- dnum 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+	    <if test="inputDnum != null and inputDnum != ''">
+	        and dnum LIKE #{inputDnum}
+	    </if>
+	
+	    <!-- title 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+	    <if test="inputTitle != null and inputTitle != ''">
+	        and title LIKE #{inputTitle}
+	    </if>
+	
+	    <!-- writeday 조건: 날짜 범위로 필터링 -->
+	    <if test="inputDay1 != null and inputDay1 != ''">
+	        and writeday &gt;= #{inputDay1}
+	    </if>
+	    <if test="inputDay2 != null and inputDay2 != ''">
+	        and writeday &lt;= #{inputDay2}
+	    </if>
+		order by dnum desc
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+   		select count(*) from document where 1=1
+	    <!-- dcategory에 대한 조건 추가 -->
+	    <if test="whatColumn != null and whatColumn != ''">
+	        AND dcategory = #{whatColumn}
+	    </if>
+	    
+	    <!-- dnum 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+	    <if test="inputDnum != null and inputDnum != ''">
+	        AND dnum LIKE #{inputDnum}
+	    </if>
+	
+	    <!-- title 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+	    <if test="inputTitle != null and inputTitle != ''">
+	        AND title LIKE #{inputTitle}
+	    </if>
+	
+	    <!-- writeday 조건: 날짜 범위로 필터링 -->
+	    <if test="inputDay1 != null and inputDay1 != ''">
+	        AND writeday &gt;= #{inputDay1}
+	    </if>
+	    <if test="inputDay2 != null and inputDay2 != ''">
+	        AND writeday &lt;= #{inputDay2}
+	    </if>
+	</select>
+
+	
+	<select id="getWaitDocument" resultType="int">
+		select count(*) from document 
+		where dstatus = 0 and request = 1
+	</select>
+	
+	<select id="getTempDocument" resultType="int">
+		select count(*) from document
+		where request = 0 and dstatus = 0
+	</select>
+	
+	<select id="getReturnDocument" resultType="int">
+		select count(*) from document
+		where dstatus = -1 
+	</select>
+	
+	<select id="getApproveDocument" resultType="int">
+		select count(*) from document
+		where dstatus = 1
+	</select>
+	
+	<select id="getDocumentByDnum" resultType="document.model.DocumentBean">
+		select * from document
+		where dnum=#{dnum}
+	</select>
+	
+	<select id="getAllWaitDocument" resultType="document.model.DocumentBean">
+		select * from (select * from document where request=1 and dstatus=0)
+		<if test="whatColumn == 'all'">
+			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword}
+		</if>
+		<if test="whatColumn == 'dcategory'">
+			where dcategory like #{keyword}
+		</if>
+		<if test="whatColumn == 'dnum'">
+			where dnum like #{keyword}
+		</if>
+		<if test="whatColumn == 'title'">
+			where title like #{keyword}
+		</if>
+		order by dnum desc 
+	</select>
+	
+	<select id="getWaitCount" resultType="int">
+		select count(*) from (select * from document where request=1 and dstatus=0)
+		<if test="whatColumn == 'all'">
+			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword}
+		</if>
+		<if test="whatColumn == 'dcategory'">
+			where dcategory like #{keyword}
+		</if>
+		<if test="whatColumn == 'dnum'">
+			where dnum like #{keyword}
+		</if>
+		<if test="whatColumn == 'title'">
+			where title like #{keyword}
+		</if>
+ 	</select>
+	
+	<select id="getAllTempDocument" resultType="document.model.DocumentBean">
+		select * from (select * from document where request=0)
+		<if test="whatColumn == 'all'">
+			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword}
+		</if>
+		<if test="whatColumn == 'dcategory'">
+			where dcategory like #{keyword}
+		</if>
+		<if test="whatColumn == 'dnum'">
+			where dnum like #{keyword}
+		</if>
+		<if test="whatColumn == 'title'">
+			where title like #{keyword}
+		</if>
+		order by dnum desc
+	</select>
+	
+	<select id="getTempCount" resultType="int">
+		select count(*) from (select * from document where request=0)
+		<if test="whatColumn == 'all'">
+			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword}
+		</if>
+		<if test="whatColumn == 'dcategory'">
+			where dcategory like #{keyword}
+		</if>
+		<if test="whatColumn == 'dnum'">
+			where dnum like #{keyword}
+		</if>
+		<if test="whatColumn == 'title'">
+			where title like #{keyword}
+		</if>
+ 	</select>
+	
+	<select id="getAllReturnDocument" resultType="document.model.DocumentBean">
+		select * from (select * from document where dstatus=-1)
+		<if test="whatColumn == 'all'">
+			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword}
+		</if>
+		<if test="whatColumn == 'dcategory'">
+			where dcategory like #{keyword}
+		</if>
+		<if test="whatColumn == 'dnum'">
+			where dnum like #{keyword}
+		</if>
+		<if test="whatColumn == 'title'">
+			where title like #{keyword}
+		</if>
+		order by dnum desc
+	</select>
+	
+	<select id="getReturnCount" resultType="int">
+		select count(*) from (select * from document where dstatus=-1) 
+		<if test="whatColumn == 'all'">
+			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword}
+		</if>
+		<if test="whatColumn == 'dcategory'">
+			where dcategory like #{keyword}
+		</if>
+		<if test="whatColumn == 'dnum'">
+			where dnum like #{keyword}
+		</if>
+		<if test="whatColumn == 'title'">
+			where title like #{keyword}
+		</if>
+ 	</select>
+	
+	<select id="getAllApproveDocument" resultType="document.model.DocumentBean">
+		select * from (select * from document where request=1 and approval=1) 
+		<if test="whatColumn == 'all'">
+			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword}
+		</if>
+		<if test="whatColumn == 'dcategory'">
+			where dcategory like #{keyword}
+		</if>
+		<if test="whatColumn == 'dnum'">
+			where dnum like #{keyword}
+		</if>
+		<if test="whatColumn == 'title'">
+			where title like #{keyword}
+		</if>
+		order by dnum desc
+	</select>
+	
+	<select id="getApproveCount" resultType="int">
+		select count(*) from (select * from document where request=1 and approval=1)  
+		<if test="whatColumn == 'all'">
+			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword}
+		</if>
+		<if test="whatColumn == 'dcategory'">
+			where dcategory like #{keyword}
+		</if>
+		<if test="whatColumn == 'dnum'">
+			where dnum like #{keyword}
+		</if>
+		<if test="whatColumn == 'title'">
+			where title like #{keyword}
+		</if>
+ 	</select>
+ 	
+ 	<select id="getWaitDocumentList" resultType="document.model.DocumentBean">
+ 		select * from document where request=1 and dstatus=0
+ 	</select>
+ 	
+ 	<select id="getApproveDocumentList" resultType="document.model.DocumentBean">
+ 		select * from document where request=1 and dstatus=1
+ 	</select>
+ 	
+ 	<select id="getTempDocumentList" resultType="document.model.DocumentBean">
+ 		select * from document where request=0
+ 	</select>
+ 	
+ 	<select id="getReturnDocumentList" resultType="document.model.DocumentBean">
+ 		select * from document where dstatus=-1
+ 	</select>
+</mapper>

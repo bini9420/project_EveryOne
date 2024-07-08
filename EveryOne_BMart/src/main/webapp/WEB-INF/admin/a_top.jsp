@@ -20,8 +20,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
+ <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
 <!-- Custom fonts for this template-->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
@@ -65,6 +65,14 @@
 .title {
 	text-align: center;
 }
+
+ .chart-container {
+            position: relative;
+            height: 400px; /* Adjust height as needed */
+        }
+
+
+
 </style>
 </head>
 

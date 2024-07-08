@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="a_top.jsp" %>    
+
+
+<head>
+   
+   
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
@@ -133,49 +141,78 @@
                             </div>
                         </div>
 
-                        <!-- Pie Chart -->
                         <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">인기 상품 TOP5</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
+                                    <div class="chart-pie pt-4">
+                                        <canvas id="logNameChart" ></canvas>
                                     </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                </div>
+
+
+    <script>
+        // JSP에서 전달된 JSON 데이터를 JavaScript 변수로 할당
+        var jsonData = ${json};
+        var jsonObject = JSON.stringify(jsonData);
+        var jData = JSON.parse(jsonObject);
+       
+        var labelList = [];
+        var valueList = [];
+        var colorList = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'];
+       
+        
+        
+        function colorize(index) {
+        	return colors[index % colors.length];
+        }
+
+        // 데이터 파싱
+        for (var i = 0; i < jData.length; i++) {
+            var d = jData[i];
+            labelList.push(d.pname);
+            valueList.push(d.ordercount);
+           
+            
+            
+            console.log("labelList"+labelList);
+        }
+
+        // 차트 데이터 설정
+        var data = {
+            labels: labelList,
+            datasets: [{
+            	 backgroundColor: colorList.slice(0, jData.length),
+                data: valueList
+            }]
+        };
+
+        // 차트 옵션 설정
+        var options = {
+            title: {
+                display: true,
+                text: '유저별 접속 횟수'
+            }
+        };
+
+        // 차트 생성
+        var ctx1 = document.getElementById('logNameChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'pie',
+            data: data,
+            options: options
+        });
+    </script>
                     <!-- Content Row -->
                     <div class="row">
 
@@ -335,4 +372,4 @@
             </div>
             <!-- End of Main Content -->
 
-<%@ include file="a_bottom.jsp" %>           
+         

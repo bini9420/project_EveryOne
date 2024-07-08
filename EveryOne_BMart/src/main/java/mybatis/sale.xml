@@ -7,17 +7,19 @@
 
 <mapper namespace="sale">
 
-	<select id="monthSale" resultType="sale.model.SalesData">
+	<select id="getAriaChart" resultType="sale.model.orderInfoBean">
+
 		select to_char(orderdate,
-		'yyyy-mm') as 년월, sum(o.pamount*p.price) as 매출
+		'yyyy-mm') as orderdate, sum(o.pamount*p.price) as
+		totalPrice
 		from orderInfo o inner
 		join product p on o.pnum = p.pnum
 		group by to_char(orderdate,
 		'yyyy-mm')
-		order by 1;
+		order by 1
 	</select>
 
-	
+
 
 
 

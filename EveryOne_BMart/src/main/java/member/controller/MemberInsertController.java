@@ -19,7 +19,7 @@ import member.model.MemberDao;
 @Controller
 public class MemberInsertController {
 	final String command = "aMemberInsert.mb";
-	final String getPage = "memberRegisterForm";
+	final String getPage = "aMemberInsert";
 	final String gotoPage = "redirect:/aMemberInsert.mb";
 
 	@Autowired

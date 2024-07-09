@@ -238,11 +238,11 @@ create table orderInfo(
 	orderdate date default sysdate
 );
   
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 3, '2024-06-01');
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 3, '2024-06-01');
+insert into orderInfo(onum, id, pnum, pamount, price, orderdate) values(seqorder.nextval, 'park', 3, 3,1000, '2024-06-01');
+insert into orderInfo(onum, id, pnum, pamount,price, orderdate) values(seqorder.nextval, 'park', 3, 3,900, '2024-06-01');
 
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 5, 3, '2024-07-01');
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 5, 3, '2024-07-01');
+insert into orderInfo(onum, id, pnum, pamount,price, orderdate) values(seqorder.nextval, 'park', 5, 3,400, '2024-07-01');
+insert into orderInfo(onum, id, pnum, pamount, price,orderdate) values(seqorder.nextval, 'park', 5, 3,370, '2024-07-01');
 
 
 

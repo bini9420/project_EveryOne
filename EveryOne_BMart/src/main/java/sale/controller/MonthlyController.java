@@ -71,11 +71,13 @@ public class MonthlyController {
 		String pieJson = gson.toJson(pieArray);
 		model.addAttribute("pieJson", pieJson);
 
+		
+		List<ProductBean> pnumlists = salesDao.getPnumSale();
+		model.addAttribute("pnumlists",pnumlists);
+		
 		return getPage;
-
+		
 	}
-
-
 
 
 }

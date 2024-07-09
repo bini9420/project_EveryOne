@@ -51,5 +51,13 @@ public class SalesDao {
 	}
 	
     
+	public List<ProductBean> getPnumSale() {
+		List<ProductBean> pnumlist = new ArrayList<ProductBean>();
+		//System.out.println(clists.get(0).getPcategory());
+		pnumlist = sqlSessionTemplate.selectList(namespace2+".getPnumSale");
+		return pnumlist;
+	}
+	
+	
 
 }

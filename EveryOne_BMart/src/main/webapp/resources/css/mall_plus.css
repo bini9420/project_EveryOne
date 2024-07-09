@@ -86,3 +86,11 @@ a:hover {
 	background: #F5F5F5;
 	padding: 15 8
 }
+
+.desTable{
+	border-collapse: collapse;
+}
+
+.desTable td{
+	border: 1px solid #EDEDED;
+}

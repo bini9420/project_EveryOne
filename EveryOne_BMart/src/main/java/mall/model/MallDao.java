@@ -26,6 +26,7 @@ public class MallDao {
 	private String watch = "watch";
 	private String interest = "interest.Interest";
 	private String cart = "cart.Cart";
+	private String address = "address.Address";
 	
 	//카테고리 띄우기
 	public List<CategoryBean> getAllCategory() {
@@ -163,4 +164,9 @@ public class MallDao {
 		sqlSessionTemplate.insert(interest+".insertInterest", ib);
 	}
 	
+	public List<AddressBean> getAddressList(String id) {
+		List<AddressBean> alists = new ArrayList<AddressBean>();
+		alists = sqlSessionTemplate.selectList(address+".getAddressList", id);
+		return alists;
+	}
 }

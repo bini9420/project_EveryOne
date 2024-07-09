@@ -22,6 +22,7 @@
 		<mapper resource="mybatis/interest.xml"/>
 		<mapper resource="mybatis/cart.xml"/>
 		<mapper resource="mybatis/member.xml"/>
+		<mapper resource="mybatis/address.xml"/>
 	</mappers>
 	
 </configuration>

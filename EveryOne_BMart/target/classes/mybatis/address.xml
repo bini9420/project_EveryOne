@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- address.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="address.Address">
+	<select id = "getAddressList" resultType = "mall.model.AddressBean">
+		select * from destination where id=#{id}
+	</select>
+</mapper>

@@ -16,7 +16,11 @@
 	
 	<context:component-scan base-package="member" />
 
-
-
+	<!-- file upload 할 때 필요 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10485760"/><!-- 10mb -->
+		<property name="maxInMemorySize" value="10240"/><!-- 생략 가능. 임시 폴더의 크기를 지정한 것. -->
+		<property name="defaultEncoding" value="UTF-8"/>
+	</bean>
 
 </beans>

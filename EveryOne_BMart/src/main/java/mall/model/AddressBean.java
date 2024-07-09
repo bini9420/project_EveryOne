@@ -1,12 +1,18 @@
-package member.model;
+package mall.model;
 
-public class DestinationBean {
+import org.hibernate.validator.constraints.NotBlank;
+
+public class AddressBean {
 
 	private int dnum;
 	private String id;
 	private String alias;
+	
+	@NotBlank
 	private String post;
+	@NotBlank
 	private String addr1;
+	@NotBlank
 	private String addr2;
 	
 	public int getDnum() {

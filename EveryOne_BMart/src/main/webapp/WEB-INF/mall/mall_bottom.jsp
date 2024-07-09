@@ -17,7 +17,7 @@
 				</li>
 				<li class="nav-item mx-5" >
 					<a class="nav-link" aria-current="page" href="#!">
-						입점문의
+						입점신청
 					</a>
 				</li>
 			</ul>

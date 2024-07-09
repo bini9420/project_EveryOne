@@ -18,63 +18,64 @@ import sale.model.orderInfoBean;
 @Controller
 public class MonthlyController {
 
-   private final String command = "/top.sale";
-   private final String getPage = "topSale";
-   
-   @Autowired
-   SalesDao salesDao;
-   
-   @RequestMapping(command)
-   public String rangeTest(Model model) {
-	   
-	   
-	   List<orderInfoBean> alists = salesDao.getAriaChart();
-		//System.out.println("plists.get(0).pname: "+alists.get(0).getTotalPrice());
+	private final String command = "/top.sale";
+	private final String getPage = "topSale";
 
-		Gson gson = new Gson(); 
-		JsonArray jArray = new JsonArray();
+	@Autowired
+	SalesDao salesDao;
+
+	@RequestMapping(command)
+	public String rangeTest(Model model) {
+		// Data for the Area Chart
+		List<orderInfoBean> alists = salesDao.getAriaChart();
+		Gson gson = new Gson();
+		JsonArray areaArray = new JsonArray();
 
 		for (orderInfoBean ob : alists) {
-			System.out.println("ob.getTotalPrice: "+ob.getTotalPrice());
 			JsonObject object = new JsonObject();
-
-			String orderdate = ob.getOrderdate();
-			int totalPrice = ob.getTotalPrice();
-
-
-			object.addProperty("orderdate", orderdate);
-			object.addProperty("totalPrice", totalPrice);
-			jArray.add(object);
+			object.addProperty("orderdate", ob.getOrderdate());
+			object.addProperty("totalPrice", ob.getTotalPrice());
+			areaArray.add(object);
 		}
+		String areaJson = gson.toJson(areaArray);
+		model.addAttribute("areaJson", areaJson);
+
+		// Data for the Pie Chart
+		List<ProductBean> plists = salesDao.getRangeTest();
+		JsonArray pieArray = new JsonArray();
+
+		// Limit to top 5 products
+		int limit = Math.min(plists.size(), 5);
+		for (int i = 0; i < limit; i++) {
+			ProductBean pb = plists.get(i);
+			JsonObject object = new JsonObject();
+			object.addProperty("pname", pb.getPname());
+			object.addProperty("ordercount", pb.getOrdercount());
+			pieArray.add(object);
+		}
+		
+		List<ProductBean> clists = salesDao.getCateChart();
+		
+		JsonArray barArray = new JsonArray();
+		
+		
+		for(ProductBean product :clists) {
+			JsonObject object = new JsonObject();
+			object.addProperty("pcategory", product.getPcategory());
+			object.addProperty("ordercount", product.getOrdercount());
+			barArray.add(object);
+		}
+		String barJson = gson.toJson(barArray);
+		model.addAttribute("barJson",barJson);
+		
+		String pieJson = gson.toJson(pieArray);
+		model.addAttribute("pieJson", pieJson);
+
+		return getPage;
+
+	}
 
 
 
-	   
-	   
-      
-      List<ProductBean> plists = salesDao.getRangeTest();
-      System.out.println("plists.get(0).pname: "+plists.get(0).getPname());
-      
-		/*
-		 * Gson gson = new Gson(); JsonArray jArray = new JsonArray();
-		 */
-  
-      for (ProductBean pb : plists) {
-         System.out.println("pb.getpname: "+pb.getPname());
-         JsonObject object = new JsonObject();
-      
-         String pname = pb.getPname();
-         int ordercount = pb.getOrdercount();
 
-        
-         object.addProperty("pname", pname);
-         object.addProperty("ordercount", ordercount);
-         jArray.add(object);
-      }
-
-      
-      String json = gson.toJson(jArray);
-      model.addAttribute("json", json);
-      return getPage;
-   }
 }

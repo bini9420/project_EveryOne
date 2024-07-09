@@ -3,7 +3,7 @@
 <!-- top.jsp -->
 <!DOCTYPE html>
 <html lang="en">
- 
+
 <head>
 
 <meta charset="utf-8">
@@ -13,15 +13,16 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin 2 - Dashboard</title>
+<title>관리자</title>
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
- <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
 <!-- Custom fonts for this template-->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
@@ -33,9 +34,7 @@
 <link rel='stylesheet'
 	href='https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-straight/css/uicons-bold-straight.css'>
 <!-- Custom styles for this template-->
-<link
-	href="resources/css/sb-admin-2.min.css"
-	rel="stylesheet">
+<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-rounded/css/uicons-bold-rounded.css">
 <!-- Custom styles for this page -->
@@ -50,6 +49,13 @@
 	font-size: 2rem;
 	border: none;
 }
+
+.plusbtn {
+	float: right;
+	margin-left: 10px;
+	font-size: 2rem;
+}
+
 
 .content {
 	width: 100%;
@@ -66,13 +72,11 @@
 	text-align: center;
 }
 
- .chart-container {
-            position: relative;
-            height: 400px; /* Adjust height as needed */
-        }
-
-
-
+.chart-container {
+	position: relative;
+	height: 85%;
+	width: 85%;
+}
 </style>
 </head>
 
@@ -87,46 +91,39 @@
 			id="accordionSidebar">
 
 			<!-- Side bar - Brand -->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.html">
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="adminMain.jsp">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
-				<div class="sidebar-brand-text mx-3">
-					Admin <sup>2</sup>
+				<div class="sidebar-brand-text mx-3" >
+					관리자
 				</div>
 			</a>
 
-			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
-
-			<!-- Nav Item - Dashboard -->
-			<li class="nav-item active"><a class="nav-link"
-				href="index.html"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a>
-			</li>
+			
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
 			<!-- Heading -->
-			<div class="sidebar-heading">Interface</div>
+			<div class="sidebar-heading">Manage</div>
 
 
 			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
+			<li class="nav-item">
+			<a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseUtilities"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-wrench"></i> <span>회원관리</span>
+				aria-expanded="true" aria-controls="collapseUtilities"> 
+				<i class="fas fa-fw fa-wrench"></i> 
+				<span>회원관리</span>
+			
 			</a>
 				<div id="collapseUtilities" class="collapse"
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Custom Utilities:</h6>
-						<a class="collapse-item" href="adminMemberList.jsp">회원목록</a> <a
-							class="collapse-item" href="utilities-border.html">회원등록</a> <a
-							class="collapse-item" href="utilities-animation.html">회원수정</a> <a
-							class="collapse-item" href="utilities-other.html">회원탈퇴/계정삭제</a>
+						<a class="collapse-item" href="aMemberList.mb">회원목록</a> 
+						<a class="collapse-item" href="aMemberInsert.mb">회원등록</a>
 					</div>
 				</div></li>
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
@@ -138,24 +135,24 @@
 					aria-labelledby="headingProducts" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Custom Utilities:</h6>
-						<a class="collapse-item" href="utilities-color.html">B마트</a> <a
-							class="collapse-item" href="utilities-border.html">배민상회</a>
-
+						<a class="collapse-item" href="">상품목록</a> 
+						<a	class="collapse-item" href="">상품등록</a>
+						<a	class="collapse-item" href="">상품수정</a>
+						<a class="collapse-item" href="">상품삭제</a>
 					</div>
 				</div></li>
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseSales"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-wrench"></i> <span>매출관리</span>
+				aria-expanded="true" aria-controls="collapseUtilities"> 
+				<i class="fas fa-fw fa-wrench"></i> 
+				<span>매출관리</span>
 			</a>
 				<div id="collapseSales" class="collapse"
 					aria-labelledby="headingSales" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Custom Utilities:</h6>
-						<a class="collapse-item" href="utilities-color.html">Colors</a> <a
-							class="collapse-item" href="utilities-border.html">Borders</a> <a
-							class="collapse-item" href="utilities-animation.html">Animations</a>
-						<a class="collapse-item" href="utilities-other.html">Other</a>
+						<a class="collapse-item" href="utilities-color.html">상품 매출</a> 
+						<a class="collapse-item" href="utilities-border.html">회원 매출</a>
 					</div>
 				</div></li>
 
@@ -168,16 +165,17 @@
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapsePages"
-				aria-expanded="true" aria-controls="collapsePages"> <i
-					class="fas fa-fw fa-folder"></i> <span>결재함</span>
+				aria-expanded="true" aria-controls="collapsePages">
+				 <i class="fas fa-fw fa-folder"></i> 
+				 <span>결재함</span>
 			</a>
 				<div id="collapsePages" class="collapse"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
-						<a class="collapse-item" href="login.html">Login</a> <a
-							class="collapse-item" href="register.html">Register</a> <a
-							class="collapse-item" href="forgot-password.html">Forgot
+						<a class="collapse-item" href="login.html">신청내역함</a> 
+						<a class="collapse-item" href="register.html">Register</a> 
+						<a class="collapse-item" href="forgot-password.html">Forgot
 							Password</a>
 						<div class="collapse-divider"></div>
 						<h6 class="collapse-header">Other Pages:</h6>
@@ -204,15 +202,15 @@
 			<!-- Sidebar Message -->
 			<div class="sidebar-card d-none d-lg-flex">
 				<img class="sidebar-card-illustration mb-2"
-					src="<%=request.getContextPath()%>/resources/img/undraw_rocket.svg"
+					src="resources/img/Bmart_logo.png"
 					alt="...">
-				<p class="text-center mb-2">
-					<strong>SB Admin Pro</strong> is packed with premium features,
-					components, and more!
-				</p>
+				<!-- <p class="text-center mb-2">
+					<strong>관리자</strong> 
+				</p> -->
 				<a class="btn btn-success btn-sm"
-					href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to
-					Pro!</a>
+					href="https://startbootstrap.com/theme/sb-admin-pro">
+					Let's go BMart!
+				</a>
 			</div>
 
 		</ul>
@@ -401,33 +399,33 @@
 									Logout
 								</a>
 							</div></li>
-								<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">로그아웃 하시겠습니까?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="logout.jsp">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
+						<!-- Logout Modal-->
+						<div class="modal fade" id="logoutModal" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">로그아웃
+											하시겠습니까?</h5>
+										<button class="close" type="button" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">×</span>
+										</button>
+									</div>
+									<div class="modal-body">Select "Logout" below if you are
+										ready to end your current session.</div>
+									<div class="modal-footer">
+										<button class="btn btn-secondary" type="button"
+											data-dismiss="modal">Cancel</button>
+										<a class="btn btn-primary" href="logout.jsp">Logout</a>
+									</div>
+								</div>
+							</div>
+						</div>
 
 					</ul>
 
 				</nav>
 
-  <!-- Bootstrap core JavaScript-->
-    <script src="resources/vendor/jquery/jquery.min.js"></script>
-    <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>			
+				

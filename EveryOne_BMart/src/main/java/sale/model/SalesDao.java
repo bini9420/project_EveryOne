@@ -42,6 +42,14 @@ public class SalesDao {
 	        alists = sqlSessionTemplate.selectList(namespace+".getAriaChart");
 	        return alists;
 	}
+
+	public List<ProductBean> getCateChart() {
+		List<ProductBean> clists = new ArrayList<ProductBean>();
+		//System.out.println(clists.get(0).getPcategory());
+		clists = sqlSessionTemplate.selectList(namespace2+".getCateChart");
+		return clists;
+	}
+	
     
 
 }

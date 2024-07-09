@@ -80,9 +80,15 @@ function loginWithGoogle() {
                                             Login
                                       
                                         <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
+                                       <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id={c45881ccb1b269e77166b83da79dc653 }&redirect_uri=http://localhost:8080/login/oauth2/code/kakao " 
+                                       class="btn btn-google btn-user btn-block">
+                                            <i class="fab fa-google fa-fw"></i> Login with kakao
                                         </a>
+                                        
+                                     
+   
+                   
+                                        
                                         <a href="index.html" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a>

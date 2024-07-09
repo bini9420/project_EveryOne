@@ -16,16 +16,14 @@ import member.model.MemberBean;
 import member.model.MemberDao;
 import utility.Paging;
 
-
 @Controller
-public class MemberListController {
-	private final String command = "aMemberList.mb";
-	private final String getPage = "aMemberList";
+public class CommonMemListController {
+	private final String command = "cMemberList.mb";
+	private final String getPage = "cMemberList";
 	
 	@Autowired
 	MemberDao memberDao;
-	
-	// main에서 회원 목록보기 눌렀을때 회원 목록보기
+
 	@RequestMapping(command)
 	public String list(
 			@RequestParam(value="whatColumn", required=false) String whatColumn,
@@ -33,7 +31,7 @@ public class MemberListController {
 			@RequestParam(value="pageNumber", required=false) String pageNumber,
 			HttpServletRequest request,
 			Model model) {
-		System.out.println("memberListController");
+		System.out.println("cmemberListController");
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("whatColumn", whatColumn);
 		map.put("keyword", "%" + keyword + "%");
@@ -43,15 +41,14 @@ public class MemberListController {
 
 		Paging pageInfo = new Paging(pageNumber, null, totalCount, url, whatColumn, keyword);
 
-		List<MemberBean> memberLists = memberDao.getMemberList(map, pageInfo);
-		model.addAttribute("memberLists", memberLists);
+		List<MemberBean> commonMLists = memberDao.commonMember(map, pageInfo);		
+		model.addAttribute("commonMLists",commonMLists);
 		model.addAttribute("pageInfo", pageInfo);
-		
-		
 		
 		return getPage;
 	
 		
 		
 	}
+
 }

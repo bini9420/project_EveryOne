@@ -6,3 +6,4 @@
 <a href="top.sale"></a>
 
 <%@include file="WEB-INF/admin/a_main.jsp" %>
+

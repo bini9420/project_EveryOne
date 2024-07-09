@@ -36,7 +36,8 @@
 				pname like #{keyword} or
 
 				price like #{keyword} or
-				stock like #{keyword} or
+				stock
+				like #{keyword} or
 				pcategory like #{keyword}
 				)
 			</if>
@@ -82,18 +83,29 @@
 
 
 	<update id="updateProduct">
-		update product set pname = #{pname},price = #{price}, stock=#{stock},pimage
+		update product set pname = #{pname},price = #{price},
+		stock=#{stock},pimage
 		= #{pimage},
-		pcontent = #{pcontent} where pnum = #{pnum}
+		pcontent = #{pcontent} where pnum =
+		#{pnum}
 	</update>
 	<!-- <update id="updateStock"> update products set stock = stock-#{stock} 
 		where num = #{num} </update> -->
 
-  <select id="getRangeTest" resultType="mall.model.ProductBean">
-      select rownum, pname, ordercount 
-      from (select rownum, pname, ordercount from product order by ordercount desc)
-      where rownum between 1 and 5
-   </select>
+	<select id="getRangeTest" resultType="mall.model.ProductBean">
+		select rownum, pname, ordercount
+		from (select rownum, pname, ordercount from product order by ordercount
+		desc)
+		where rownum between 1 and 5
+	</select>
+
+	<select id="getCateChart" resultType="mall.model.ProductBean">
+
+		select pcategory,sum(ordercount) as ordercount
+		from product
+		group by pcategory
+
+	</select>
 
 
 

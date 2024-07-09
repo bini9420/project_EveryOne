@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="member.model.Member">
+<mapper namespace="member">
 	
 	
 	
@@ -24,7 +24,6 @@
 			where name like #{keyword}
 			or id like #{keyword}
 			or email like #{keyword}
-			or addr1 like #{keyword}
 		</if>
 		<if test="whatColumn == 'name'">
 			where name like #{keyword}
@@ -35,32 +34,34 @@
 		<if test="whatColumn == 'email'">
 			where email like #{keyword}
 		</if>
-		<if test="whatColumn == 'addr1'">
-			where addr1 like #{keyword}
-		</if>
 	</select>
-	 
-	<!--  <select id = "getMemberList" resultType = "member.model.MemberBean" parameterType = "hashmap">
-  		select * from member where ownercode=null
+	
+	<select id = "getMemberList" resultType = "member.model.MemberBean" parameterType = "hashmap">
+  		select * from member
   		<if test="whatColumn == 'all'">
 			where name like #{keyword}
 			or id like #{keyword}
 			or email like #{keyword}
-			or addr1 like #{keyword}
 		</if>
 		<if test="whatColumn == 'name'">
-			and name like #{keyword}
+			where name like #{keyword}
 		</if>
 		<if test="whatColumn == 'id'">
-			and id like #{keyword}
+			where id like #{keyword}
 		</if>
 		<if test="whatColumn == 'email'">
-			and email like #{keyword}
+			where email like #{keyword}
 		</if>
-		<if test="whatColumn == 'addr1'">
-			and addr1 like #{keyword}
-		</if>
-  	</select> -->
+  	</select> 
+  	
+  	<select id="commonMember" resultType="member.model.MemberBean">
+			SELECT m.id,name,phone,email
+			FROM business b
+			inner JOIN member m ON b.id = m.id
+			where b.bcode=null;
+  	</select>
+  	
+  	
   	
   	<insert id="insertMember">
  		insert into member(id, name, password, phone, email,address, addr1,addr2, image,ownercode)

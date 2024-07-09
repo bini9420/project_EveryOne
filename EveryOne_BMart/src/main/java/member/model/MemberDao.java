@@ -22,13 +22,25 @@ public class MemberDao {
 	SqlSessionTemplate sqlSessionTemplate;
 	
 	
-	private String namespace = "member.model.Member";
+	private String namespace = "member";
 	public MemberBean getMember(String id) {
 		MemberBean member = null;
 		member = sqlSessionTemplate.selectOne(namespace + ".getMember", id);
 
 		return member;
+	}//getMember
+	
+	public List<MemberBean> commonMember(Map<String,String> map, Paging pageInfo){
+		List<MemberBean> commonMList = new ArrayList<MemberBean>();
+		RowBounds rowbounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		commonMList = sqlSessionTemplate.selectList(namespace+".commonMember", map, rowbounds);
+		return commonMList;
 	}
+	
+	
+	
+	
+	
 	public int getTotalCount(Map<String,String> map) {
 		int cnt = sqlSessionTemplate.selectOne(namespace+".getTotalCount", map);
 		return cnt;

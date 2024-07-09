@@ -4,24 +4,7 @@
 <%@include file="../common/common.jsp"%>
 <%@include file="../admin/a_top.jsp"%>
 
-<head>
-            
-<style>
-.plusbtn {
-	float: right;
-	margin-left: 10px;
-	font-size: 2rem;
-}
 
- .title {
-            text-align: center;
-        }
-      
-        
-</style>
-
-
-</head>
 
 <form action="productList.prd" method="post">
 

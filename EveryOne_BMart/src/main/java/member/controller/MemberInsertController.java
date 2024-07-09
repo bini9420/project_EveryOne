@@ -18,18 +18,20 @@ import member.model.MemberDao;
 
 @Controller
 public class MemberInsertController {
-	final String command = "/memberInsert.mb";
+	final String command = "aMemberInsert.mb";
 	final String getPage = "memberRegisterForm";
-	final String gotoPage = "redirect:/adminMemberList.mb";
+	final String gotoPage = "redirect:/aMemberInsert.mb";
 
 	@Autowired
 	MemberDao memberDao;
 
+	//
 	@RequestMapping(value=command,method=RequestMethod.GET)
 	public String registForm() {
 		return getPage;
 	}
-
+	
+	//list에서 추가 버튼을 눌렀을때 
 	@RequestMapping(value=command, method=RequestMethod.POST)
 	public String register(
 							@ModelAttribute("member") @Valid MemberBean member, 

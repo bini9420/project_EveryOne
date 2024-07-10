@@ -2,183 +2,195 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../common/common.jsp" %>
 <head>
-	<title>배민 B마트</title>
 	<meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<!-- Favicon-->
-	<link rel="icon" type="image/x-icon" href="resources/mall/assets/favicon.ico" />
+	
+	<!-- title icon-->
+	<link rel="icon" type="image/x-icon" href="resources/img/B.png" />
+	<title>배민 B마트</title>
 	
 	<!-- icons-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-straight/css/uicons-regular-straight.css'>
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-thin-rounded/css/uicons-thin-rounded.css'>
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-brands/css/uicons-brands.css'>
 	
 	<!-- Core theme CSS (includes Bootstrap)-->
-	<link href="resources/css/mall_style.css" rel="stylesheet" />
-	
-	<!-- search, carousel 등 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-    <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="resources/css/mall.css" rel="stylesheet" />
 	
 	<!-- fonts -->
 	<link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 	
-	<style>
-		.bottom_icon{
-			font-size: 35;
-			color: white;
-			margin: 0 15 0 0
-		}
-		.icon{
-			font-size: 28;
-			color: gray
-		}
-		.product{
-			font-size: 100;
-			color: gray
-		}
-		.search{
-			font-size: 18
-		}
-		.keyword{
-			margin: 35 10 0 20;
-			width : 300;
-			height: 40;
-			padding-left: 10
-		}
-		.footer1{
-			margin: 2 auto;
-			border-top: 1px solid #F5F5F5;
-			border-bottom: 1px solid #F5F5F5;
-			width: 100%;
-			text-align: center
-		}
-		.footer1 td{
-			padding: 10 30
-		}
-		.footer2 td{
-			padding: 10 100 10 0
-		}
-		.highlight{
-			font-weight: bold
-		}
-		.float{
-			position:fixed;
-			width:30px;
-			height:60px;
-			bottom:40px;
-			right:40px;
-			color:#D3D3D3;
-			text-align:center;
-			font-size: 45;
-		}
-		.float:hover{
-			text-decoration: none;
-			color: #2ac1bc
-		}
-		.my-float{
-			margin-top:22px;
-		}
-		a:hover{
-			text-decoration: none;
-		}
-		.productImg{
-			width : 100;
-			margin : 10 0
-		}
-	</style>
+	<!-- 추가 css -->
+	<link href="resources/css/mall_plus.css" rel="stylesheet" type="text/css">
 </head>
+
+<!-- 도로명 주소 api -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("sample6_extraAddress").value = extraAddr;
+                
+                } else {
+                    document.getElementById("sample6_extraAddress").value = '';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
+
 
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg">
-	<div class="container px-4 px-lg-5">
+	<div class="container">
 		<img src="resources/img/Bmart_logo.png" alt="B마트_logo" style="width:200; height: 60">&nbsp;&nbsp;
-		<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="main.mall" method="post">
-            <div class="input-group">
-                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                    aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">
-                        <i class="fi fi-rr-search search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" >
-				<li class="nav-item">
+		<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="plists.mall">
+	        <div class="input-group">
+			    <input type="text" class="form-control bg-light border-0 px-3" placeholder="상품을 검색하세요(●'◡'●)"
+			        aria-label="Search" aria-describedby="basic-addon2" name="keyword" style="width: 250">
+			    <div class="input-group-append">
+			        <button class="btn btn-primary" type="submit">
+			            <i class="fi fi-rr-search search"></i>
+			        </button>
+			    </div>
+			</div>
+       	</form>
+		<div class="collapse navbar-collapse ms-lg-5" id="navbarSupportedContent">
+			<ul class="navbar-nav mb-2 mb-lg-0 ms-lg-5 ps-lg-5">
+				<li class="nav-item ms-lg-5 mx-1">
+					<!-- home icon -->
 					<a class="nav-link active" aria-current="page" href="main.mall">
 						<i class="fi fi-rr-home icon"></i>
 					</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="#!">
+				<li class="nav-item mx-1">
+					<!-- heart icon -->
+					<a class="nav-link active" aria-current="page" href="interest.mall">
 						<i class="fi fi-rr-heart icon"></i>
 					</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="#!">
+				<li class="nav-item mx-1">
+					<!-- cart icon -->
+					<a class="nav-link active position-relative" aria-current="page" href="cart.mall">
 						<i class="fi fi-rr-shopping-basket icon"></i>
 						<!-- Counter - Messages -->
-                        <span class="badge badge-danger badge-counter">7</span>
+						<c:if test="${loginInfo ne null}">
+                        	<span class="position-absolute top-1 start-100 translate-middle badge rounded-pill btn-danger">${cartTotalCount}</span>
+                        </c:if>
 					</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="#!">
-						<i class="fi fi-rr-user icon"></i>
-					</a>
-				</li>
-				<!-- 
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						<img src="resources/img/user.png" alt="user" class="top_icon">
-					</a>
-					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<li>
-							<a class="dropdown-item" href="#!">
-								<img src="resources/img/user.png" alt="user" class="dropdown_icon">
-								Profile
-							</a>
-						</li>
-						<li><hr class="dropdown-divider" /></li>
-						<li>
-							<a class="dropdown-item" href="#!">
-								<img src="resources/img/logout.png" alt="logout" class="dropdown_icon">
-								Logout
-							</a>
-						</li>
-					</ul>
-				</li>
-				 -->
+				<c:if test="${loginInfo eq null}">
+					<li class="nav-item dropdown mx-1">
+						<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="fi fi-rr-user icon"></i>
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li>
+								<a class="dropdown-item" href="login.mb">
+									<i class="fi fi-rr-users"> 로그인 </i>
+								</a>
+							</li>
+							<li><hr class="dropdown-divider" /></li>
+							<li>
+								<a class="dropdown-item" href="#!">
+									<i class="fi fi-rr-user-add"> 회원가입 </i>
+								</a>
+							</li>
+						</ul>
+					</li>
+				</c:if>
+				<c:if test="${loginInfo ne null}">
+					<li class="nav-item">
+						<!-- heart icon -->
+						<a class="nav-link active" aria-current="page" href="mypage.mb">
+							<i class="fi fi-rr-user icon"></i>
+							<font class="fs-6 text-primary fw-bolder">${loginInfo.name} 님</font>
+						</a>
+					</li>
+				</c:if>
 			</ul>
 		</div>
 	</div>
 </nav>
 
 <!-- category -->
-<nav class="navbar navbar-expand-lg">
-	<div class="container px-4 px-lg-5">
-		<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" >
-			<li class="nav-item dropdown">
+<nav class="navbar navbar-expand-lg mx-auto" style="border-bottom: 1px solid #D3D3D3; box-shadow: 0px 3px 5px -2px gray">
+	<div class="container px-4">
+		<ul class="navbar-nav" >
+			<li class="nav-item dropdown mx-5">
 				<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-					<i class="fi fi-rr-menu-burger icon"></i>카테고리
+					<font size="3" style="font-style: normal;">카테고리</font>
 				</a>
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<c:forEach var="category" items="${categoryLists}">
-						<c:if test="${category.num <= 12}">
-							<li>
-								<a class="dropdown-item" href="#!">
-									${category.name}
-								</a>
-							</li>
-						</c:if>
+					<c:forEach var="clists" items="${categoryLists}">
+						<li>
+							<a class="dropdown-item" href="plists.mall?category=${clists.name}">
+								${clists.name}
+							</a>
+						</li>
 					</c:forEach>
 				</ul>
+			</li>
+			<li class="nav-item mx-5" >
+				<a class="nav-link" aria-current="page" href="plists.mall">
+					<img src="resources/img/new.png" style="width: 25">
+					신상품
+				</a>
+			</li>
+			<li class="nav-item mx-5" >
+				<a class="nav-link" aria-current="page" href="bestLists.mall">
+					<img src="resources/img/hot.png" style="width: 25">
+					베스트 상품
+				</a>
 			</li>
 		</ul>
 	</div>
 </nav>
+
+<!-- TOP button	 -->
+<a href="#" class="float">
+	<i class="fi fi-rr-arrow-small-up my-float"></i>
+</a>

@@ -1,14 +1,36 @@
 package member.model;
 
-
-
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 public class MemberBean {
 	
 	private final String message = " 입력 필수";
 	
+	//table에 없는 변수 추가
+	private MultipartFile upload;
+	public MultipartFile getUpload() {
+		return upload;
+	}
+	public void setUpload(MultipartFile upload) {
+		System.out.println("setUpload_upload: "+upload); //파일 이름이 아니라 주소가 들어감.
+		this.upload = upload;
+		if(this.upload != null) { //파일을 선택했으면
+			System.out.println(upload.getName()); //name속성값
+			System.out.println(upload.getOriginalFilename()); //파일의 이름
+			image = upload.getOriginalFilename(); //이미지 변수에 파일의 이름을 넣음
+		}
+	}
+	
+	private String upload2;
+	public String getUpload2() {
+		return upload2;
+	}
+	public void setUpload2(String upload2) {
+		this.upload2 = upload2;
+	}
+
 	@NotEmpty(message="아이디"+message)
 	private String id;
 	
@@ -25,10 +47,8 @@ public class MemberBean {
 	@NotBlank(message = "이메일주소"+message)
 	private String email;
 	
-	private String address;
-	private String addr1;
-	private String addr2;
 	private String image;
+	
 	public String getId() {
 		return id;
 	}
@@ -59,24 +79,6 @@ public class MemberBean {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getAddr1() {
-		return addr1;
-	}
-	public void setAddr1(String addr1) {
-		this.addr1 = addr1;
-	}
-	public String getAddr2() {
-		return addr2;
-	}
-	public void setAddr2(String addr2) {
-		this.addr2 = addr2;
-	}
 	public String getImage() {
 		return image;
 	}
@@ -86,28 +88,5 @@ public class MemberBean {
 	public String getMessage() {
 		return message;
 	}
-	public MemberBean() {
-		super();
-	}
-	public MemberBean(String id, String name, String password, String phone, String email, String address, String addr1,
-			String addr2, String image) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.password = password;
-		this.phone = phone;
-		this.email = email;
-		this.address = address;
-		this.addr1 = addr1;
-		this.addr2 = addr2;
-		this.image = image;
-	}
-	
-	
-	
-	
-	
-	
-	
 	
 }

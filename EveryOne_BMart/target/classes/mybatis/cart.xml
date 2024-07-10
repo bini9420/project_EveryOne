@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- cart.xml -->
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cart">
+	<select id="getCart" resultType="int">
+		select count(*) from cart where id=#{id} and pnum=#{pnum}
+	</select>
+	
+	<update id="updateCart">
+		update cart set qty = qty+#{qty} where id=#{id} and pnum=#{pnum}
+	</update>
+	
+	<insert id="insertCart">
+		insert into cart values(cseq.nextval, #{id}, #{pnum}, #{qty})
+	</insert>
+	
+	<select id="getCartTotalCount" resultType="int">
+		select count(*) from cart where id=#{id}
+	</select>
+</mapper>

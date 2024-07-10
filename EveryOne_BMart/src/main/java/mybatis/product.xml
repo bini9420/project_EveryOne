@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- product.xml -->
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="product">
+	<select id="getBestProduct" resultType="product">
+		select * from (select * from product order by ordercount desc) where rownum between 1 and 10
+	</select>
+	
+	<select id="getProductInfo" resultType="product">
+		select * from product where pnum=#{pnum}
+	</select>
+	
+	<select id="getWatchLists" resultType="product">
+		select * from watch w join product p on w.pnum = p.pnum and w.id=#{id} order by wnum desc
+	</select>
+	
+	<select id="getWatch" resultType="product">
+		select * from watch w join product p on w.pnum = p.pnum and w.id=#{id} 
+		<if test="range == 'recently'">
+			order by wnum desc
+		</if>
+		<if test="range == 'highPrice'">
+			order by price desc
+		</if>
+		<if test="range == 'rowPrice'">
+			order by price
+		</if>
+	</select>
+	
+	<select id="getInterestLists" resultType="product">
+		select * from interest i join product p on i.pnum = p.pnum and i.id=#{id} order by inum desc
+	</select>
+	
+	<select id="getInterest" resultType="product">
+		select * from interest i join product p on i.pnum = p.pnum and i.id=#{id} 
+		<if test="range == 'recently'">
+			order by inum desc
+		</if>
+		<if test="range == 'highPrice'">
+			order by price desc
+		</if>
+		<if test="range == 'rowPrice'">
+			order by price
+		</if>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from product where pcategory=#{category}
+	</select>
+	
+ 	<select id="getProductRange" resultType="product">
+		select * from product where pcategory=#{category}
+		<if test="range == 'recently'">
+			order by pnum desc
+		</if>
+		<if test="range == 'highPrice'">
+			order by price desc
+		</if>
+		<if test="range == 'rowPrice'">
+			order by price
+		</if>
+		<if test="range == 'best'">
+			order by ordercount desc
+		</if>
+	</select>
+	
+	<select id="getNewProductCount" resultType="int">
+		select count(*) from product where inputdate between sysdate-3 and sysdate
+		<if test="range == 'recently'">
+			order by pnum desc
+		</if>
+		<if test="range == 'highPrice'">
+			order by price desc
+		</if>
+		<if test="range == 'rowPrice'">
+			order by price
+		</if>
+	</select>
+	
+	<select id="getNewProductRange" resultType="product">
+		select * from product where inputdate between sysdate-3 and sysdate
+		<if test="range == 'recently'">
+			order by pnum desc
+		</if>
+		<if test="range == 'highPrice'">
+			order by price desc
+		</if>
+		<if test="range == 'rowPrice'">
+			order by price
+		</if>
+	</select>
+	
+	<select id="getKeywordCount" resultType="int">
+		select count(*) from product where pname like #{keyword}
+		<if test="range == 'recently'">
+			order by pnum desc
+		</if>
+		<if test="range == 'highPrice'">
+			order by price desc
+		</if>
+		<if test="range == 'rowPrice'">
+			order by price
+		</if>
+		<if test="range == 'best'">
+			order by ordercount desc
+		</if>
+	</select>
+	
+ 	<select id="getKeywordRange" resultType="product">
+		select * from product where pname like #{keyword}
+		<if test="range == 'recently'">
+			order by pnum desc
+		</if>
+		<if test="range == 'highPrice'">
+			order by price desc
+		</if>
+		<if test="range == 'rowPrice'">
+			order by price
+		</if>
+		<if test="range == 'best'">
+			order by ordercount desc
+		</if>
+	</select>
+	
+</mapper>

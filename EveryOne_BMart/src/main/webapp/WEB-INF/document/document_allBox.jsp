@@ -3,46 +3,52 @@
 <%@ include file="../common/common.jsp" %>	
 <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/tables/table-1/assets/css/table-1.css">
-<%@ include file="../member/owner/o_top.jsp"%>
-<!-- document_allBox.jsp -->
-
+<!-- o_top.jsp => 전체문서함 클릭(document_allBox.dc 요청) => DocumentAllBoxController.java => document_allBox.jsp -->
 <style>
+	.table-responsive {
+		width: 100%;
+	}
 	#allBoxContainer {
 		 margin-left: 15px;
 		 margin-right: 15px;
 	}
-	#boxName {
-		margin: 25px 0px;
-	}
-	i, h3 {
+	.col-auto, .mr-2 {
 		display: inline-block;
-		margin-right: 10px;
-		vertical-align: middle;
+		float: left;
 	}
-	#allDocument {
-		padding-top: 10px;
+	#boxname {
+		margin-left: 20px;
+		margin-top: 10px;
 	}
+
 </style>
-<br>
+ 
+<%@ include file="../member/owner/o_top.jsp"%>
 <div class="container-fruid" id="allBoxContainer">
 	<div class="row">
-		<div class="col-lg-12">
-			<div class="card shadow mb-4">
-				<div class="card-body">
-					<i class="fas fa-list fa-2x text-gray-500"></i>
-					<h3 class="text-gray-800" id="allDocument">전체문서함</h3>
-				</div>
-			</div>
-		</div>
+		<div class="col-lg-12 col-md-6 mb-4">
+             <div class="card border-left-primary shadow h-100 py-2">
+                  <div class="card-body">
+                       <div class="row no-gutters align-items-center">
+                       		<div class="col-auto">
+	              			    <i class="fas fa-list fa-2x text-gray-500"></i>
+	         			    </div>
+                            <div class="col mr-2">
+                                <div class="text-lg font-weight-bold text-primary text-uppercase mb-1" id="boxname"><h3><b>전체문서함</b></h3></div>
+                            </div>
+                  		</div>
+             	  </div>
+        	</div>
+    	</div>	
 	</div>
 	
 	<div class="row">
 	
 	<!-- 결재대기함 -->
-		<div class="col-lg-6 mb-4">
+		<div class="col-lg-6 mb-3">
              <div class="card shadow mb-4">
                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">결재대기함</h6>
+                        <h6 class="m-0 font-weight-bold text-info">결재대기함</h6>
                    </div>
                                 
                    <div class="card-body">
@@ -96,7 +102,7 @@
 		<div class="col-lg-6 mb-4">
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">결재완료함</h6>
+					<h6 class="m-0 font-weight-bold text-success">결재완료함</h6>
 				</div>
 				<div class="card-body">
                         <div class="table-responsive">
@@ -148,7 +154,7 @@
 		<div class="col-lg-6 mb-4">
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">임시저장함</h6>
+					<h6 class="m-0 font-weight-bold text-warning">임시저장함</h6>
 				</div>
 				<div class="card-body">
                         <div class="table-responsive">
@@ -200,7 +206,7 @@
 		<div class="col-lg-6 mb-4">
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">반려함</h6>
+					<h6 class="m-0 font-weight-bold text-danger">반려함</h6>
 				</div>
 				<div class="card-body">
                         <div class="table-responsive">

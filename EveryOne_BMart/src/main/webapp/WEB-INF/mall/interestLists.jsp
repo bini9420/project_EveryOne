@@ -30,7 +30,7 @@
 							<c:if test="${in.pimage eq null}">
 								<img src="resources/img/no-pictures.png" alt="interestProductImg" class="productImg">
 							</c:if>
-						</a>
+						</a> 
 						<!-- Product details-->
 						<div class="card-body p-4">
 							<div class="text-center">

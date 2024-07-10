@@ -30,7 +30,7 @@
 	
 	<!-- 추가 css -->
 	<link href="resources/css/mall_plus.css" rel="stylesheet" type="text/css">
-</head>
+</head> 
 
 <!-- 도로명 주소 api -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

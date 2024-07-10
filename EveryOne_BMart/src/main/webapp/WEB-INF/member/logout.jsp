@@ -4,4 +4,4 @@
 <%
 	session.invalidate();
 	response.sendRedirect(request.getContextPath()+"/main.mall");
-%>
+%> 

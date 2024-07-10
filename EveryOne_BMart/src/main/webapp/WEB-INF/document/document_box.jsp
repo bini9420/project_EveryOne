@@ -27,7 +27,7 @@
 		cursor: pointer;
 	}
 </style>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 <script type="text/javascript">
 	function detailDocument(dnum) {
@@ -41,11 +41,12 @@
 <!-- document_box.jsp<br> -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+					<div class="row">
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <i class="fas fa-folder-open fa-2x text-gray-300"></i>
+                    <div class="d-flex align-items-center justify-content-start mb-4">
+                        <i class="fas fa-folder-open fa-2x text-gray-500 me-2"></i>
                         <h1 class="h3 mb-0 text-gray-800">결재함</h1>
+                    </div>
                     </div>
 
                     <div class="row">
@@ -189,9 +190,10 @@
 												<select class="form-select form-select-sm" name="whatColumn">
 													<option value="">선택
 													<option value="입점요청">입점요청
-													<option value="물품등록">물품등록
+													<option value="상품등록">상품등록
 													<option value="광고요청">광고요청
 													<option value="폐점신청">폐점신청
+													<option value="리뷰검토">리뷰검토
 												</select>
 											</td>
 											<td class="searchTd text-gray-800"><b>문서번호</b></td>
@@ -306,7 +308,7 @@
             <!-- End of Main Content -->
      <div class="container-fluid">
      	<div class="row">
-     		<p align="center">${pageInfo.pageNumber}</p>
+     		<p align="center">${pageplus.pageNumber}</p>
      	</div>
      </div>
 <%@ include file="../member/owner/o_bottom.jsp" %>

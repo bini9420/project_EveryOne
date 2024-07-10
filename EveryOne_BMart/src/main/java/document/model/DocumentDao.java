@@ -19,10 +19,6 @@ public class DocumentDao {
 	
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
-	
-	public DocumentDao() {
-		System.out.println("DocumentDao");
-	}//생성자
 
 	public List<DocumentBean> getAllDocument(Map<String, String> map, PagingPlus pageplus) {
 		RowBounds rowBounds = new RowBounds(pageplus.getOffset(), pageplus.getLimit());
@@ -30,7 +26,7 @@ public class DocumentDao {
 		List<DocumentBean> lists = new ArrayList<DocumentBean>();
 		lists = sqlSessionTemplate.selectList(namespace + ".getAllDocument", map, rowBounds);
 		
-		System.out.println("Dao에서 list개수: " + lists.size());
+		//System.out.println("Dao에서 list개수: " + lists.size());
 		return lists;
 	}//getAllDocument
 
@@ -38,34 +34,34 @@ public class DocumentDao {
 		int totalCount = -100;
 		totalCount = sqlSessionTemplate.selectOne(namespace + ".getTotalCount", map);
 		
-		System.out.println("Dao에서 totalCount: " + totalCount);
+		//System.out.println("Dao에서 totalCount: " + totalCount);
 		return totalCount;
 	}//getTotalCount
 
-	public int getWaitDocument() {
+	public int getWaitDocument(String id) {
 		int count = -100;
-		count = sqlSessionTemplate.selectOne(namespace + ".getWaitDocument");
+		count = sqlSessionTemplate.selectOne(namespace + ".getWaitDocument", id);
 		
 		return count;
 	}//getWaitDocument
 
-	public int getTempDocument() {
+	public int getTempDocument(String id) {
 		int count = -100;
-		count = sqlSessionTemplate.selectOne(namespace + ".getTempDocument");
+		count = sqlSessionTemplate.selectOne(namespace + ".getTempDocument", id);
 		
 		return count;
 	}//getTemporarilyDocument
 
-	public int getReturnDocument() {
+	public int getReturnDocument(String id) {
 		int count = -100;
-		count = sqlSessionTemplate.selectOne(namespace + ".getReturnDocument");
+		count = sqlSessionTemplate.selectOne(namespace + ".getReturnDocument", id);
 		
 		return count;
 	}//getReturnDocument
 
-	public int getApproveDocument() {
+	public int getApproveDocument(String id) {
 		int count = -100;
-		count = sqlSessionTemplate.selectOne(namespace + ".getApproveDocument");
+		count = sqlSessionTemplate.selectOne(namespace + ".getApproveDocument", id);
 		
 		return count;
 	}//getApproveDocument
@@ -81,7 +77,7 @@ public class DocumentDao {
 		RowBounds rowbounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
 		
 		List<DocumentBean> lists = new ArrayList<DocumentBean>();
-		lists = sqlSessionTemplate.selectList(namespace + ".getAllWaitDocument");
+		lists = sqlSessionTemplate.selectList(namespace + ".getAllWaitDocument", map, rowbounds);
 		
 		return lists;
 	}//getAllWaitDocument
@@ -144,34 +140,67 @@ public class DocumentDao {
 		return count;
 	}//getApproveCount
 
-	public List<DocumentBean> getWaitDocumentList() {
+	public List<DocumentBean> getWaitDocumentList(String id) {
 		List<DocumentBean> lists = new ArrayList<DocumentBean>();
-		lists = sqlSessionTemplate.selectList(namespace + ".getWaitDocumentList");
+		lists = sqlSessionTemplate.selectList(namespace + ".getWaitDocumentList", id);
 		
 		return lists;
 	}//getWaitDocumentList
 
-	public List<DocumentBean> getApproveDocumentList() {
+	public List<DocumentBean> getApproveDocumentList(String id) {
 		List<DocumentBean> lists = new ArrayList<DocumentBean>();
-		lists = sqlSessionTemplate.selectList(namespace + ".getApproveDocumentList");
+		lists = sqlSessionTemplate.selectList(namespace + ".getApproveDocumentList", id);
 		
 		return lists;
 	}//getApproveDocumentList
 
-	public List<DocumentBean> getTempDocumentList() {
+	public List<DocumentBean> getTempDocumentList(String id) {
 		List<DocumentBean> lists = new ArrayList<DocumentBean>();
-		lists = sqlSessionTemplate.selectList(namespace + ".getTempDocumentList");
+		lists = sqlSessionTemplate.selectList(namespace + ".getTempDocumentList", id);
 		
 		return lists;
 	}//getTempDocumentList
 
-	public List<DocumentBean> getReturnDocumentList() {
+	public List<DocumentBean> getReturnDocumentList(String id) {
 		List<DocumentBean> lists = new ArrayList<DocumentBean>();
-		lists = sqlSessionTemplate.selectList(namespace + ".getReturnDocumentList");
+		lists = sqlSessionTemplate.selectList(namespace + ".getReturnDocumentList", id);
 		
 		return lists;
 	}//getReturnDocumentList
+	
+	public int insertDocument(DocumentBean document) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.insert(namespace + ".insertDocument", document); 
+		  
+		return cnt;
+	}//insertProduct
 
+	public int whatNumber(String category) {
+		int maxNum = 0;
+		if(sqlSessionTemplate.selectOne(namespace + ".whatNumber", category) != null) {
+			maxNum = sqlSessionTemplate.selectOne(namespace + ".whatNumber", category); 
+		}
+		
+		return maxNum; 
+	}//whatNumber
+
+	public int tempSaveDocument(DocumentBean document) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.insert(namespace + ".tempSaveDocument", document); 
+		  
+		return cnt;
+	}//tempSaveDocument
+
+	public int updateDocument(DocumentBean document) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.update(namespace + ".updateDocument", document);
+		
+		return cnt;
+	}//updateDocument
+
+	public void deleteDocument(String dnum) {
+		sqlSessionTemplate.delete(namespace + ".deleteDocument", dnum);
+	}//deleteDocument
 
 
 }

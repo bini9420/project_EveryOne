@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="o_top.jsp"%>
 <!-- Begin Page Content -->
 <style>
 	h6 {
@@ -15,6 +14,7 @@
 		border-color: #bae8e6 !important;
 	}
 </style>
+
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 <script>
 	function show() {
@@ -25,6 +25,7 @@
 	}
 </script>
 
+<%@ include file="o_top.jsp"%>
 <div class="container-fluid">
 
 	<!-- Page Heading -->
@@ -154,6 +155,7 @@
 	</div>
 	<!-- /.container-fluid -->
 </div>
+
 <!-- End of Main Content -->
 
 <%@ include file="o_bottom.jsp"%>

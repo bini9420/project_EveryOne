@@ -8,23 +8,22 @@
 		font-family: "Spoqa Han Sans Neo", sans-serif;
 	}
 </style>
+
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 <script>
-	function openDocumentWriteForm(url) {
-		//alert(1);
-		$('.modal-content').load(url);
-		$('#documentModal').modal(); 
+	function review() {
+	    //alert(1);
+		$('#reviewCheckDocument .modal-content').load("document_rcheckInsert.dc");
+		$('#reviewCheckDocument').modal();
 	}
 </script>
-<head>
 
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>SB Admin 2 - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="<%=request.getContextPath()%>/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -60,7 +59,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="omain.mb">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Owner</span></a>
+                    <span><b>${loginInfo.name}</b>님</span></a>
             </li>
             
              <!-- Register -->
@@ -71,7 +70,7 @@
             </div>
             <!-- 물품 등록 Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="document_insertproduct.dc">
+                <a class="nav-link" href="product_insert.mall">
                     <i class="fas fa-fw fa-plus"></i>
                     <span>물품등록</span></a>
             </li>
@@ -84,12 +83,12 @@
             </div>
             <!-- 매출관리 Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
+                    aria-expanded="true" aria-controls="#collapseFour">
                     <i class="fas fa-fw fa-comments-dollar"></i>
                     <span>매출관리</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Sales</h6>
                         <a class="collapse-item" href="buttons.html">상품별 매출현황</a>
@@ -123,13 +122,33 @@
             </div>
             <!-- 결재작성 -->
             <li class="nav-item">
-                <a class="nav-link" href="document_forms.dc">
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapsePages1"
+                    aria-expanded="true" aria-controls="collapsePages1">
                     <i class="fas fa-fw fa-pen"></i>
-                    <span>결재작성</span></a>
+                    <span>결재작성</span>
+                </a>
+                <div id="collapsePages1" class="collapse" aria-labelledby="headingPages1" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                       <h6 class="collapse-header">결재양식</h6>
+                        <a class="collapse-item" href="javascript:show()" data-bs-toggle="modal" data-bs-target="#documentWrite">요청·신청</a>
+                        <a class="collapse-item" href="javascript:review()" data-bs-toggle="modal" data-bs-target="#documentReviewCheck">리뷰검토</a>
+                    </div>
+                </div>
             </li>
+            
+            
+			<div class="modal fade" id="reviewCheckDocument" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+	
+			    </div>
+			  </div>
+			</div>
+
+            
             <!-- 결재함 Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="document_box.dc" data-toggle="collapse" data-target="#collapsePages"
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>결재함</span>
@@ -139,11 +158,12 @@
                         <h6 class="collapse-header">결재상신함</h6>
                         <a class="collapse-item" href="document_allBox.dc">전체문서함</a>
                         <a class="collapse-item" href="document_wait.dc">결재대기함</a>
-                        <a class="collapse-item" href="register.html">결재완료함</a>
-                        <a class="collapse-item" href="forgot-password.html">임시저장함</a>
+                        <a class="collapse-item" href="document_approve.dc">결재완료함</a>
+                        <a class="collapse-item" href="document_temp.dc">임시저장함</a>
+                        <a class="collapse-item" href="document_return.dc">반려함</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">기타</h6>
-                        <a class="collapse-item" href="404.html">반려함</a>
+                        <a class="collapse-item" href="document_rcheckList.dc">리뷰검토함</a>
                     </div>
                 </div>
             </li>
@@ -345,7 +365,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${loginInfo.id}</span>
                                 <img class="img-profile rounded-circle"
                                     src="<%=request.getContextPath()%>/resources/img/undraw_profile.svg">
                             </a>
@@ -376,4 +396,3 @@
 
                 </nav>
                 <!-- End of Topbar -->
-              

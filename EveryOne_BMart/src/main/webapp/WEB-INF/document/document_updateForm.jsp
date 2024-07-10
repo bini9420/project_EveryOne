@@ -71,8 +71,8 @@
 		color: #e74a3b;
 		font-size: small;
 	}
-	#insertPrdcategory, #insertPrdname {
-		display: none;
+	#updateFile {
+		margin-left: -10px;
 	}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -107,7 +107,7 @@
 	}
 	
 	//임시저장 클릭
-    function tempSave() {
+    function tempSave(dnum) {
 	    // select 요소의 유효성 검사 수행
 	    var selectElement = document.getElementById('documentCategory');
 	    if (!selectElement.checkValidity()) {
@@ -115,59 +115,15 @@
 	        alert('결재문서 종류를 선택해주세요.');
 	        return;
 	    }
-	    
-	    var titleElement = document.getElementById('documentTitle');
-	    if (!titleElement.checkValidity()) {
-	        // 유효성 검사 실패 시 처리 (예: 경고 메시지 출력)
-	        alert('제목을 입력해주세요.');
-	        return;
-	    }
-	    
-	    var prdnameElement = document.getElementById('productName');
-	    if (!prdnameElement.checkValidity()) {
-	        // 유효성 검사 실패 시 처리 (예: 경고 메시지 출력)
-	        alert('상품명을 입력해주세요.');
-	        return;
-	    }
-	    
-	    var prdcategoryElement = document.getElementById('productCategory');
-	    if (!prdcategoryElement.checkValidity()) {
-	        // 유효성 검사 실패 시 처리 (예: 경고 메시지 출력)
-	        alert('상품 카테고리를 입력해주세요.');
-	        return;
-	    }
 	
 	    // select 요소의 유효성 검사가 통과되면 폼을 제출
-	    document.myform.action = "document_temp.dc";
+	    document.myform.action = "document_update.dc?dnum=" + dnum;
 	    document.myform.submit();
 	}
-	
-	//select value 값에 따라 input 보여주기 및 숨기기
-    function handleCategoryChange(selectedValue) {
-		//alert(selectedValue);
-        var insertPrdcategoryDiv = document.getElementById('insertPrdcategory'); // #insertPrdcategory 요소를 가져옴
-        var insertPrdnameDiv = document.getElementById('insertPrdname'); // #insertPrdname 요소를 가져옴
-        
-        if (selectedValue == '상품등록') {
-        	insertPrdcategoryDiv.style.display = 'block'; // 보이게 설정
-        	insertPrdcategoryDiv.querySelector('input').setAttribute('required', true); // 필수 입력으로 설정
-        } else {
-        	insertPrdcategoryDiv.style.display = 'none'; // 숨김
-        	insertPrdcategoryDiv.querySelector('input').removeAttribute('required'); // 필수 입력 해제
-        }
-        
-        if (selectedValue == '광고요청') {
-        	insertPrdnameDiv.style.display = 'block'; // 보이게 설정
-        	insertPrdnameDiv.querySelector('input').setAttribute('required', true); // 필수 입력으로 설정
-        } else {
-        	insertPrdnameDiv.style.display = 'none'; // 숨김
-        	insertPrdnameDiv.querySelector('input').removeAttribute('required'); // 필수 입력 해제
-        }
-    }
+
 </script>
-
-
 <!-- document_writeForm.jsp<br> -->
+<body onload="load()">
 <%
 	String[] category = {"상품등록", "광고요청", "폐업신청"};
 %>
@@ -178,7 +134,6 @@
     <h5 class="modal-title mb-0" id="exampleModalLabel"><b>결재 문서 작성</b></h5>
 </div>
  
-      
       <div class="modal-body">
 	      <form name="myform" class="row g-3 needs-validation" method="post" enctype="multipart/form-data" novalidate>
 				<div class="col-md-6">
@@ -203,7 +158,7 @@
 			  
 			  <div class="col-md-6">
 			    <label for="documentWriter" class="form-label">작성자 </label>
-			    <input type="text" class="form-control form-control-sm" value="${name}" name="writer" id="documentWriter" disabled>
+			    <input type="text" class="form-control form-control-sm" value="${document.writer}" name="writer" id="documentWriter" disabled>
 			  </div>
 			  
 			  <c:set var="now" value="<%=new Date()%>"/>
@@ -276,22 +231,26 @@
 			  </div>
 			  
 			 <!-- 상품등록 관련 카테고리 입력란 -->  
-			 <div class="col-md-12" id="insertPrdcategory">
-			     <label for="productCategory" class="form-label">상품 카테고리 <font color="red">*</font></label>
-			     <input type="text" class="form-control form-control-sm" name="prdcategory" id="productCategory">
-			     <div class="invalid-feedback">
-			         상품등록 신청시 카테고리 입력은 필수입니다
-			     </div>
-			 </div>
+			 <c:if test="${document.prdcategory ne 'X'}">
+				 <div class="col-md-12" id="insertPrdcategory">
+				     <label for="productCategory" class="form-label">상품 카테고리 <font color="red">*</font></label>
+				     <input type="text" class="form-control form-control-sm" value="${document.prdcategory}" name="prdcategory">
+				     <div class="invalid-feedback">
+				         상품등록 신청시 카테고리 입력은 필수입니다
+				     </div>
+				 </div>
+			 </c:if>
 			
-			 <!-- 광고요청 관련 상품명 입력란 --> 
-			 <div class="col-md-12" id="insertPrdname">
-			     <label for="productName" class="form-label">상품명 <font color="red">*</font></label>
-			     <input type="text" class="form-control form-control-sm" name="prdname" id="productName">
-			     <div class="invalid-feedback">
-			         광고요청 신청시 카테고리 입력은 필수입니다
-			     </div>
-			 </div>
+			 <!-- 광고요청 관련 상품명 입력란 -->
+			 <c:if test="${document.prdname ne 'X'}"> 
+				 <div class="col-md-12" id="insertPrdname">
+				     <label for="productName" class="form-label">상품명 <font color="red">*</font></label>
+				     <input type="text" class="form-control form-control-sm" value="${document.prdname}" name="prdname">
+				     <div class="invalid-feedback">
+				         광고요청 신청시 카테고리 입력은 필수입니다
+				     </div>
+				 </div>
+			 </c:if>
 	 	 </form>
       </div>
       
@@ -311,5 +270,5 @@
             <i class="fas fa-paper-plane"></i>
             <span class="text">요청</span>
         </a>
-        
       </div>
+</body>      

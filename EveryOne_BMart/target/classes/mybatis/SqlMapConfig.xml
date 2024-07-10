@@ -29,6 +29,8 @@
 		<mapper resource="mybatis/address.xml"/>
 		<mapper resource="mybatis/business.xml"/>
 		<mapper resource="mybatis/enter.xml"/>
+		<mapper resource="mybatis/document.xml"/>
+		<mapper resource="mybatis/state.xml"/>
 	</mappers>
 	
 </configuration>

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import document.model.DocumentBean;
 import document.model.DocumentDao;
+import member.model.MemberBean;
 import utility.Paging;
 
 @Controller
@@ -29,10 +31,14 @@ public class DocumentApproveController {
 					 	  @RequestParam(value="keyword", required=false) String keyword,
 					 	  @RequestParam(value="pageNumber", required=false) String pageNumber,
 					 	  HttpServletRequest request,
+					 	  HttpSession session,
 					 	  Model model) {
+		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
+		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("whatColumn", whatColumn);
 		map.put("keyword", "%" + keyword + "%");
+		map.put("id", mb.getId());
 		
 		int totalCount = documentDao.getApproveCount(map);
 		String url = request.getContextPath() + "/" + this.command;

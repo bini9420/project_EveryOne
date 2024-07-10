@@ -5,8 +5,28 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="address.Address">
-	<select id = "getAddressList" resultType = "mall.model.AddressBean">
-		select * from destination where id=#{id}
+<mapper namespace="address">
+	<select id = "getAddressList" resultType = "address">
+		select * from address where id=#{id}
 	</select>
+	
+	<select id="getAddressCount" resultType="int">
+		select count(*) from address where id=#{id}
+	</select>
+	
+	<insert id="insertAddress">
+		insert into address values(addrseq.nextval, #{id}, #{alias}, #{post}, #{addr1}, #{addr2})
+	</insert>
+	
+	<select id="getAddressByAnum" resultType="address">
+		select * from address where anum=#{anum}
+	</select>
+	
+	<update id="updateAddress">
+		update address set alias=#{alias}, post=#{post}, addr1=#{addr1}, addr2=#{addr2} where anum=#{anum}
+	</update>
+	
+	<delete id="deleteAddress">
+		delete from address where anum=#{anum}
+	</delete>
 </mapper>

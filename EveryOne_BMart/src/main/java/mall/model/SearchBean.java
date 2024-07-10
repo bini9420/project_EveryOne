@@ -1,11 +1,18 @@
 package mall.model;
 
 public class SearchBean {
+	
+	private String id;
 	private String category;
 	private String range;
 	private String keyword;
-	private int mall;
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getCategory() {
 		return category;
 	}
@@ -23,11 +30,5 @@ public class SearchBean {
 	}
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
-	}
-	public int getMall() {
-		return mall;
-	}
-	public void setMall(int mall) {
-		this.mall = mall;
 	}
 }

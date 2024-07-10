@@ -12,10 +12,10 @@
 				<font class="fw-bolder" style="color:#2ac1bc">[ ${category} ]</font>
 			</div>
 			<div class="mt-5 mb-3 p-2 text-end bg-light">
-				<a href="plists.mall?category=${category}&range=recently&mall=${mall}">최신순</a>&nbsp;|&nbsp;
-				<a href="plists.mall?category=${category}&range=best&mall=${mall}">인기순</a>&nbsp;|&nbsp;
-				<a href="plists.mall?category=${category}&range=highPrice&mall=${mall}">높은 가격순</a>&nbsp;|&nbsp;
-				<a href="plists.mall?category=${category}&range=rowPrice&mall=${mall}">낮은 가격순</a>
+				<a href="plists.mall?category=${category}&range=recently">최신순</a>&nbsp;|&nbsp;
+				<a href="plists.mall?category=${category}&range=best">인기순</a>&nbsp;|&nbsp;
+				<a href="plists.mall?category=${category}&range=highPrice">높은 가격순</a>&nbsp;|&nbsp;
+				<a href="plists.mall?category=${category}&range=rowPrice">낮은 가격순</a>
 			</div>
 		</c:if>
 		
@@ -24,10 +24,10 @@
 				<font class="fw-bolder" style="color: #2ac1bc">[ 상품 검색 결과 ]</font>
 			</div>
 			<div class="mt-5 mb-3 p-2 text-end bg-light">
-				<a href="klists.mall?keyword=${keyword}&range=recently&mall=${mall}">최신순</a>&nbsp;|&nbsp;
-				<a href="klists.mall?keyword=${keyword}&range=best&mall=${mall}">인기순</a>&nbsp;|&nbsp;
-				<a href="klists.mall?keyword=${keyword}&range=highPrice&mall=${mall}">높은 가격순</a>&nbsp;|&nbsp;
-				<a href="klists.mall?keyword=${keyword}&range=rowPrice&mall=${mall}">낮은 가격순</a>
+				<a href="plists.mall?keyword=${keyword}&range=recently">최신순</a>&nbsp;|&nbsp;
+				<a href="plists.mall?keyword=${keyword}&range=best">인기순</a>&nbsp;|&nbsp;
+				<a href="plists.mall?keyword=${keyword}&range=highPrice">높은 가격순</a>&nbsp;|&nbsp;
+				<a href="plists.mall?keyword=${keyword}&range=rowPrice">낮은 가격순</a>
 			</div>
 		</c:if>
 		
@@ -36,9 +36,9 @@
 				<font class="fw-bolder" style="color: #2ac1bc">[ 신상품 ]</font>
 			</div>
 			<div class="mt-5 mb-3 p-2 text-end bg-light">
-				<a href="newLists.mall?range=recently&mall=${mall}">최신순</a>&nbsp;|&nbsp;
-				<a href="newLists.mall?range=highPrice&mall=${mall}">높은 가격순</a>&nbsp;|&nbsp;
-				<a href="newLists.mall?range=rowPrice&mall=${mall}">낮은 가격순</a>
+				<a href="plists.mall?range=recently">최신순</a>&nbsp;|&nbsp;
+				<a href="plists.mall?range=highPrice">높은 가격순</a>&nbsp;|&nbsp;
+				<a href="plists.mall?range=rowPrice">낮은 가격순</a>
 			</div>
 		</c:if>
 		
@@ -54,8 +54,8 @@
 						<!-- Product image-->
 						<a href="detail.mall?pnum=${product.pnum}">
 							<c:if test="${product.pimage ne null}">
-								<% String img = request.getContextPath()+"/image"; %>
-									<img src="<%=img%>/${product.pimage}" alt="productImg" class="productImg">
+								<% String img = request.getContextPath()+"/resources/uploadImage/"; %>
+								<img src="<%=img%>${product.pimage}" alt="productImg" class="productImg">
 							</c:if>
 							<c:if test="${product.pimage eq null}">
 								<img src="resources/img/no-pictures.png" alt="productImg" class="productImg">
@@ -75,10 +75,10 @@
 							<div class="text-center">
 								<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?id=${loginInfo.id}&pnum=${product.pnum}&qty=1">장바구니 담기</a>
 								<!-- 로그인 해서 찜목록을 조회할 수 있을 때 -->
-								<c:if test="${fn:length(ilists) > 0}">
+								<c:if test="${fn:length(interestLists) > 0}">
 									<!-- flag를 선언. false일 때만 출력하고 true면 반복문을 빠져나가도록. -->
 				                    <c:set var="flag" value="false"/>
-									<c:forEach var="iproduct" items="${ilists}">
+									<c:forEach var="iproduct" items="${interestLists}">
 										<c:if test="${not flag}">
 											<c:if test="${product.pnum eq iproduct.pnum}">
 							                    <c:set var="flag" value="true"/>
@@ -91,19 +91,19 @@
 				                    <c:if test="${flag}">
 			                    		<c:if test="${category ne null}">
 											<a class="btn flex-shrink-0 py-2 px-3 btn-danger"
-					                     	href="updateInterest.mall?page=category&index=del&id=${loginInfo.id}&pnum=${product.pnum}&category=${category}&range=${range}&mall=${mall}">
+					                     	href="updateInterest.mall?page=category&index=del&id=${loginInfo.id}&pnum=${product.pnum}&category=${category}&range=${range}">
 												<i class="fi fi-rs-heart"></i>
 						                    </a>
 					                    </c:if>
 										<c:if test="${keyword ne null}">
 											<a class="btn flex-shrink-0 py-2 px-3 btn-danger"
-					                     	href="updateInterest.mall?page=keyword&index=del&id=${loginInfo.id}&pnum=${product.pnum}&keyword=${keyword}&range=${range}&mall=${mall}">
+					                     	href="updateInterest.mall?page=keyword&index=del&id=${loginInfo.id}&pnum=${product.pnum}&keyword=${keyword}&range=${range}">
 												<i class="fi fi-rs-heart"></i>
 						                    </a>
 					                    </c:if>
 										<c:if test="${keyword eq null && category eq null}">
 											<a class="btn flex-shrink-0 py-2 px-3 btn-danger"
-					                    	href="updateInterest.mall?page=new&index=del&id=${loginInfo.id}&pnum=${product.pnum}&range=${range}&mall=${mall}">
+					                    	href="updateInterest.mall?page=new&index=del&id=${loginInfo.id}&pnum=${product.pnum}&range=${range}">
 												<i class="fi fi-rs-heart"></i>
 						                    </a>
 					                    </c:if>
@@ -111,41 +111,41 @@
 			                    	<c:if test="${not flag}">
 			                    		<c:if test="${category ne null}">
 					                    	<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger" 
-					                     	href="updateInterest.mall?page=category&index=in&id=${loginInfo.id}&pnum=${product.pnum}&category=${category}&range=${range}&mall=${mall}">
+					                     	href="updateInterest.mall?page=category&index=in&id=${loginInfo.id}&pnum=${product.pnum}&category=${category}&range=${range}">
 						                    	<i class="fi fi-rs-heart"></i>
 						                    </a>
 					                    </c:if>
 				                    	<c:if test="${keyword ne null}">
 					                    	<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger"
-											href="updateInterest.mall?page=keyword&index=in&id=${loginInfo.id}&pnum=${product.pnum}&keyword=${keyword}&range=${range}&mall=${mall}">
+											href="updateInterest.mall?page=keyword&index=in&id=${loginInfo.id}&pnum=${product.pnum}&keyword=${keyword}&range=${range}">
 						                    	<i class="fi fi-rs-heart"></i>
 						                    </a>
 					                    </c:if>
 				                    	<c:if test="${keyword eq null && category eq null}">
 					                    	<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger"
-					                    	href="updateInterest.mall?page=new&index=in&id=${loginInfo.id}&pnum=${product.pnum}&range=${range}&mall=${mall}">
+					                    	href="updateInterest.mall?page=new&index=in&id=${loginInfo.id}&pnum=${product.pnum}&range=${range}">
 						                    	<i class="fi fi-rs-heart"></i>
 						                    </a>
 					                    </c:if>
 									</c:if>
 			                    </c:if>
 			                    <!-- 찜목록을 조회할 수 없을 때 -->
-			                    <c:if test="${fn:length(ilists) == 0}">
+			                    <c:if test="${fn:length(interestLists) == 0}">
 				                    <c:if test="${category ne null}">
 					                    <a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger"
-					                     href="updateInterest.mall?page=category&index=in&id=${loginInfo.id}&pnum=${product.pnum}&category=${category}&range=${range}&mall=${mall}">
+					                     href="updateInterest.mall?page=category&index=in&id=${loginInfo.id}&pnum=${product.pnum}&category=${category}&range=${range}">
 					                    	<i class="fi fi-rs-heart"></i>
 					                    </a>
 									</c:if>
 									<c:if test="${keyword ne null}">
 										<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger"
-										href="updateInterest.mall?page=keyword&index=in&id=${loginInfo.id}&pnum=${product.pnum}&keyword=${keyword}&range=${range}&mall=${mall}">
+										href="updateInterest.mall?page=keyword&index=in&id=${loginInfo.id}&pnum=${product.pnum}&keyword=${keyword}&range=${range}">
 					                    	<i class="fi fi-rs-heart"></i>
 					                    </a>
 									</c:if>
 									<c:if test="${keyword eq null && category eq null}">
 										<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger"
-										href="updateInterest.mall?page=new&index=in&id=${loginInfo.id}&pnum=${product.pnum}&range=${range}&mall=${mall}">
+										href="updateInterest.mall?page=new&index=in&id=${loginInfo.id}&pnum=${product.pnum}&range=${range}">
 					                    	<i class="fi fi-rs-heart"></i>
 					                    </a>
 									</c:if>

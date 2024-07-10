@@ -33,7 +33,13 @@
 						<img src="resources/img/ad.png" style="width: 40; height: 35">
 					</div>
 				</c:if>
-            	<img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." />
+				<c:if test="${product.pimage eq null}">
+	            	<img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." />
+				</c:if>
+				<c:if test="${product.pimage ne null}">
+					<% String img = request.getContextPath()+"/resources/uploadImage/"; %>
+	            	<img class="card-img-top mb-5 mb-md-0" src="<%=img%>${product.pimage}" alt="..." />
+				</c:if>
             </div>
             <!-- product detail -->
             <div class="col-md-5 mx-2">
@@ -54,10 +60,10 @@
 	                    <input type="button"  class="form-control text-center me-3 fw-bolder" value="+" style="max-width: 3rem" onClick="up('${product.stock}')"/>
 	                    <input class="btn btn-outline-primary flex-shrink-0 me-2" type="submit" value="장바구니 담기">
 	                    <!-- 로그인 해서 찜목록을 조회할 수 있을 때 -->
-						<c:if test="${fn:length(ilists) > 0}">
+						<c:if test="${fn:length(interestLists) > 0}">
 							<!-- flag를 선언. 목록에 있으면 true, 없으면 false. -->
 		                    <c:set var="flag" value="false"/>
-							<c:forEach var="iproduct" items="${ilists}">
+							<c:forEach var="iproduct" items="${interestLists}">
 								<c:if test="${not flag}">
 									<c:if test="${product.pnum eq iproduct.pnum}">
 					                    <c:set var="flag" value="true"/>
@@ -81,7 +87,7 @@
 		                    </c:if>
 	                    </c:if>
 	                    <!-- 찜목록을 조회할 수 없을 때 -->
-	                    <c:if test="${fn:length(ilists) == 0}">
+	                    <c:if test="${fn:length(interestLists) == 0}">
 	                    	<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger" 
 	                    	href="updateInterest.mall?page=detail&index=in&id=${loginInfo.id}&pnum=${product.pnum}">
 		                    	<i class="fi fi-rs-heart"></i>

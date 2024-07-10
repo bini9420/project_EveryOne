@@ -22,8 +22,8 @@
 							<!-- Product image-->
 							<a href="detail.mall?pnum=${product.pnum}">
 								<c:if test="${product.pimage ne null}">
-									<% String img = request.getContextPath()+"/image"; %>
-										<img src="<%=img%>/${product.pimage}" alt="productImg" class="productImg">
+									<% String img = request.getContextPath()+"/resources/uploadImage/"; %>
+									<img src="<%=img%>${product.pimage}" alt="productImg" class="productImg">
 								</c:if>
 								<c:if test="${product.pimage eq null}">
 									<img src="resources/img/no-pictures.png" alt="productImg" class="productImg">
@@ -43,10 +43,10 @@
 								<div class="text-center">
 									<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?id=${loginInfo.id}&pnum=${product.pnum}&qty=1">장바구니 담기</a>
 									<!-- 로그인 해서 찜목록을 조회할 수 있을 때 -->
-									<c:if test="${fn:length(ilists) > 0}">
+									<c:if test="${fn:length(interestLists) > 0}">
 										<!-- flag를 선언. 목록에 있으면 true, 없으면 false. -->
 					                    <c:set var="flag" value="false"/>
-										<c:forEach var="iproduct" items="${ilists}">
+										<c:forEach var="iproduct" items="${interestLists}">
 											<c:if test="${not flag}">
 												<c:if test="${product.pnum eq iproduct.pnum}">
 								                    <c:set var="flag" value="true"/>
@@ -70,7 +70,7 @@
 					                    </c:if>
 				                    </c:if>
 				                    <!-- 찜목록을 조회할 수 없을 때 -->
-				                    <c:if test="${fn:length(ilists) == 0}">
+				                    <c:if test="${fn:length(interestLists) == 0}">
 				                    	<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger"
 				                    	href="updateInterest.mall?page=best&index=in&id=${loginInfo.id}&pnum=${product.pnum}">
 					                    	<i class="fi fi-rs-heart"></i>

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import mall.model.MallDao;
 import mall.model.ProductBean;
 import mall.model.SearchBean;
-import utility.Paging;
+import utility.MallPaging;
 
 @Controller
 public class ProductListController {
@@ -28,8 +28,7 @@ public class ProductListController {
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String list(@RequestParam(value="category", required=false) String category,
 						@RequestParam(value="range", required=false) String range, 
-						@RequestParam(value="keyword", required=false) String keyword, 
-						@RequestParam(value="mall", required=false) int mall, 
+						@RequestParam(value="keyword", required=false) String keyword,
 						@RequestParam(value="pageNumber", required=false) String pageNumber, 
 						Model model, HttpServletRequest request) {
 		
@@ -39,12 +38,11 @@ public class ProductListController {
 			SearchBean sb = new SearchBean();
 			sb.setCategory(category);
 			sb.setRange(range);
-			sb.setMall(mall);
 			
 			int totalCount = mallDao.getTotalCount(sb);
 			String url = request.getContextPath()+this.command;
 			
-			Paging pageInfo = new Paging(pageNumber, null, totalCount, url, category, range, null, mall);
+			MallPaging pageInfo = new MallPaging(pageNumber, null, totalCount, url, category, range, null);
 			
 			List<ProductBean> plists = mallDao.getProductRange(sb, pageInfo);
 			
@@ -57,12 +55,11 @@ public class ProductListController {
 			if(keyword == null) { //신상품 조회
 				SearchBean sb = new SearchBean();
 				sb.setRange(range);
-				sb.setMall(mall);
 				
 				int totalCount = mallDao.getNewProductCount(sb);
 				String url = request.getContextPath()+this.command;
 				
-				Paging pageInfo = new Paging(pageNumber, null, totalCount, url, null, range, null, mall);
+				MallPaging pageInfo = new MallPaging(pageNumber, null, totalCount, url, null, range, null);
 				
 				List<ProductBean> plists = mallDao.getNewProductRange(sb, pageInfo);
 				
@@ -74,14 +71,13 @@ public class ProductListController {
 				SearchBean sb = new SearchBean();
 				sb.setKeyword("%"+keyword+"%");
 				sb.setRange(range);
-				sb.setMall(mall);
 				
 				System.out.println("keyword: "+sb.getKeyword());
 				
 				int totalCount = mallDao.getKeywordCount(sb);
 				String url = request.getContextPath()+this.command;
 				
-				Paging pageInfo = new Paging(pageNumber, null, totalCount, url, null, range, keyword, mall);
+				MallPaging pageInfo = new MallPaging(pageNumber, null, totalCount, url, null, range, keyword);
 				List<ProductBean> plists = mallDao.getKeywordRange(sb, pageInfo);
 				
 				model.addAttribute("plists", plists);

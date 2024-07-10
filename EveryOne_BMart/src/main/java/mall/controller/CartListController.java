@@ -31,7 +31,7 @@ public class CartListController {
 		PrintWriter out = response.getWriter();
 		if(loginInfo == null) {
 			out.println("<script>");
-			out.println("alert('장바구니 내역은 회원만 조회할 수 있습니다.'); location.href='bmartLogin.mb'");
+			out.println("alert('장바구니 내역은 회원만 조회할 수 있습니다.'); location.href='login.mb'");
 			out.println("</script>");
 			out.flush();
 			return null;

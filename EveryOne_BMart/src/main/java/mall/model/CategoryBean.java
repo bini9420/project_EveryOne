@@ -2,7 +2,7 @@ package mall.model;
 
 public class CategoryBean {
 	private int num;
-	private String category;
+	private String name;
 	
 	public int getNum() {
 		return num;
@@ -10,10 +10,10 @@ public class CategoryBean {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getCategory() {
-		return category;
+	public String getName() {
+		return name;
 	}
-	public void setCategory(String category) {
-		this.category = category;
+	public void setName(String name) {
+		this.name = name;
 	}
 }

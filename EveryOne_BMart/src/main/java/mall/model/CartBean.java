@@ -5,6 +5,7 @@ public class CartBean {
 	private String id;
 	private int pnum;
 	private int qty;
+	
 	public int getCnum() {
 		return cnum;
 	}

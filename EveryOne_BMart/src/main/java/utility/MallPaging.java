@@ -1,6 +1,6 @@
 package utility;
 
-public class Paging {
+public class MallPaging {
 	//페이징 관련 변수   
 	private int totalCount = 0 ; //총 레코드 건수
 	private int totalPage = 0 ; //전체 페이지 수
@@ -19,8 +19,7 @@ public class Paging {
 	//검색을 위한 변수 추가
 	private String category = "" ; //검색 모드(작성자, 글제목, 전체 검색은 all) 등등
 	private String range = "" ; //검색 정렬
-	private String keyword = "" ; //검색할 단어 
-	private int mall = 0; //검색할 위치
+	private String keyword = "" ; //검색할 단어
 
 	public int getTotalCount() {
 		return totalCount;
@@ -140,15 +139,8 @@ public class Paging {
 		this.keyword = keyword;
 	}
 
-	public int getMall() {
-		return mall;
-	}
-	public void setMall(int mall) {
-		this.mall = mall;
-	}
-	
-	public Paging(String _pageNumber, String _pageSize, int totalCount,
-				String url, String category, String range, String keyword, int mall) {      
+	public MallPaging(String _pageNumber, String _pageSize, int totalCount,
+				String url, String category, String range, String keyword) {      
 
 		//처음 시작할 때 페이지 번호를 자동으로 1로 지정
 		if(  _pageNumber == null || _pageNumber.equals("null") || _pageNumber.equals("")  ){
@@ -203,7 +195,7 @@ public class Paging {
 		this.category = category ;
 		this.range = range ;
 		this.keyword = keyword ;
-		System.out.println("category:"+category+"/range:"+range+"/keyword:"+keyword+"/mall:"+mall);
+		System.out.println("category:"+category+"/range:"+range+"/keyword:"+keyword);
 
 		this.pagingHtml = getPagingHtml(url) ;
 		System.out.println("pagingHtml: \n"+pagingHtml+"\n");
@@ -212,7 +204,7 @@ public class Paging {
 	private String getPagingHtml( String url ){ //페이징 문자열을 만든다.
 		String result = "" ;
 		//added_param 변수 : 검색 관련하여 추가되는 파라미터 리스트
-		String added_param = "&category=" + category + "&range=" + range + "&keyword=" + keyword + "&mall=" + mall;
+		String added_param = "&category=" + category + "&range=" + range + "&keyword=" + keyword;
 		
 		// 앞쪽
 		if (this.beginPage != 1) { 

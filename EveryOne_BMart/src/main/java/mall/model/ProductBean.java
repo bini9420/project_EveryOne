@@ -14,7 +14,6 @@ public class ProductBean {
 	private String pcategory;
 	private String inputdate;
 	private int ordercount;
-	private int mall;
 	private int ad;
 	
 	public int getPnum() {
@@ -94,12 +93,6 @@ public class ProductBean {
 	}
 	public void setOrdercount(int ordercount) {
 		this.ordercount = ordercount;
-	}
-	public int getMall() {
-		return mall;
-	}
-	public void setMall(int mall) {
-		this.mall = mall;
 	}
 	public int getAd() {
 		return ad;

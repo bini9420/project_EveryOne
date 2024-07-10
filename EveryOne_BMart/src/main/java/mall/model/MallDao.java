@@ -7,11 +7,11 @@ import java.util.Map;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-import utility.Paging;
+import utility.MallPaging;
 
-@Service
+@Component("mall")
 public class MallDao {
 
 	public MallDao() {
@@ -21,12 +21,11 @@ public class MallDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
-	private String category = "category.Category";
-	private String product = "product.Product";
+	private String category = "category";
+	private String product = "product";
 	private String watch = "watch";
-	private String interest = "interest.Interest";
-	private String cart = "cart.Cart";
-	private String address = "address.Address";
+	private String interest = "interest";
+	private String cart = "cart";
 	
 	//카테고리 띄우기
 	public List<CategoryBean> getAllCategory() {
@@ -36,33 +35,51 @@ public class MallDao {
 	}
 	
 	//인기순으로 정렬
-	public List<ProductBean> getBestProductByBmart() {
-		List<ProductBean> bMartBestProducts = new ArrayList<ProductBean>();
-		bMartBestProducts = sqlSessionTemplate.selectList(product+".getBestProductByBmart");
-		return bMartBestProducts;
+	public List<ProductBean> getBestProduct() {
+		List<ProductBean> bestProduct = new ArrayList<ProductBean>();
+		bestProduct = sqlSessionTemplate.selectList(product+".getBestProduct");
+		return bestProduct;
+	}
+	
+	//상품 정보 조회
+	public ProductBean getProductInfo(int pnum) {
+		ProductBean product = null;
+		product = sqlSessionTemplate.selectOne(product+".getProductInfo", pnum);
+		return product;
 	}
 	
 	//최근 본 상품 목록
-	public List<WatchBean> getWatchLists(String id) {
+	public List<ProductBean> getWatchLists(String id) {
 		System.out.println("watchLists id : "+id);
-		List<WatchBean> wlists = new ArrayList<WatchBean>();
-		wlists = sqlSessionTemplate.selectList(watch+".getWatchLists", id);
+		List<ProductBean> wlists = new ArrayList<ProductBean>();
+		wlists = sqlSessionTemplate.selectList(product+".getWatchLists", id);
 		return wlists;
 	}
-
-	//해당하는 상품 정보 목록
-	public ProductBean getProductInfo(int pnum) {
-		ProductBean productInfo = new ProductBean();
-		productInfo = sqlSessionTemplate.selectOne(product+".getProductInfo", pnum);
-		return productInfo;
+	
+	//최근 본 상품 페이지에서 목록 조회 - 정렬 가능
+	public List<ProductBean> getWatch(SearchBean sb, MallPaging pageInfo) { 
+		RowBounds rb = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		List<ProductBean> wlists = new ArrayList<ProductBean>(); 
+		wlists = sqlSessionTemplate.selectList(product+".getWatch", sb, rb);
+		return wlists; 
 	}
 
-	//관심상품 목록
-	public List<InterestBean> getInterestLists(String id) {
-		List<InterestBean> ilists = new ArrayList<InterestBean>();
-		ilists = sqlSessionTemplate.selectList(interest+".getInterestLists", id);
-		return ilists;
+	//찜한 상품- main session
+	public List<ProductBean> getInterestLists(String id) {
+		System.out.println("interestLists id : "+id);
+		List<ProductBean> interestLists = new ArrayList<ProductBean>();
+		interestLists = sqlSessionTemplate.selectList(product+".getInterestLists", id);
+		return interestLists;
 	}
+	
+	//찜한 상품 페이지에서 목록 조회 - 정렬 가능
+	public List<ProductBean> getInterest(SearchBean sb, MallPaging pageInfo) { 
+		RowBounds rb = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		List<ProductBean> ilists = new ArrayList<ProductBean>(); 
+		ilists = sqlSessionTemplate.selectList(product+".getInterest", sb, rb);
+		return ilists; 
+	}
+	
 
 	//카테고리별 상품 띄울 때
 	public int getTotalCount(SearchBean sb) {
@@ -72,7 +89,7 @@ public class MallDao {
 		return cnt;
 	}
 
-	public List<ProductBean> getProductRange(SearchBean sb, Paging pageInfo) {
+	public List<ProductBean> getProductRange(SearchBean sb, MallPaging pageInfo) {
 		RowBounds rb = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
 		
 		List<ProductBean> plistsRange = new ArrayList<ProductBean>();
@@ -129,7 +146,7 @@ public class MallDao {
 		return cnt;
 	}
 
-	public List<ProductBean> getNewProductRange(SearchBean sb, Paging pageInfo) {
+	public List<ProductBean> getNewProductRange(SearchBean sb, MallPaging pageInfo) {
 		RowBounds rb = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
 		
 		List<ProductBean> newRange = new ArrayList<ProductBean>();
@@ -147,7 +164,7 @@ public class MallDao {
 		return cnt;
 	}
 
-	public List<ProductBean> getKeywordRange(SearchBean sb, Paging pageInfo) {
+	public List<ProductBean> getKeywordRange(SearchBean sb, MallPaging pageInfo) {
 		RowBounds rb = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
 		
 		List<ProductBean> keyProduct = new ArrayList<ProductBean>();
@@ -155,7 +172,8 @@ public class MallDao {
 		//System.out.println("keyProduct.size: "+keyProduct.size());
 		return keyProduct;
 	}
-
+	
+	//찜 상품 추가 및 삭제
 	public void deleteInterest(InterestBean ib) {
 		sqlSessionTemplate.delete(interest+".deleteInterest", ib);
 	}
@@ -164,9 +182,4 @@ public class MallDao {
 		sqlSessionTemplate.insert(interest+".insertInterest", ib);
 	}
 	
-	public List<AddressBean> getAddressList(String id) {
-		List<AddressBean> alists = new ArrayList<AddressBean>();
-		alists = sqlSessionTemplate.selectList(address+".getAddressList", id);
-		return alists;
-	}
 }

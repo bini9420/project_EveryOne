@@ -1,13 +1,13 @@
-package mall.model;
+package member.model;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-public class AddressBean {
-
-	private int dnum;
+public class BusinessBean {
+	private String bcode;
+	@NotBlank
 	private String id;
-	private String alias;
-	
+	@NotBlank
+	private String type;	
 	@NotBlank
 	private String post;
 	@NotBlank
@@ -15,11 +15,12 @@ public class AddressBean {
 	@NotBlank
 	private String addr2;
 	
-	public int getDnum() {
-		return dnum;
+	
+	public String getBcode() {
+		return bcode;
 	}
-	public void setDnum(int dnum) {
-		this.dnum = dnum;
+	public void setBcode(String bcode) {
+		this.bcode = bcode;
 	}
 	public String getId() {
 		return id;
@@ -27,11 +28,11 @@ public class AddressBean {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getAlias() {
-		return alias;
+	public String getType() {
+		return type;
 	}
-	public void setAlias(String alias) {
-		this.alias = alias;
+	public void setType(String type) {
+		this.type = type;
 	}
 	public String getPost() {
 		return post;
@@ -51,4 +52,5 @@ public class AddressBean {
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
 	}
+	
 }

@@ -24,7 +24,7 @@ public class BestProductListController {
 	@RequestMapping(command)
 	public String bestList(Model model, HttpServletRequest request) {
 		
-		List<ProductBean> plists = mallDao.getBestProductByBmart();
+		List<ProductBean> plists = mallDao.getBestProduct();
 		
 		model.addAttribute("plists", plists);
 		return getPage;

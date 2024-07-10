@@ -1,7 +1,5 @@
 package member.model;
 
-
-
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
@@ -50,8 +48,6 @@ public class MemberBean {
 	private String email;
 	
 	private String image;
-	private String ownercode;
-	private int state;
 	
 	public String getId() {
 		return id;
@@ -91,18 +87,6 @@ public class MemberBean {
 	}
 	public String getMessage() {
 		return message;
-	}
-	public String getOwnercode() {
-		return ownercode;
-	}
-	public void setOwnercode(String ownercode) {
-		this.ownercode = ownercode;
-	}
-	public int getState() {
-		return state;
-	}
-	public void setState(int state) {
-		this.state = state;
 	}
 	
 }

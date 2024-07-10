@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import mall.model.InterestBean;
 import mall.model.MallDao;
+import mall.model.ProductBean;
 
 @Controller
 public class UpdateInterestController {
@@ -27,8 +28,9 @@ public class UpdateInterestController {
 	@RequestMapping(command)
 	public String updateInterest(@RequestParam("page") String page, @RequestParam("index") String index, 
 								@RequestParam("id") String id, @RequestParam("pnum") int pnum, 
-								@RequestParam(value="category",required=false) String category, @RequestParam(value="range",required=false) String range, 
-								@RequestParam(value="keyword",required=false) String keyword, @RequestParam(value="mall",required=false) String mall, 
+								@RequestParam(value="category",required=false) String category, 
+								@RequestParam(value="range",required=false) String range, 
+								@RequestParam(value="keyword",required=false) String keyword, 
 								HttpServletResponse response, HttpSession session) throws IOException {
 		
 		response.setContentType("text/html; charset=UTF-8");
@@ -37,7 +39,7 @@ public class UpdateInterestController {
 		//로그인을 안 했다면
 		if(id == "") {
 			out.println("<script>");
-			out.println("alert('상품을 찜하려면 로그인을 해야 합니다.'); location.href='bmartLogin.mb'");
+			out.println("alert('상품을 찜하려면 로그인을 해야 합니다.'); location.href='login.mb'");
 			out.println("</script>");
 			out.flush();
 			return null;
@@ -57,25 +59,33 @@ public class UpdateInterestController {
 			}
 			
 			//찜한 상품 조회
-			List<InterestBean> ilists = mallDao.getInterestLists(id);
-			session.setAttribute("ilists", ilists);
+			List<ProductBean> interestLists = mallDao.getInterestLists(id);
+			System.out.println("interestLists: "+interestLists.size());
+			session.setAttribute("interestLists", interestLists);
 			
+			//controller로 넘어온 위치에 따라 돌아갈 곳이 달라짐
 			if(page.equals("category")) {
 				String ca = URLEncoder.encode(category, "UTF-8");
-				return "redirect:/plists.mall?category="+ca+"&range="+range+"&mall="+mall;
+				return "redirect:/plists.mall?category="+ca+"&range="+range;
 				
 			}else if(page.equals("keyword")) {
 				String key = URLEncoder.encode(keyword, "UTF-8");
-				return "redirect:/plists.mall?keyword="+key+"&range="+range+"&mall="+mall;
+				return "redirect:/plists.mall?keyword="+key+"&range="+range;
 				
 			}else if(page.equals("new")) {
-				return "redirect:/plists.mall?range="+range+"&mall="+mall;
+				return "redirect:/plists.mall?range="+range;
 				
 			}else if(page.equals("best")) {
 				return "redirect:/bestLists.mall";
 				
 			}else if(page.equals("detail")) {
 				return "redirect:/detail.mall?pnum="+pnum;
+				
+			}else if(page.equals("interest")) {
+				return "redirect:/interest.mall";
+				
+			}else if(page.equals("watch")) {
+				return "redirect:/watch.mall";
 				
 			}else {
 				return "redirect:/main.mall";

@@ -94,3 +94,33 @@ a:hover {
 .desTable td{
 	border: 1px solid #EDEDED;
 }
+
+.address{
+	border-collapse: collapse;	
+}
+
+.address th{
+	padding: 5;
+	background: #F7F7F7;
+	border: 1px solid #F0F0F0;
+}
+
+.address td{
+	padding: 5;
+	border: 1px solid #F0F0F0;
+}
+
+.enter{
+	border-collapse: collapse;	
+}
+
+.enter th{
+	padding: 5;
+	background: rgba(255, 250, 235, 0.5);
+	border: 1px solid #FFF5E6;
+}
+
+.enter td{
+	padding: 5;
+	border: 1px solid #FFF5E6;
+}

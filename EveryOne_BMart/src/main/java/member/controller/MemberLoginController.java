@@ -18,9 +18,9 @@ import member.model.MemberDao;
 
 
 @Controller
-public class BmartLoginController {
+public class MemberLoginController {
 
-	private final String command = "/bmartLogin.mb";
+	private final String command = "/login.mb";
 	private final String getPage = "loginForm";
 	private String gotoPage = "redirect:/main.mall";
 

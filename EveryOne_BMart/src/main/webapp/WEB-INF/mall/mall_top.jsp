@@ -89,7 +89,6 @@
 		<img src="resources/img/Bmart_logo.png" alt="B마트_logo" style="width:200; height: 60">&nbsp;&nbsp;
 		<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="plists.mall">
 	        <div class="input-group">
-				<input type="hidden" name="mall" value="${mall}">
 			    <input type="text" class="form-control bg-light border-0 px-3" placeholder="상품을 검색하세요(●'◡'●)"
 			        aria-label="Search" aria-describedby="basic-addon2" name="keyword" style="width: 250">
 			    <div class="input-group-append">
@@ -130,7 +129,7 @@
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li>
-								<a class="dropdown-item" href="bmartLogin.mb">
+								<a class="dropdown-item" href="login.mb">
 									<i class="fi fi-rr-users"> 로그인 </i>
 								</a>
 							</li>
@@ -146,7 +145,7 @@
 				<c:if test="${loginInfo ne null}">
 					<li class="nav-item">
 						<!-- heart icon -->
-						<a class="nav-link active" aria-current="page" href="mypage.mall">
+						<a class="nav-link active" aria-current="page" href="mypage.mb">
 							<i class="fi fi-rr-user icon"></i>
 							<font class="fs-6 text-primary fw-bolder">${loginInfo.name} 님</font>
 						</a>
@@ -168,15 +167,15 @@
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<c:forEach var="clists" items="${categoryLists}">
 						<li>
-							<a class="dropdown-item" href="plists.mall?category=${clists.category}&mall=${mall}">
-								${clists.category}
+							<a class="dropdown-item" href="plists.mall?category=${clists.name}">
+								${clists.name}
 							</a>
 						</li>
 					</c:forEach>
 				</ul>
 			</li>
 			<li class="nav-item mx-5" >
-				<a class="nav-link" aria-current="page" href="plists.mall?mall=${mall}">
+				<a class="nav-link" aria-current="page" href="plists.mall">
 					<img src="resources/img/new.png" style="width: 25">
 					신상품
 				</a>

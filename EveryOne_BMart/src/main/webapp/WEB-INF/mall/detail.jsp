@@ -25,7 +25,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 </section>
 <!-- Related items section-->
 <section class="py-5 bg-light">

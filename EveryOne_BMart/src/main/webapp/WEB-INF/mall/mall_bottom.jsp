@@ -13,7 +13,7 @@
 	</table>
 </footer>
 <footer style="background: #2ac1bc">
-	<div class="container">
+	<div class="container"> 
 		<table class="footer2 text-white">
 			<tr>
 				<td>

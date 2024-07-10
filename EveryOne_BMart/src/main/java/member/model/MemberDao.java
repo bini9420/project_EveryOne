@@ -47,11 +47,9 @@ public class MemberDao {
 	}//getTotalCount
 	
 	public List<MemberBean> getMemberList(Map<String,String> map, Paging pageInfo) {
-		List<MemberBean> list = new ArrayList<MemberBean>();
-		RowBounds rowbounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
-		list = sqlSessionTemplate.selectList(namespace+".getMemberList", map, rowbounds);
-		return list;
-	}//getMemberList
+	    RowBounds rowbounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+	    return sqlSessionTemplate.selectList(namespace + ".getMemberList", map, rowbounds);
+	}
 
 	
 	public int insertMember(MemberBean member) {

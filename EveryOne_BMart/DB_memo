@@ -304,3 +304,44 @@ select to_char(orderdate, 'yyyy-mm') as 날짜, sum(o.pamount*p.price) as 매출 fro
 
 select rownum as 순위, pname, ordercount from (
 select rownum, pname, ordercount from product order by ordercount desc) where rownum between 1 and 5;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	private final KakaoApi kakaoApi = null;
+	private final String command="/login/oauth2/code/kakao";
+	
+	
+	@RequestMapping("login")
+	public String loginForm(Model model) {
+		model.addAttribute("kakaoApiKey",kakaoApi.getKakaoApiKey());
+		model.addAttribute("redirectUri",kakaoApi.getKakaoRedirectUri());
+		return "login";
+	}
+	
+	@RequestMapping(command)
+	public String kakao(@RequestParam String code) {
+		
+		String accessToken = kakaoApi.getAccessToken(code);
+		
+		Map<String,Object> userInfo = kakaoApi.getUserInfo(accessToken);
+		
+		String email = (String)userInfo.get("email");
+		
+		System.out.println("email="+email);
+		
+		return "redirect:/loginForm";
+		
+
+
+

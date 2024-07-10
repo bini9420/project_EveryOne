@@ -112,8 +112,7 @@
                 }
             }
         }); 
-    </script>
-	<script>
+        
         // JSON 데이터를 JSP에서 안전하게 전달
         var barJsonString = ${barJson};
         var bjsonObject = JSON.stringify(barJsonString);
@@ -163,9 +162,7 @@
                 }
             }
         }); 
-    </script>
-
-	<script>
+   
         // JSON 데이터를 JSP에서 안전하게 전달
          var pieJsonString = ${pieJson};
         var piejsonObject = JSON.stringify(pieJsonString);

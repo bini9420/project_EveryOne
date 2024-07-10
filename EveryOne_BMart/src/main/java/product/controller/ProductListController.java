@@ -36,11 +36,11 @@ public class ProductListController {
 			) {
 
 
-		if(session.getAttribute("loginInfo") == null) { // 
+		/*if(session.getAttribute("loginInfo") == null) { // 
 
 			return "redirect:/loginForm.mb"; //MemberLoginController=>memberLoginForm.jsp
 		}else {
-
+*/
 
 
 			System.out.println("ProductListController");
@@ -62,4 +62,3 @@ public class ProductListController {
 		}
 	}
 
-}

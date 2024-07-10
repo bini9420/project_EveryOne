@@ -10,7 +10,7 @@
 					<p class="card-text"></p>
 				</div>
 			</div>
-		</div>
+		</div> 
 	</c:when>
 	<c:when test="${fn:contains(index, 'memberInfoUpdate')}">
 		<div class="col-sm-6 me-auto">

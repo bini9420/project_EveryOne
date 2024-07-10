@@ -29,7 +29,7 @@
 									<img src="resources/img/no-pictures.png" alt="productImg" class="productImg">
 								</c:if>
 							</a>
-							<!-- Product details-->
+							<!-- Product details--> 
 							<div class="card-body p-4">
 								<div class="text-center">
 									<!-- Product name-->

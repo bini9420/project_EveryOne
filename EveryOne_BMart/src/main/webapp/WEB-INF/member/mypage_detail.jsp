@@ -8,7 +8,7 @@
 				<div class="card-body">
 					<h5 class="card-title text-primary fw-bolder">주문내역</h5>
 					<p class="card-text"></p>
-				</div>
+				</div> 
 			</div>
 		</div> 
 	</c:when>

@@ -269,10 +269,10 @@ create table review(
 	id varchar2(20) references member(id) on delete cascade,
 	pnum number references product(pnum) on delete cascade,
 	rcomment varchar2(500),
-	image varhcar2(50),
+	image varchar2(50),
 	rdate date default sysdate,
 	score number not null,
-	onum number references orderInfo(onum) on delete cascade,
+	onum number references orderInfo(onum) on delete cascade
 );
 
 

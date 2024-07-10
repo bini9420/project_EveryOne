@@ -24,7 +24,6 @@ public class DocumentDetailController {
 		DocumentBean document = documentDao.getDocumentByDnum(dnum);
 		model.addAttribute("document", document);
 		
-		System.out.println("여기까지 왔당");
 		return getPage;
 	}
 }

@@ -5,35 +5,37 @@
   
 <mapper namespace="document.Document">
 	<select id="getAllDocument" resultType="document.model.DocumentBean">
-		select * from document 
-	    where 1=1
-	    <!-- dcategory에 대한 조건 추가 -->
-	    <if test="whatColumn != null and whatColumn != ''">
-	        and dcategory = #{whatColumn}
-	    </if>
-	    
-	    <!-- dnum 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
-	    <if test="inputDnum != null and inputDnum != ''">
-	        and dnum LIKE #{inputDnum}
-	    </if>
-	
-	    <!-- title 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
-	    <if test="inputTitle != null and inputTitle != ''">
-	        and title LIKE #{inputTitle}
-	    </if>
-	
-	    <!-- writeday 조건: 날짜 범위로 필터링 -->
-	    <if test="inputDay1 != null and inputDay1 != ''">
-	        and writeday &gt;= #{inputDay1}
-	    </if>
-	    <if test="inputDay2 != null and inputDay2 != ''">
-	        and writeday &lt;= #{inputDay2}
-	    </if>
-		order by dnum desc
+		select * from document
+	    <where>
+	    	writer=#{id}
+		    <!-- dcategory에 대한 조건 추가 -->
+		    <if test="whatColumn != null and whatColumn != ''">
+		        and dcategory = #{whatColumn} 
+		    </if>
+		    
+		    <!-- dnum 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+		    <if test="inputDnum != null and inputDnum != ''">
+		        and dnum LIKE #{inputDnum} 
+		    </if>
+		
+		    <!-- title 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+		    <if test="inputTitle != null and inputTitle != ''">
+		        and title LIKE #{inputTitle} 
+		    </if>
+		
+		    <!-- writeday 조건: 날짜 범위로 필터링 -->
+		    <if test="inputDay1 != null and inputDay1 != ''">
+		        and writeday &gt;= #{inputDay1} 
+		    </if>
+		    <if test="inputDay2 != null and inputDay2 != ''">
+		        and writeday &lt;= #{inputDay2} 
+		    </if>
+	    </where>
+		order by writeday desc
 	</select>
 	
 	<select id="getTotalCount" resultType="int">
-   		select count(*) from document where 1=1
+   		select count(*) from document where 1=1 and writer=#{id}
 	    <!-- dcategory에 대한 조건 추가 -->
 	    <if test="whatColumn != null and whatColumn != ''">
 	        AND dcategory = #{whatColumn}
@@ -57,26 +59,25 @@
 	        AND writeday &lt;= #{inputDay2}
 	    </if>
 	</select>
-
 	
 	<select id="getWaitDocument" resultType="int">
 		select count(*) from document 
-		where dstatus = 0 and request = 1
+		where dstatus = 0 and request = 1 and writer=#{id}
 	</select>
 	
 	<select id="getTempDocument" resultType="int">
 		select count(*) from document
-		where request = 0 and dstatus = 0
+		where request = 0 and dstatus = 0 and writer=#{id}
 	</select>
 	
 	<select id="getReturnDocument" resultType="int">
 		select count(*) from document
-		where dstatus = -1 
+		where dstatus = -1 and writer=#{id}
 	</select>
 	
 	<select id="getApproveDocument" resultType="int">
 		select count(*) from document
-		where dstatus = 1
+		where dstatus = 1 and writer=#{id}
 	</select>
 	
 	<select id="getDocumentByDnum" resultType="document.model.DocumentBean">
@@ -85,150 +86,218 @@
 	</select>
 	
 	<select id="getAllWaitDocument" resultType="document.model.DocumentBean">
-		select * from (select * from document where request=1 and dstatus=0)
+		select * from (select * from document where request=1 and dstatus=0 and writer=#{id})
 		<if test="whatColumn == 'all'">
-			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword}
+			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword} 
 		</if>
 		<if test="whatColumn == 'dcategory'">
-			where dcategory like #{keyword}
+			where dcategory like #{keyword} 
 		</if>
 		<if test="whatColumn == 'dnum'">
-			where dnum like #{keyword}
+			where dnum like #{keyword} 
 		</if>
 		<if test="whatColumn == 'title'">
-			where title like #{keyword}
+			where title like #{keyword} 
 		</if>
-		order by dnum desc 
+		order by writeday desc 
 	</select>
 	
 	<select id="getWaitCount" resultType="int">
-		select count(*) from (select * from document where request=1 and dstatus=0)
+		select count(*) from (select * from document where request=1 and dstatus=0 and writer=#{id})
 		<if test="whatColumn == 'all'">
-			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword}
+			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword} 
 		</if>
 		<if test="whatColumn == 'dcategory'">
-			where dcategory like #{keyword}
+			where dcategory like #{keyword} 
 		</if>
 		<if test="whatColumn == 'dnum'">
-			where dnum like #{keyword}
+			where dnum like #{keyword} 
 		</if>
 		<if test="whatColumn == 'title'">
-			where title like #{keyword}
+			where title like #{keyword} 
 		</if>
  	</select>
 	
 	<select id="getAllTempDocument" resultType="document.model.DocumentBean">
-		select * from (select * from document where request=0)
+		select * from (select * from document where request=0 and writer=#{id})
 		<if test="whatColumn == 'all'">
-			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword}
+			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword} 
 		</if>
 		<if test="whatColumn == 'dcategory'">
-			where dcategory like #{keyword}
+			where dcategory like #{keyword} 
 		</if>
 		<if test="whatColumn == 'dnum'">
-			where dnum like #{keyword}
+			where dnum like #{keyword} 
 		</if>
 		<if test="whatColumn == 'title'">
-			where title like #{keyword}
+			where title like #{keyword} 
 		</if>
-		order by dnum desc
+		order by writeday desc
 	</select>
 	
 	<select id="getTempCount" resultType="int">
-		select count(*) from (select * from document where request=0)
+		select count(*) from (select * from document where request=0 and writer=#{id})
 		<if test="whatColumn == 'all'">
-			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword}
+			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword} 
 		</if>
 		<if test="whatColumn == 'dcategory'">
-			where dcategory like #{keyword}
+			where dcategory like #{keyword} 
 		</if>
 		<if test="whatColumn == 'dnum'">
-			where dnum like #{keyword}
+			where dnum like #{keyword} 
 		</if>
 		<if test="whatColumn == 'title'">
-			where title like #{keyword}
+			where title like #{keyword} 
 		</if>
  	</select>
 	
 	<select id="getAllReturnDocument" resultType="document.model.DocumentBean">
-		select * from (select * from document where dstatus=-1)
+		select * from (select * from document where dstatus=-1 and writer=#{id})
 		<if test="whatColumn == 'all'">
-			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword}
+			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword} 
 		</if>
 		<if test="whatColumn == 'dcategory'">
-			where dcategory like #{keyword}
+			where dcategory like #{keyword} 
 		</if>
 		<if test="whatColumn == 'dnum'">
-			where dnum like #{keyword}
+			where dnum like #{keyword} 
 		</if>
 		<if test="whatColumn == 'title'">
-			where title like #{keyword}
+			where title like #{keyword} 
 		</if>
-		order by dnum desc
+		order by writeday desc
 	</select>
 	
 	<select id="getReturnCount" resultType="int">
-		select count(*) from (select * from document where dstatus=-1) 
+		select count(*) from (select * from document where dstatus=-1 and writer=#{id}) 
 		<if test="whatColumn == 'all'">
-			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword}
+			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword} 
 		</if>
 		<if test="whatColumn == 'dcategory'">
-			where dcategory like #{keyword}
+			where dcategory like #{keyword} 
 		</if>
 		<if test="whatColumn == 'dnum'">
-			where dnum like #{keyword}
+			where dnum like #{keyword} 
 		</if>
 		<if test="whatColumn == 'title'">
-			where title like #{keyword}
+			where title like #{keyword} 
 		</if>
  	</select>
 	
 	<select id="getAllApproveDocument" resultType="document.model.DocumentBean">
-		select * from (select * from document where request=1 and approval=1) 
+		select * from (select * from document where request=1 and approval=1 and writer=#{id}) 
 		<if test="whatColumn == 'all'">
-			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword}
+			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword} 
 		</if>
 		<if test="whatColumn == 'dcategory'">
-			where dcategory like #{keyword}
+			where dcategory like #{keyword} 
 		</if>
 		<if test="whatColumn == 'dnum'">
-			where dnum like #{keyword}
+			where dnum like #{keyword} 
 		</if>
 		<if test="whatColumn == 'title'">
 			where title like #{keyword}
 		</if>
-		order by dnum desc
+		order by writeday desc
 	</select>
 	
 	<select id="getApproveCount" resultType="int">
-		select count(*) from (select * from document where request=1 and approval=1)  
+		select count(*) from (select * from document where request=1 and approval=1 and writer=#{id})  
 		<if test="whatColumn == 'all'">
-			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword}
+			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword} 
 		</if>
 		<if test="whatColumn == 'dcategory'">
-			where dcategory like #{keyword}
+			where dcategory like #{keyword} 
 		</if>
 		<if test="whatColumn == 'dnum'">
 			where dnum like #{keyword}
 		</if>
 		<if test="whatColumn == 'title'">
-			where title like #{keyword}
+			where title like #{keyword} 
 		</if>
  	</select>
  	
  	<select id="getWaitDocumentList" resultType="document.model.DocumentBean">
- 		select * from document where request=1 and dstatus=0
+ 		select * from document where request=1 and dstatus=0 and writer=#{id}
  	</select>
  	
  	<select id="getApproveDocumentList" resultType="document.model.DocumentBean">
- 		select * from document where request=1 and dstatus=1
+ 		select * from document where request=1 and dstatus=1 and writer=#{id}
  	</select>
  	
  	<select id="getTempDocumentList" resultType="document.model.DocumentBean">
- 		select * from document where request=0
+ 		select * from document where request=0 and writer=#{id}
  	</select>
  	
  	<select id="getReturnDocumentList" resultType="document.model.DocumentBean">
- 		select * from document where dstatus=-1
+ 		select * from document where dstatus=-1 and writer=#{id}
  	</select>
+ 	
+	<select id="whatNumber" resultType="int">
+		select max(rownum) from 
+		(select * from document where dcategory=#{category})
+	</select> 	
+	
+ 	<insert id="insertDocument">
+ 		insert into document(dnum, dcategory, writer, writeday, title, dcontent, prdname, prdcategory, request, approval, dstatus) 
+ 		values(#{dnum}, #{dcategory}, #{writer}, sysdate, #{title, jdbcType=VARCHAR}, #{dcontent, jdbcType=VARCHAR}, #{prdname}, #{prdcategory}, 1, 0, 0)
+ 	</insert>
+ 	
+ 	<insert id="tempSaveDocument">
+ 		insert into document(dnum, dcategory, writer, writeday, title, dcontent, prdname, prdcategory, request, approval, dstatus) 
+ 		values(#{dnum}, #{dcategory}, #{writer}, sysdate, #{title, jdbcType=VARCHAR}, #{dcontent, jdbcType=VARCHAR}, #{prdname}, #{prdcategory}, 0,  0, 0)
+ 	</insert>
+ 	
+ 	<update id="updateDocument">
+ 		update document set dcategory=#{dcategory}, writeday=sysdate, title=#{title}, dcontent=#{dcontent}, orginname=#{orginname, jdbcType=VARCHAR}
+ 		where dnum=#{dnum}
+ 	</update>
+ 	
+ 	<delete id="deleteDocument">
+ 		delete from document where dnum=#{dnum}
+ 	</delete>
+ 	
+ 	<insert id="insertReviewCheck">
+ 		insert into review_check(rnum, writer, writeday, title, content, prdnum, re_writer, re_writeday, request)
+ 		values(#{rnum}, #{writer}, sysdate, #{title}, #{content}, #{prdnum}, #{re_writer}, #{re_writeday}, 1)
+ 	</insert>
+ 	
+ 	<select id="whatRnumber" resultType="String">
+		select max(rownum) from 
+		(select * from review_check)
+	</select> 
+	
+	<select id="getRTotalCount" resultType="int">
+		select count(*) from (select * from review_check where 1=1 and writer=#{id}) 
+		<if test="whatColumn == 'all'">
+			where rnum like #{keyword} or title like #{keyword}  or prdnum like #{keyword}
+		</if>
+		<if test="whatColumn == 'rnum'">
+			where rnum like #{keyword} 
+		</if>
+		<if test="whatColumn == 'title'">
+			where title like #{keyword} 
+		</if>
+		<if test="whatColumn == 'prdnum'">
+			where prdnum like #{keyword} 
+		</if>
+	</select>
+	
+	<select id="getAllReviewCheck" resultType="document.model.ReviewcheckBean">
+		select * from (select * from review_check where 1=1 and writer=#{id}) 
+		<if test="whatColumn == 'all'">
+			where rnum like #{keyword} or title like #{keyword}  or prdnum like #{keyword}
+		</if>
+		<if test="whatColumn == 'rnum'">
+			where rnum like #{keyword} 
+		</if>
+		<if test="whatColumn == 'title'">
+			where title like #{keyword} 
+		</if>
+		<if test="whatColumn == 'prdnum'">
+			where prdnum like #{keyword} 
+		</if>
+		order by writeday desc
+	</select>
+
 </mapper>

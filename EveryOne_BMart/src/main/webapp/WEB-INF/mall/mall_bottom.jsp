@@ -22,7 +22,7 @@
 				</li>
 			</ul>
 		</div>
-	</nav>
+	</nav> 
 	<div class="bg-primary">
 		<table class="text-white m-auto">
 			<tr>

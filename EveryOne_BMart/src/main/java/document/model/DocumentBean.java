@@ -1,21 +1,16 @@
 package document.model;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 public class DocumentBean {
-	private String dnum; //입점요청: A-, 물품등록: B-, 광고요청: C-, 휴업신청: D-
-	
-	@NotEmpty(message="결재종류를 선택하세요")
-	private String dcategory; //'입점요청', '물품등록', '광고요청', '휴업신청'
+	private String dnum; //물품등록: B-, 광고요청: C-, 폐점신청: D-
+	private String dcategory; //'물품등록', '광고요청', '폐점신청'
 	private String writer;
 	private String writeday;
-	
-	@NotEmpty(message="제목을 입력하세요")
 	private String title;
-	
-	@NotEmpty(message="내용을 입력하세요")
 	private String dcontent;
+	private String prdname;
+	private String prdcategory;
 	private int request;
 	private String reason;
 	private String orginname;
@@ -32,14 +27,10 @@ public class DocumentBean {
 		return upload;
 	}
 	public void setUpload(MultipartFile upload) {
-		System.out.println("setUpload()");
-		//System.out.println("Upload: " + upload);
-		//org.springframework.web.multipart.commons.CommonsMultipartFile@6cd7f0cd => MultipartFile의 참조변수 upload의 주소
-		
 		this.upload = upload;
 		if(this.upload != null) {
-			System.out.println(upload.getName()); //upload
-			System.out.println(upload.getOriginalFilename()); //진짜 file 이름
+			//System.out.println(upload.getName()); //upload
+			//System.out.println(upload.getOriginalFilename()); //진짜 file 이름
 			orginname = upload.getOriginalFilename();
 		}
 	}
@@ -102,6 +93,18 @@ public class DocumentBean {
 	}
 	public void setDcontent(String dcontent) {
 		this.dcontent = dcontent;
+	}
+	public String getPrdname() {
+		return prdname;
+	}
+	public void setPrdname(String prdname) {
+		this.prdname = prdname;
+	}
+	public String getPrdcategory() {
+		return prdcategory;
+	}
+	public void setPrdcategory(String prdcategory) {
+		this.prdcategory = prdcategory;
 	}
 	public int getRequest() {
 		return request;

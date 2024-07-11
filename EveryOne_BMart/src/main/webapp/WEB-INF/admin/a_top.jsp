@@ -13,15 +13,17 @@
 
 <!-- Page level custom scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
 <script src="././resources/js/demo/chart-area-demo.js"></script>
 <script src="././resources/js/demo/chart-pie-demo.js"></script>
 
-    <!-- Bootstrap core JavaScript-->
+<!-- Bootstrap core JavaScript-->
 <!--     <script src="/resources/vendor/jquery/jquery.min.js"></script> -->
 <script src="././resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -127,8 +129,8 @@
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
-			
-		
+
+
 			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseMember"
@@ -386,7 +388,7 @@
 									</div>
 								</a> <a class="dropdown-item text-center small text-gray-500"
 									href="#">Read More Messages</a>
-						<div class="topbar-divider d-none d-sm-block"></div>
+								<div class="topbar-divider d-none d-sm-block"></div>
 							</div></li>
 
 

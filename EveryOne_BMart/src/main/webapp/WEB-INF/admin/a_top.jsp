@@ -57,7 +57,7 @@
 <link rel='stylesheet'
 	href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 
-<style>
+<style>  
 .btn-outline-info {          
 	float: right;
 	margin-left: 10px;

@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Component;
 
-import utility.Paging;
+import utility.MemberListPaging;
 
 
 @Component("MemberDao")
@@ -30,7 +30,7 @@ public class MemberDao {
 		return member;
 	}//getMember
 	
-	public List<MemberBean> commonMember(Map<String,String> map, Paging pageInfo){
+	public List<MemberBean> commonMember(Map<String,String> map, MemberListPaging pageInfo){
 		List<MemberBean> commonMList = new ArrayList<MemberBean>();
 		RowBounds rowbounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
 		commonMList = sqlSessionTemplate.selectList(namespace+".commonMember", map, rowbounds);
@@ -46,16 +46,16 @@ public class MemberDao {
 		return cnt;
 	}//getTotalCount
 	
-	public List<MemberBean> getMemberList(Map<String,String> map, Paging pageInfo) {
+	public List<MemberBean> getMemberList(Map<String,String> map, MemberListPaging pageInfo) {
 	    RowBounds rowbounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
 	    return sqlSessionTemplate.selectList(namespace + ".getMemberList", map, rowbounds);
 	}
 
 	
-	public int insertMember(MemberBean member) {
+	public int insertMember(BusinessBean business) {
 		int cnt = -1;
 		try {
-			cnt = sqlSessionTemplate.insert(namespace+".insertMember",member);
+			cnt = sqlSessionTemplate.insert(namespace+".insertMember",business);
 		}catch(DuplicateKeyException e) {
 			System.out.println("아이디 중복");
 			cnt = -3;

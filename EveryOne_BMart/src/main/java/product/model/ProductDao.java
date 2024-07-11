@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import mall.model.ProductBean;
-import utility.Paging;
+import utility.MemberListPaging;
 
 @Component
 public class ProductDao {
@@ -24,7 +24,7 @@ public class ProductDao {
 		System.out.println("ProductDao »ý¼ºÀÚ");
 	}
 
-	public List<ProductBean> getProductList(Map<String, String> map, Paging pageInfo) {
+	public List<ProductBean> getProductList(Map<String, String> map, MemberListPaging pageInfo) {
 		List<ProductBean> lists = new ArrayList<ProductBean>();
 		System.out.println(map.get("whatColumn"));
 		System.out.println(map.get("keyword"));
@@ -77,6 +77,15 @@ public class ProductDao {
 
 		return cnt;
 	}//updateProduct
+
+	public int insertCategory(String type) {
+		int cnt = -1;
+
+		cnt = sqlSessionTemplate.insert(namespace + ".insertCategory", type);
+		System.out.println("insertCategory cnt : " + cnt);
+		return cnt;
+		
+	}
 
 	 
 	

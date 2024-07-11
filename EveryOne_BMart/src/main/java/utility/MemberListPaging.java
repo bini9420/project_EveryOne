@@ -1,15 +1,15 @@
 package utility;
 
-public class Paging {
+public class MemberListPaging {
 	//페이징 관련 변수	
-	private int totalCount = 0 ; //총 레코드 건수
+	private int articleCount = 0 ; //총 레코드 건수
 	private int totalPage = 0 ; //전체 페이지 수
 	private int pageNumber = 0 ; //보여줄 페이지 번호
 	private int pageSize = 10 ; //한 페이지에 보여줄 건수
 	private int beginRow = 0 ; //현재 페이지의 시작 행
 	private int endRow = 0 ; //현재 페이지의 끝 행
 	private int pageCount = 3 ; // 한 화면에 보여줄 페이지 링크 수 (페이지 갯수)
-	private int beginPage = 1 ; //페이징 처리 시작 페이지 번호
+	private int beginPage = 0 ; //페이징 처리 시작 페이지 번호
 	private int endPage = 0 ; //페이징 처리 끝 페이지 번호
 	private int offset = 0 ;
 	private int limit = 0 ;
@@ -17,16 +17,16 @@ public class Paging {
 	private String pagingHtml = "";//하단의 숫자 페이지 링크
 	
 	//검색을 위한 변수 추가
-	private String whatColumn = "" ; //검색 모드(작성자, 글제목, 전체 검색은 all) 등등
+	
 	private String keyword = "" ; //검색할 단어 
 
-	public int getTotalCount() {
-		return totalCount;
+	public int getarticleCount() {
+		return articleCount;
 	}
 
 
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
+	public void setarticleCount(int articleCount) {
+		this.articleCount = articleCount;
 	}
 
 
@@ -155,14 +155,6 @@ public class Paging {
 	}
 
 
-	public String getWhatColumn() {
-		return whatColumn;
-	}
-
-
-	public void setWhatColumn(String whatColumn) {
-		this.whatColumn = whatColumn;
-	}
 
 
 	public String getKeyword() {
@@ -175,12 +167,11 @@ public class Paging {
 	}
 
 
-	public Paging(
+	public MemberListPaging(
 			String _pageNumber, 
 			String _pageSize,  
-			int totalCount,
+			int articleCount,
 			String url, 
-			String whatColumn, 
 			String keyword
 			) {		
 
@@ -197,9 +188,9 @@ public class Paging {
 		
 		this.limit = pageSize ; // 한 페이지에 보여줄 레코드 갯수
 
-		this.totalCount = totalCount ; 
+		this.articleCount = articleCount ; 
 
-		this.totalPage = (int)Math.ceil((double)this.totalCount / this.pageSize) ;
+		this.totalPage = (int)Math.ceil((double)this.articleCount / this.pageSize) ;
 		
 		this.beginRow = ( this.pageNumber - 1 )  * this.pageSize  + 1 ;
 		this.endRow =  this.pageNumber * this.pageSize ;
@@ -216,8 +207,8 @@ public class Paging {
 			위의 offset = (3-1)*2 => 4(건너뛸 갯수가 된다.)
 			내가 4페이지를 띄우고 싶을때 , 1페이지 2페이지 3페이지 건너띄어야한다. 
 		*/	
-		if( this.endRow > this.totalCount ){
-			this.endRow = this.totalCount  ;
+		if( this.endRow > this.articleCount ){
+			this.endRow = this.articleCount  ;
 		}
 
 		this.beginPage = ( this.pageNumber - 1 ) / this.pageCount * this.pageCount + 1  ;
@@ -233,9 +224,9 @@ public class Paging {
 		
 		System.out.println("pageNumber2:"+pageNumber+"/totalPage2:"+totalPage);	
 		this.url = url ; //  /ex/list.ab
-		this.whatColumn = whatColumn ;
+	
 		this.keyword = keyword ;
-		System.out.println("whatColumn:"+whatColumn+"/keyword:"+keyword);
+		System.out.println("/keyword:"+keyword);
 		
 		this.pagingHtml = getPagingHtml(url) ;
 	
@@ -250,26 +241,26 @@ public class Paging {
 		
 		String result = "" ;
 		//added_param 변수 : 검색 관련하여 추가되는 파라미터 리스트
-		String added_param = "&whatColumn=" + whatColumn + "&keyword=" + keyword ; // &whatColumn=singer&keyword=아
+		String added_param =  "&keyword=" + keyword ; // &whatColumn=singer&keyword=아
 		
 		
 		if (this.beginPage != 1) { // 앞쪽, pageSize:한 화면에 보이는 레코드 수
 			// 처음 목록보기를 하면 pageNumber는 1이 되고 beginPage도 1이 된다. 
-			result += "&nbsp;<a href='" + url  
+			result += "&nbsp;<button class='btn btn-primary' href='" + url  
 					+ "?pageNumber=" + ( 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>맨 처음</a>&nbsp;" ;
-			result += "&nbsp;<a href='" + url 
+					+ added_param + "'>맨 처음</button>&nbsp;" ;
+			result += "&nbsp;<button class='btn btn-primary' href='" + url 
 					+ "?pageNumber=" + (this.beginPage - 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>이전</a>&nbsp;" ;
+					+ added_param + "'>이전</button>&nbsp;" ;
 		}
 		
 		//가운데
 		for (int i = this.beginPage; i <= this.endPage ; i++) {
 			if ( i == this.pageNumber ) {
-				result += "&nbsp;<font color='red'>" + i + "</font>&nbsp;"	;
+				result += "&nbsp;<font class='btn btn-primary'>" + i + "</font>&nbsp;"	;
 						
 			} else {
-				result += "&nbsp;<a href='" + url   
+				result += "&nbsp;<a class='btn btn-primary' href='" + url   
 						+ "?pageNumber=" + i + "&pageSize=" + this.pageSize 
 						+ added_param + "'>" + i + "</a>&nbsp;" ;
 				

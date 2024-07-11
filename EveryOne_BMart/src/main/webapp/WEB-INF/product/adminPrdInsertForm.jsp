@@ -2,57 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@include file="../common/common.jsp"%>
 <%@include file="../admin/a_top.jsp"%>
-       
-<script>
-	var f_selbox = new Array('B마트', '배민상회');
-
-	var s_selbox = new Array();
-	s_selbox[0] = new Array('쌀/잡곡/견과', '국/탕/찌개', '음료/커피/생수', '정육/수산/계란',
-			'라면/면', '과일/채소', '양념/장류/오일', '우유/유제품', '햄/어묵/통조림', '생활/기타');
-	s_selbox[1] = new Array('쌀/잡곡/견과', '야채/채소', '과일', '축산/계란', '수산/건어물',
-			'베이커리/디저트', '유제품', '배달용품', '주방용품');
-
-	var selectCategory;
-
-	function init(mc, mn) {
-
-		document.myform.first.options[0] = new Option("상품등록할 곳 ", ""); // text, value
-		document.myform.second.options[0] = new Option("카테고리", ""); // text, value
-		for (i = 0; i < f_selbox.length; i++) {
-			document.myform.first.options[i + 1] = new Option(f_selbox[i],
-					f_selbox[i]);
-			if (document.myform.first.options[i + 1].value == mc) {
-				document.myform.first.options[i + 1].selected = true;
-				selectCategory = i; // 아프리카:1
-			}
-		}//for
-
-		for (var j = 0; j < s_selbox[selectCategory].length;j++) {
-			document.myform.second.options[j + 1] = new Option(
-					s_selbox[selectCategory][j]);
-			if (document.myform.second.options[j + 1].value == mn) {
-				document.myform.second.options[j + 1].selected = true;
-			}
-		}//for
-	}//init
-
-	function firstChange() {
-		var index = document.myform.first.selectedIndex;
-
-		for (i = document.myform.second.length - 1; i > 0; i--) {
-			document.myform.second.options[i] = null;
-		}
-
-		for (i = 0; i < s_selbox[index - 1].length; i++) {
-			document.myform.second.options[i + 1] = new Option(
-					s_selbox[index - 1][i]);
-		}
-	} //firstChange
-</script>
 
 
-	<form:form commandName="product" name="myform" action="productInsert.prd" method="post" enctype="multipart/form-data">
-<body onLoad="init('${product.mall }','${product.pcategory}')"> 
+
+
+<%String pcate[]={"쌀/잡곡/견과","국/탕/찌개","음료/커피/생수","정육/수산/계란","라면/면","과일/채소","양념/장류/오일","우유/유제품","햄/어묵/통조림","생활/기타"}; %>
+
+
+
+<form:form commandName="product" name="myform"
+	action="productInsert.prd" method="post" enctype="multipart/form-data">
+	<body onLoad="init('${product.mall }','${product.pcategory}')">
 		<input type="hidden" name="pageNumber" value="${pageNumber}">
 
 
@@ -76,32 +36,31 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-bordered" id="dataTable" width="100%"
-						cellspacing="0">
+					<table class="table table-bordered" id="dataTable">
 
 
 						<tr>
 							<th>카테고리</th>
+							<td><select name="pcategory">
+									<c:forEach var="cate" items="<%=pcate %>">
+										<option value="${cate}"
+											<c:if test="${product.cate eq cate}">selected</c:if>>${cate}</option>
+									</c:forEach>
+							</select></td>
 
-
-
-							<td><select id="first" name="mall" onChange="firstChange()"
-								style="width: 150px" >
-
-							</select> <select id="second"
-								name="pcategory" onChange="secondChange()" style="width: 150px" ></select>
-								</td>
 						</tr>
-
-
 
 						<tr>
 							<th>등록인아이디</th>
-							<td><input type="hidden" name="id" value="${sessionScope.loginInfo.id}">${sessionScope.loginInfo.id}</td>
+							<td><input type="hidden" name="id"
+								value="${loginInfo.id}">${loginInfo.id}</td>
 						</tr>
 						<tr>
 							<th>상품이름</th>
-							<td><input type="text" name="pname" value="${product.pname}">
+							<td>
+							
+							
+							<input type="text" name="pname" value="${product.pname}">
 								<form:errors path="pname" cssClass="err"></form:errors></td>
 						</tr>
 						<tr>
@@ -136,34 +95,19 @@
 									path="pcontent" cssClass="err"></form:errors></td>
 						</tr>
 						<tr>
+							<th>상품 등록일</th>
+							<td>
+								  <input type="date" name="inputdate" value="<c:out value='${fn:substring(product.inputdate, 0, 10)}' />">
+							</td>
+						</tr>
+						<tr>
 							<th>재고</th>
 							<td><input type="text" name="stock" value="${product.stock}"></td>
 						</tr>
 
-
-						<tr>
-							<th>분류</th>
-
-							<td>
-									<%
-									String[] mall = { "B마트", "배민상회" };
-									%> <c:forEach var="mall" items="<%=mall%>">
-										<c:choose>
-											<c:when test="${mall eq 'B마트'}">
-												<input type="radio" name="mall" value=0
-													<c:if test="${product.mall eq 0}">checked</c:if>>${mall }
-       		 								</c:when>
-											<c:when test="${mall eq '배민상회'}">
-												<input type="radio" name="mall" value=1
-													<c:if test="${product.mall eq 1}">checked</c:if>>${mall }
-        									</c:when>
-										</c:choose>
-									</c:forEach> 
-								</td>
 					</table>
 				</div>
 			</div>
 		</div>
-
-		<center>${pageInfo.pagingHtml }</center>
-	</form:form>
+</form:form>
+<%@include file="../admin/a_bottom.jsp"%>

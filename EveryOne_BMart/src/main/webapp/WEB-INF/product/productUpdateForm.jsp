@@ -49,15 +49,14 @@
 				<i class="fi fi-rr-file-edit"></i>
 			</button>
 			<button type="button" class="btn-outline-info"
-				onclick="location.href='productList.prd?pageNumber=${param.pageNumber}&whatColumn=${param.whatColumn }&keyword=${keyword }'">
+				onclick="location.href='productList.prd?pageNumber=${param.pageNumber}&keyword=${keyword }'">
 				<i class="fi fi-rr-list"></i>
 			</button>
 		</h6>
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
-			<table class="table table-bordered" id="dataTable" width="100%"
-				cellspacing="0">
+			<table class="table table-bordered" id="dataTable">
 
 
 
@@ -132,7 +131,7 @@
 		</div>
 	</div>
 </div>
-
+<%@include file="../admin/a_bottom.jsp" %>
 
 
 

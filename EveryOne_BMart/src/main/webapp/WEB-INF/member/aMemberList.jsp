@@ -15,6 +15,16 @@
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
 			<h6 class="m-0 font-weight-bold text-primary">BMart Member List</h6>
+			
+			
+			<div class="row">
+  <div class="col">
+    <input type="text" class="form-control" placeholder="First name" aria-label="seach">
+  </div>
+</div>
+			
+			
+			
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
@@ -43,9 +53,31 @@
 
 
 				</table>
+				
 			</div>
 		</div>
 	</div>
 
+
+<div class="pagination-wrapper">
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item">${pageInfo.pagingHtml }</li>
+   
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+</div>
 </form>
+
+
 <%@include file="../admin/a_bottom.jsp"%>

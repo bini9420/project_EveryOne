@@ -14,7 +14,7 @@ public class KakaoController {
     
     private final String getPage = "testPage";
     
-    @RequestMapping("/login")
+    @RequestMapping("/login.mb")
     public String home(@RequestParam(value = "code", required = false) String code) throws Exception{
         System.out.println("#########" + code);
         String access_Token = kakaoService.getAccessToken(code);

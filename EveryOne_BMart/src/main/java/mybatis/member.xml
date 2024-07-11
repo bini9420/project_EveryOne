@@ -64,8 +64,8 @@
   	
   	
   	<insert id="insertMember">
- 		insert into member(id, name, password, phone, email,address, addr1,addr2, image,ownercode)
-		values(#{id},#{name},#{password},#{phone},#{email},#{address},#{addr1},#{addr2},#{image},#{ownercode})
+ 		insert into business (bcode,id,type,post,addr1,addr2)
+		values(#{bcode},#{id},null,#{post},#{addr1},#{addr2})
  	</insert>
 	 
 	 
@@ -73,6 +73,14 @@
  	<delete id="deleteMember">
  	    delete from member where id=#{id}
  	</delete>
+ 	
+ 	<update id="updateCate">
+ 		update business set type=#{type}
+ 		where id=#{id}
+ 	
+ 	</update>
+ 	
+ 	
  	
  	
  <!--  	<update id="updateMember">

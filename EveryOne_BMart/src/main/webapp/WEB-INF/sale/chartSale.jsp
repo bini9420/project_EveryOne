@@ -1,71 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../admin/a_top.jsp"%>
 
-
-<body>
-
-
-	<!-- Begin Page Content -->
-	<div class="container-fluid">
-
-		<!-- Page Heading -->
-		<h1 class="h3 mb-2 text-gray-800">Charts</h1>
-		<p class="mb-4"></p>
-
-		<!-- Content Row -->
-		<div class="row">
-
-			<div class="col-xl-8 col-lg-7">
-
-				<!-- Area Chart -->
-				<div class="card shadow mb-4">
-					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">매출현황</h6>
-					</div>
-					<div class="card-body">
-						<div class="chart-container">
-							<canvas id="myAreaChart"></canvas>
-						</div>
-					</div>
-				</div>
-
-				<!-- Bar Chart -->
-				<div class="card shadow mb-4">
-					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
-					</div>
-					<div class="card-body">
-						<div class="chart-container">
-							<canvas id="myBarChart"></canvas>
-						</div>
-
-					</div>
-				</div>
-
-			</div>
-
-
-
-			<!-- Donut Chart -->
-			<div class="col-xl-4 col-lg-5">
-				<div class="card shadow mb-4">
-					<!-- Card Header - Dropdown -->
-					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">인기 상품 TOP5</h6>
-					</div>
-					<!-- Card Body -->
-					<div class="card-body">
-						<div class="chart-container">
-							<canvas id="logNameChart"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	
 	<script>
         // JSON 데이터를 JSP에서 안전하게 전달
         var areaJsonString = ${areaJson};
@@ -198,5 +133,3 @@
         
         
     </script>
-</body>
-</html>

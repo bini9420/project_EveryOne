@@ -103,11 +103,11 @@
 															success : function(
 																	authObj) {
 																  alert(JSON.stringify(authObj));
-																//alert("로그인이 성공적으로 이루어졌습니다.");
+																alert("로그인이 성공적으로 이루어졌습니다.");
+																location.href="adminMain.jsp";
 																
 																
 																//location.href="main.mall";
-																//location.href="login.mb";
 																
 															},
 															fail : function(err) {

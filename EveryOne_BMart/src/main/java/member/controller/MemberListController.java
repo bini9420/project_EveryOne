@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import member.model.MemberBean;
 import member.model.MemberDao;
-import utility.Paging;
+import utility.MemberListPaging;
 
 
 @Controller
@@ -28,20 +28,20 @@ public class MemberListController {
 	// main에서 회원 목록보기 눌렀을때 회원 목록보기
 	@RequestMapping(command)
 	public String list(
-			@RequestParam(value="whatColumn", required=false) String whatColumn,
+			
 			@RequestParam(value="keyword", required=false) String keyword,
 			@RequestParam(value="pageNumber", required=false) String pageNumber,
 			HttpServletRequest request,
 			Model model) {
 		System.out.println("memberListController");
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("whatColumn", whatColumn);
+		
 		map.put("keyword", "%" + keyword + "%");
 
 		int totalCount = memberDao.getTotalCount(map); 
-		String url = request.getContextPath() + this.command;
+		String url = request.getContextPath() + "/"+this.command;
 
-		Paging pageInfo = new Paging(pageNumber, null, totalCount, url, whatColumn, keyword);
+		MemberListPaging pageInfo = new MemberListPaging(pageNumber, null, totalCount, url,  keyword);
 
 		List<MemberBean> memberLists = memberDao.getMemberList(map, pageInfo);
 		model.addAttribute("memberLists", memberLists);

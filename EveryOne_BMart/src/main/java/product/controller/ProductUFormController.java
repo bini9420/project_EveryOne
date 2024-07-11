@@ -39,14 +39,12 @@ public class ProductUFormController {
 	public String updateForm(	
 			@RequestParam(value="pnum", required = true) int pnum,
 			@RequestParam(value="pageNumber", required = true) int pageNumber,
-			@RequestParam(value="whatColumn", required = false) String whatColumn,
 			@RequestParam(value="keyword", required = false) String keyword,
 			HttpSession session,Model model) {
 
 		System.out.println(this.getClass()+" GET");
 		System.out.println("pnum:"+pnum);
 		System.out.println("pageNumber:"+pageNumber);
-		System.out.println("whatColumn:"+whatColumn);
 		System.out.println("keyword:"+keyword);
 		ModelAndView mav = new ModelAndView();
 			

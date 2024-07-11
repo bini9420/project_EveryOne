@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import member.model.MemberBean;
 import member.model.MemberDao;
-import utility.Paging;
+import utility.MemberListPaging;
 
 @Controller
 public class CommonMemListController {
@@ -39,7 +39,7 @@ public class CommonMemListController {
 		int totalCount = memberDao.getTotalCount(map); 
 		String url = request.getContextPath() + this.command;
 
-		Paging pageInfo = new Paging(pageNumber, null, totalCount, url, whatColumn, keyword);
+		MemberListPaging pageInfo = new MemberListPaging(pageNumber, null, totalCount, url, keyword);
 
 		List<MemberBean> commonMLists = memberDao.commonMember(map, pageInfo);		
 		model.addAttribute("commonMLists",commonMLists);

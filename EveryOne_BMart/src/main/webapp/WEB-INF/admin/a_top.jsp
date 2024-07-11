@@ -69,7 +69,7 @@
 	display: flex;
 	justify-content: center;
 }
-
+             
 .plusbtn {
 	float: right;
 	margin-left: 10px;

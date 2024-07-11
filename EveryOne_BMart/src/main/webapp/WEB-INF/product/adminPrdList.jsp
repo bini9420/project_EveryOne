@@ -5,35 +5,37 @@
 <%@include file="../admin/a_top.jsp"%>
 
 
-
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800 title">상품목록</h1>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
-			<div class="card-body">
+		<div class="card-body">
 
-		
-<form class="row g-3">
- 
-  <div class="col-auto">
-   
-    <input type="password" class="form-control" id="inputPassword2" placeholder="Search..">
-  </div>
-  <div class="col-auto">
-    <button type="submit" class="btn btn-primary mb-3"><i class="fas fa-search fa-sm"></i></button>
-  </div>
-</form>
-			
-				
-						
-						<a href="productInsert.prd" class="plusbtn">
-						<i class="fi fi-br-plus-small"></i></a>
 
-					</div>
+			<form class="row g-3">
+
+				<div class="col-auto">
+
+					<input type="password" class="form-control" id="inputPassword2"
+						placeholder="Search..">
 				</div>
-	
+				<div class="col-auto">
+					<button type="submit" class="btn btn-primary mb-3">
+						<i class="fas fa-search fa-sm"></i>
+					</button>
+				</div>
+			</form>
+
+
+
+			<a href="productInsert.prd" class="plusbtn"> <i
+				class="fi fi-br-plus-small"></i></a>
+
+		</div>
 	</div>
+
 </div>
+
 
 
 
@@ -59,7 +61,9 @@
 				<tr>
 					<th>${prd.pnum }</th>
 					<th>${prd.pcategory }</th>
-					<th><a href="prodDetail.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}" style="color: gray;">${prd.pname }</a></th>
+					<th><a
+						href="prodDetail.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}"
+						style="color: gray;">${prd.pname }</a></th>
 					<th>${prd.price }</th>
 					<th>${prd.ordercount }</th>
 					<th>${fn:substring(prd.inputdate, 0, 10)}</th>

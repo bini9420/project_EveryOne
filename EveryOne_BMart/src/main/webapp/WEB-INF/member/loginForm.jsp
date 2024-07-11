@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 
-<%@include file="WEB-INF/common/common.jsp"%>
+<%@include file="../common/common.jsp"%>
 
 
 <head>

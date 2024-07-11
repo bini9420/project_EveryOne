@@ -82,7 +82,7 @@ public class MemberLoginController {
 					System.out.println("destination:"+(String)session.getAttribute("destination"));
 
 
-					String adminMainPage = "redirect:/adminMain.jsp"; // 관리자 메인 페이지 URL
+					String adminMainPage = "redirect:/a_main.jsp"; // 관리자 메인 페이지 URL
 
 					return new ModelAndView(adminMainPage);
 

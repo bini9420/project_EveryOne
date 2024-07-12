@@ -66,7 +66,7 @@
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-5 ">
                 <!-- Nested Row within Card Body -->
-                    <div class="col-lg-8 mx-auto p-5">
+                    <div class="col-lg-8 mx-auto py-5">
                         <div class="p-5">
                             <div class="text-center">
                                 <h1 class="h3 text-muted mb-5" style="font-weight: bold">
@@ -151,7 +151,7 @@
                                 </div>
                                 
                                 
-                                <input type="submit" value="회원가입" class="btn btn-outline-primary btn-user btn-block">
+                                <input type="submit" value="회원가입" class="btn btn-primary btn-user btn-block">
                             </form:form>
                         </div>
                     </div>

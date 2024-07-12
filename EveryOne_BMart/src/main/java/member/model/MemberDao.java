@@ -135,5 +135,19 @@ public class MemberDao {
 	public void insertMember(MemberBean member) {
 		sqlSessionTemplate.insert(namespace+".insertMember", member);
 	}
+	
+	//아이디 찾기
+	public MemberBean getMemberId(MemberBean member) {
+		MemberBean mb = null;
+		mb = sqlSessionTemplate.selectOne(namespace+".getMemberId", member);
+		return mb;
+	}
+
+	//비밀번호 찾기
+	public MemberBean getMemberPw(MemberBean member) {
+		MemberBean mb = null;
+		mb = sqlSessionTemplate.selectOne(namespace+".getMemberPw", member);
+		return mb;
+	}
 
 }

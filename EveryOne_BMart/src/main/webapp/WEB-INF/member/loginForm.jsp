@@ -11,9 +11,7 @@
 				<div class="card o-hidden border-0 shadow-lg my-5">
 					<div class="card-body p-0">
 						<!-- Nested Row within Card Body -->
-						<div class="row">
-							<div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-							<div class="col-lg-6">
+							<div class="col-lg-6 mx-auto py-5">
 								<div class="p-5">
 									<div class="text-center">
 										<h3 class="text-muted mb-4">로그인</h3>
@@ -40,10 +38,10 @@
 									
 									<hr>
 									
-									<div class="text-center">
-										<a class="small" href="findId.mb">아이디 찾기</a>
+									<div class="text-center text-primary">
+										<a class="small" data-bs-toggle="modal" data-bs-target="#findId">아이디 찾기</a>
 										&nbsp;&nbsp;|&nbsp;&nbsp;
-										<a class="small" href="findPw.mb">비밀번호 찾기</a>
+										<a class="small" data-bs-toggle="modal" data-bs-target="#findPw">비밀번호 찾기</a>
 									</div>
 								</div>
 							</div>
@@ -52,6 +50,69 @@
 				</div>
 			</div>
 		</div>
+
+<!-- 아이디 찾기 모달 -->
+<div class="modal fade" id="findId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">아이디 찾기</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="mx-2 my-4">
+					<form class="user" action="find.mb">
+						<div class="form-group row">
+							이름 : <input type="text" name="name" class="form-control col-sm-6 mx-1">
+						</div>
+						<div class="form-group row">
+							전화번호 : 
+								<select name="phone1" class="form-control col-sm-3 mx-1">
+									<option value="">선택 안 함
+									<option value="010">010
+									<option value="011">011
+								</select> 
+								<input type="text" class="form-control col-sm-3 mx-1" name="phone2">
+                                <input type="text" class="form-control col-sm-3 mx-1" name="phone3">
+						</div>
+						
+						<div class="text-center">
+							<input type="submit" value="아이디찾기" class="btn btn-sm btn-primary">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
+</div>
+
+<!-- 비밀번호 찾기 모달 -->
+<div class="modal fade" id="findPw" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">비밀번호 찾기</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="mx-2 my-4">
+					<form class="user" action="find.mb" method="post">
+						<div class="form-group row">
+							아이디 : <input type="text" name="id" class="form-control col-sm-6 mx-1">
+						</div>
+						<div class="form-group row">
+							이름 : <input type="text" name="name" class="form-control col-sm-6 mx-1">
+						</div>
+						
+						<div class="text-center">
+							<input type="submit" value="비밀번호찾기" class="btn btn-sm btn-primary">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 
 <%@ include file="member_bottom.jsp" %>

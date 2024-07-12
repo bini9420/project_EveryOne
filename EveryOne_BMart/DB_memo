@@ -275,6 +275,17 @@ create table review(
 	onum number references orderInfo(onum) on delete cascade
 );
 
+insert into review values(rseq.nextval, 'park', 4, '맛있어요~!!', null, sysdate, 4, 3);
+insert into review values(rseq.nextval, 'lee', 4, '제로음료 최고', null, sysdate, 5, 4);
+insert into review values(rseq.nextval, 'choi', 4, '애사비 맛있다', null, sysdate, 5, 5);
+insert into review values(rseq.nextval, 'jung', 4, '탄산 짱', null, sysdate, 4, 6);
+insert into review values(rseq.nextval, 'kang', 4, '제로 신기하다', null, sysdate, 3, 7);
+insert into review values(rseq.nextval, 'park', 4, '맛있다!', null, sysdate, 4, 8);
+insert into review values(rseq.nextval, 'lee', 4, '맛있어요~!!', null, sysdate, 4, 9);
+insert into review values(rseq.nextval, 'choi', 4, '재구매할 예정', null, sysdate, 5, 10);
+insert into review values(rseq.nextval, 'jung', 4, '그냥그래요', null, sysdate, 3, 11);
+insert into review values(rseq.nextval, 'kang', 4, '평범함', null, sysdate, 3, 12);
+
 
 
 -- 결재상태 테이블

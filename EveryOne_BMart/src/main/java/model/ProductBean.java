@@ -1,4 +1,4 @@
-package mall.model;
+package model;
 
 public class ProductBean {
 	private int pnum;

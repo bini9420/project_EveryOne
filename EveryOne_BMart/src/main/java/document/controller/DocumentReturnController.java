@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import document.model.DocumentBean;
 import document.model.DocumentDao;
-import member.model.MemberBean;
+import model.MemberBean;
 import utility.Paging;
 
 @Controller

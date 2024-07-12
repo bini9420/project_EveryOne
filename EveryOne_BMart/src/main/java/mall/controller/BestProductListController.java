@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import mall.model.MallDao;
-import mall.model.ProductBean;
+import model.ProductBean;
 
 @Controller
 public class BestProductListController {

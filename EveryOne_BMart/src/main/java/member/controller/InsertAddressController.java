@@ -13,15 +13,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import member.model.AddressBean;
-import member.model.MemberBean;
 import member.model.MemberDao;
+import model.AddressBean;
+import model.MemberBean;
 
 @Controller
 public class InsertAddressController {
 
 	private final String command = "/insertAddress.mb";
-	private final String gotoPage = "redirect:/mypage.mall";
+	private final String gotoPage = "redirect:/mypage.mb";
 
 	@Autowired
 	MemberDao memberDao;
@@ -50,7 +50,7 @@ public class InsertAddressController {
 		if(cnt == 3) {
 			//조회했더니 3개면 등록 불가
 			out.append("<script>");
-			out.append("alert('배송지는 최대 3개까지 등록할 수 있습니다.'); location.href='mypage.mall?index=addressInfo'");
+			out.append("alert('배송지는 최대 3개까지 등록할 수 있습니다.'); location.href='mypage.mb?index=addressInfo'");
 			out.append("</script>");
 			return null;
 		}else {

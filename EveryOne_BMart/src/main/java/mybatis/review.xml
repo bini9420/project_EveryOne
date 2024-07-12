@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- review.xml -->
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="review">
+	<select id="getReviewTotalCount" resultType="int">
+		select count(*) from review where pnum=#{pnum}
+	</select>
+	
+	<update id="updateReview">
+		update review set score=#{score}, rcomment=#{rcomment}, rdate=sysdate where rnum=${rnum}
+	</update>
+	
+	<delete id="deleteReview">
+		delete from review where rnum=#{rnum}
+	</delete>
+</mapper>

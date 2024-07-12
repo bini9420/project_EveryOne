@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mall.model.MallDao;
-import mall.model.ProductBean;
-import mall.model.SearchBean;
+import model.ProductBean;
+import model.SearchBean;
 import utility.MallPaging;
 
 @Controller

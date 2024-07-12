@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import document.model.DocumentBean;
 import document.model.DocumentDao;
-import member.model.MemberBean;
+import model.MemberBean;
 import utility.Paging;
 
 @Controller

@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import member.model.MemberBean;
 import member.model.MemberDao;
+import model.MemberBean;
 
 @Controller
 public class MemberUpdateController {
@@ -111,7 +111,7 @@ public class MemberUpdateController {
 		}
 		
 		out.append("<script>");
-		out.append("alert('수정되었습니다!'); location.href='mypage.mall'");
+		out.append("alert('수정되었습니다!'); location.href='mypage.mb'");
 		out.append("</script>");
 		return null;
 	}

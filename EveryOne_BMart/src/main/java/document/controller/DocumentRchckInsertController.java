@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import document.model.ReviewcheckBean;
 import document.model.ReviewcheckDao;
-import member.model.MemberBean;
+import model.MemberBean;
 
 @Controller
 public class DocumentRchckInsertController {

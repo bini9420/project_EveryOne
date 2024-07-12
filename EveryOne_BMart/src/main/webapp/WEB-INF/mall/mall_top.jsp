@@ -19,6 +19,7 @@
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-straight/css/uicons-regular-straight.css'>
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-brands/css/uicons-brands.css'>
 	
 	<!-- Core theme CSS (includes Bootstrap)-->
@@ -132,13 +133,13 @@
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li>
 								<a class="dropdown-item" href="login.mb">
-									<i class="fi fi-rr-users"> 로그인 </i>
+									<i class="fi fi-rr-users fst-normal"> 로그인 </i>
 								</a>
 							</li>
 							<li><hr class="dropdown-divider" /></li>
 							<li>
 								<a class="dropdown-item" href="#!">
-									<i class="fi fi-rr-user-add"> 회원가입 </i>
+									<i class="fi fi-rr-user-add fst-normal"> 회원가입 </i>
 								</a>
 							</li>
 						</ul>

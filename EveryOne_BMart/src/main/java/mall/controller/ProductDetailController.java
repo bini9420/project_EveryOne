@@ -1,6 +1,9 @@
 package mall.controller;
 
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mall.model.MallDao;
-import mall.model.ProductBean;
-import mall.model.WatchBean;
-import member.model.MemberBean;
+import model.MemberBean;
+import model.ProductBean;
+import model.ReviewDetailBean;
+import model.SearchBean;
+import model.WatchBean;
+import utility.ReviewPaging;
 
 @Controller
 public class ProductDetailController {
@@ -25,7 +31,10 @@ public class ProductDetailController {
 	MallDao mallDao;
 	
 	@RequestMapping(value=command, method=RequestMethod.GET)
-	public String detail(@RequestParam("pnum") int pnum, Model model, HttpSession session) {
+	public String detail(@RequestParam("pnum") int pnum, Model model, HttpSession session,
+						@RequestParam(value="range", required=false) String range, 
+						@RequestParam(value="pageNumber", required=false) String pageNumber, 
+						HttpServletRequest request) {
 		
 		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
 		
@@ -50,6 +59,24 @@ public class ProductDetailController {
 		ProductBean product = mallDao.getProductInfo(pnum);
 		model.addAttribute("product", product);
 		
+		SearchBean sb = new SearchBean();
+		sb.setPnum(pnum);
+		sb.setRange(range);
+		
+		int totalCount = mallDao.getReviewDetailCount(sb);
+		String url = request.getContextPath()+this.command+"?pnum="+pnum;
+		
+		ReviewPaging pageInfo = new ReviewPaging(pageNumber, null, totalCount, url, range, null);
+		
+		//reviewDetail => ¸®ºä + product => ³»¿ëÀ» ¹­À½
+		List<ReviewDetailBean> rdetail = mallDao.getReviewDetail(sb, pageInfo);
+		
+		model.addAttribute("rdetail", rdetail);
+		model.addAttribute("pageInfo", pageInfo);
+		
+		//ÀüÃ¼ ¸®ºä °³¼ö
+		int rcount = mallDao.getReviewTotalCount(pnum);
+		model.addAttribute("rcount", rcount);
 		
 		return getPage;
 	}

@@ -91,7 +91,7 @@ public class CartInsertController {
 		//아이디가 없으면 => 로그인을 안 했다는 뜻
 		if(id == "") {
 			out.println("<script>");
-			out.println("alert('상품을 담으려면 로그인을 해야 합니다.'); location.href='bmartLogin.mb'");
+			out.println("alert('상품을 담으려면 로그인을 해야 합니다.'); location.href='login.mb'");
 			out.println("</script>");
 			out.flush();
 			

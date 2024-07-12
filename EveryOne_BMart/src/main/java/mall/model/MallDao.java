@@ -9,7 +9,14 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import model.CategoryBean;
+import model.InterestBean;
+import model.ProductBean;
+import model.ReviewDetailBean;
+import model.SearchBean;
+import model.WatchBean;
 import utility.MallPaging;
+import utility.ReviewPaging;
 
 @Component("mall")
 public class MallDao {
@@ -26,6 +33,8 @@ public class MallDao {
 	private String watch = "watch";
 	private String interest = "interest";
 	private String cart = "cart";
+	private String review = "review";
+	private String reviewDetail = "reviewDetail";
 	
 	//카테고리 띄우기
 	public List<CategoryBean> getAllCategory() {
@@ -43,9 +52,9 @@ public class MallDao {
 	
 	//상품 정보 조회
 	public ProductBean getProductInfo(int pnum) {
-		ProductBean product = null;
-		product = sqlSessionTemplate.selectOne(product+".getProductInfo", pnum);
-		return product;
+		ProductBean prd = null;
+		prd = sqlSessionTemplate.selectOne(product+".getProductInfo", pnum);
+		return prd;
 	}
 	
 	//최근 본 상품 목록
@@ -182,4 +191,27 @@ public class MallDao {
 		sqlSessionTemplate.insert(interest+".insertInterest", ib);
 	}
 	
+	//상품 리뷰 개수 조회
+	public int getReviewDetailCount(SearchBean sb) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.selectOne(reviewDetail+".getReviewDetailCount",sb);
+		return cnt;
+	}
+	
+	//리뷰 목록 조회
+	public List<ReviewDetailBean> getReviewDetail(SearchBean sb, ReviewPaging pageInfo) {
+		RowBounds rb = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		
+		List<ReviewDetailBean> rdetail = new ArrayList<ReviewDetailBean>();
+		rdetail = sqlSessionTemplate.selectList(reviewDetail+".getReviewDetail", sb, rb);
+		return rdetail;
+	}
+	
+	//리뷰 총 개수 조회
+	public int getReviewTotalCount(int pnum) {
+		int rcount = -1;
+		rcount = sqlSessionTemplate.selectOne(review+".getReviewTotalCount", pnum);
+		return rcount;
+	}
+
 }

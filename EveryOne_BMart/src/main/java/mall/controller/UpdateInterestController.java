@@ -13,9 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import mall.model.InterestBean;
 import mall.model.MallDao;
-import mall.model.ProductBean;
+import model.InterestBean;
+import model.ProductBean;
 
 @Controller
 public class UpdateInterestController {

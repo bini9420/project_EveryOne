@@ -31,7 +31,7 @@
 							</a>
 						<hr>
 						<font class="my-2 fw-bold" color="#186E6A">쇼핑</font>
-							<a class="nav-link text-muted" aria-current="page" href="#">
+							<a class="nav-link text-muted" aria-current="page" href="mypage.mb?index=review">
 								상품 후기
 							</a>
 						<hr>
@@ -56,7 +56,9 @@
 				</div>
 			</div>
 		</div>
-		<%@ include file="mypage_detail.jsp" %>
+		<div class="col-sm-8 me-auto">
+			<%@ include file="mypage_detail.jsp" %>
+		</div>
 	</div>
 </div>
 

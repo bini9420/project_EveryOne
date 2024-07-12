@@ -1,8 +1,9 @@
-package mall.model;
+package model;
 
 public class SearchBean {
 	
 	private String id;
+	private int pnum;
 	private String category;
 	private String range;
 	private String keyword;
@@ -12,6 +13,12 @@ public class SearchBean {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public int getPnum() {
+		return pnum;
+	}
+	public void setPnum(int pnum) {
+		this.pnum = pnum;
 	}
 	public String getCategory() {
 		return category;

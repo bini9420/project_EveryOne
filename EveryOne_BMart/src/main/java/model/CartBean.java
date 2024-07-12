@@ -1,4 +1,4 @@
-package mall.model;
+package model;
 
 public class CartBean {
 	private int cnum;

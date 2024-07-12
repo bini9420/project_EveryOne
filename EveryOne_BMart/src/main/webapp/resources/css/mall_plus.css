@@ -124,3 +124,12 @@ a:hover {
 	padding: 5;
 	border: 1px solid #FFF5E6;
 }
+
+.review{
+	border-collapse: collapse;
+	width: 500
+}
+
+.review td{
+	padding: 10 25;
+}

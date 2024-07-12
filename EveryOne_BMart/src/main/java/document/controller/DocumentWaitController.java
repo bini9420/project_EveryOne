@@ -18,7 +18,7 @@ import document.model.DocumentBean;
 import document.model.DocumentDao;
 import document.model.ReviewcheckBean;
 import document.model.ReviewcheckDao;
-import member.model.MemberBean;
+import model.MemberBean;
 import utility.Paging;
 
 @Controller

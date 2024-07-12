@@ -125,4 +125,15 @@ public class MemberDao {
 		sqlSessionTemplate.delete(review+".deleteReview", rnum);
 	}
 
+	//아이디 중복체크
+	public int checkId(String id) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.selectOne(namespace+".checkId", id);
+		return cnt;
+	}
+
+	public void insertMember(MemberBean member) {
+		sqlSessionTemplate.insert(namespace+".insertMember", member);
+	}
+
 }

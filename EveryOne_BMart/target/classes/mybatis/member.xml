@@ -11,10 +11,21 @@
 	</select>
 
 	<update id="updateMember">
-		update member set password=#{password}, name=#{name}, phone=#{phone}, email=#{email} where id=#{id}
+		update member 
+		set password=#{password}, name=#{name}, phone1=#{phone1}, phone2=#{phone2}, phone3=#{phone3}, email1=#{email1}, email2=#{email2} 
+		where id=#{id}
 	</update>
 	
 	<update id="updateMemberImage">
 		update member set image=#{image} where id=#{id}
 	</update>
+	
+	<select id="checkId" resultType="int">
+		select count(*) from member where id=#{id}
+	</select>
+	
+	<insert id="insertMember">
+		insert into member(id, name, password, phone1, phone2, phone3, email1, email2) 
+		values(#{id}, #{name}, #{password}, #{phone1}, #{phone2}, #{phone3}, #{email1}, #{email2})
+	</insert>
 </mapper>

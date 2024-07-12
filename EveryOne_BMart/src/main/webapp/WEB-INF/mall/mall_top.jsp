@@ -138,7 +138,7 @@
 							</li>
 							<li><hr class="dropdown-divider" /></li>
 							<li>
-								<a class="dropdown-item" href="#!">
+								<a class="dropdown-item" href="register.mb">
 									<i class="fi fi-rr-user-add fst-normal"> 회원가입 </i>
 								</a>
 							</li>

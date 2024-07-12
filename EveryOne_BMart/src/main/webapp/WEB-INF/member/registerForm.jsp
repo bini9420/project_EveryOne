@@ -133,7 +133,7 @@
                                 
                                 <div class="form-group row">
                                 	이메일 : 
-                                    <input type="text" class="form-control col-sm-3 mx-3" name="email1" value="${member.email1}"> @ 
+                                    <input type="email" class="form-control col-sm-3 mx-3" name="email1" value="${member.email1}"> @ 
                                     <% String[] email = {"naver.com","gmail.com","daum.net","hanmail.net"}; %>
 									<select name="email2" class="form-control col-sm-4 mx-3">
 										<option value="">선택 안 함

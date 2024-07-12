@@ -12,8 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import document.model.EnterBean;
 import member.model.AddressBean;
-import member.model.EnterBean;
 import member.model.MemberBean;
 import member.model.MemberDao;
 

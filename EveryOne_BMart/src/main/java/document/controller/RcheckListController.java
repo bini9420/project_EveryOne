@@ -14,31 +14,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import document.model.DocumentBean;
-import document.model.DocumentDao;
 import document.model.ReviewcheckBean;
 import document.model.ReviewcheckDao;
 import member.model.MemberBean;
 import utility.Paging;
 
 @Controller
-public class DocumentWaitController {
+public class RcheckListController {
+	private final String command = "rcheckList.dc";
+	private final String getPage = "reviewCheckList";
 
-	private final String command = "document_wait.dc";
-	private final String getPage = "document_waitBox";
-	
 	@Autowired
-	DocumentDao documentDao;
+	ReviewcheckDao reviewcheckDao;
 	
-	//GET: document_box.jsp에서 결재대기함 클릭시, o_top.jsp에서 결재대기함 클릭시
+	//GET: o_top.jsp 에서 리뷰검토함 클릭시
 	@RequestMapping(value=command, method=RequestMethod.GET)
-	public String waitBox(@RequestParam(value="whatColumn", required=false) String whatColumn,
-						  @RequestParam(value="keyword", required=false) String keyword,
-						  @RequestParam(value="pageNumber", required=false) String pageNumber,
-						  HttpServletRequest request,
-						  HttpSession session,
-						  Model model) {
-		System.out.println("keyword: " + keyword);
+	public String reviewcheck(@RequestParam(value="whatColumn", required=false) String whatColumn,
+							  @RequestParam(value="keyword", required=false) String keyword,
+							  @RequestParam(value="pageNumber", required=false) String pageNumber,
+							  HttpServletRequest request,
+							  HttpSession session,
+							  Model model) {
 		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
 		
 		Map<String, String> map = new HashMap<String, String>();
@@ -46,16 +42,17 @@ public class DocumentWaitController {
 		map.put("keyword", "%" + keyword + "%");
 		map.put("id", mb.getId());
 		
-		int totalCount = documentDao.getWaitCount(map);
+		int totalCount = reviewcheckDao.getRTotalCount(map);
 		String url = request.getContextPath() + this.command;
 		
 		Paging pageInfo = new Paging(pageNumber, null, totalCount, url, whatColumn, keyword);
 		model.addAttribute("pageInfo", pageInfo);
 		
-		List<DocumentBean> lists = documentDao.getAllWaitDocument(map, pageInfo);
+		List<ReviewcheckBean> lists = reviewcheckDao.getAllReviewCheck(map, pageInfo);
 		model.addAttribute("lists", lists);
+		System.out.println("rcheck size: " + lists.size());
 		
 		return getPage;
 	}
-
+	
 }

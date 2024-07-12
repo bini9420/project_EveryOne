@@ -9,4 +9,21 @@
 	<select id="getEnter" resultType="enter">
 		select * from enter where writer=#{id}
 	</select>
+	
+	<select id="whatEnumber" resultType="String">
+		select max(rownum) from (select * from enter)
+	</select> 
+	
+	<insert id="insertEnter">
+		insert into enter(eno, writer, writeday, title, businesscode, postnum, addr1, addr2, request, originname, approval, dstatus)
+		values(#{eno}, #{writer}, sysdate, #{title}, #{businesscode}, #{postnum}, #{addr1}, #{addr2}, 1, #{originname, jdbcType=VARCHAR}, 0, 0)
+	</insert>
+	
+	<select id="checkEnter" resultType="int">
+		select count(*) from enter where writer=#{id}
+	</select>
+	
+	<delete id="deleteEnter">
+		delete from enter where eno=#{eno}
+	</delete>
 </mapper>

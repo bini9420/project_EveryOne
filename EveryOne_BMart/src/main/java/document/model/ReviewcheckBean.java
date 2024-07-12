@@ -11,7 +11,7 @@ public class ReviewcheckBean {
 	private String re_writeday;
 	private int request;
 	private String reason;
-	private int apprival;
+	private int approval;
 	private String approveday;
 	private String okimage;
 	private int dstatus;
@@ -75,11 +75,11 @@ public class ReviewcheckBean {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-	public int getApprival() {
-		return apprival;
+	public int getApproval() {
+		return approval;
 	}
-	public void setApprival(int apprival) {
-		this.apprival = apprival;
+	public void setApprival(int approval) {
+		this.approval = approval;
 	}
 	public String getApproveday() {
 		return approveday;

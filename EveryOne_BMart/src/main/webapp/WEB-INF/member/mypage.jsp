@@ -81,6 +81,9 @@
 							<th>승인일</th>
 						</c:if>
 						<th>상태</th>
+						<c:if test="${enter.status eq 0}">
+							<td rowspan="2"><button type="button" class="btn btn-secondary btn-sm" onclick="location.href='enter_delete.dc?eno=${enter.eno}'">삭제</button></td>
+						</c:if>
 					</tr>
 					<tr>
 						<td>${enter.title}</td>

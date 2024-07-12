@@ -12,11 +12,11 @@ import document.model.ReviewcheckDao;
 import member.model.MemberBean;
 
 @Controller
-public class DocumentRchckInsertController {
+public class RchckInsertController {
 
 	private final String command = "document_rcheckInsert.dc";
-	private final String getPage = "document_reviewCheckForm";
-	private final String gotoPage = "redirect:/document_box.dc";
+	private final String getPage = "reviewCheckForm";
+	private final String gotoPage = "redirect:/rcheckList.dc";
 	
 	@Autowired
 	ReviewcheckDao reviewcheckDao;
@@ -31,13 +31,15 @@ public class DocumentRchckInsertController {
 	//POST: document_reviewCheckForm.jsp에서 작성 클릭시
 	@RequestMapping(value=command, method=RequestMethod.POST)
 	public String review(ReviewcheckBean reviewcheck, HttpSession session) {
-		System.out.println("writer: " + reviewcheck.getWriter()); //null
-		System.out.println("writeday: " + reviewcheck.getWriteday()); //null
-		System.out.println("re_writer: " + reviewcheck.getRe_writer());
-		System.out.println("re_writeday: " + reviewcheck.getRe_writeday());
-		System.out.println("pnum: " + reviewcheck.getPrdnum());
-		System.out.println("title: " + reviewcheck.getTitle());
-		System.out.println("content: " + reviewcheck.getContent());
+		/*
+		 * System.out.println("writer: " + reviewcheck.getWriter()); //null
+		 * System.out.println("writeday: " + reviewcheck.getWriteday()); //null
+		 * System.out.println("re_writer: " + reviewcheck.getRe_writer());
+		 * System.out.println("re_writeday: " + reviewcheck.getRe_writeday());
+		 * System.out.println("pnum: " + reviewcheck.getPrdnum());
+		 * System.out.println("title: " + reviewcheck.getTitle());
+		 * System.out.println("content: " + reviewcheck.getContent());
+		 */
 		
 		//rnum(문서번호) 설정
 		String maxNum = reviewcheckDao.whatRnumber(); 

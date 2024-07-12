@@ -71,7 +71,23 @@
 		color: #e74a3b;
 		font-size: small;
 	}
-	
+	#postBtn {
+		margin-left: -8px;
+	}
+	#postBtn:hover {
+		font-weight: bold;
+		background-color: #27B5B0;
+		border-color: #27B5B0;
+	}
+	#sample6_postcode, #postBtn, #addrLabel {
+		margin-bottom: -3px;
+	}
+	#sample6_address {
+		margin-bottom: -12px;
+	}
+	#sample6_detailAddress {
+		margin-bottom: -10px;
+	}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
@@ -100,7 +116,7 @@
 	    })()
 	
 	    // 폼의 제출을 트리거
-	    document.myform.action = "document_write.dc";
+	    document.myform.action = "enter_write.dc";
 	    document.myform.dispatchEvent(new Event('submit', { cancelable: true }));
 	}
 	
@@ -115,120 +131,92 @@
 	    }
 	
 	    // select 요소의 유효성 검사가 통과되면 폼을 제출
-	    document.myform.action = "document_temp.dc";
+	    document.myform.action = "enter_temp.dc";
 	    document.myform.submit();
 	}
 </script>
-<!-- document_writeForm.jsp<br> -->
-<%
-	String[] category = {"물품등록", "광고요청", "휴업신청"};
-%>
+
+<!-- enter_writeForm.jsp<br> -->
 <div class="modal-header d-flex align-items-center"> 
     <!-- Font Awesome Icon for Pen, remove margin for close alignment -->
     <i class="fas fa-pen fa-2x text-gray-500"></i>
     <!-- Modal Title with no margin to align closely with the icon -->
-    <h5 class="modal-title mb-0" id="exampleModalLabel"><b>결재 문서 작성</b></h5>
+    <h5 class="modal-title mb-0" id="enterModalLabel"><b>결재 문서 작성</b></h5>
 </div>
- 
-      
+
       <div class="modal-body">
 	      <form name="myform" class="row g-3 needs-validation" method="post" enctype="multipart/form-data" novalidate>
+			  <!-- 결재문서 종류(입점신청) -->
 			  <div class="col-md-6">
-			    <label for="documentCategory" class="form-label">결재문서 종류 <font color="red">*</font></label>
-			    <select class="form-select form-select-sm" aria-label="Default select example" name="dcategory" id="documentCategory" required>
-				  <option value="">선택</option>
-				    <c:forEach var="category" items="<%=category%>">
-	            		<option value="${category}" <c:if test="${document.dcategory eq category}">selected</c:if>>${category}</option>
-	            	</c:forEach>
-				</select>
+			    <label for="enterCategory" class="form-label">결재문서 종류 <font color="red">*</font></label>
+			    <input type="text" class="form-control form-control-sm" value="입점신청" disabled="disabled">
 				<div class="invalid-feedback">
 			    	결재문서 종류는 필수입니다
 			    </div>
 			  </div>
-			  
+			   
+			  <!-- 승인·알림 대상 -->
 			  <div class="col-md-6">
-			    <label for="documentApprover" class="form-label">승인·알림 대상 <font color="red">*</font></label>
+			    <label for="enterApprover" class="form-label">승인·알림 대상 <font color="red">*</font></label>
 			    <div class="box" style="background: #BDBDBD;">
 			    	<img class="profile" src="<%=request.getContextPath()%>/resources/images/dang.jpg">
 			    </div>
 			  </div>
 			  
+			  <!-- 작성자 -->
 			  <div class="col-md-6">
-			    <label for="documentWriter" class="form-label">작성자 </label>
-			    <input type="text" class="form-control form-control-sm" value="${name}" name="writer" id="documentWriter" disabled>
+			    <label for="enterWriter" class="form-label">작성자 </label>
+			    <input type="text" class="form-control form-control-sm" value="${param.id}" name="writer" id="documentWriter" disabled>
 			  </div>
 			  
+			  <!-- 작성일 -->
 			  <c:set var="now" value="<%=new Date()%>"/>
 			  <div class="col-md-6">
-			    <label for="documentWriteday" class="form-label">기안일 </label>
+			    <label for="enterWriteday" class="form-label">작성일 </label>
 			    <input type="text" class="form-control form-control-sm" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>" name="writeday" id="documentWriteday" disabled>
 			  </div>
 			  
+			  <!-- 제목 입력 -->
 			  <div class="col-md-12">
-			    <label for="documentTitle" class="form-label">제목 <font color="red">*</font></label>
+			    <label for="enterTitle" class="form-label">제목 <font color="red">*</font></label>
 			    <input type="text" class="form-control form-control-sm" name="title" id="documentTitle" required>
 			    <div class="invalid-feedback">
 			    	제목 입력은 필수입니다
 			    </div>
 			  </div>
 			  
-			  <div class="col-12">
-			  	<label for="documentContent" class="form-label">내용 <font color="red">*</font></label>
-			  	<textarea required
-			  	placeholder="작성예시) &#13;&#10;&#13;&#10;B-마트 물품등록 권한을 요청하오니 검토 후 재가하여 주시기 바랍니다.&#13;&#10;&#13;&#10;1. 점포명: 깨끗한나라&#13;&#10;2. 물품 카테고리: 생필품" 
-			  	class="form-control" id="documentContent" style="height: 250px" id="documentContent" name="dcontent" required><c:if test="${document.dcontent ne ''}">${document.dcontent}</c:if></textarea>
-			  	<div class="invalid-feedback">
-			    	내용 입력은 필수입니다
+			   <!-- 사업자번호 입력 -->
+			  <div class="col-md-12">
+			    <label for="enterBusinesscode" class="form-label">사업자번호 <font color="red">*</font></label>
+			    <input type="text" class="form-control form-control-sm" name="businesscode" id="enterBusinesscode" required>
+			    <div class="invalid-feedback">
+			    	사업자번호 입력은 필수입니다
 			    </div>
 			  </div>
 			  
+			  <!-- 주소지 입력 -->
 			  <div class="col-12">
-			  	<div class="accordion" id="accordionExample">
-				  <div class="accordion-item">
-				    <h2 class="accordion-header" id="headingOne">
-				      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-				        Accordion Item #1
-				      </button>
-				    </h2>
-				    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-				      <div class="accordion-body">
-				        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-				      </div>
-				    </div>
-				  </div>
-				  <div class="accordion-item">
-				    <h2 class="accordion-header" id="headingTwo">
-				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-				        Accordion Item #2
-				      </button>
-				    </h2>
-				    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-				      <div class="accordion-body">
-				        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-				      </div>
-				    </div>
-				  </div>
-				  <div class="accordion-item">
-				    <h2 class="accordion-header" id="headingThree">
-				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-				        Accordion Item #3
-				      </button>
-				    </h2>
-				    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-				      <div class="accordion-body">
-				        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-				      </div>
-				    </div>
-				  </div>
-				</div>
+			  	<label for="documentTitle" class="form-label" id="addrLabel">주소지 <font color="red">*</font></label>
+			  </div>
+			  <div class="col-9">
+				<input type="text" class="form-control form-control-sm" name="postnum" id="sample6_postcode" placeholder="우편번호" required>
+					<div class="invalid-feedback">
+						주소지 입력은 필수입니다
+					</div>
+			  </div>
+			  <div class="col-3">
+			    	<button class="btn btn-primary btn-sm" type="button" onclick="sample6_execDaumPostcode()" id="postBtn">우편번호 찾기</button>
+			  </div>
+			  <div class="col-12">
+			  		<input type="text" class="form-control form-control-sm" name="addr1" id="sample6_address" placeholder="주소" required><br>
+			  		<input type="text" class="form-control form-control-sm" name="addr2" id="sample6_detailAddress" placeholder="상세주소" required><br>
 			  </div>
 			  
-			  
-			  
+			  <!-- 파일 첨부 -->
 			  <div class="col-12">
-				 <input class="form-control form-control-sm" id="formFileSm" type="file" name="upload">
-				 <div class="valid-feedback">
-			    	파일 첨부는 필수 사항이 아닙니다
+				 <input class="form-control form-control-sm" id="formFileSm" type="file" name="upload" required>
+				 <div class="invalid-feedback">
+			    	사업자등록증 및 통장사본을 첨부 해주세요
 			    </div>
 			  </div>
 	 	 </form>
@@ -238,11 +226,6 @@
       	<!-- 닫기 버튼 -->
       	<a href="" class="btn btn-primary btn-icon-split" id="closeBtn">
             <span class="text">닫기</span>
-        </a>
-        
-        <!-- 임시저장 버튼 -->
-      	<a href="javascript:tempSave()" class="btn btn-warning btn-icon-split" id="tempBtn">
-            <span class="text">임시저장</span>
         </a>
         
         <!-- 요청 버튼 -->

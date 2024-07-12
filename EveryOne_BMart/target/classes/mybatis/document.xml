@@ -299,5 +299,17 @@
 		</if>
 		order by writeday desc
 	</select>
+	
+	<select id="getRcheckByRnum" resultType="document.model.ReviewcheckBean">
+		select * from review_check where rnum=#{rnum}
+	</select>
+	
+	<delete id="deleteReviewCheck">
+		delete from review_check where rnum=#{rnum}
+	</delete>
 
+	<insert id="tempSaveRCheck">
+		insert into review_check(rnum, writer, writeday, title, content, prdnum, re_writer, re_writeday, request, dstatus)
+		values(#{rnum}, #{writer}, sysdate,  #{title}, #{content}, #{prdnum}, #{re_writer}, #{re_writeday}, 0, 0)
+	</insert>
 </mapper>

@@ -41,22 +41,22 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 <script>
-	function update(dnum) {
-		$('#update_modal').load("document_update.dc?dnum=" + dnum);
-		$('#documentUpdate').modal('show'); 
+	function update(rnum) {
+		$('#update_modal').load("rcheckUpdate.dc?rnum=" + rnum);
+		$('#documentUpdate').modal('show');
 	}
 	
-	function deleteItem(dnum) {
+	function deleteItem(rnum) {
 		const isCheck = confirm('정말 삭제하시겠습니까?');
 		if(isCheck) {
-			location.href='document_delete.dc?dnum=' + dnum;
+			location.href='rcheckDelete.dc?rnum=' + rnum;
 		}
 	}
 </script>
 
 <!-- 모달 본문 -->
 <div class="modal-header">
-    <h1 class="modal-title fs-5" id="staticBackdropLabel" align="left"><b>[${document.dcategory}] ${document.title}</b></h1>
+    <h1 class="modal-title fs-5" id="staticBackdropLabel" align="left"><b>[리뷰검토] ${rcheck.title}</b></h1>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 
@@ -68,34 +68,34 @@
                 <table class="table bsb-table-xl text-nowrap align-middle m-0" id="table1">
                     <tr>
                         <th class="selectedTh">
-                            <label for="documentDnum" class="form-label">작성자명</label>
+                            <label for="documentRnum" class="form-label">작성자명</label>
                         </th>
                         <td>
-                            <label class="form-label">${document.writer}</label>
+                            <label class="form-label">${rcheck.writer}</label>
                         </td> 
                         <th class="selectedTh">
                             <label for="documentWriteday" class="form-label">작성일자</label>
                         </th>
                         <td>
-                            <label class="form-label">${document.writeday}</label>
+                            <label class="form-label">${rcheck.writeday}</label>
                         </td> 
                     </tr>
                     
                     <tr>
                         <th class="selectedTh">
-                            <label for="documentDnum" class="form-label">결재상태</label>
+                            <label for="documentRnum" class="form-label">결재상태</label>
                         </th>
                         <td>
-                            <c:if test="${document.dstatus eq -1}">
+                            <c:if test="${rcheck.dstatus eq -1}">
                                 <label class="form-label text-md font-weight-bold text-danger">반려</label>
                             </c:if>
-                            <c:if test="${document.dstatus eq 0 && document.request eq 1}">
+                            <c:if test="${rcheck.dstatus eq 0 && rcheck.request eq 1}">
                                 <label class="form-label text-md font-weight-bold text-info">대기</label>
                             </c:if>
-                            <c:if test="${document.dstatus eq 1}">
+                            <c:if test="${rcheck.dstatus eq 1}">
                                 <label class="form-label text-md font-weight-bold text-success">승인</label>
                             </c:if>
-                            <c:if test="${document.request eq 0}">
+                            <c:if test="${rcheck.request eq 0}">
                                 <label class="form-label text-md font-weight-bold text-warning">임시저장</label>
                             </c:if>
                         </td> 
@@ -103,7 +103,7 @@
                             <label for="documentWriteday" class="form-label">문서번호</label>
                         </th>
                         <td>
-                            <label class="form-label">${document.dnum}</label>
+                            <label class="form-label">${rcheck.rnum}</label>
                         </td> 
                     </tr>
                 </table>
@@ -116,7 +116,7 @@
                     <tr id="approvalText">
                         <th>승인</th>
                     </tr>
-                    <c:if test="${document.approval eq 1}">
+                    <c:if test="${rcheck.approval eq 1}">
                         <tr>
                             <td>
                                 <i class="fas fa-user-check fa-2x text-gray-800"></i>
@@ -133,7 +133,7 @@
                 <table class="table bsb-table-xl text-nowrap align-middle m-0" id="table3">
                     <tr>
                         <th>제목</th>
-                        <td id="title">${document.title}</td>
+                        <td id="title">${rcheck.title}</td>
                     </tr>
                 </table>	 
             </div>
@@ -144,38 +144,26 @@
             <div class="col-md-12">
                 <table class="table bsb-table-xl text-nowrap align-middle m-0" id="table4" border=1>
                     <tr>
-                        <td><pre><c:out value="${document.dcontent}"/></pre></td>
+                        <td><pre><c:out value="${rcheck.content}"/></pre></td>
                     </tr>
                 </table>
-            </div>
-        </div>
-        
-        <!-- 첨부파일 테이블 -->
-        <div class="row mt-4">
-            <div class="col-md-12">
-                <table class="table bsb-table-xl text-nowrap align-middle m-0" id="table3">
-                    <tr>
-                        <th>첨부파일</th>
-                        <td id="title"><a href="<%=request.getContextPath()+"/resources/document/"%>${document.orginname}">${document.orginname}</a></td>
-                    </tr>
-                </table>	 
             </div>
         </div>
     </div>
 </div>
 
 <div class="modal-footer">
-    <c:if test="${document.dstatus ne 0}">
+    <c:if test="${rcheck.dstatus ne 0}">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
     </c:if>
     
-    <c:if test="${document.dstatus eq 0 }">
+    <c:if test="${rcheck.dstatus eq 0 }">
         <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">닫기</button>
-        <button type="button" id="writeBtn" onclick="update('${document.dnum}')" class="btn btn-primary me-2">작성</button>
-        <button type="button" id="deleteBtn" onclick="deleteItem('${document.dnum}')" class="btn btn-danger">삭제</button>
+        <button type="button" id="writeBtn" onclick="update('${rcheck.rnum}')" class="btn btn-primary me-2">작성</button>
+        <button type="button" id="deleteBtn" onclick="deleteItem('${rcheck.rnum}')" class="btn btn-danger">삭제</button>
     </c:if>
     
-    <!-- 작성클릭시 수정Form 모달 -->
+    <!-- 작성 모달 -->
     <div class="modal fade" id="documentUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg"> <!-- 필요에 따라 modal-lg 추가 -->
             <div class="modal-content" id="update_modal">

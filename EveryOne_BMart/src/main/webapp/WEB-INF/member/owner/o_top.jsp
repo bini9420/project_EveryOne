@@ -136,7 +136,7 @@
                 </div>
             </li>
             
-            
+            <!-- 리뷰검토 문서 작성 모달 -->
 			<div class="modal fade" id="reviewCheckDocument" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog">
 			    <div class="modal-content">
@@ -163,7 +163,7 @@
                         <a class="collapse-item" href="document_return.dc">반려함</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">기타</h6>
-                        <a class="collapse-item" href="document_rcheckList.dc">리뷰검토함</a>
+                        <a class="collapse-item" href="rcheckList.dc">리뷰검토함</a>
                     </div>
                 </div>
             </li>
@@ -181,7 +181,7 @@
             <div class="sidebar-card d-none d-lg-flex">
                 <img class="sidebar-card-illustration mb-2" src="<%=request.getContextPath()%>/resources/img/undraw_rocket.svg" alt="...">
                 <p class="text-center mb-2"><strong>사용자 홈</strong> 으로 이동!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Go to consumer pages</a>
+                <a class="btn btn-success btn-sm" href="main.mall">Go to consumer pages</a>
             </div>
 
         </ul>

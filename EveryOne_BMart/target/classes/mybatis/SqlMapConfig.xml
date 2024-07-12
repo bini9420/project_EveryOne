@@ -16,7 +16,7 @@
 		<typeAlias type="member.model.MemberBean" alias="member"/>
 		<typeAlias type="member.model.AddressBean" alias="address"/>
 		<typeAlias type="member.model.BusinessBean" alias="business"/>
-		<typeAlias type="member.model.EnterBean" alias="enter"/>
+		<typeAlias type="document.model.EnterBean" alias="enter"/>
 	</typeAliases>
 
 	<mappers>

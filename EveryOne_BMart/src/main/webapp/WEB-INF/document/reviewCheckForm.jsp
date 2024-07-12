@@ -102,22 +102,27 @@
 	    })()
 	
 	    // 폼의 제출을 트리거
-	    document.myform.action = "document_rcheckInsert.dc";
+	    document.myform.action = "rcheckInsert.dc";
 	    document.myform.dispatchEvent(new Event('submit', { cancelable: true }));
 	}
 	
 	//임시저장 클릭
     function tempSave() {
-	    
-	    var titleElement = document.getElementById('documentTitle');
-	    if (!titleElement.checkValidity()) {
-	        // 유효성 검사 실패 시 처리 (예: 경고 메시지 출력)
-	        alert('제목을 입력해주세요.');
+		//상품번호 입력 누락
+	    var prdNumber = document.getElementById('productNumber');
+	    if (!prdNumber.checkValidity()) {
+	        alert('상품번호를 입력해주세요.');
+	        return;
+	    }
+	    //체크박스 선택 누락
+	    var checkElement = document.getElementById('checkBox');
+	    if (!checkElement.checkValidity()) {
+	        alert('안내를 읽고 확인해주세요.');
 	        return;
 	    }
 	
 	    // select 요소의 유효성 검사가 통과되면 폼을 제출
-	    document.myform.action = "document_temp.dc";
+	    document.myform.action = "rcheckTempSave.dc";
 	    document.myform.submit();
 	}
 </script>
@@ -160,10 +165,10 @@
 			  </div>
 			  
 			  <div class="col-md-6">
-			      <label for="productCategory" class="form-label">리뷰 작성자 <font color="red">*</font></label>
+			      <label for="productCategory" class="form-label">리뷰 작성자 ID <font color="red">*</font></label>
 			      <input type="text" class="form-control form-control-sm" name="re_writer" id="reviewWriter">
 			      <div class="invalid-feedback">
-			          리뷰검토 요청하실 리뷰 작성자 입력은 필수입니다
+			          리뷰검토 요청하실 리뷰 작성자 ID 입력은 필수입니다
 			      </div>
 			  </div>
 			  
@@ -177,7 +182,7 @@
 			
 			  <div class="col-md-12">
 			      <label for="productName" class="form-label">상품번호 <font color="red">*</font></label>
-			      <input type="text" class="form-control form-control-sm" name="prdnum" id="productNumber">
+			      <input type="text" class="form-control form-control-sm" name="prdnum" id="productNumber" required>
 			      <div class="invalid-feedback">
 			          리뷰검토 요청하실 상품번호 입력은 필수입니다
 			      </div>
@@ -201,7 +206,7 @@
 			  
 			  <div class="col-12">
 			  	<div class="form-check">
-			  	<input type="checkbox" class="form-check-input" id="checkBox">
+			  	<input type="checkbox" class="form-check-input" id="checkBox" required>
 			  	<label for="check" class="form-label text-warning"><b> 리뷰검토 승인시 악성리뷰로 확인되면 리뷰를 삭제합니다</b></label>
 			  	</div>
 			  </div>

@@ -29,9 +29,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 <script type="text/javascript">
-	function detailDocument(dnum) {
+	function detailDocument(rnum) {
 	    //alert("선택한 문서 번호: " + dnum);
- 		$('.modal-content').load("document_detail.dc?dnum="+dnum);
+ 		$('#staticBackdrop .modal-content').load("rcheckDetail.dc?rnum="+rnum);
 		$('#staticBackdrop').modal();
 	}
 </script>
@@ -45,10 +45,10 @@
                   <div class="card-body">
                        <div class="row no-gutters align-items-center">
                        		<div class="col-auto">
-	              			    <i class="fas fa-spinner fa-2x text-gray-500"></i>
+	              			    <i class="fas fa-comments fa-2x text-gray-500"></i>
 	         			    </div>
                             <div class="col mr-2">
-                                <div class="text-lg font-weight-bold text-info text-uppercase mb-1" id="boxname"><h3><b>결재대기함</b></h3></div>
+                                <div class="text-lg font-weight-bold text-info text-uppercase mb-1" id="boxname"><h3><b>리뷰검토함</b></h3></div>
                             </div>
                   		</div>
              	  </div>
@@ -61,23 +61,22 @@
 		<div class="col-xl-12">
 			<div class="card shadow mb-4">
 				<div class="card-body">
-				<form action="document_wait.dc">
+				<form action="rcheckList.dc">
 				<table align="center">
 					<tr>
 						<td class="searchTd spaceTd">
 							<select class="form-select form-select-sm" name="whatColumn">
 								<option value="all">전체검색
-								<option value="dcategory">문서종류
-								<option value="dnum">문서번호
+								<option value="rnum">문서번호
 								<option value="title">제목
+								<option value="prdnum">상품번호
 							</select>
 						</td>
 						<td class="searchTd spaceTd" colspan="3">
 							<input type="text" class="form-control form-control-sm" name="keyword">
 						</td>
 						<td align="center">
-							<input type="submit" class="btn btn-primary" id="searchBtn" value="Search">
-							<!-- <a href="#" class="btn btn-primary btn-sm" id="searchBtn">Search</a> -->
+							<a href="#" class="btn btn-primary btn-sm" id="searchBtn">Search</a>
 						</td>
 					</tr>
 				</table>
@@ -90,7 +89,7 @@
 </div>
 
    
-<!-- 결재대기 문서 -->
+<!-- 리뷰검토 문서 -->
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12">
@@ -105,23 +104,45 @@
                     <th>문서번호</th>
                     <th>제목</th>
                     <th>작성일자</th>
+                    <th>상품명</th>
+                    <th>결재상태</th>
                   </tr>
                 </thead>
                 <tbody>
-              		<c:forEach var="waitDocument" items="${lists}">
-              			<tr onclick="detailDocument('${waitDocument.dnum}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              		<c:forEach var="rcheckDocument" items="${lists}">
+              			<tr onclick="detailDocument('${rcheckDocument.rnum}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
               				<td> 
-              					<h6 class="mb-1">[${waitDocument.dcategory}]</h6>
+              					<h6 class="mb-1">[리뷰검토]</h6>
               				</td>
               				<td>
-              					<h6 class="mb-1">${waitDocument.dnum}</h6>
+              					<h6 class="mb-1">${rcheckDocument.rnum}</h6>
               				</td> 
               				<td>
-              					<h6 class="mb-1">${waitDocument.title}</h6>
+              					<h6 class="mb-1">${rcheckDocument.title}</h6>
               				</td>
               				<td>
-              					<h6 class="mb-1">${waitDocument.writeday}</h6>
+              					<h6 class="mb-1">${rcheckDocument.writeday}</h6>
               				</td>
+              				<td>
+              					<h6 class="mb-1">${rcheckDocument.prdnum}</h6>
+              				</td>
+              				<!-- 
+							 -1: 반려 / 0: 대기(결재진행중) / 1: 승인(결재완료) / 10: 임시저장
+							-->
+							<td id="documentStatus" align="left">
+							    <c:if test="${rcheckDocument.dstatus eq -1}">
+							          <span class="badge rounded-pill bg-danger">반려</span>
+							    </c:if>
+							    <c:if test="${(rcheckDocument.dstatus eq 0) && (rcheckDocument.request eq 1)}">
+							          <span class="badge rounded-pill bg-info">대기</span>
+							    </c:if>
+							    <c:if test="${rcheckDocument.dstatus eq 1}">
+							          <span class="badge rounded-pill bg-success">승인</span>
+							    </c:if>
+							    <c:if test="${(rcheckDocument.request eq 0) && (rcheckDocument.dstatus eq 0)}">
+							          <span class="badge rounded-pill bg-warning">임시저장</span>
+							    </c:if>
+							</td>
               			</tr>
               		</c:forEach>
                 </tbody>

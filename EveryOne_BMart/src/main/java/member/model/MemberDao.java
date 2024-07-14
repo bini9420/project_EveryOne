@@ -30,12 +30,6 @@ public class MemberDao {
 		return member;
 	}//getMember
 	
-	public List<MemberBean> commonMember(Map<String,String> map, MemberListPaging pageInfo){
-		List<MemberBean> commonMList = new ArrayList<MemberBean>();
-		RowBounds rowbounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
-		commonMList = sqlSessionTemplate.selectList(namespace+".commonMember", map, rowbounds);
-		return commonMList;
-	}
 	
 	
 	
@@ -50,16 +44,17 @@ public class MemberDao {
 	    RowBounds rowbounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
 	    return sqlSessionTemplate.selectList(namespace + ".getMemberList", map, rowbounds);
 	}
+	public List<BusinessBean> getBMemList(Map<String,String> map, MemberListPaging pageInfo) {
+		RowBounds rowbounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		return sqlSessionTemplate.selectList(namespace + ".getBMemList", map, rowbounds);
+	}
 
 	
-	public int insertMember(BusinessBean business) {
+	public int insertBMember(BusinessBean business) {
 		int cnt = -1;
-		try {
-			cnt = sqlSessionTemplate.insert(namespace+".insertMember",business);
-		}catch(DuplicateKeyException e) {
-			System.out.println("아이디 중복");
-			cnt = -3;
-		}
+	
+			cnt = sqlSessionTemplate.insert(namespace+".insertBMember",business);
+		
 		return cnt;
 	}//insertMember
 

@@ -12,7 +12,7 @@
 
 <form:form commandName="product" name="myform"
 	action="productInsert.prd" method="post" enctype="multipart/form-data">
-	<body onLoad="init('${product.mall }','${product.pcategory}')">
+	
 		<input type="hidden" name="pageNumber" value="${pageNumber}">
 
 
@@ -84,7 +84,7 @@
 								value="${product.expritydate}"></td>
 						</tr>
 						<tr>
-							<th>수량</th>
+							<th>중량/용량</th>
 							<td><input type="text" name="capacity"
 								value="${product.capacity}"></td>
 						</tr>

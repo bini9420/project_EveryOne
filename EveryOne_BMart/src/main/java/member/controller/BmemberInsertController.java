@@ -18,9 +18,9 @@ import member.model.BusinessBean;
 import member.model.MemberDao;
 
 @Controller
-public class MemberInsertController {
-	final String command = "aMemberInsert.mb";
-	final String gotoPage = "redirect:/aMemberInsert.mb";
+public class BmemberInsertController {
+	final String command = "BMemberInsert.mb";
+	final String gotoPage = "redirect:/bMemberList.mb";
 
 	@Autowired
 	MemberDao memberDao;
@@ -28,24 +28,18 @@ public class MemberInsertController {
 	
 	
 	//사업자 입점 신청이 들어왔을때 
-	@RequestMapping(value=command, method=RequestMethod.GET)
-	public String register(	 
-							@ModelAttribute("business") @Valid BusinessBean business, 
-							BindingResult result,
+	@RequestMapping(value=command)
+	public String insertMem(	 
+							@ModelAttribute("business") BusinessBean business,
 							HttpServletResponse response) throws IOException {
 		
 		System.out.println("business.getBcode()"+business.getBcode());
 		System.out.println("business.getType()"+business.getType());
 		System.out.println("business.getId()"+business.getId());
 		
-		
-		PrintWriter out;
-		out = response.getWriter();
-		response.setContentType("text/html; charset=UTF-8");
-		
-		
+	
 		Integer cnt = -1;     
-		cnt = memberDao.insertMember(business);
+		cnt = memberDao.insertBMember(business);
 		
 		return gotoPage;
 	}

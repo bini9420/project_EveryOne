@@ -6,72 +6,45 @@
 
 
 <mapper namespace="product">
+
 	<select id="getTotalCount" resultType="int"
 		parameterType="hashmap">
 		select count(*) from product
-
-		<if test="whatColumn == 'all'">
-			where all like #{keyword}
-		</if>
-		<if test="whatColumn == 'pname'">
+		<if test="keyword != null and keyword != ''">
 			where pname like #{keyword}
-		</if>
-
-		<if test="whatColumn == 'price'">
-			where price like #{keyword}
-		</if>
-		<if test="whatColumn == 'stock'">
-			where stock like #{keyword}
-		</if>
-		<if test="whatColumn == 'pcategory'">
-			where pcategory like #{keyword}
+			or pcategory like #{keyword}
+			or pnum like #{keyword}
 		</if>
 	</select>
 
 	<select id="getProductList" resultType="mall.model.ProductBean">
 		select * from product
-		<where>
-			<if test="whatColumn == 'all'">
-				(
-				pname like #{keyword} or
-
-				price like #{keyword} or
-				stock
-				like #{keyword} or
-				pcategory like #{keyword}
-				)
-			</if>
-			<if test="whatColumn == 'pname'">
-				pname like #{keyword}
-			</if>
-
-			<if test="whatColumn == 'price'">
-				price like #{keyword}
-			</if>
-			<if test="whatColumn == 'stock'">
-				stock like #{keyword}
-			</if>
-			<if test="whatColumn == 'pcategory'">
-				pcategory like #{keyword}
-			</if>
-		</where>
+		<if test="keyword != null and keyword != ''">
+			where pname like #{keyword}
+			or pcategory like #{keyword}
+			or pnum like #{keyword}
+		</if>
 		order by pnum desc
 	</select>
 
 	<insert id="insertProduct">
 		insert into product(pnum,id, pname,
-		pimage, price, capacity, pcontent, expritydate, origin, stock,
-		pcategory, inputdate, ordercount, ad)
-		values(seqprod.nextval,#{id},#{pname}, 
+		pimage, price,
+		capacity, pcontent, expritydate, origin, stock,
+		pcategory, inputdate,
+		ordercount, ad)
+		values(seqprod.nextval,#{id},#{pname},
 		#{pimage,jdbcType=VARCHAR}, #{price}, #{capacity},
-		#{pcontent}, #{expritydate}, #{origin},#{stock},#{pcategory},sysdate,0,0)
-		
+		#{pcontent},
+		#{expritydate}, #{origin},#{stock},#{pcategory},sysdate,0,0)
+
 	</insert>
 
 	<delete id="deleteProduct">
 		delete from product where pnum=#{pnum}
 
 	</delete>
+
 
 
 	<!-- 상품 상세보기,상품 수정하기, 장바구니 목록의 상품 -->
@@ -81,24 +54,34 @@
 	</select>
 
 
-	<insert id="insertCategory"> 
+	<insert id="insertCategory">
 		insert into category (num,name)
 		values(cate_seq.nextval,#{name})
-	
-	
+
+
 	</insert>
 
 
 	<update id="updateProduct">
 		update product set pname = #{pname},price = #{price},
-		stock=#{stock},pimage
-		= #{pimage},
-		pcontent = #{pcontent} where pnum =
-		#{pnum}
+		stock=#{stock},pimage= #{pimage},pcontent = #{pcontent}
+		where pnum =#{pnum}
 	</update>
-	<!-- <update id="updateStock"> update products set stock = stock-#{stock} 
-		where num = #{num} </update> -->
+	
+	<update id="updateStock"> 
+		update product 
+	    set stock = stock - #{stock}
+	    where pnum = #{pnum}
+		
+	</update> 
 
+	<update id="updateOrdercount"> 
+		update product set ordercount = ordercount+#{ordercount} 
+		where pnum = #{pnum} 
+	</update> 
+		
+	
+	
 	<select id="getRangeTest" resultType="mall.model.ProductBean">
 		select rownum, pname,
 		ordercount
@@ -117,35 +100,7 @@
 
 	</select>
 
-	<select id="getPnumSale" resultType="mall.model.ProductBean">
-
-
-
-		SELECT *
-		FROM (
-		SELECT
-		p.pnum,
-		p.price,
-		p.ordercount,
-		TO_CHAR(o.orderdate, 'FMMM') || '월' AS hire_month
-		FROM
-		product p
-		INNER JOIN
-		orderInfo o
-		ON
-		p.pnum = o.pnum
-		)
-		PIVOT (
-		SUM(ordercount) AS 판매량,
-		SUM(ordercount * price) AS 총수입
-		FOR hire_month IN
-		('1월' AS "1월", '2월' AS "2월", '3월' AS "3월", '4월' AS "4월", '5월' AS "5월", '6월'
-		AS "6월", '7월' AS "7월", '8월' AS "8월", '9월' AS "9월", '10월' AS "10월",
-		'11월' AS "11월", '12월' AS "12월")
-		)
-
-	</select>
-
+	
 
 </mapper>
 

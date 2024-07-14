@@ -21,7 +21,9 @@
 	</bean>
 	
 	<context:component-scan base-package="admin" />
-
+	<context:component-scan base-package="doc" />
+	<context:component-scan base-package="sale" />
+	
 
 
 </beans>

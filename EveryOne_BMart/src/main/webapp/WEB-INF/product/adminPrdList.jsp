@@ -5,26 +5,96 @@
 <%@include file="../admin/a_top.jsp"%>
 
 
+<style>
+	.trash{
+		font-size:30px;
+		
+	}
+	
+	 button {
+            border: none;       /* 경계선 없애기 */
+            background: none;   /* 배경 없애기 */
+            padding: 0;         /* 패딩 없애기 */
+            cursor: pointer;    /* 커서 포인터로 변경 */
+        }
+	
+	
+	 .search {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center; /* 세로축 가운데 정렬 */
+            margin-left:85%;
+        }
+     .reading{
+     	border:1px solid;
+     }
+	
+	
+</style>
+
+<script>
+function allCheck() {
+    if($("#allChk").is(':checked')){
+    	$("input[name=chkRow]").prop("checked",true);
+    }else{
+    	
+    	$("input[name=chkRow]").prop("checked",false);
+    }
+}
+
+function checkboxArr(){
+	
+	alert('삭제하시겠습니까?');
+	
+	var checkArr =[];
+	$("input[name='chkRow']:checked").each(function(){
+		
+		
+		
+		checkArr.push($(this).val());
+	});
+
+	$.ajax({
+		url:'/ex/productDelete.prd',
+		type:'get',
+		dataType:'text',
+		async : false,
+		data:{
+			chkArr:checkArr
+		}
+	});
+
+	location.reload(true);
+}
+function check(){
+	checkboxArr();
+}
+
+</script>
+
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800 title">상품목록</h1>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<div class="card-body">
 
+			
 
-			<form class="row g-3">
+  <div class="search">
+<form action="productList.prd" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" >
+	
 
-				<div class="col-auto">
-
-					<input type="password" class="form-control" id="inputPassword2"
-						placeholder="Search..">
-				</div>
-				<div class="col-auto">
-					<button type="submit" class="btn btn-primary mb-3">
-						<i class="fas fa-search fa-sm"></i>
-					</button>
-				</div>
-			</form>
+                        <div class="input-group">
+                            <input type="text" name="keyword" class="form-control bg-light border-0 small reading" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                           
+                        </div>
+                    </form>
 
 
 
@@ -41,15 +111,22 @@
 
 <div class="card-body">
 	<div class="table-responsive">
+	<form  action="productDelete.prd" method="post">
 		<table class="table table-bordered" id="dataTable">
 			<thead>
 				<tr>
+					<button type="button" onClick="check()">
+                        <i class="fi fi-bs-trash-xmark trash"></i>
+                   </button>
+                </tr>
+                <tr>
+					<th><input type ="checkbox" id="allChk" onclick="allCheck()"></th>
 					<th>상품번호</th>
 					<th>카테고리</th>
 					<th>상품명</th>
 					<th>가격</th>
-					<th>주문횟수</th>
-					<th>상품등록일</th>
+					<th>주문횟수</th>      
+					<th>상품등록일</th>       
 					<th>재고</th>
 					<th>수정</th>
 					<th>삭제</th>
@@ -59,6 +136,7 @@
 			<c:forEach var="prd" items="${productLists }">
 
 				<tr>
+					<th><input type ="checkbox" name="chkRow" value="${prd.pnum }"></th>
 					<th>${prd.pnum }</th>
 					<th>${prd.pcategory }</th>
 					<th><a
@@ -69,9 +147,9 @@
 					<th>${fn:substring(prd.inputdate, 0, 10)}</th>
 					<th>${prd.stock }</th>
 					<th><a
-						href="productUpdate.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&whatColumn=${param.whatColumn}&keyword=${param.keyword}">수정</a></th>
+						href="productUpdateForm.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}">수정</a></th>
 					<th><a
-						href="productDelete.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&whatColumn=${param.whatColumn}&keyword=${param.keyword}">삭제</a></th>
+						href="productDelete.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}">삭제</a></th>
 				</tr>
 
 

@@ -29,6 +29,7 @@ public class ProductListController {
 
 	@RequestMapping(command)
 	public String list(
+
 			@RequestParam(value="keyword", required=false) String keyword,
 			@RequestParam(value="pageNumber", required=false) String pageNumber,
 			HttpServletRequest request,
@@ -41,24 +42,31 @@ public class ProductListController {
 
 			return "redirect:/loginForm.mb"; //MemberLoginController=>memberLoginForm.jsp
 		}else {
-*/
-		
+		 */
 
-			System.out.println("ProductListController");
-			Map<String, String> map = new HashMap<String, String>();
-		
+
+		System.out.println("keyword"+keyword);
+
+		Map<String, String> map = new HashMap<String, String>();
+
+
+		if (keyword != null && !keyword.trim().isEmpty()) {
 			map.put("keyword", "%" + keyword + "%");
-
-			int totalCount = productDao.getTotalCount(map);
-			String url = request.getContextPath() + "/"+this.command;
-
-			MemberListPaging pageInfo = new MemberListPaging(pageNumber, null, totalCount, url,  keyword);
-			List<ProductBean> productLists = productDao.getProductList(map, pageInfo);
-
-			model.addAttribute("productLists", productLists);
-			model.addAttribute("pageInfo", pageInfo);
-
-			return getPage;
+		} else {
+			map.put("keyword", null);
 		}
+
+
+		int totalCount = productDao.getTotalCount(map);                
+		String url = request.getContextPath() + "/"+this.command;
+
+		MemberListPaging pageInfo = new MemberListPaging(pageNumber, null, totalCount, url,  keyword);
+		List<ProductBean> productLists = productDao.getProductList(map, pageInfo);
+
+		model.addAttribute("productLists", productLists);
+		model.addAttribute("pageInfo", pageInfo);
+
+		return getPage;
 	}
+}
 

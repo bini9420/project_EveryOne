@@ -50,7 +50,7 @@ public class SalesDao {
 		return clists;
 	}
 	
-    
+	
 	public List<ProductBean> getPnumSale() {
 		List<ProductBean> pnumlist = new ArrayList<ProductBean>();
 		//System.out.println(clists.get(0).getPcategory());

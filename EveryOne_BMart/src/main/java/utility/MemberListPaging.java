@@ -225,7 +225,7 @@ public class MemberListPaging {
 		System.out.println("pageNumber2:"+pageNumber+"/totalPage2:"+totalPage);	
 		this.url = url ; //  /ex/list.ab
 	
-		this.keyword = keyword ;
+		this.keyword = keyword != null && !keyword.trim().isEmpty() ? keyword : "";
 		System.out.println("/keyword:"+keyword);
 		
 		this.pagingHtml = getPagingHtml(url) ;
@@ -289,4 +289,3 @@ public class MemberListPaging {
 	}	
 	
 }
-

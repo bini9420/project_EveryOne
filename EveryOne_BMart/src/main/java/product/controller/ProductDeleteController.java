@@ -1,8 +1,7 @@
 package product.controller;
 
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+
+import java.util.List;
 
 import javax.servlet.ServletContext;
 
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import mall.model.ProductBean;
+
 import product.model.ProductDao;
 
 @Controller
@@ -28,39 +27,47 @@ public class ProductDeleteController {
 
 	@RequestMapping(command)
 	public String delete(
-			@RequestParam(value="pnum") int pnum,
-			@RequestParam("pageNumber") int pageNumber,
-			@RequestParam("whatColumn") String whatColumn,
-			@RequestParam("keyword") String keyword,
+
+			@RequestParam(value="pnum",required=false) Integer pnum,
+			@RequestParam(value="chkArr[]",required=false) List<Integer> delnum,
+			@RequestParam(value="pageNumber",required=false) Integer pageNumber,
+			@RequestParam(value="whatColumn",required=false) String whatColumn,
+			@RequestParam(value="keyword",required=false) String keyword,
 			RedirectAttributes redirectAttributes) {
 
-		ProductBean product = productDao.detailViewByNum(pnum);
+		System.out.println("delnum"+delnum);
 
-		String image = product.getPimage(); // 운동화.jpg
-		System.out.println("삭제버튼 클릭하면 넘어오는 image : " + image);
-		
-		productDao.deleteProduct(pnum); 
-		
 
-		String deletePath = servletContext.getRealPath("/resources/uploadPimage/");
-		System.out.println("deletePath:" + deletePath);
-		
-		File file = new File(deletePath+File.separator+image);
-		if(file.exists()) {
-			file.delete();
+		if(pnum!=null) {
+
+			productDao.deleteProduct(pnum);
 		}
-		try {
-			String encodedWhatColumn = URLEncoder.encode(whatColumn, "UTF-8"); // 상품명(name), 설명
-			String encodedKeyword = URLEncoder.encode(keyword, "UTF-8"); // 운
 
-//			String redirectUrl = "redirect:/list.prd?pageNumber=" + pageNumber + "&whatColumn=" + whatColumn + "&keyword="+keyword; 
-			String redirectUrl = "redirect:/productList.prd?pageNumber=" + pageNumber + "&whatColumn=" + encodedWhatColumn + "&keyword="+encodedKeyword; 
-			return redirectUrl;
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-			System.out.println("url인코딩 오류");
-			return "redirect:/prd";
-		}
+
+
+
+
+
+		if (delnum != null && !delnum.isEmpty()) {
+			for (Integer delno : delnum) {
+
+				System.out.println("delno"+delno);
+				productDao.deleteProduct(delno);
+
+			}
+
+		} 
+
+
+
+
+		redirectAttributes.addAttribute("pageNumber", pageNumber);
+		redirectAttributes.addAttribute("whatColumn", whatColumn);
+		redirectAttributes.addAttribute("keyword", keyword);
+
+
+		return gotoPage;
 	}
+}		
 
-}
+

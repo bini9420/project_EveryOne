@@ -73,7 +73,7 @@ public class MonthlyController {
 
 		
 		List<ProductBean> pnumlists = salesDao.getPnumSale();
-		model.addAttribute("pnumlists",pnumlists);
+	model.addAttribute("pnumlists",pnumlists);
 		
 		return getPage;
 		

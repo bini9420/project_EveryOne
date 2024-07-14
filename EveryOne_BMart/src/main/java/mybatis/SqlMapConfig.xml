@@ -15,6 +15,8 @@
 		<mapper resource="mybatis/product.xml"/>
 		<mapper resource="mybatis/admin.xml"/>
 		<mapper resource="mybatis/sale.xml"/>
+		<mapper resource="mybatis/doc.xml"/>
+
 		
 	</mappers>
 	

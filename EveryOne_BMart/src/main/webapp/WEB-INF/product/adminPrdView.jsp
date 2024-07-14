@@ -39,7 +39,7 @@
 					</tr>
 					<tr>
 						<th>가격</th>
-						<td>${product.price }</td>
+						<td>${product.price }원</td>
 					</tr>
 					<tr>
 						<th>상품등록일</th>
@@ -55,9 +55,8 @@
 					</tr>
 					<tr>
 						<th>상품 이미지</th>
-						<td><img
-							src="<%=request.getContextPath() + "/resources/uploadImage/" %>${product.pimage}"
-							width="100" height="100" /> <br></td>
+						<td>
+						<img src="<%=request.getContextPath() + "/resources/uploadImage/" %>${product.pimage}" width="100" height="100" /> <br></td>
 					</tr>
 				</form:form>
 			</table>

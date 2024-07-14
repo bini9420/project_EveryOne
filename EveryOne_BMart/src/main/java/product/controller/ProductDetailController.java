@@ -16,7 +16,7 @@ public class ProductDetailController {
 	ProductDao productDao; 
 
 	private final String command = "/prodDetail.prd";
-	private final String getPage = "productDetailView";
+	private final String getPage = "adminPrdView";
 
 	@RequestMapping(value = command)
 	public String detailView(

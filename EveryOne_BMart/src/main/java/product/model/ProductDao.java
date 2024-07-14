@@ -26,7 +26,7 @@ public class ProductDao {
 
 	public List<ProductBean> getProductList(Map<String, String> map, MemberListPaging pageInfo) {
 		List<ProductBean> lists = new ArrayList<ProductBean>();
-		System.out.println(map.get("whatColumn"));
+		
 		System.out.println(map.get("keyword"));
 		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
 		System.out.println(pageInfo.getOffset());
@@ -60,13 +60,14 @@ public class ProductDao {
 		return pb;
 	}//detailViewByNum
 
-	public int deleteProduct(int pnum) {
+	public int deleteProduct(int delno) {
 		int cnt = -1;
-		cnt = sqlSessionTemplate.delete(namespace + ".deleteProduct", pnum);
+		cnt = sqlSessionTemplate.delete(namespace + ".deleteProduct", delno);
 		System.out.println("deleteProduct cnt:"+cnt);
 		return cnt;
 
 	}//deleteProduct
+
 
 	public int updateProduct(ProductBean product) {
 		int cnt = -1;

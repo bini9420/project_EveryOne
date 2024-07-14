@@ -11,20 +11,25 @@
 
 <title>관리자</title>
 
+
+
+
+
+
+
+
 <!-- Page level custom scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> 
+
 
 <script src="././resources/js/demo/chart-area-demo.js"></script>
-<script src="././resources/js/demo/chart-pie-demo.js"></script>
+<!-- <script src="././resources/js/demo/chart-pie-demo.js"></script> -->
 
 <!-- Bootstrap core JavaScript-->
-<!--     <script src="/resources/vendor/jquery/jquery.min.js"></script> -->
+     <!-- <script src="/resources/vendor/jquery/jquery.min.js"></script> -->
 <script src="././resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
@@ -34,7 +39,54 @@
 <script src="././resources/js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
-<script src="././resources/vendor/chart.js/Chart.min.js"></script>
+<!-- <script src="././resources/vendor/chart.js/Chart.min.js"></script> -->
+ <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
+
+ <script>
+
+ document.addEventListener('DOMContentLoaded', function() {
+	  var Calendar = FullCalendar.Calendar;
+	  var Draggable = FullCalendar.Draggable;
+
+	  var containerEl = document.getElementById('external-events');
+	  var calendarEl = document.getElementById('calendar');
+	  var checkbox = document.getElementById('drop-remove');
+
+	  // initialize the external events
+	  // -----------------------------------------------------------------
+
+	  new Draggable(containerEl, {
+	    itemSelector: '.fc-event',
+	    eventData: function(eventEl) {
+	      return {
+	        title: eventEl.innerText
+	      };
+	    }
+	  });
+
+	  // initialize the calendar
+	  // -----------------------------------------------------------------
+
+	  var calendar = new Calendar(calendarEl, {
+	    headerToolbar: {
+	      left: 'prev,next today',
+	      center: 'title',
+	      right: 'dayGridMonth,timeGridWeek,timeGridDay'
+	    },
+	    editable: true,
+	    droppable: true, // this allows things to be dropped onto the calendar
+	    drop: function(info) {
+	      // is the "remove after drop" checkbox checked?
+	      if (checkbox.checked) {
+	        // if so, remove the element from the "Draggable Events" list
+	        info.draggedEl.parentNode.removeChild(info.draggedEl);
+	      }
+	    }
+	  });
+
+	  calendar.render();
+	});
+    </script>
 
 <!-- Custom fonts for this template-->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
@@ -58,6 +110,19 @@
 	href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 
 <style>  
+
+
+#calendar-container {
+  position: relative;
+  z-index: 1;
+  margin: 50px;
+}
+
+#calendar {
+  max-width: 1100px;
+ 
+}
+
 .btn-outline-info {          
 	float: right;
 	margin-left: 10px;
@@ -112,7 +177,7 @@
 			<!-- Side bar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.html">
+				href="adminMain.ad">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -142,7 +207,8 @@
 					aria-labelledby="headingMember" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Member Manage:</h6>
-						<a class="collapse-item" href="aMemberList.mb">회원목록</a>
+						<a class="collapse-item" href="aMemberList.mb">일반회원목록</a>
+						<a class="collapse-item" href="bMemberList.mb">사업자회원목록</a>
 
 					</div>
 				</div></li>

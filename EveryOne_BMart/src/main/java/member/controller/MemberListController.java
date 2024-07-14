@@ -33,10 +33,14 @@ public class MemberListController {
 			@RequestParam(value="pageNumber", required=false) String pageNumber,
 			HttpServletRequest request,
 			Model model) {
-		System.out.println("memberListController");
+		System.out.println("keyword"+keyword);
 		Map<String, String> map = new HashMap<String, String>();
 		
-		map.put("keyword", "%" + keyword + "%");
+		if (keyword != null && !keyword.trim().isEmpty()) {
+			map.put("keyword", "%" + keyword + "%");
+		} else {
+			map.put("keyword", null);
+		}
 
 		int totalCount = memberDao.getTotalCount(map); 
 		String url = request.getContextPath() + "/"+this.command;

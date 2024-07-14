@@ -5,7 +5,7 @@
 
 <%@ include file="a_top.jsp"%>
 
-<a href="top.sale"></a>
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -15,9 +15,9 @@
 		<a href="#"
 			class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
 			class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-	</div>          
+	</div>
 
-	<!-- Content Row -->         
+	<!-- Content Row -->
 	<div class="row">
 
 		<!-- Earnings (Monthly) Card Example -->
@@ -28,8 +28,11 @@
 						<div class="col mr-2">
 							<div
 								class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-								<h5><a href="aMemberList.mb">회원</a>/<a href="productList.prd">상품 관리</a></h5>
-								           
+								<h5>
+									<a href="aMemberList.mb">회원</a>/<a href="productList.prd">상품
+										관리</a>
+								</h5>
+
 							</div>
 							<div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
 						</div>
@@ -132,6 +135,17 @@
 
 			<div class="col-xl-8 col-lg-7">
 
+
+
+
+
+
+
+
+
+
+
+
 				<!-- Area Chart -->
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
@@ -144,40 +158,100 @@
 					</div>
 				</div>
 
-				<!-- Bar Chart -->
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+						<h6 class="m-0 font-weight-bold text-primary">일정표</h6>
 					</div>
-					<div class="card-body">
-						<div class="chart-container">
-							<canvas id="myBarChart"></canvas>
+					<div id='external-events'>
+
+
+
+						<div id='calendar-container'>
+							<div id='calendar'></div>
+							  
 						</div>
+<div id='calendar-container'>
+    <div id='calendar'></div>
+</div>
 
 					</div>
 				</div>
-
 			</div>
-
-
-
-			<!-- Donut Chart -->
+			<!-- 결재 문서함 -->
 			<div class="col-xl-4 col-lg-5">
 				<div class="card shadow mb-4">
 					<!-- Card Header - Dropdown -->
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">인기 상품 TOP5</h6>
+						<h6 class="m-0 font-weight-bold text-primary">결재 문서</h6>
 					</div>
 					<!-- Card Body -->
 					<div class="card-body">
 						<div class="chart-container">
-							<canvas id="logNameChart"></canvas>
+							<div class="table-responsive">
+								<table
+									class="table table-borderless bsb-table-xl text-nowrap align-middle m-0 table-hover">
+									<thead>
+										<tr>
+											<th>문서종류</th>
+											<th>문서번호</th>
+											<th>제목</th>
+											<th>작성일자</th>
+											<th>결재상태</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<c:forEach var="doc" items="${docList}">
+											<tr onclick="detailDocument('${doc.dnum}')"
+												data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+												<td>[${doc.dcategory}]</td>
+												<td>
+													<h6 class="mb-1">${doc.dnum}</h6>
+
+												</td>
+												<td>
+													<h6 class="mb-1">${doc.title}</h6>
+												</td>
+												<td>
+													<h6 class="mb-1">${fn:substring(doc.writeday, 0, 10)}</h6>
+												</td>
+												<!-- 
+							                    	-1: 반려 / 0: 대기(결재진행중) / 1: 승인(결재완료) / 10: 임시저장
+							                     -->
+												<td id="documentStatus" align="left"><c:if
+														test="${doc.dstatus eq -1}">
+														<span class="badge rounded-pill bg-danger">반려</span>
+													</c:if> <c:if test="${(doc.dstatus eq 0) && (doc.request eq 1)}">
+														<span class="badge rounded-pill bg-info">대기</span>
+													</c:if> <c:if test="${doc.dstatus eq 1}">
+														<span class="badge rounded-pill bg-success">승인</span>
+													</c:if> <c:if test="${(doc.request eq 0) && (doc.dstatus eq 0)}">
+														<span class="badge rounded-pill bg-warning">임시저장</span>
+													</c:if></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+							<!-- Modal -->
+							<div class="modal fade" id="staticBackdrop"
+								data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+								aria-labelledby="staticBackdropLabel" aria-hidden="true">
+								<div class="modal-dialog modal-lg">
+									<div class="modal-content">
+										<!-- document_DetailView.jsp가 들어올 부분 -->
+									</div>
+								</div>
+							</div>
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
 
-	<%@include file="a_bottom.jsp"%>
+
+<%@include file="a_bottom.jsp"%>

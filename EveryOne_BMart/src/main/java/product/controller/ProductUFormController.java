@@ -24,7 +24,7 @@ import product.model.ProductDao;
 @Controller
 public class ProductUFormController {
 	private final String command = "productUpdate.prd";
-	private final String getPage = "productUpdateForm";
+	private final String getPage = "adminPrdUpdateForm";
 	private final String gotoPage = "redirect:/productList.prd";
 	
 
@@ -35,7 +35,7 @@ public class ProductUFormController {
 	ServletContext servletContext;
 
 	// productList.jsp에서 수정클릭
-	@RequestMapping(value = command, method = RequestMethod.GET)
+	@RequestMapping(value = "productUpdateForm.prd", method = RequestMethod.GET)
 	public String updateForm(	
 			@RequestParam(value="pnum", required = true) int pnum,
 			@RequestParam(value="pageNumber", required = true) int pageNumber,
@@ -47,26 +47,9 @@ public class ProductUFormController {
 		System.out.println("pageNumber:"+pageNumber);
 		System.out.println("keyword:"+keyword);
 		ModelAndView mav = new ModelAndView();
-			
-		//		ModelAndView mav = new ModelAndView();
-		//		mav.addObject("product", pb);
-		//		mav.addObject("pageNumber", pageNumber);
-		//		mav.addObject("whatColumn", whatColumn);
-		//		mav.addObject("keyword", keyword);
-		//		mav.setViewName(getPage); // productUpdateForm
-
-		
-			
-		
-			
+	
 			ProductBean pb = productDao.detailViewByNum(pnum);
-//			mav.addObject("product", pb);
-//			mav.addObject("pageNumber", pageNumber);
-//			mav.addObject("whatColumn", whatColumn);
-//			mav.addObject("keyword", keyword);
-//			mav.setViewName(getPage); // productUpdateForm
-//
-//			return mav;
+
 			model.addAttribute("product" , pb);
 			model.addAttribute("pageNumber" , pageNumber);
 			return getPage;
@@ -77,17 +60,12 @@ public class ProductUFormController {
 	public ModelAndView update(
 			@ModelAttribute("product") @Valid ProductBean product, BindingResult result,
 			@RequestParam("pageNumber") int pageNumber,
-			@RequestParam("whatColumn") String whatColumn,
 			@RequestParam("keyword") String keyword
 			) {
 
-		System.out.println(this.getClass()+" POST");
 		ModelAndView mav = new ModelAndView();
 
 		if(result.hasErrors()) {
-			
-			System.out.println("productUpdate:"+product.getPname());
-			
 			mav.setViewName(getPage);
 			if(product.getPimage().equals("")) {
 				product.setPimage(product.getUpload2());
@@ -101,11 +79,11 @@ public class ProductUFormController {
 
 
 		MultipartFile multi = product.getUpload();
-		String uploadPath = servletContext.getRealPath("/resources/uploadPimage/");
-		System.out.println("uploadPath:"+uploadPath);
+		String uploadPath = servletContext.getRealPath("/resources/uploadImage");
+
 		if(cnt != -1) {
 
-			String deletePath = servletContext.getRealPath("/resources/uploadPimage/");
+			String deletePath = servletContext.getRealPath("/resources/uploadImage");
 			File file = new File(deletePath+File.separator+product.getUpload2());
 
 			System.out.println("File : " + file);
@@ -131,7 +109,6 @@ public class ProductUFormController {
 		}
 
 		mav.addObject("pageNumber", pageNumber);
-		mav.addObject("whatColumn", whatColumn);
 		mav.addObject("keyword", keyword);
 
 		return mav;

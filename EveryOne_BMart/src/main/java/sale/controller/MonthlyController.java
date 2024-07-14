@@ -72,8 +72,10 @@ public class MonthlyController {
 		model.addAttribute("pieJson", pieJson);
 
 		
-		List<ProductBean> pnumlists = salesDao.getPnumSale();
-	model.addAttribute("pnumlists",pnumlists);
+		/*
+		 * List<ProductBean> pnumlists = salesDao.getPnumSale();
+		 * model.addAttribute("pnumlists",pnumlists);
+		 */
 		
 		return getPage;
 		

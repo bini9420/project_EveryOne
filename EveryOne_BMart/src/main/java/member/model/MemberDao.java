@@ -150,4 +150,17 @@ public class MemberDao {
 		return mb;
 	}
 
+	//kakao 정보 저장
+	public void kakaoinsert(MemberBean mb) {
+		sqlSessionTemplate.insert(namespace+".kakaoInsert",mb);
+	}
+
+	// 카카오 정보 확인
+	public MemberBean findkakao(MemberBean mb) {
+		System.out.println("find id: "+mb.getId());
+		MemberBean member = null;
+		member = sqlSessionTemplate.selectOne(namespace+".findKakao", mb);
+		return member;
+	}
+
 }

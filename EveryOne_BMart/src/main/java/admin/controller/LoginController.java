@@ -49,17 +49,25 @@ public class LoginController {
 			return new ModelAndView( getPage ) ;
 			
 		}else{ // 해당 아이디가 존재한다.
-			if(mb.getPassword().equals(member.getPassword())) { // 비번 일치
-				session.setAttribute("loginInfo", mb); // loginInfo:로그인한 사람의 정보
-				return new ModelAndView( gotoPage ) ;
-				
-			}else { // 비번 불일치
-				System.out.println("비번 불일치");
-				out.println("<script>");
-				out.println("alert('비밀번호가 일치하지 않습니다. 비밀번호를 다시 입력해주세요.');");
-				out.println("</script>");
+			if(mb.getId().equals("admin")) { //관리자 아이디랑 같을 때
+				if(mb.getPassword().equals(member.getPassword())) { // 비번 일치
+					session.setAttribute("loginInfo", mb); // loginInfo:로그인한 사람의 정보
+					return new ModelAndView( gotoPage ) ;
+					
+				}else { // 비번 불일치
+					System.out.println("비번 불일치");
+					out.println("<script>");
+					out.println("alert('비밀번호가 일치하지 않습니다. 비밀번호를 다시 입력해주세요.');");
+					out.println("</script>");
+					out.flush();
+					//mav.setViewName(getPage);
+					return new ModelAndView( getPage ) ;
+				}
+			}else {
+				out.append("<script>");
+				out.append("alert('관리자 아이디가 아닙니다. 아이디를 다시 입력해주세요.')");
+				out.append("</script>");
 				out.flush();
-				//mav.setViewName(getPage);
 				return new ModelAndView( getPage ) ;
 			}
 		}

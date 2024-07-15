@@ -25,17 +25,14 @@
 										</div>
 										<input type="submit" value="로그인" class="btn btn-primary btn-user btn-block">
 
-									<hr>
-									
-										<button type="submit" class="btn btn-warning btn-user btn-block" id="kakao-login-btn">
-											<i class="fab fa-google fa-fw"></i> 카카오로 로그인하기
-										</button>
-										
-										<button type="submit" class="btn btn-google btn-user btn-block"> 
-											<i class="fab fa-google fa-fw"></i> 구글로 로그인하기
-										</button>
 									</form>
 									
+									<hr>
+									<form class="user text-center">
+										<a id="kakao-login-btn" class="p-2" 
+										href="https://kauth.kakao.com/oauth/authorize?client_id=f851426109160a96d2785229bdb40d68&redirect_uri=http://localhost:8080/ex/kakaoLogin.mb&response_type=code&prompt=login">
+										<img src="resources/img/kakao.png" style="height:40px" alt="kakao login btn"></a>  
+									</form>
 									<hr>
 									
 									<div class="text-center text-primary">

@@ -150,7 +150,7 @@
 						<!-- heart icon -->
 						<a class="nav-link active" aria-current="page" href="mypage.mb">
 							<i class="fi fi-rr-user icon"></i>
-							<font class="fs-6 text-primary fw-bolder">${loginInfo.name} 님</font>
+							<font class="fs-6 text-primary fw-bolder">${loginInfo.id} 님</font>
 						</a>
 					</li>
 				</c:if>

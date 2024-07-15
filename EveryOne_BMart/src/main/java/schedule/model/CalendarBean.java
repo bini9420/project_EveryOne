@@ -6,12 +6,17 @@ public class CalendarBean {
 	private String startDate;
 	private String endDate;
 	private String memo;
-	public String gettitle() {
+	
+	
+	
+	
+	public String getTitle() {
 		return title;
 	}
-	public void settitle(String title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
+	
 	public String getStartDate() {
 		return startDate;
 	}

@@ -457,18 +457,23 @@ commit;
 
 ------------------------------------------------------
 
+
 drop table schedule cascade constraints;
 create table schedule (
-	subject varchar2(20) primary key,
-	startDate date, 
-	endDate date,
-	memo varchar2(50)
-	
+	title varchar2(20) primary key,
+	startDate date default sysdate, 
+	endDate date default sysdate
+
 );
 
+
+
+
+INSERT INTO schedule VALUES ('b마트 점검', SYSDATE, SYSDATE);
+INSERT INTO schedule VALUES ('b마트 상품등록',  '24-7-15', '24-7-20');
+INSERT INTO schedule VALUES ('b마트 임원모임', '24-7-16','24-7-16');
+INSERT INTO schedule VALUES ('b마트 공지', '24-7-18', '24-7-19');
 commit;
-
-
 
 
 ------------------------------------------

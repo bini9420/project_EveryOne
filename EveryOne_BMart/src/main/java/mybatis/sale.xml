@@ -7,7 +7,8 @@
 
 <mapper namespace="sale">
 
-	<select id="getAriaChart" resultType="sale.model.orderInfoBean">
+
+	<select id="getAriaChart" resultType="sale.model.OrderInfoBean">
 
 		select to_char(orderdate,
 		'yyyy-mm') as orderdate, sum(o.pamount*p.price) as
@@ -18,7 +19,6 @@
 		'yyyy-mm')
 		order by 1
 	</select>
-
 
 
 

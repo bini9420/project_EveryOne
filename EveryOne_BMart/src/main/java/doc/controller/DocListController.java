@@ -21,7 +21,7 @@ import doc.model.DocBean;
 import doc.model.DocDao;
 import mall.model.ProductBean;
 import sale.model.SalesDao;
-import sale.model.orderInfoBean;
+import sale.model.OrderInfoBean;
 
 
 @Controller
@@ -48,11 +48,11 @@ public class DocListController {
 		model.addAttribute("docList", docList);
 		
 		
-		List<orderInfoBean> alists = salesDao.getAriaChart();
+		List<OrderInfoBean> alists = salesDao.getAriaChart();
 		Gson gson = new Gson();
 		JsonArray areaArray = new JsonArray();
 
-		for (orderInfoBean ob : alists) {
+		for (OrderInfoBean ob : alists) {
 			JsonObject object = new JsonObject();
 			object.addProperty("orderdate", ob.getOrderdate());
 			object.addProperty("totalPrice", ob.getTotalPrice());

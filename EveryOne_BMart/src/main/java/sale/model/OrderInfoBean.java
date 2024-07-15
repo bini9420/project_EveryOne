@@ -1,6 +1,6 @@
 package sale.model;
 
-public class orderInfoBean {
+public class OrderInfoBean {
   private int onum;
   private String id;
   private int pnum;

@@ -46,7 +46,7 @@
                 
                 	
                 	
-                	sDate = 
+                /* 	sDate = 
                         obj.event._instance.range["start"].getFullYear() + 
                         '-'+(obj.event._instance.range["start"].getMonth() +1) +
                         '-' +  obj.event._instance.range["start"].getDate();
@@ -69,7 +69,7 @@
                     console.log(allEvent);
 
                      let jsondata = JSON.stringify(Alldata);
-                     console.log("jsondata : " + jsondata);
+                     console.log("jsondata : " + jsondata); */
 
                      
                 }, 
@@ -111,7 +111,7 @@
                  
                  
                  
-                select: function(arg) { // 캘린더에서이벤트를 생성
+             /*    select: function(arg) { // 캘린더에서이벤트를 생성
                     let title = prompt('일정 내용을 입력하세요 :');
                     if (title) {
                         calendar.addEvent({
@@ -123,16 +123,16 @@
                     }
                     calendar.unselect()
                 },
-            });
+            }); */
             // 캘린더 랜더링
             calendar.render();
 
         });
 
-        function allSave() {
+      /*   function allSave() {
         	
 			 console.log(allData); 
-		document.getElementById("submenu").style.display = "block";
+		document.getElementById("submenu").style.display = "block"; */
 
 			 
              $.ajax({

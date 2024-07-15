@@ -10,8 +10,7 @@
 
 
 <select id="showSchedule" resultType="schedule.model.CalendarBean">
-		select title,startDate,endDate,memo
-		from schedule
+		select * from schedule
 		
 	
 	</select>

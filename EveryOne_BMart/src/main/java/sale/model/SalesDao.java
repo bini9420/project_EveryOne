@@ -21,9 +21,9 @@ public class SalesDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
     
-    public List<orderInfoBean> getMonthlySales() {
+    public List<OrderInfoBean> getMonthlySales() {
     	
-    	List<orderInfoBean> lists= new ArrayList<orderInfoBean>();
+    	List<OrderInfoBean> lists= new ArrayList<OrderInfoBean>();
         
     	lists= sqlSessionTemplate.selectList(namespace2+".monthSale");
     	return lists;
@@ -36,8 +36,8 @@ public class SalesDao {
         return plists;
      }
 
-	public List<orderInfoBean> getAriaChart() {
-		 List<orderInfoBean> alists = new ArrayList<orderInfoBean>();
+	public List<OrderInfoBean> getAriaChart() {
+		 List<OrderInfoBean> alists = new ArrayList<OrderInfoBean>();
 		 //System.out.println("ariaChart"+alists.get(0).getOrderdate());
 	        alists = sqlSessionTemplate.selectList(namespace+".getAriaChart");
 	        return alists;

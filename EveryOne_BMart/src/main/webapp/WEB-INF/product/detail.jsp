@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Product Detail</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/prdStyle.css">
 </head>
 <body>
     <h1>상품 정보</h1>
@@ -23,7 +23,9 @@
             <p>유통기한: ${product.expritydate}</p>
         </div>
     </div>
-    <input type="button" value="리뷰" onClick="location.href='list.rv?pnum=${product.pnum}'">	
-    <input type="button" value="목록으로" onClick="location.href='list.prd?pageNumber=${param.pageNumber}&whatColumn=${param.whatColumn}&keyword=${param.keyword}'">
+    <div style="text-align: center;">
+	    <input type="button" value="리뷰" onClick="location.href='list.rv?pnum=${product.pnum}'">	
+	    <input type="button" value="목록으로" onClick="location.href='list.prd?pageNumber=${param.pageNumber}&whatColumn=${param.whatColumn}&keyword=${param.keyword}'">
+	</div>
 </body>
 </html>

@@ -1,0 +1,166 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F5F5F5;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #48D1CC;
+    margin-top: 20px;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #CCCCCC;
+}
+
+th {
+    background-color: #48D1CC;
+    color: white;
+}
+
+input[type="button"], input[type="submit"] {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #48D1CC;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="button"]:hover, input[type="submit"]:hover {
+    background-color: #36b3a9;
+}
+
+a {
+    text-decoration: none;
+    color: #48D1CC;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.search-form {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.search-form input[type="text"] {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+}
+
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pagination a {
+    margin: 0 5px;
+    padding: 10px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    color: #48D1CC;
+}
+
+.pagination a.active {
+    background-color: #48D1CC;
+    color: white;
+    border: none;
+}
+
+.product-info {
+    width: 60%;
+    margin: 20px auto;
+    display: flex;
+    background-color: white;
+    border: 1px solid #CCCCCC;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.product-image {
+    width: 40%;
+    text-align: center;
+}
+
+.product-details {
+    width: 60%;
+    padding-left: 20px;
+}
+
+.product-details p {
+    margin: 10px 0;
+}
+
+form {
+    width: 60%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #CCCCCC;
+    border-radius: 8px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="number"], textarea, input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+button, input[type="button"] {
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #48D1CC;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover, input[type="button"]:hover {
+    background-color: #36b3a9;
+}
+
+button, input[type="button"] {
+    display: block;
+    width: 100%;
+}
+
+input[type="button"] {
+    background-color: #CCCCCC;
+}
+
+input[type="button"]:hover {
+    background-color: #BBBBBB;
+}

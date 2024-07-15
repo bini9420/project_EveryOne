@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Product List</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/prdStyle.css">
     <script>
         function confirmDelete(pnum, pageNumber) {
             if (confirm("정말로 삭제하시겠습니까?")) {

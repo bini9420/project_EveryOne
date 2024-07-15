@@ -17,6 +17,12 @@
 		<typeAlias type="member.model.AddressBean" alias="address"/>
 		<typeAlias type="member.model.BusinessBean" alias="business"/>
 		<typeAlias type="member.model.EnterBean" alias="enter"/>
+		<typeAlias alias="OrdersBean" type="orders.model.OrdersBean"/>
+		<typeAlias alias="NoticeBean" type="notice.model.NoticeBean"/>
+		<typeAlias alias="ReviewBean" type="review.model.ReviewBean"/>
+		<typeAlias alias="ProductBean" type="product.model.ProductBean"/>
+		<typeAlias alias="DescriptionBean" type="notice.model.DescriptionBean"/>
+		
 	</typeAliases>
 
 	<mappers>
@@ -31,6 +37,10 @@
 		<mapper resource="mybatis/enter.xml"/>
 		<mapper resource="mybatis/document.xml"/>
 		<mapper resource="mybatis/state.xml"/>
+		<mapper resource="mybatis/notice.xml"/>
+		<mapper resource="mybatis/orders.xml"/>
+		<mapper resource="mybatis/review.xml"/>
+		<mapper resource="mybatis/productB.xml"/>
 	</mappers>
 	
 </configuration>

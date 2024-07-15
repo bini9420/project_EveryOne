@@ -2,6 +2,46 @@
     pageEncoding="UTF-8"%>
 <%@include file = "../common/common.jsp" %>
 
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5F5;
+            color: #333333;
+        }
+        table {
+            width: 600px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            border: 1px solid #CCCCCC;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #CCCCCC;
+        }
+        th {
+            background-color: #48D1CC;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            color: #48D1CC;
+        }
+        input[type="button"] {
+            padding: 10px;
+            margin: 5px;
+            background-color: #48D1CC;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="button"]:hover {
+            background-color: #36b3a9;
+        }
+    </style>
+
 <table border="1" width="600">
 	<tr align="center" height="30">
 		<td width="150">글번호</td>

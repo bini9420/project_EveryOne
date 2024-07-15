@@ -3,12 +3,63 @@
 <%@include file = "../common/common.jsp" %>
 
 <style type="text/css">
-.err {
-	font-size: 9pt;
-	color: red;
-	font-weight: bold;
-}
-</style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5F5;
+            color: #333333;
+        }
+        table {
+            width: 500px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            border: 1px solid #CCCCCC;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #CCCCCC;
+        }
+        th {
+            background-color: #48D1CC;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            color: #48D1CC;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 4px 0;
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+        }
+        input[type="submit"], input[type="button"] {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #48D1CC;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover, input[type="button"]:hover {
+            background-color: #36b3a9;
+        }
+        .err {
+            font-size: 9pt;
+            color: red;
+            font-weight: bold;
+        }
+        a {
+            text-decoration: none;
+            color: #48D1CC;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 
 <form:form commandName="db" action="dupdate.nt" method="post">
 	<input type="hidden" name="dnum" value="${db.dnum }">

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.gson.Gson;
@@ -35,7 +36,7 @@ public class DocListController {
 	@Autowired
 	SalesDao salesDao;
 	
-	@RequestMapping(command)
+	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String approve(
 					 	  @RequestParam(value="keyword", required=false) String keyword,
 					 	  @RequestParam(value="pageNumber", required=false) String pageNumber,

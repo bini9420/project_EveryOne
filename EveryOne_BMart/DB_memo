@@ -285,6 +285,30 @@ create table document (
 insert into document(dnum, dcategory, writer, writeday, title, dcontent, request, approval, dstatus) 
 values('A-2', '입점요청', 'lee', sysdate, '입점을 신청합니다.', '가나다라', 1, 1, 1);
 
+insert into document(dnum, dcategory, writer, writeday, title, dcontent, request, approval, dstatus) 
+values('A-3', '입점요청', 'lee', sysdate, '입점을 신청합니다.', '가나다라', 1, 1, 1);
+
+insert into document(dnum, dcategory, writer, writeday, title, dcontent, request, approval, dstatus) 
+values('A-4', '입점요청', 'lee', sysdate, '입점을 신청합니다.', '가나다라', 1, 1, 1);
+
+insert into document(dnum, dcategory, writer, writeday, title, dcontent, request, approval, dstatus) 
+values('A-5', '입점요청', 'lee', sysdate, '입점을 신청합니다.', '가나다라', 1, 1, 1);
+
+insert into document(dnum, dcategory, writer, writeday, title, dcontent, request, approval, dstatus) 
+values('A-6', '입점요청', 'lee', sysdate, '입점을 신청합니다.', '가나다라', 1, 1, 1);
+
+insert into document(dnum, dcategory, writer, writeday, title, dcontent, request, approval, dstatus) 
+values('A-7', '입점요청', 'lee', sysdate, '입점을 신청합니다.', '가나다라', 1, 1, 1);
+
+insert into document(dnum, dcategory, writer, writeday, title, dcontent, request, approval, dstatus) 
+values('A-8', '입점요청', 'lee', sysdate, '입점을 신청합니다.', '가나다라', 1, 1, 1);
+
+insert into document(dnum, dcategory, writer, writeday, title, dcontent, request, approval, dstatus) 
+values('A-9', '입점요청', 'lee', sysdate, '입점을 신청합니다.', '가나다라', 1, 1, 1);
+
+insert into document(dnum, dcategory, writer, writeday, title, dcontent, request, approval, dstatus) 
+values('A-10', '입점요청', 'lee', sysdate, '입점을 신청합니다.', '가나다라', 1, 1, 1);
+
 
 
 commit;
@@ -375,6 +399,33 @@ create table enter (
 insert into enter 
 values('A-1', 'lee', sysdate, '입점을 신청합니다.', '11223344', '04050', '서울 마포구 양화로 140', '애플스토어', 1, null, null, null, 1, sysdate, null, 1);
 
+insert into enter 
+values('A-2', 'lee', sysdate, '입점을 신청합니다.', '11223344', '04050', '서울 마포구 양화로 140', '애플스토어', 1, null, null, null, 1, sysdate, null, 1);
+
+insert into enter 
+values('A-3', 'lee', sysdate, '입점을 신청합니다.', '11223344', '04050', '서울 마포구 양화로 140', '애플스토어', 1, null, null, null, 1, sysdate, null, 1);
+
+insert into enter 
+values('A-4', 'lee', sysdate, '입점을 신청합니다.', '11223344', '04050', '서울 마포구 양화로 140', '애플스토어', 1, null, null, null, 1, sysdate, null, 1);
+
+insert into enter 
+values('A-5', 'lee', sysdate, '입점을 신청합니다.', '11223344', '04050', '서울 마포구 양화로 140', '애플스토어', 1, null, null, null, 1, sysdate, null, 1);
+
+insert into enter 
+values('A-6', 'lee', sysdate, '입점을 신청합니다.', '11223344', '04050', '서울 마포구 양화로 140', '애플스토어', 1, null, null, null, 1, sysdate, null, 1);
+
+insert into enter 
+values('A-7', 'lee', sysdate, '입점을 신청합니다.', '11223344', '04050', '서울 마포구 양화로 140', '애플스토어', 1, null, null, null, 1, sysdate, null, 1);
+
+insert into enter 
+values('A-8', 'lee', sysdate, '입점을 신청합니다.', '11223344', '04050', '서울 마포구 양화로 140', '애플스토어', 1, null, null, null, 1, sysdate, null, 1);
+
+insert into enter 
+values('A-9', 'lee', sysdate, '입점을 신청합니다.', '11223344', '04050', '서울 마포구 양화로 140', '애플스토어', 1, null, null, null, 1, sysdate, null, 1);
+
+insert into enter 
+values('A-10', 'lee', sysdate, '입점을 신청합니다.', '11223344', '04050', '서울 마포구 양화로 140', '애플스토어', 1, null, null, null, 1, sysdate, null, 1);
+
 
 commit;
 
@@ -404,6 +455,19 @@ commit;
 
 
 
+------------------------------------------------------
+
+drop table schedule cascade constraints;
+create table schedule (
+	subject varchar2(20) primary key,
+	startDate date, 
+	endDate date,
+	memo varchar2(50)
+	
+);
+
+commit;
+
 
 
 
@@ -416,5 +480,6 @@ salesDao
 		pnumlist = sqlSessionTemplate.selectList(namespace2+".getPnumSale");
 		return pnumlist;
 	}
+	
 	
 									

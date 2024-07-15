@@ -86,6 +86,15 @@
 
 	  calendar.render();
 	});
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
     </script>
 
 <!-- Custom fonts for this template-->

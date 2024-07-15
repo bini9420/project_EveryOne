@@ -14,6 +14,35 @@
 	order by dnum desc
 	FETCH FIRST 5 ROWS ONLY
 </select>
+
+	<update id="updateDoc">
+ 		update document set dstatus=1
+ 		where dnum=#{dnum}
+ 	
+ 	</update>
+ 	
+	<update id="updateEnter">
+ 		update enter set dstatus=1
+ 		where enum=#{enum}
+ 	
+ 	</update>
+
+	<update id="updateReview">
+ 		update review_check set dstatus=1
+ 		where rnum=#{rnum}
+ 	
+ 	</update>
+	<update id="updateState">
+ 		update state set dstatus=1
+ 		where snum=#{snum}
+ 	
+ 	</update>
+
+	
+
+
+
+
 	
 	
 	</mapper>

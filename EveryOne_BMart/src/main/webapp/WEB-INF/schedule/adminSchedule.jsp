@@ -27,8 +27,25 @@
                 dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
                 locale: 'ko', // 한국어 설정
                 
+                events:[
+                		{
+                			title:'물주기',
+                			start:'2024-7-15'
+                		}
+                	
+                	
+                ]
+                
+             });
+                
+             
+            
+              
+                
                 eventAdd: function(obj) { // 이벤트가 추가되면 발생하는 이벤트
                 
+                	
+                	
                 	sDate = 
                         obj.event._instance.range["start"].getFullYear() + 
                         '-'+(obj.event._instance.range["start"].getMonth() +1) +
@@ -55,7 +72,7 @@
                      console.log("jsondata : " + jsondata);
 
                      
-                },
+                }, 
                 eventChange: function(obj) { // 이벤트가 수정되면 발생하는 이벤트
                     console.log(obj);
 
@@ -68,6 +85,32 @@
                     console.log(obj);
 
                  },
+                 eventClick: function(arg) { 
+                 if (confirm('일정을 삭제하시겠습니까?')) 
+                 { 
+                 	$.ajax({
+                 		url: "/scheduleDelete.scd",
+                 		type: "POST",
+                 		data : {
+                 			title : arg.event._def.title
+                 		},
+                 		traditional: true,
+                 		async: false, //동기
+                 		success : function(data){
+                 		},
+                 		error : function(request,status,error){
+                 			alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                 			console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+                 		}
+                 	});
+                 	arg.event.remove();
+                 }
+                 }, 
+                 
+                
+                 
+                 
+                 
                 select: function(arg) { // 캘린더에서이벤트를 생성
                     let title = prompt('일정 내용을 입력하세요 :');
                     if (title) {
@@ -88,12 +131,12 @@
 
         function allSave() {
         	
-			 console.log(allData); */
+			 console.log(allData); 
 		document.getElementById("submenu").style.display = "block";
 
 			 
              $.ajax({
-                 url: "/calendar.ad",
+                 url: "/schedule.scd",
                  type: "post",
                  data: {addEvent : JSON.stringify(Alldata)},
 

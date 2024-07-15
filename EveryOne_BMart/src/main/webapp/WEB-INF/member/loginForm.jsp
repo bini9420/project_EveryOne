@@ -31,7 +31,7 @@
 									<form class="user text-center">
 										<a id="kakao-login-btn" class="p-2" 
 										href="https://kauth.kakao.com/oauth/authorize?client_id=f851426109160a96d2785229bdb40d68&redirect_uri=http://localhost:8080/ex/kakaoLogin.mb&response_type=code&prompt=login">
-										<img src="resources/img/kakao.png" style="height:40px" alt="kakao login btn"></a>  
+										<img src="resources/img/kakao.png" style="height:45px; width: 230px" alt="kakao login btn"></a>  
 									</form>
 									<hr>
 									

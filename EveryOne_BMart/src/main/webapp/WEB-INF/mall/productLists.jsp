@@ -73,7 +73,15 @@
 						<!-- Product actions-->
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
-								<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?id=${loginInfo.id}&pnum=${product.pnum}&qty=1">장바구니 담기</a>
+								<c:if test="${category ne null}">
+									<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?index=category&id=${loginInfo.id}&pnum=${product.pnum}&qty=1&category=${category}&range=${range}&pageNumber=${param.pageNumber}">장바구니 담기</a>
+								</c:if>
+								<c:if test="${keyword ne null}">
+									<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?index=search&id=${loginInfo.id}&pnum=${product.pnum}&qty=1&keyword=${keyword}&range=${range}&pageNumber=${param.pageNumber}">장바구니 담기</a>
+								</c:if>
+								<c:if test="${keyword eq null && category eq null}">
+									<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?index=recently&id=${loginInfo.id}&pnum=${product.pnum}&qty=1&range=${range}&pageNumber=${param.pageNumber}">장바구니 담기</a>
+								</c:if>
 								<!-- 로그인 해서 찜목록을 조회할 수 있을 때 -->
 								<c:if test="${fn:length(interestLists) > 0}">
 									<!-- flag를 선언. false일 때만 출력하고 true면 반복문을 빠져나가도록. -->

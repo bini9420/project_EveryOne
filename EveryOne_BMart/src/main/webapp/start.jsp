@@ -1,33 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<title>start</title>
 
 <html>
 <head>
 	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+	<!-- title icon-->
+	<link rel="icon" type="image/x-icon" href="resources/img/baemin.png" />
+	<title>배민</title>
+
 	<link href="resources/css/mall.css" rel="stylesheet" />
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<!-- fonts -->
+	<link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 </head>
 
-<body>
-	<nav class="navbar navbar-expand navbar-dark bg-light">
-		<div class="container">
-			<div class="navbar-header">
-				<a href="login.ad" class="text-dark">관리자 로그인</a>
+<body class="bg-primary">
+		<nav class="navbar navbar-expand-lg bg-light">
+			<div class="container">
+				<ul class="navbar-nav ms-auto" >
+					<li class="nav-item mx-5" >
+						<button  onClick="location='login.ad'" class="btn btn-light">관리자 로그인</button>
+					</li>
+				</ul>
 			</div>
+		</nav>
+		
+		<nav class="navbar navbar-expand-lg w-75 mx-auto" style="margin-top:200">
+			<div class="container">
+				<ul class="navbar-nav mx-auto" >
+					<li class="nav-item mx-5 pt-5" >
+						<h1 class="display-5 text-white">
+							데일리 아이템부터🧻<br>
+							신선 먹거리까지🥩🥦<br>
+							편하고 빠른 <font class="fw-bold">배민 <font color="#FFFC52">B</font>마트</font>
+						</h1>
+					</li>
+					<li class="nav-item" >
+						<img src="resources/img/baemin.png" class="mx-auto" style="width: 300;" alt="배민">
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="text-center">
+			<button class="btn btn-light" onClick="location='main.mall'">B마트 바로가기👆🏻</button>
 		</div>
-	</nav>
-	
-	<nav class="navbar navbar-expand navbar-dark bg-primary h-75 p-4">
-		<div class="container">
-			<h1 class="display-5">데일리 아이템부터<br>신선 먹거리까지<br>편하고 빠른 배민 B마트</h1>
-			<button class="btn btn-light" onClick="location='main.mall'">마트 둘러보기</button>
-		</div>
-		<div class="container">
-			<img src="resources/img/baemin.png" class="mx-auto w-75" alt="배민">
-		</div>
-	</nav>
 
+	
+	
+	<!-- Bootstrap core JS-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="resources/js/scripts.js"></script>
 </body>
 
 </html>

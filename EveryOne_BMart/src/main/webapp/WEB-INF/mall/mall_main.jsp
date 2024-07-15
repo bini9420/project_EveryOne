@@ -67,7 +67,7 @@
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 								<div class="text-center">
-									<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?id=${loginInfo.id}&pnum=${best.pnum}&qty=1">장바구니 담기</a>
+									<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?index=main&id=${loginInfo.id}&pnum=${best.pnum}&qty=1">장바구니 담기</a>
 									<!-- 로그인 해서 찜목록을 조회할 수 있을 때 -->
 									<c:if test="${fn:length(interestLists) > 0}">
 										<!-- flag를 선언. 목록에 있으면 true, 없으면 false. -->
@@ -149,7 +149,7 @@
 									<!-- Product actions-->
 									<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 										<div class="text-center">
-											<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?id=${loginInfo.id}&pnum=${watch.pnum}&qty=1">장바구니 담기</a>
+											<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?index=main&id=${loginInfo.id}&pnum=${watch.pnum}&qty=1">장바구니 담기</a>
 											<!-- 로그인 해서 찜목록을 조회할 수 있을 때 -->
 											<c:if test="${fn:length(ilists) > 0}">
 												<!-- flag를 선언. 목록에 있으면 true, 없으면 false. -->

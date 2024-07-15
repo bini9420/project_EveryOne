@@ -51,8 +51,8 @@ public class MemberDao {
 		return cnt;
 	}
 
-	public void insertAddress(AddressBean address) {
-		sqlSessionTemplate.insert(address+".insertAddress", address);
+	public void insertAddress(AddressBean addr) {
+		sqlSessionTemplate.insert(address+".insertAddress", addr);
 	}
 	
 	//배송지 목록 조회
@@ -70,8 +70,8 @@ public class MemberDao {
 	}
 	
 	//주소 수정
-	public void updateAddress(AddressBean address) {
-		sqlSessionTemplate.update(address+".updateAddress",address);
+	public void updateAddress(AddressBean addr) {
+		sqlSessionTemplate.update(address+".updateAddress", addr);
 	}
 	
 	//주소 삭제

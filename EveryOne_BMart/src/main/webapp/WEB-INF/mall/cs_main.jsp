@@ -21,19 +21,8 @@
 							공지사항
 						</a>
 						<hr>
-						<font class="my-2" color="#186E6A">배민상회</font>
-						<a class="nav-link text-muted" aria-current="page" href="#">
-							F&A
-						</a>
-						<a class="nav-link text-muted" aria-current="page" href="#">
-							공지사항
-						</a>
-						<hr>
 						<a class="nav-link text-primary" aria-current="page" href="main.mall">
 							배민 B마트로 돌아가기
-						</a>
-						<a class="nav-link text-primary" aria-current="page" href="#">
-							배민 상회로 돌아가기
 						</a>
 					</nav>
 				</div>

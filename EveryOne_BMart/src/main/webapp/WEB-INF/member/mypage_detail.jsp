@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ include file="../common/common.jsp" %>
 <c:choose>
 	<c:when test="${index eq null || fn:contains(index, 'orderList')}">
 		<div class="col-sm-8 me-auto">

@@ -51,9 +51,10 @@
                 <p class="lead">
                 	${product.pcontent}
                 </p>
-                <form action="insertCart.mall" name="count" method="post">
+                <form action="insertCart.mall" name="count">
                 	<input type="hidden" name="id" value="${loginInfo.id}">
                 	<input type="hidden" name="pnum" value="${product.pnum}">
+                	<input type="hidden" name="index" value="detail">
 	                <div class="d-flex mb-3">
 	                    <input type="button" class="form-control text-center me-2 fw-bolder" value="-" style="max-width: 3rem" onClick="down()"/>
 	                    <input name="qty" class="form-control text-center me-2" id="inputQuantity" type="text" value="1" style="max-width: 3rem" />

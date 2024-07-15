@@ -20,35 +20,35 @@
 </head>
 
 <body class="bg-primary">
-		<nav class="navbar navbar-expand-lg bg-light">
-			<div class="container">
-				<ul class="navbar-nav ms-auto" >
-					<li class="nav-item mx-5" >
-						<button  onClick="location='login.ad'" class="btn btn-light">관리자 로그인</button>
-					</li>
-				</ul>
-			</div>
-		</nav>
-		
-		<nav class="navbar navbar-expand-lg w-75 mx-auto" style="margin-top:200">
-			<div class="container">
-				<ul class="navbar-nav mx-auto" >
-					<li class="nav-item mx-5 pt-5" >
-						<h1 class="display-5 text-white">
-							데일리 아이템부터🧻<br>
-							신선 먹거리까지🥩🥦<br>
-							편하고 빠른 <font class="fw-bold">배민 <font color="#FFFC52">B</font>마트</font>
-						</h1>
-					</li>
-					<li class="nav-item" >
-						<img src="resources/img/baemin.png" class="mx-auto" style="width: 300;" alt="배민">
-					</li>
-				</ul>
-			</div>
-		</nav>
-		<div class="text-center">
-			<button class="btn btn-light" onClick="location='main.mall'">B마트 바로가기👆🏻</button>
+	<nav class="navbar navbar-expand-lg bg-light">
+		<div class="container">
+			<ul class="navbar-nav ms-auto" >
+				<li class="nav-item mx-5" >
+					<button  onClick="location='login.ad'" class="btn btn-light">관리자 로그인</button>
+				</li>
+			</ul>
 		</div>
+	</nav>
+	
+	<nav class="navbar navbar-expand-lg w-75 mx-auto" style="margin-top:200">
+		<div class="container">
+			<ul class="navbar-nav mx-auto" >
+				<li class="nav-item mx-5 pt-5" >
+					<h1 class="display-5 text-white">
+						데일리 아이템부터🧻<br>
+						신선 먹거리까지🥩🥦<br>
+						편하고 빠른 <font class="fw-bold">배민 <font color="#FFFC52">B</font>마트</font>
+					</h1>
+				</li>
+				<li class="nav-item" >
+					<img src="resources/img/baemin.png" class="mx-auto" style="width: 300;" alt="배민">
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="text-center">
+		<button class="btn btn-light" onClick="location='main.mall'">B마트 바로가기👆🏻</button>
+	</div>
 
 	
 	

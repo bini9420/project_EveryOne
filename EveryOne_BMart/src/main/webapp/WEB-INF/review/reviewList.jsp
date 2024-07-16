@@ -151,7 +151,7 @@ h6 {
 							<td>${review.score}</td>
 							<td>${review.rcomment}</td>
 							<td>
-								<button onClick="#">리뷰 검토 요청</button>
+								<button onClick="javascript:review()">리뷰 검토 요청</button>
 							</td>
 							<c:if test="${loginInfo.id == 'admin'}">
 								<td>

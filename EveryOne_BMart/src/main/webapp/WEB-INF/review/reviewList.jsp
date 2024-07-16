@@ -150,6 +150,9 @@ h6 {
 							<td>${review.id}</td>
 							<td>${review.score}</td>
 							<td>${review.rcomment}</td>
+							<td>
+								<button onClick="#">리뷰 검토 요청</button>
+							</td>
 							<c:if test="${loginInfo.id == 'admin'}">
 								<td>
 									<button onClick="confirmDelete('${review.rnum}', '${pnum}')">삭제</button>

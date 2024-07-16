@@ -156,6 +156,12 @@ values(seqprod.nextval, 'admin', 'test5', null, 1000, '500g', 'test6', '신선식품
 insert into product 
 values(seqprod.nextval, 'admin', 'test6', null, 3400, '500g', 'test7', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', '2024-07-01', 12, 0);
 
+insert into product 
+values(seqprod.nextval, 'admin', 'test6', null, 3400, '500g', 'test7', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', '2024-08-01', 12, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', 'test6', null, 3400, '500g', 'test7', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', '2024-09-01', 12, 0);
+
 
 
 --최근 본 상품
@@ -246,6 +252,9 @@ insert into orderInfo(onum, id, pnum, pamount,price, orderdate) values(seqorder.
 
 insert into orderInfo(onum, id, pnum, pamount,price, orderdate) values(seqorder.nextval, 'park', 5, 3,400, '2024-07-01');
 insert into orderInfo(onum, id, pnum, pamount, price,orderdate) values(seqorder.nextval, 'park', 5, 3,370, '2024-07-01');
+
+insert into orderInfo(onum, id, pnum, pamount,price, orderdate) values(seqorder.nextval, 'park', 5, 3,400, '2024-08-01');
+insert into orderInfo(onum, id, pnum, pamount, price,orderdate) values(seqorder.nextval, 'park', 5, 3,370, '2024-09-01');
 
 
 

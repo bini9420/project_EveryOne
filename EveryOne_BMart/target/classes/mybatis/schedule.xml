@@ -6,23 +6,31 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+
+
 <mapper namespace="schedule">
 
-
-<select id="showSchedule" resultType="schedule.model.CalendarBean">
-		select * from schedule
-		
-	
-	</select>
-	<insert id="addSchedule">
-		insert into schedule(title,startDate,endDate,memo)
-		values (#{title},#{startDate},#{endDate},#{memo})
-	</insert>
-	
-	<delete id="deleteSchedule">
-		delete from schedule title=#{title}
-	
-	</delete>
-	
-	
+    <select id="showSchedule" resultType="schedule.model.CalendarBean">
+        SELECT title, startDate, endDate
+        FROM schedule
+    </select>
+    
+    <insert id="addSchedule">
+        INSERT INTO schedule (title, startDate, endDate)
+        VALUES (#{title}, #{startDate}, #{endDate})
+    </insert>
+    
+    <delete id="deleteSchedule">
+        DELETE FROM schedule
+        WHERE title = #{title} AND startDate = #{start}
+    </delete>
+    
+    <update id="updateSchedule">
+        UPDATE schedule
+        SET startDate = #{startDate}, endDate = #{endDate}
+        WHERE title = #{title}
+    </update>
+    
 </mapper>
+
+	

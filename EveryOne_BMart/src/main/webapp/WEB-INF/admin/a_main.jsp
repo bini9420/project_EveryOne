@@ -3,8 +3,6 @@
 
 <%@ include file="../common/common.jsp"%>
 <%@ include file="a_top.jsp"%>
-<%@page import="java.util.List" %>
-<%@page import="schedule.model.CalendarBean" %>
 
 
 <!-- Begin Page Content -->
@@ -12,7 +10,7 @@
 
 
 
-
+       
 	<!-- Content Row -->
 	<div class="row">
 
@@ -376,124 +374,147 @@
         }); 
 </script>
 
-		<script>
 
-let calendar = null;
-let Alldata = {};
+<style>
+        .fc-header-toolbar .fc-button {
+            font-size: 12px; /* 작은 글꼴 크기 */
+            padding: 5px 10px; /* 작은 버튼 크기 */
+        }
 
-$(function() {
-    let calendarEl = $('#calendar')[0];
+        .fc-header-toolbar .fc-button-primary {
+            background-color: #2ac1bc; /* 기본 버튼 배경색 */
+            color: #fff; /* 기본 버튼 글자색 */
+            border-color: #2ac1bc; /* 기본 버튼 테두리 색 */
+        }
 
+        .fc-header-toolbar .fc-button-primary:hover {
+            background-color: #2ac1bc; /* 마우스 호버 시 배경색 */
+            border-color: #2ac1bc; /* 마우스 호버 시 테두리 색 */
+        }
+    </style>
+
+
+
+
+
+<script>
+var calendar = null;
+var initialLocaleCode = 'ko';
+
+$(document).ready(function () {
+    var calendarEl = document.getElementById('calendar');
     calendar = new FullCalendar.Calendar(calendarEl, {
-        expandRows: true,
-        slotMinTime: '08:00',
-        slotMaxTime: '20:00',
-
-        headerToolbar: {
-            left: 'prev,next',
-            center: 'title',
-            right: 'dayGridMonth'
-        },
-
+        initialDate: '2024-07-16',
         initialView: 'dayGridMonth',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridDay,listWeek'
+        },
+     
+        navLinks: true,
         editable: true,
         selectable: true,
-        nowIndicator: true,
-        dayMaxEvents: true,
-        locale: 'ko',
+        droppable: true, // allows things to be dropped onto the calendar
 
-        events: [
-        	 <%List<CalendarBean> calendarList = (List<CalendarBean>) request.getAttribute("calendarList");
-        	 
-        	 
-             if (calendarList != null) {
-            	 for (int i = 0; i < calendarList.size(); i++) {
-                     CalendarBean cb = calendarList.get(i);
-                     String title = cb.getTitle();
-                     String startDate = cb.getStartDate();
-                     String endDate = cb.getEndDate();
-                     String color = String.format("#%06x", (int)(Math.random() * 0xffffff));
-                     
-                     
-                     
-             %>
-             {
-                 title: '<%= title %>',
-                 start: '<%= startDate %>',
-                 end: '<%= endDate %>',
-                 color: '<%= color %>'
-             }<%= (i < calendarList.size() - 1) ? "," : "" %>
-             <% 
-                 }
-             } 
-             %>
-         ],
+        eventDrop: function (info) {
+            if (confirm("'" + info.event.title + "' 일정을 수정하시겠습니까?")) {
+                var events = [{
+                    title: info.event.title,
+                    start: info.event.start.toISOString(),
+                    end: info.event.end ? info.event.end.toISOString() : null
+                }];
 
-        eventAdd: function(obj) {
-            let sDate = obj.event.startStr;
-            let eDate = obj.event.endStr ? obj.event.endStr : sDate;
-
-            Alldata = {
-                "start": sDate,
-                "end": eDate,
-                "title": obj.event.title,
-                "allDay": obj.event.allDay,
-                "defId": obj.event.id
-            };
-
-            let allEvent = calendar.getEvents();
-            console.log(allEvent);
-
-            let jsondata = JSON.stringify(Alldata);
-            console.log("jsondata : " + jsondata);
+                $.ajax({
+                    url: "/schedule/updateSchedule",
+                    method: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(events),
+                    contentType: 'application/json',
+                })
+                .done(function (result) {
+                    console.log("Event updated successfully:", result);
+                })
+                .fail(function (request, status, error) {
+                    console.error("Error updating event:", error);
+                });
+            }
         },
 
-        eventChange: function(obj) {
-            console.log(obj);
-        },
-
-        eventRemove: function(obj) {
-            console.log(obj);
-        },
-
-        eventClick: function(obj) {
-            console.log(obj);
-        },
-
-        dateClick: function(info) {
-            let title = prompt('일정 내용을 입력하세요:');
+        select: function (arg) {
+            var title = prompt('일정을 입력해주세요.');
             if (title) {
                 calendar.addEvent({
                     title: title,
-                    start: info.date,
-                    allDay: info.allDay
+                    start: arg.start,
+                    end: arg.end,
+                    allDay: arg.allDay,
+                });
+
+                var events = [{
+                    title: title,
+                    start: arg.start.toISOString(),
+                    end: arg.end ? arg.end.toISOString() : null
+                }];
+
+                $.ajax({
+                    url: "/schedule/addSchedule",
+                    method: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(events),
+                    contentType: 'application/json',
+                })
+                .done(function (result) {
+                    console.log("Event added successfully:", result);
+                })
+                .fail(function (request, status, error) {
+                    console.error("Error adding event:", error);
+                });
+
+                calendar.unselect();
+            }
+        },
+        
+       
+    
+        eventClick: function (info) {
+            if (confirm("'" + info.event.title + "' 일정을 삭제하시겠습니까?")) {
+                info.event.remove();
+
+                var events = [{
+                    title: info.event.title,
+                    start: info.event.start.toISOString()
+                }];
+
+                $.ajax({
+                    url: "/schedule/deleteSchedule",
+                    method: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(events),
+                    contentType: 'application/json',
+                })
+                .done(function (result) {
+                    console.log("Event deleted successfully:", result);
+                })
+                .fail(function (request, status, error) {
+                    console.error("Error deleting event:", error);
                 });
             }
-        } 
+        }
     });
 
-    // 캘린더 렌더링
+
+
+    
+    
     calendar.render();
 });
 
-function allSave() {
-    console.log(Alldata);
-    document.getElementById("submenu").style.display = "block";
 
-    $.ajax({
-        url: "/shedule.scd",
-        type: "post",
-        data: { addEvent: JSON.stringify(Alldata) },
-        success: function(data, textStatus, xhr) {
-            console.log(data);
-        },
-        error: function(xhr, status, error) {
-            console.log(error);
-        }
-    });
-}
 
 
 
 
 </script>
+
+		

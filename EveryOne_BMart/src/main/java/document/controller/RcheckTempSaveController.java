@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import document.model.ReviewcheckDao;
 import model.MemberBean;
-import model.ReviewcheckBean;
+import document.model.ReviewcheckBean;
  
 @Controller
 public class RcheckTempSaveController {

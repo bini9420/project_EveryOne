@@ -9,7 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import model.ReviewcheckBean;
+import document.model.ReviewcheckBean;
 import utility.Paging;
 
 @Component

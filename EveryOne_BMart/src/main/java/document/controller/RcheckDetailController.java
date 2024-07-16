@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import document.model.DocumentBean;
 import document.model.ReviewcheckDao;
-import model.ReviewcheckBean;
+import document.model.ReviewcheckBean;
 
 @Controller
 public class RcheckDetailController {

@@ -12,7 +12,7 @@ import document.model.DocumentDao;
 import document.model.EnterDao;
 import document.model.ReviewcheckDao;
 import model.EnterBean;
-import model.ReviewcheckBean;
+import document.model.ReviewcheckBean;
 
 @Controller
 public class AdminDocumentDetailController {

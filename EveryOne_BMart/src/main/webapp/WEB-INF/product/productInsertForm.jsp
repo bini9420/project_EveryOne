@@ -107,7 +107,7 @@
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary">상품 정보 입력</h6>
-						<button type="button" onclick="send()" class="btn btn-primary" id="insertBtn">상품등록</button>
+						<button type="button" onclick="send()" class="btn btn-primary" id="insertBtn">등록</button>
 						<!-- <a href="#" class="btn btn-primary" id="insertBtn">상품등록</a> -->
 					</div>
 	                                

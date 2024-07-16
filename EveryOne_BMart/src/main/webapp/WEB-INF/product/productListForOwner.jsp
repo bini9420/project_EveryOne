@@ -21,6 +21,14 @@
 	.testSize {
 		width: 120px;
 	}
+	.col-auto, .mr-2 {
+		display: inline-block;
+		float: left;
+	}
+	#boxname {
+		margin-left: 20px;
+		margin-top: 10px;
+	}
 </style>
 <%@ include file="../member/owner/o_top.jsp"%>
 <div class="container-fluid">

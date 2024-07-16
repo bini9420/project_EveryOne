@@ -11,7 +11,7 @@ import member.model.MemberDao;
 public class DeleteAddressController {
 
 	private final String command = "/deleteAddress.mb";
-	private final String gotoPage = "redirect:/mypage.mall?index=addressInfo";
+	private final String gotoPage = "redirect:/mypage.mb?index=addressInfo";
 	
 	@Autowired
 	MemberDao memberDao;

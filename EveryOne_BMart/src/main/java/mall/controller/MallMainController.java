@@ -9,10 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import mall.model.CategoryBean;
 import mall.model.MallDao;
-import mall.model.ProductBean;
-import member.model.MemberBean;
+import model.CategoryBean;
+import model.MemberBean;
+import model.ProductBean;
 
 @Controller
 public class MallMainController {

@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import document.model.ReviewcheckBean;
 import document.model.ReviewcheckDao;
-import member.model.MemberBean;
-
+import model.MemberBean;
+import model.ReviewcheckBean;
+  
 @Controller
 public class RcheckUpdateController {
 	private final String command = "rcheckUpdate.dc";

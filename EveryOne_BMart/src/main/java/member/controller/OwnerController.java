@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import member.model.MemberBean;
+import model.MemberBean;
 
 @Controller
 public class OwnerController {

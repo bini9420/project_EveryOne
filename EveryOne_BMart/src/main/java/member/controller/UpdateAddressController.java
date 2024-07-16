@@ -12,14 +12,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import member.model.AddressBean;
 import member.model.MemberDao;
+import model.AddressBean;
 
 @Controller
 public class UpdateAddressController {
 
 	private final String command = "/updateAddress.mb";
-	private final String gotoPage = "redirect:/mypage.mall";
+	private final String gotoPage = "redirect:/mypage.mb";
 	
 	@Autowired
 	MemberDao memberDao;

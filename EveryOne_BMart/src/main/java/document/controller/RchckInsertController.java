@@ -7,9 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import document.model.ReviewcheckBean;
 import document.model.ReviewcheckDao;
-import member.model.MemberBean;
+import model.MemberBean;
+import model.ReviewcheckBean;
 
 @Controller
 public class RchckInsertController {
@@ -24,9 +24,10 @@ public class RchckInsertController {
 	//GET: o_top.jsp에서 리뷰검토 작성 클릭시
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String review() {
+		System.out.println("rcheck Form");
 		return getPage;
 	}
-	
+	 
 	
 	//POST: document_reviewCheckForm.jsp에서 작성 클릭시
 	@RequestMapping(value=command, method=RequestMethod.POST)

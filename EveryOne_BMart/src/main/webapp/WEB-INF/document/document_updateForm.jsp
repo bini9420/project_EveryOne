@@ -2,13 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.Date" %>	
 <%@ include file="../common/common.jsp" %>
+<%@ include file="../member/owner/o_top.jsp" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<link rel="documentStyle.css">
-    <link href="<%=request.getContextPath()%>/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="<%=request.getContextPath()%>/resources/css/sb-admin-2.min.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<!-- Custom styles for this template-->
+<link href="<%=request.getContextPath()%>/resources/css/sb-admin-2.min.css" rel="stylesheet">
 <style>
 	#exampleModalLabel, .form-label {
 		font-family: "Spoqa Han Sans Neo", sans-serif;
@@ -27,7 +26,14 @@
 		background-color: #2ac1bc;
 		border-color: #2ac1bc;
 		padding: 3px;
-		width: 18%;
+		width: 10%;
+		color: white;
+	}
+	#tempBtn {
+		font-family: "Spoqa Han Sans Neo", sans-serif;
+		font-size: small;
+		padding: 3px;
+		width: 10%;
 		color: white;
 	}
 	#closeBtn {
@@ -36,7 +42,7 @@
 		background-color: #d1d3e2!important;
 		border-color: #d1d3e2!important;
 		padding: 3px;
-		width: 18%;
+		width: 10%;
 		color: white;
 	}
 	.err {
@@ -62,24 +68,18 @@
     margin-right: 0; /* 이미지 오른쪽 여백 제거 */
     padding-right: 0; /* 이미지 오른쪽 패딩 제거 */
 	}
-	
 	.modal-header h5 {
 	    margin-left: 0; /* 제목의 왼쪽 여백 제거 */
 	    padding-left: 0; /* 제목의 왼쪽 패딩 제거 */
-	}
-	.err {
-		color: #e74a3b;
-		font-size: small;
 	}
 	#updateFile {
 		margin-left: -10px;
 	}
 </style>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+
 <script>
 	//요청 클릭
-	function send() {
+	function send(dnum) {
 	    (() => {
 	        'use strict'
 	
@@ -102,51 +102,52 @@
 	    })()
 	
 	    // 폼의 제출을 트리거
-	    document.myform.action = "document_write.dc";
-	    document.myform.dispatchEvent(new Event('submit', { cancelable: true }));
+	    document.myform.action = "document_request.dc?dnum=" + dnum;
+	    document.myform.submit();
 	}
 	
-	//임시저장 클릭
+	//수정(임시저장) 클릭
     function tempSave(dnum) {
-	    // select 요소의 유효성 검사 수행
 	    var selectElement = document.getElementById('documentCategory');
 	    if (!selectElement.checkValidity()) {
-	        // 유효성 검사 실패 시 처리 (예: 경고 메시지 출력)
 	        alert('결재문서 종류를 선택해주세요.');
 	        return;
 	    }
+	    
+	    var titleElement = document.getElementById('documentTitle');
+	    if (!titleElement.checkValidity()) {
+	        alert('제목을 입력해주세요.');
+	        return;
+	    }
+	    
+	    var contentElement = document.getElementById('documentContent');
+	    if (!contentElement.checkValidity()) {
+	        alert('내용을 입력해주세요.');
+	        return;
+	    }
 	
-	    // select 요소의 유효성 검사가 통과되면 폼을 제출
 	    document.myform.action = "document_update.dc?dnum=" + dnum;
 	    document.myform.submit();
 	}
-
 </script>
-<!-- document_writeForm.jsp<br> -->
-<body onload="load()">
+
 <%
 	String[] category = {"상품등록", "광고요청", "폐업신청"};
 %>
+<div class="container">
 <div class="modal-header d-flex align-items-center"> 
     <!-- Font Awesome Icon for Pen, remove margin for close alignment -->
     <i class="fas fa-pen fa-2x text-gray-500"></i>
     <!-- Modal Title with no margin to align closely with the icon -->
-    <h5 class="modal-title mb-0" id="exampleModalLabel"><b>결재 문서 작성</b></h5>
+    <h5 class="modal-title mb-0" id="exampleModalLabel"><b>결재 문서 수정</b></h5>
 </div>
  
       <div class="modal-body">
-	      <form name="myform" class="row g-3 needs-validation" method="post" enctype="multipart/form-data" novalidate>
+	      <form name="myform" class="row g-3 needs-validation" method="post" novalidate>
 				<div class="col-md-6">
 					<label for="documentCategory" class="form-label">결재문서 종류 <font color="red">*</font></label>
-					<select class="form-select form-select-sm" aria-label="Default select example" name="dcategory" id="documentCategory" onchange="handleCategoryChange(this.value)" required>
-						<option value="">선택</option>
-						<c:forEach var="category" items="<%=category%>">
-							<option value="${category}" <c:if test="${document.dcategory eq category}">selected</c:if>>${category}</option>
-						</c:forEach>
-					</select>
-					<div class="invalid-feedback">
-						결재문서 종류는 필수입니다
-					</div>
+					<input type="text" class="form-control form-control-sm" value="${document.dcategory}" id="documentCategory" disabled>
+					<input type="hidden" value="${document.dcategory}" name="dcategory">
 				</div>
 			  
 			  <div class="col-md-6">
@@ -159,17 +160,19 @@
 			  <div class="col-md-6">
 			    <label for="documentWriter" class="form-label">작성자 </label>
 			    <input type="text" class="form-control form-control-sm" value="${document.writer}" name="writer" id="documentWriter" disabled>
+			    <input type="hidden" name="writer" value="${document.writer}">
 			  </div>
 			  
 			  <c:set var="now" value="<%=new Date()%>"/>
 			  <div class="col-md-6">
 			    <label for="documentWriteday" class="form-label">기안일 </label>
 			    <input type="text" class="form-control form-control-sm" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/>" name="writeday" id="documentWriteday" disabled>
+			    <input type="hidden" name="writeday" value="${document.writeday}">
 			  </div>
 			  
 			  <div class="col-md-12">
 			    <label for="documentTitle" class="form-label">제목 <font color="red">*</font></label>
-			    <input type="text" class="form-control form-control-sm" name="title" id="documentTitle" required>
+			    <input type="text" class="form-control form-control-sm" name="title" value="${document.title}" id="documentTitle" required>
 			    <div class="invalid-feedback">
 			    	제목 입력은 필수입니다
 			    </div>
@@ -230,8 +233,8 @@
 			    </div>
 			  </div>
 			  
-			 <!-- 상품등록 관련 카테고리 입력란 -->  
-			 <c:if test="${document.prdcategory ne 'X'}">
+			 <!-- 상품등록 관련 카테고리 입력란 --> 
+			 <c:if test="${document.dcategory eq '상품등록'}"> 
 				 <div class="col-md-12" id="insertPrdcategory">
 				     <label for="productCategory" class="form-label">상품 카테고리 <font color="red">*</font></label>
 				     <input type="text" class="form-control form-control-sm" value="${document.prdcategory}" name="prdcategory">
@@ -242,7 +245,7 @@
 			 </c:if>
 			
 			 <!-- 광고요청 관련 상품명 입력란 -->
-			 <c:if test="${document.prdname ne 'X'}"> 
+			 <c:if test="${document.dcategory eq '광고요청'}"> 
 				 <div class="col-md-12" id="insertPrdname">
 				     <label for="productName" class="form-label">상품명 <font color="red">*</font></label>
 				     <input type="text" class="form-control form-control-sm" value="${document.prdname}" name="prdname">
@@ -256,19 +259,20 @@
       
       <div class="modal-footer">
       	<!-- 닫기 버튼 -->
-      	<a href="" class="btn btn-primary btn-icon-split" id="closeBtn">
+      	<a href="document_box.dc" class="btn btn-primary btn-icon-split" id="closeBtn">
             <span class="text">닫기</span>
         </a>
         
-        <!-- 임시저장 버튼 -->
-      	<a href="javascript:tempSave()" class="btn btn-warning btn-icon-split" id="tempBtn">
-            <span class="text">임시저장</span>
+        <!-- 수정 버튼 -->
+      	<a href="javascript:tempSave('${document.dnum}')" class="btn btn-warning btn-icon-split" id="tempBtn">
+            <span class="text">수정</span>
         </a>
         
         <!-- 요청 버튼 -->
-	    <a href="javascript:send()" class="btn btn-primary btn-icon-split" id="requestBtn">
+	    <a href="javascript:send('${document.dnum}')" class="btn btn-primary btn-icon-split" id="requestBtn">
             <i class="fas fa-paper-plane"></i>
             <span class="text">요청</span>
         </a>
       </div>
-</body>      
+</div>      
+<%@ include file="../member/owner/o_bottom.jsp" %>

@@ -125,18 +125,75 @@
     </div>
 </section>
 
-<section class="container py-5">
-	<div class="container py-1 text-center" style="background: #F5F5F5">
-		<ul class="navbar-nav mx-auto text-muted fs-5 fw-bolder py-2" >
-			<li class="nav-item" >
-				상품리뷰
-			</li>
-		</ul>
-
-	    <div class="container py-5 text-center" style="border-top: 1px solid gray">
-	    	리뷰 내역
-	    </div>
+<section class="py-5">
+	<div class="container py-1 text-center w-75">
+		<div class="text-center fw-bold py-3 fs-4 text-secondary">
+			상품리뷰(<fmt:formatNumber value="${rcount}" pattern="##,###"/>)
+		</div>
+	    <c:if test="${fn:length(rdetail) == 0}">
+	    	<div class="container py-5 text-center" style="border-top: 2px solid #EBEBEB">
+	    		현재 등록된 리뷰가 없습니다.
+	    	</div>
+	    </c:if>
+	    	
+	    	
+	    <c:if test="${fn:length(rdetail) > 0}">
+	    	<div class="container pb-5 text-center" style="border-top: 2px solid #EBEBEB">
+	    		<c:forEach var="rd" items="${rdetail}" varStatus="status">
+	    			<c:if test="${status.count == 1}">
+	    				<div class="mb-3 p-2 text-end">
+							<a href="detail.mall?pnum=${rd.pnum}&range=recently">최신순</a>&nbsp;|&nbsp;
+							<a href="detail.mall?pnum=${rd.pnum}&range=highScore">높은별점순</a>&nbsp;|&nbsp;
+							<a href="detail.mall?pnum=${rd.pnum}&range=rowScore">낮은별점순</a>
+						</div>
+	    			</c:if>
+	    		</c:forEach>
+	    		
+		    	<table class="mx-auto my-4 bg-white" style="width: 700">
+		    		<c:forEach var="rd" items="${rdetail}">
+		    			<tr style="border-top: 1px solid gray">
+		    				<td rowspan="5" class="p-4" style="background: rgba(42, 193, 188, 0.2); border-right: 1px solid gray">
+								<c:forEach var="i" begin="1" end="${5-rd.score}">
+									<i class="fi fi-sr-star text-white"></i>
+								</c:forEach>
+								<c:forEach var="i" begin="1" end="${rd.score}">
+									<i class="fi fi-sr-star" style="color: yellow"></i>
+								</c:forEach>
+								
+								<p class="mt-2 text-muted fw-bold">
+								${rd.id}
+		    				</td>
+		    			</tr>
+		    			<tr>
+		    				<td class="pt-3 ps-4 text-muted">
+		    					${rd.pname}
+		    				</td>
+		    			</tr>
+		    			<tr>
+		    				<td class="pt-2 ps-4">
+		    					<c:if test="${rd.image ne null}">
+				    				<% String img = request.getContextPath()+"/resources/uploadImage/"; %>
+				    				<img src="<%=img%>${rd.image}" style="width: 80">
+				    			</c:if>
+		    				</td>
+		    			</tr>
+		    			<tr>
+		    				<td class="pt-2 ps-4">${rd.rcomment}</td>
+		    			</tr>
+		    			<tr style="border-bottom: 1px solid gray">
+		    				<td class="pt-1 ps-4 pb-3 text-muted">
+		    					<fmt:parseDate var="date" value="${rd.rdate}" pattern="yyyy-MM-dd"/>
+		    					<fmt:formatDate value="${date}" pattern="yyyy-MM-dd"/>
+		    				</td>
+		    			</tr>
+		    		</c:forEach>
+		    	</table>
+		    	${pageInfo.pagingHtml }
+		    </div>
+	    </c:if>
+	    	
 	</div>
 </section>
+
 
 <%@ include file="mall_bottom.jsp"%>

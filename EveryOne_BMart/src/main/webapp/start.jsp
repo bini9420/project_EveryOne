@@ -4,6 +4,8 @@
 
 <%
 	String gotoMall = request.getContextPath()+"/main.mall";
+	String gotoAdmin = request.getContextPath()+"/login.ad";
 %>
 
 <input type="button" value="마트보기" onClick="location='<%=gotoMall%>'">
+<input type="button" value="관리자 로그인" onClick="location='<%=gotoAdmin%>'">

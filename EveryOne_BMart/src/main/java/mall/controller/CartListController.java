@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import mall.model.MallDao;
-import member.model.MemberBean;
+import model.MemberBean;
 
 @Controller
 public class CartListController {

@@ -121,7 +121,8 @@
               					<h6 class="mb-1">${rcheckDocument.title}</h6>
               				</td>
               				<td>
-              					<h6 class="mb-1">${rcheckDocument.writeday}</h6>
+              					<fmt:parseDate value="${rcheckDocument.writeday}" var="writeday" pattern="yyyy-MM-dd HH:mm"/>
+              					<h6 class="mb-1"><fmt:formatDate value="${writeday}" pattern="yyyy-MM-dd HH:mm"/></h6>
               				</td>
               				<td>
               					<h6 class="mb-1">${rcheckDocument.prdnum}</h6>

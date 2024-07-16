@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import document.model.DocumentBean;
 import document.model.DocumentDao;
-import document.model.ReviewcheckBean;
 import document.model.ReviewcheckDao;
-import member.model.MemberBean;
+import model.MemberBean;
+import model.ReviewcheckBean;
 import utility.Paging;
 
 @Controller
@@ -38,7 +38,7 @@ public class DocumentWaitController {
 						  HttpServletRequest request,
 						  HttpSession session,
 						  Model model) {
-		System.out.println("keyword: " + keyword);
+		//System.out.println("keyword: " + keyword);
 		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
 		
 		Map<String, String> map = new HashMap<String, String>();

@@ -109,6 +109,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="resources/js/scripts.js"></script>
+
+<!-- 입점요청 Form 띄우기 -->
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 <script>
 	function show(id) {

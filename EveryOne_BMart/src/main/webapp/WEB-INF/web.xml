@@ -87,6 +87,23 @@
 		<servlet-name>member</servlet-name>
 		<url-pattern>*.mb</url-pattern>
 	</servlet-mapping>
+
+	<!-- 관리자 -->
+	<servlet>
+		<servlet-name>admin</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/admin-servlet.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>admin</servlet-name>
+		<url-pattern>*.ad</url-pattern>
+	</servlet-mapping>
 	
 	<!-- 결재문서 -->
 	<servlet>
@@ -121,4 +138,22 @@
 		<servlet-name>state</servlet-name>
 		<url-pattern>*.st</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 상품 -->
+	<servlet>
+		<servlet-name>product</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/product-servlet.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>product</servlet-name>
+		<url-pattern>*.prd</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

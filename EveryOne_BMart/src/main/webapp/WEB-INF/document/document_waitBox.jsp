@@ -67,7 +67,6 @@
 						<td class="searchTd spaceTd">
 							<select class="form-select form-select-sm" name="whatColumn">
 								<option value="all">전체검색
-								<option value="dcategory">문서종류
 								<option value="dnum">문서번호
 								<option value="title">제목
 							</select>
@@ -120,7 +119,8 @@
               					<h6 class="mb-1">${waitDocument.title}</h6>
               				</td>
               				<td>
-              					<h6 class="mb-1">${waitDocument.writeday}</h6>
+              					<fmt:parseDate value="${waitDocument.writeday}" var="writeday" pattern="yyyy-MM-dd HH:mm"/>
+              					<h6 class="mb-1"><fmt:formatDate value="${writeday}" pattern="yyyy-MM-dd HH:mm"/></h6>
               				</td>
               			</tr>
               		</c:forEach>

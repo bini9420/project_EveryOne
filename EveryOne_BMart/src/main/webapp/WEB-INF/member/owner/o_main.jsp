@@ -15,16 +15,6 @@
 	}
 </style>
 
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
-<script>
-	function show() {
-		$('#documentWrite .modal-content').load("document_write.dc");
-		$('#documentWrite').modal();
-		$('#requestDocument').css('bgcolor', '#2ac1bc');
-		$('#requestDocumnet').css('border-color', '#bae8e6');
-	}
-</script>
-
 <%@ include file="o_top.jsp"%>
 <div class="container-fluid">
 
@@ -34,15 +24,6 @@
 		<a href="javascript:show()" data-bs-toggle="modal" data-bs-target="#documentWrite"
 			class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
 			class="fas fa-download fa-sm text-white-50" id="requestDocument"></i> 결재 요청</a>
-		
-		<!-- 결재 요청 작성 모달 -->
-		<div class="modal fade" id="documentWrite" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-
-		    </div>
-		  </div>
-		</div>
 	</div>
 
 	<!-- Content Row -->
@@ -159,4 +140,4 @@
 
 <!-- End of Main Content -->
 
-<%@ include file="o_bottom.jsp"%>
+<%@ include file="o_bottom.jsp"%> 

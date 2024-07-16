@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import member.model.MemberBean;
 import member.model.MemberDao;
+import model.MemberBean;
 
 
 @Controller
@@ -26,7 +26,6 @@ public class MemberLoginController {
 
 	@Autowired
 	MemberDao memberDao;
-	
 	
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String loginForm() {
@@ -43,7 +42,7 @@ public class MemberLoginController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		MemberBean mb = memberDao.getBmartMember(member.getId());  
+		MemberBean mb = memberDao.getMember(member.getId());  
 		System.out.println("mb:" + mb);
 
 		try {

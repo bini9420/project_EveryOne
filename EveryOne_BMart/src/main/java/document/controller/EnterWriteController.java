@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import document.model.EnterBean;
+import model.EnterBean;
 import document.model.EnterDao;
-import member.model.MemberBean;
+import model.MemberBean;
 
 @Controller
 public class EnterWriteController {
@@ -70,7 +70,7 @@ public class EnterWriteController {
 		
 		//첨부파일(originname) 설정
 		MultipartFile multi = enter.getUpload();
-		String uploadPath = servletContext.getRealPath("/resources/upload"); //image를 업로드하는 곳
+		String uploadPath = servletContext.getRealPath("/resources/document"); //image를 업로드하는 곳
 
 		//해당 아이디로 입점요청건이 있는지 enter 테이블에서 확인
 		if(enterDao.checkEnter(mb.getId()) > 0) {
@@ -80,7 +80,7 @@ public class EnterWriteController {
 			out.flush();
 		} else { //해당 아이디로 입점요청건이 없을 경우
 			int cnt = -1;
-			cnt = enterDao.insertEnter(enter);
+			cnt = enterDao.insertEnter(enter); 
 			if(cnt != -1) { //삽입 성공
 				File destination = new File(uploadPath + "\\" + multi.getOriginalFilename()); // => 출력해보면 문자열로 나오지만 실제로 file로 생성됨
 				

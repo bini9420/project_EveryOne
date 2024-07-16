@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import document.model.ReviewcheckBean;
 import document.model.ReviewcheckDao;
-import member.model.MemberBean;
+import model.MemberBean;
+import model.ReviewcheckBean;
 import utility.Paging;
 
-@Controller
+@Controller  
 public class RcheckListController {
 	private final String command = "rcheckList.dc";
 	private final String getPage = "reviewCheckList";

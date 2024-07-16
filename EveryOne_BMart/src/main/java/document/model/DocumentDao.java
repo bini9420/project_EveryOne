@@ -8,15 +8,17 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import utility.Paging;
 import utility.PagingPlus;
 
-@Component
+@Repository("documentDao")
 public class DocumentDao {
 
-	String namespace = "document.Document";
-	
+	String namespace = "document.Document"; 
+	 
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
@@ -30,7 +32,7 @@ public class DocumentDao {
 		return lists;
 	}//getAllDocument
 
-	public int getTotalCount(Map<String,String> map) {
+	public int getTotalCount(Map<String,String> map) { 
 		int totalCount = -100;
 		totalCount = sqlSessionTemplate.selectOne(namespace + ".getTotalCount", map);
 		
@@ -194,6 +196,7 @@ public class DocumentDao {
 	public int updateDocument(DocumentBean document) {
 		int cnt = -1;
 		cnt = sqlSessionTemplate.update(namespace + ".updateDocument", document);
+		System.out.println("cnt:" + cnt);
 		
 		return cnt;
 	}//updateDocument
@@ -201,6 +204,116 @@ public class DocumentDao {
 	public void deleteDocument(String dnum) {
 		sqlSessionTemplate.delete(namespace + ".deleteDocument", dnum);
 	}//deleteDocument
+
+	
+	//★ 관리자용 결재함 > 전체문서함
+	public List<DocumentBean> getAllDocumentForAdmin(Map<String, String> map, PagingPlus pageplus) {
+		RowBounds rowBounds = new RowBounds(pageplus.getOffset(), pageplus.getLimit());
+		
+		List<DocumentBean> lists = new ArrayList<DocumentBean>();
+		lists = sqlSessionTemplate.selectList(namespace + ".getAllDocumentForAdmin", map, rowBounds);
+		
+		return lists;
+	}//getAllDocumentForAdmin
+
+	
+	//★ 관리자용 문서 전체 레코드의 개수 구하기
+	public int getTotalCountForAdmin(Map<String, String> map) {
+		int totalCount = -100;
+		totalCount = sqlSessionTemplate.selectOne(namespace + ".getTotalCountForAdmin", map);
+		
+		return totalCount;
+	}//getTotalCountForAdmin
+
+	
+	//★ 관리자용 문서 상세보기에서 승인 버튼 클릭시 승인 칼럼 0->1로 변경, 결재 상태 0->1로 변경
+	public void updateApproval(String dnum) {
+		sqlSessionTemplate.update(namespace + ".updateApproval", dnum);
+	}//updateApproval
+
+	
+	//★ 관리자용 문서 상세보기에서 반려 버튼 클릭시 반려사유(reason 칼럼) 변경
+	public void updateReason(Map<String, String> map) {
+		sqlSessionTemplate.update(namespace + ".updateReason", map);
+	}//updateReason
+
+	
+	//★ 관리자용 결재함 > 결재대기함
+	public List<DocumentBean> getAllWaitDocumentForAdmin(Map<String, String> map, PagingPlus pageplus) {
+		RowBounds rowBounds = new RowBounds(pageplus.getOffset(), pageplus.getLimit());
+		
+		List<DocumentBean> lists = new ArrayList<DocumentBean>();
+		lists = sqlSessionTemplate.selectList(namespace + ".getAllWaitDocumentForAdmin", map, rowBounds);
+		
+		return lists;
+	}//getAllWaitDocumentForAdmin
+
+	
+	//★ 관리자용 결재대기문서 개수 구하기
+	public int getWaitTotalCountForAdmin(Map<String, String> map) {
+		int totalCount = -100;
+		totalCount = sqlSessionTemplate.selectOne(namespace + ".getWaitTotalCountForAdmin", map);
+		
+		return totalCount;
+	}//getTotalCountForAdmin
+	
+	
+	//★ 관리자용 결재함 > 결재완료함
+	public List<DocumentBean> getAllCompleteDocumentForAdmin(Map<String, String> map, PagingPlus pageplus) {
+		RowBounds rowBounds = new RowBounds(pageplus.getOffset(), pageplus.getLimit());
+		
+		List<DocumentBean> lists = new ArrayList<DocumentBean>();
+		lists = sqlSessionTemplate.selectList(namespace + ".getAllCompleteDocumentForAdmin", map, rowBounds);
+		
+		return lists;
+	}//getAllCompleteDocumentForAdmin
+
+	
+	//★ 관리자용 결재완료문서 개수 구하기
+	public int getCompleteTotalCountForAdmin(Map<String, String> map) {
+		int totalCount = -100;  
+		totalCount = sqlSessionTemplate.selectOne(namespace + ".getCompleteTotalCountForAdmin", map);
+		
+		return totalCount;
+	}//getTotalCountForAdmin
+
+	//★ 입점신청 문서에 해당 아이디가 있는지 확인
+	public int checkProduct(String id) {
+		int cnt = -1; 
+		cnt = sqlSessionTemplate.selectOne(namespace + ".checkProduct", id);
+		
+		return cnt;
+	}//checkProduct
+
+	
+	public int getWaitDocumentForAdmin() {
+		int count = -100;
+		count = sqlSessionTemplate.selectOne(namespace + ".getWaitDocumentForAdmin");
+
+		return count;
+	}//getWaitDocumentForAdmin
+
+	public int requestDocument(DocumentBean document) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.update(namespace + ".requestDocument", document);
+		
+		return cnt;
+	}//requestDocument
+
+	public int requestDocumentByDnum(String dnum) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.update(namespace + ".requestDocumentByDnum", dnum);
+		
+		return cnt;
+	}//requestDocumentByDnum
+
+	//★ 관리자 Main 화면에 결재 대기건수 표시
+	public int getWaitCountForAdmin() {
+		int count = -1;
+		count = sqlSessionTemplate.selectOne(namespace + ".getWaitCountForAdmin");
+		
+		return count;
+	}//getWaitCountForAdmin
 
 
 }

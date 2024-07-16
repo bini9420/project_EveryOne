@@ -77,7 +77,8 @@
                             <label for="documentWriteday" class="form-label">작성일자</label>
                         </th>
                         <td>
-                            <label class="form-label">${rcheck.writeday}</label>
+                        	<fmt:parseDate value="${rcheck.writeday}" var="writeday" pattern="yyyy-MM-dd HH:mm"/>
+                            <label class="form-label"><fmt:formatDate value="${writeday}" pattern="yyyy-MM-dd HH:mm"/></label>
                         </td> 
                     </tr>
                     

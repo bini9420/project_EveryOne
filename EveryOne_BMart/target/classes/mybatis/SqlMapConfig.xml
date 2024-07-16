@@ -8,15 +8,18 @@
 <configuration>
 	
 	<typeAliases>
-		<typeAlias type="mall.model.ProductBean" alias="product"/>
-		<typeAlias type="mall.model.WatchBean" alias="watch"/>
-		<typeAlias type="mall.model.InterestBean" alias="interest"/>
-		<typeAlias type="mall.model.CartBean" alias="cart"/>
-		<typeAlias type="mall.model.CategoryBean" alias="category"/>
-		<typeAlias type="member.model.MemberBean" alias="member"/>
-		<typeAlias type="member.model.AddressBean" alias="address"/>
-		<typeAlias type="member.model.BusinessBean" alias="business"/>
-		<typeAlias type="document.model.EnterBean" alias="enter"/>
+		<typeAlias type="model.ProductBean" alias="product"/>
+		<typeAlias type="model.WatchBean" alias="watch"/>
+		<typeAlias type="model.InterestBean" alias="interest"/>
+		<typeAlias type="model.CartBean" alias="cart"/>
+		<typeAlias type="model.CategoryBean" alias="category"/>
+		<typeAlias type="model.ReviewBean" alias="review"/>
+		<typeAlias type="model.ReviewDetailBean" alias="reviewDetail"/>
+		<typeAlias type="model.MemberBean" alias="member"/>
+		<typeAlias type="model.AddressBean" alias="address"/>
+		<typeAlias type="model.BusinessBean" alias="business"/>
+		<typeAlias type="model.EnterBean" alias="enter"/>
+		<typeAlias type="model.ReviewcheckBean" alias="reviewCheck"/>
 	</typeAliases>
 
 	<mappers>
@@ -25,12 +28,15 @@
 		<mapper resource="mybatis/watch.xml"/>
 		<mapper resource="mybatis/interest.xml"/>
 		<mapper resource="mybatis/cart.xml"/>
+		<mapper resource="mybatis/review.xml"/>
+		<mapper resource="mybatis/reviewDetail.xml"/>
 		<mapper resource="mybatis/member.xml"/>
 		<mapper resource="mybatis/address.xml"/>
 		<mapper resource="mybatis/business.xml"/>
 		<mapper resource="mybatis/enter.xml"/>
 		<mapper resource="mybatis/document.xml"/>
 		<mapper resource="mybatis/state.xml"/>
+		<mapper resource="mybatis/reviewCheck.xml"/>
 	</mappers>
 	
-</configuration>
+</configuration> 

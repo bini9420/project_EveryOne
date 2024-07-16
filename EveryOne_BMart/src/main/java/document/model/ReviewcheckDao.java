@@ -9,12 +9,13 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import model.ReviewcheckBean;
 import utility.Paging;
 
 @Component
 public class ReviewcheckDao {
 
-	String namespace = "document.Document";
+	String namespace = "reviewCheck.ReviewCheck";
 	
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
@@ -63,4 +64,28 @@ public class ReviewcheckDao {
 	public void tempSaveRCheck(ReviewcheckBean reviewcheck) {
 		sqlSessionTemplate.insert(namespace + ".tempSaveRCheck", reviewcheck);
 	}//tempSaveRCheck
+
+	public void updateApproval(String rnum) {
+		sqlSessionTemplate.update(namespace + ".updateApproval", rnum);
+	}//updateApproval
+
+	public void updateReason(Map<String, String> map) {
+		sqlSessionTemplate.update(namespace + ".updateReason", map);
+	}//updateReason
+
+	public int getRcheckTotalCountForAdmin(Map<String, String> map) {
+		int totalCount = -100;
+		totalCount = sqlSessionTemplate.selectOne(namespace + ".getRcheckTotalCountForAdmin", map);
+		
+		return totalCount;
+	}//getRcheckTotalCountForAdmin
+
+	public List<ReviewcheckBean> getAllRcheckDocumentForAdmin(Map<String, String> map, Paging pageInfo) {
+		RowBounds rowbounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		
+		List<ReviewcheckBean> lists = new ArrayList<ReviewcheckBean>();
+		lists = sqlSessionTemplate.selectList(namespace + ".getAllRcheckDocumentForAdmin", map, rowbounds);
+		
+		return lists; 
+	}//getAllRcheckDocumentForAdmin
 }

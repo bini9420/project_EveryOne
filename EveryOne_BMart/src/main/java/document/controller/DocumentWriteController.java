@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import document.model.DocumentBean;
 import document.model.DocumentDao;
-import member.model.MemberBean;
+import model.MemberBean;
 
 @Controller
 public class DocumentWriteController {
@@ -36,8 +36,7 @@ public class DocumentWriteController {
 	
 	//GET: o_top.jsp에서 결재요청 클릭시
 	@RequestMapping(value=command, method=RequestMethod.GET)
-	public String write(HttpSession session,
-						Model model) {
+	public String write(HttpSession session, Model model) {
 		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
 		model.addAttribute("name", mb.getName());
 				
@@ -75,9 +74,6 @@ public class DocumentWriteController {
 		//작성자(writer) 설정
 		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
 		document.setWriter(mb.getId()); 
-		
-		System.out.println("prdname: " + document.getPrdname());
-		System.out.println("prdcategory: " + document.getPrdcategory());
 		
 		//상품명(prdname) 설정
 		if(document.getPrdname() == null) {

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+
 <c:choose>
 	<c:when test="${index eq null || fn:contains(index, 'orderList')}">
 		<div class="card h-100" style="border: 0px">
@@ -11,10 +12,10 @@
 		</div>
 	</c:when>
 	<c:when test="${fn:contains(index, 'memberInfoUpdate')}">
-		<div class="card h-75" style="border: 0px">
+		<div class="card h-100 pe-4" style="border: 0px">
 			<div class="card-body">
 				<h5 class="card-title text-primary fw-bolder">개인정보수정</h5>
-				<div class="m-auto w-50 text-center">
+				<div class="my-5">
 					<form:form commandName="member" action="memberUpdate.mb" class="text-muted p-2" enctype="multipart/form-data">
 						<p>
 							<% String img = request.getContextPath()+"/resources/uploadImage/"; %>
@@ -35,11 +36,26 @@
 						</p>
 						<p>
 							핸드폰번호 : 
-							<input type="text" name="phone" value="${member.phone}" placeholder="하이픈(-)을 포함해서 입력해주세요.">
+							<% String[] phone = {"010","011"}; %>
+							<select name="phone1">
+								<option value="">선택 안 함
+								<c:forEach var="p" items="<%=phone%>">
+									<option value="${p}" <c:if test="${p eq member.phone1}">selected</c:if>>${p}
+								</c:forEach>
+							</select> - 
+							<input type="text" name="phone2" value="${member.phone2}" style="width: 70"> - 
+							<input type="text" name="phone3" value="${member.phone3}" style="width: 70">
 						</p>
 						<p>
 							이메일 : 
-							<input type="text" name="email" value="${member.email}">
+							<input type="text" name="email1" value="${member.email1}" style="width: 150"> @ 
+							<% String[] email = {"naver.com","gmail.com","daum.net","hanmail.net"}; %>
+							<select name="email2">
+								<option value="">선택 안 함
+								<c:forEach var="e" items="<%=email%>">
+									<option value="${e}" <c:if test="${e eq member.email2}">selected</c:if>>${e}
+								</c:forEach>
+							</select>
 						</p>
 						<input type="submit" value="수정하기" class="btn btn-outline-primary mt-2">
 					</form:form>
@@ -222,12 +238,7 @@
 									<th>별점</th>
 									<td class="p-2">
 										<c:forEach var="i" begin="1" end="5">
-											<c:if test="${i eq rdb.score}">
-												<input type="radio" name="score" value="${i}" checked>${i}점
-											</c:if>
-											<c:if test="${i ne rdb.score}">
-												<input type="radio" name="score" value="${i}">${i}점
-											</c:if>
+											<input type="radio" name="score" value="${i}" <c:if test="${i eq rdb.score}">checked</c:if>>${i}점
 										</c:forEach>
 									</td>
 								</tr>

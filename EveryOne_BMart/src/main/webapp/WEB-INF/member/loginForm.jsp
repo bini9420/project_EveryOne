@@ -1,25 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>로그인</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
-</head>
-
+<%@ include file="member_top.jsp" %>
 
 <body class="bg-primary">
 	<div class="container">
@@ -29,9 +11,7 @@
 				<div class="card o-hidden border-0 shadow-lg my-5">
 					<div class="card-body p-0">
 						<!-- Nested Row within Card Body -->
-						<div class="row">
-							<div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-							<div class="col-lg-6">
+							<div class="col-lg-6 mx-auto py-5">
 								<div class="p-5">
 									<div class="text-center">
 										<h3 class="text-muted mb-4">로그인</h3>
@@ -45,21 +25,30 @@
 										</div>
 										<input type="submit" value="로그인" class="btn btn-primary btn-user btn-block">
 
-									<hr>
-									
-										<button type="submit" class="btn btn-warning btn-user btn-block" id="kakao-login-btn">
-											<i class="fab fa-google fa-fw"></i> 카카오로 로그인하기
-										</button>
-										
-										<button type="submit" class="btn btn-google btn-user btn-block"> 
-											<i class="fab fa-google fa-fw"></i> 구글로 로그인하기
-										</button>
 									</form>
 									
 									<hr>
+									<form class="user text-center">
+										<div class="form-group row mx-auto">
+											<!-- 카카오 로그인 -->
+											<a id="kakao-login-btn" class="m-1"
+											href="https://kauth.kakao.com/oauth/authorize?client_id=f851426109160a96d2785229bdb40d68&redirect_uri=http://localhost:8080/ex/kakaoLogin.mb&response_type=code&prompt=login">
+												<img src="resources/img/kakao.png" style="height:40px" alt="kakao login btn">
+											</a>  
+											
+											<!-- 네이버 로그인 -->
+											<a id="naver-login-btn" class="m-1"
+											href="https://nid.naver.com/oauth2.0/authorize?client_id=OYNrHlNkztOFUhRZwKT4&redirect_uri=http://localhost:8080/ex/naverLogin.mb&response_type=code&state=state&prompt=login">
+												<img src="resources/img/naver.png" style="height:40px" alt="naver login btn">
+											</a>  
+										</div>
+									</form>
+									<hr>
 									
-									<div class="text-center">
-										<a class="small" href="forgot-password.html">비밀번호를 잊어버렸나요?</a>
+									<div class="text-center text-primary">
+										<a class="small" data-bs-toggle="modal" data-bs-target="#findId">아이디 찾기</a>
+										&nbsp;&nbsp;|&nbsp;&nbsp;
+										<a class="small" data-bs-toggle="modal" data-bs-target="#findPw">비밀번호 찾기</a>
 									</div>
 								</div>
 							</div>
@@ -68,16 +57,69 @@
 				</div>
 			</div>
 		</div>
+
+<!-- 아이디 찾기 모달 -->
+<div class="modal fade" id="findId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">아이디 찾기</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="mx-2 my-4">
+					<form class="user" action="find.mb">
+						<div class="form-group row">
+							이름 : <input type="text" name="name" class="form-control col-sm-6 mx-1">
+						</div>
+						<div class="form-group row">
+							전화번호 : 
+								<select name="phone1" class="form-control col-sm-3 mx-1">
+									<option value="">선택 안 함
+									<option value="010">010
+									<option value="011">011
+								</select> 
+								<input type="text" class="form-control col-sm-3 mx-1" name="phone2">
+                                <input type="text" class="form-control col-sm-3 mx-1" name="phone3">
+						</div>
+						
+						<div class="text-center">
+							<input type="submit" value="아이디찾기" class="btn btn-sm btn-primary">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
+</div>
 
-	<!-- Bootstrap core JavaScript-->
-    <script src="resources/vendor/jquery/jquery.min.js"></script>
-    <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- 비밀번호 찾기 모달 -->
+<div class="modal fade" id="findPw" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">비밀번호 찾기</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="mx-2 my-4">
+					<form class="user" action="find.mb" method="post">
+						<div class="form-group row">
+							아이디 : <input type="text" name="id" class="form-control col-sm-6 mx-1">
+						</div>
+						<div class="form-group row">
+							이름 : <input type="text" name="name" class="form-control col-sm-6 mx-1">
+						</div>
+						
+						<div class="text-center">
+							<input type="submit" value="비밀번호찾기" class="btn btn-sm btn-primary">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-    <!-- Core plugin JavaScript-->
-    <script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="resources/js/sb-admin-2.min.js"></script>
-</body>
-</html>
+<%@ include file="member_bottom.jsp" %>

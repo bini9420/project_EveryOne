@@ -43,7 +43,7 @@
 						<!-- Product actions-->
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
-								<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?id=${loginInfo.id}&pnum=${watch.pnum}&qty=1">장바구니 담기</a>
+								<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?index=watch&id=${loginInfo.id}&pnum=${watch.pnum}&qty=1">장바구니 담기</a>
 		                    	<c:if test="${fn:length(interestLists) > 0}">
 									<!-- flag를 선언. false일 때만 출력하고 true면 반복문을 빠져나가도록. -->
 				                    <c:set var="flag" value="false"/>

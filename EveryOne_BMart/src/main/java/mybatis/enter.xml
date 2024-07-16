@@ -9,4 +9,67 @@
 	<select id="getEnter" resultType="enter">
 		select * from enter where writer=#{id}
 	</select>
+	
+	<select id="whatEnumber" resultType="String">
+		select max(rownum) from (select * from enter)
+	</select> 
+	
+	<insert id="insertEnter">
+		insert into enter(eno, writer, writeday, title, businesscode, postnum, addr1, addr2, request, originname, approval, dstatus)
+		values(#{eno}, #{writer}, sysdate, #{title}, #{businesscode}, #{postnum}, #{addr1}, #{addr2}, 1, #{originname, jdbcType=VARCHAR}, 0, 0)
+	</insert>
+	
+	<select id="checkEnter" resultType="int">
+		select count(*) from enter where writer=#{id}
+	</select>
+	
+	<delete id="deleteEnter">
+		delete from enter where eno=#{eno}
+	</delete>
+		
+	<select id="getAllEnterDocumentForAdmin" resultType="enter">
+		select * from enter 
+		<if test="whatColumn == 'all'">
+			where eno like #{keyword} or title like #{keyword} or businesscode like #{keyword} 
+		</if>
+		<if test="whatColumn == 'eno'">
+			where eno like #{keyword} 
+		</if>
+		<if test="whatColumn == 'title'">
+			where title like #{keyword} 
+		</if>
+		<if test="whatColumn == 'businesscode'">
+			where businesscode like #{keyword} 
+		</if>
+		order by approval, writeday desc 
+	</select>
+	
+	<select id="getEnterTotalCountForAdmin" resultType="int">
+   		select count(*) from enter 
+		<if test="whatColumn == 'all'">
+			where eno like #{keyword} or title like #{keyword} or businesscode like #{keyword} 
+		</if>
+		<if test="whatColumn == 'eno'">
+			where eno like #{keyword} 
+		</if>
+		<if test="whatColumn == 'title'">
+			where title like #{keyword} 
+		</if>
+		<if test="whatColumn == 'businesscode'">
+			where businesscode like #{keyword} 
+		</if>
+		order by approval, writeday desc 
+	</select>
+	
+	<select id="getEnterByEno" resultType="enter">
+		select * from enter where eno=#{eno}
+	</select>
+	
+	<update id="updateApproval">
+		update enter set approval=1, dstatus=1 where eno=#{eno}
+	</update>
+	
+	<update id="updateReason">
+		update enter set reason=#{reason}, approval=1, dstatus=-1 where eno=#{eno}
+	</update>
 </mapper>

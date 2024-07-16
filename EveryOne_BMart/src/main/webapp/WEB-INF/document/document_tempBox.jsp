@@ -124,7 +124,8 @@
               					<h6 class="mb-1">${tempDocument.title}</h6>
               				</td>
               				<td>
-              					<h6 class="mb-1">${tempDocument.writeday}</h6>
+              					<fmt:parseDate value="${tempDocument.writeday}" var="writeday" pattern="yyyy-MM-dd HH:mm"/>
+              					<h6 class="mb-1"><fmt:formatDate value="${writeday}" pattern="yyyy-MM-dd HH:mm"/></h6>
               				</td>
               			</tr>
               		</c:forEach>

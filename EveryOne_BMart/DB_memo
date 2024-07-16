@@ -88,6 +88,12 @@ insert into category values(cate_seq.nextval,'우유/유제품');
 insert into category values(cate_seq.nextval,'햄/어묵/통조림');
 insert into category values(cate_seq.nextval,'생활/기타');
 
+insert into category values(cate_seq.nextval, '전자기기');
+insert into category values(cate_seq.nextval, '가구/인테리어');
+insert into category values(cate_seq.nextval, '주방용품');
+insert into category values(cate_seq.nextval, '반려용품');
+insert into category values(cate_seq.nextval, '스포츠/레저/캠핑');
+
 
 
 --상품 테이블
@@ -303,6 +309,52 @@ insert into state values(0, '대기');
 insert into state values(1, '승인');
 insert into state values(10, '임시저장');
 
+
+-- 리뷰검토 문서 테이블
+
+drop table review_check cascade constraints;
+create table review_check (
+	rnum varchar2(15) primary key,
+	writer varchar2(30) references member(id) on delete cascade,
+	writeday date default sysdate,
+	title varchar2(100),
+	content varchar2(100),
+	prdnum number references product(pnum) on delete cascade,
+	re_writer varchar2(20) references member(id) on delete cascade,
+	re_writeday date,
+	request number default 0,
+	reason varchar2(100),
+	approval number default 0,
+	approveday date,
+	okimage varchar2(100),
+	dstatus number references state(snum) on delete set null
+);
+
+
+-- 입점신청 문서 테이블
+
+drop table enter cascade constraints;
+create table enter (
+   eno varchar2(15) primary key,
+   writer varchar2(30) references member(id) on delete cascade,
+   writeday date default sysdate,
+  title varchar2(100) not null,
+   businesscode varchar2(30) not null,
+   postnum varchar2(30) not null,
+   addr1 varchar2(100) not null,
+   addr2 varchar2(50) not null,
+  request number default 0,
+   reason varchar2(100),
+   originname varchar2(100),
+   updatename varchar2(100),
+   approval number default 0,
+   approveday date,
+   okimage varchar2(100),
+   dstatus number references state(snum) on delete set null
+);
+
+insert into enter 
+values('A-1', 'lee', sysdate, '입점을 신청합니다.', '11223344', '04050', '서울 마포구 양화로 140', '애플스토어', 1, null, null, null, 1, sysdate, null, 1);
 
 
 

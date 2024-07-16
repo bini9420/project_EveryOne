@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import admin.model.AdminDao;
+import document.model.DocumentDao;
 import model.MemberBean;
 
 @Controller
@@ -67,7 +68,6 @@ public class LoginController {
 				out.append("<script>");
 				out.append("alert('관리자 아이디가 아닙니다. 아이디를 다시 입력해주세요.')");
 				out.append("</script>");
-				out.flush();
 				return new ModelAndView( getPage ) ;
 			}
 		}

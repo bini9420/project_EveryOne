@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!-- Footer-->
 <footer style="width: 100%">
 	<nav class="navbar navbar-expand-lg footer1">
@@ -16,11 +17,20 @@
 					</a>
 				</li>
 				<li class="nav-item mx-5" >
-					<a class="nav-link" aria-current="page" href="#!">
+					<a class="nav-link" href="javascript:show('${loginInfo.id}')">
 						입점신청
 					</a>
 				</li>
 			</ul>
+			
+				<!-- 입점신청 Form(enter_insertForm.jsp) 모달창 -->
+				<div class="modal fade" id="enterWrite" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="enterModalLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <div class="modal-content" id="enter-content">
+		
+				    </div>
+				  </div>
+				</div>
 		</div>
 	</nav> 
 	<div class="bg-primary">
@@ -89,12 +99,22 @@
 		</div>
 	</div>
 </div>
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="resources/js/scripts.js"></script>
 
 <!-- 캐러셀 -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="resources/js/scripts.js"></script>
+
+<!-- 입점요청 Form 띄우기 -->
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+<script>
+	function show(id) {
+		$('#enter-content').load("enter_write.dc?id=" + id);
+		$('#enterWrite').modal('show');
+	}
+</script>

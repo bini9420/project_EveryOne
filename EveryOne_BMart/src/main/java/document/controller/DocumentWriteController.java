@@ -34,17 +34,17 @@ public class DocumentWriteController {
 	@Autowired
 	ServletContext servletContext;
 	
-	//o_top.jsp에서 결재요청 클릭시
+	//GET: o_top.jsp에서 결재요청 클릭시
 	@RequestMapping(value=command, method=RequestMethod.GET)
-	public String write(HttpSession session,
-						Model model) {
+	public String write(HttpSession session, Model model) {
 		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
 		model.addAttribute("name", mb.getName());
 				
 		return getPage;
 	}
 	
-	//document_writeForm.jsp에서 요청 클릭시
+	
+	//POST: document_writeForm.jsp에서 요청 클릭시
 	@RequestMapping(value=command, method=RequestMethod.POST)
 	public String write(@ModelAttribute("document") DocumentBean document, BindingResult result,
 						HttpSession session, Model model) {
@@ -74,10 +74,6 @@ public class DocumentWriteController {
 		//작성자(writer) 설정
 		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
 		document.setWriter(mb.getId()); 
-		
-		System.out.println("prdname: " + document.getPrdname());
-		System.out.println("prdcategory: " + document.getPrdcategory());
-		
 		
 		//상품명(prdname) 설정
 		if(document.getPrdname() == null) {

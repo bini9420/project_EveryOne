@@ -24,7 +24,7 @@
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-straight/css/uicons-bold-straight.css'>
 	
 	<!-- Custom styles for this page -->
-	<link href="resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<link href="<%=request.getContextPath()%>/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 	
 	<style>  
@@ -157,16 +157,15 @@
 				</a>
 				<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Approve Screens:</h6>
-						<a class="collapse-item" href="login.html">전체문서함</a> 
-						<a class="collapse-item" href="register.html">결재대기함</a> 
-						<a class="collapse-item" href="forgot-password.html">결재완료함</a> 
-						<a class="collapse-item" href="404.html">임시저장함</a> 
-						<a class="collapse-item" href="blank.html">반려함</a>
+						<h6 class="collapse-header">결재함</h6>
+						<a class="collapse-item" href="admin_allBox.dc">전체문서함</a> 
+						<a class="collapse-item" href="admin_waitBox.dc">결재대기함</a> 
+						<a class="collapse-item" href="admin_complete.dc">결재완료함</a> 
 						<div class="collapse-divider"></div>
 						<hr>
-						<h6 class="collapse-header">기타:</h6>
-						<a class="collapse-item" href="404.html">리뷰검토함</a>
+						<h6 class="collapse-header">기타</h6>
+						<a class="collapse-item" href="admin_enterBox.dc">입점신청함</a>
+						<a class="collapse-item" href="admin_rcheckBox.dc">리뷰검토함</a>
 					</div>
 				</div>
 			</li>
@@ -315,7 +314,7 @@
 								<a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
 										<img class="rounded-circle"
-											src="resources/img/undraw_profile_1.svg" alt="...">
+											src="<%=request.getContextPath()%>/resources/img/undraw_profile_1.svg" alt="...">
 										<div class="status-indicator bg-success"></div>
 									</div>
 									<div class="font-weight-bold">
@@ -327,7 +326,7 @@
 								<a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
 										<img class="rounded-circle"
-											src="resources/img/undraw_profile_2.svg" alt="...">
+											src="<%=request.getContextPath()%>/resources/img/undraw_profile_2.svg" alt="...">
 										<div class="status-indicator"></div>
 									</div>
 									<div>
@@ -339,7 +338,7 @@
 								<a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
 										<img class="rounded-circle"
-											src="resources/img/undraw_profile_3.svg" alt="...">
+											src="<%=request.getContextPath()%>/resources/img/undraw_profile_3.svg" alt="...">
 										<div class="status-indicator bg-warning"></div>
 									</div>
 									<div>
@@ -351,7 +350,6 @@
 								</a> 
 								<a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
-
 										<div class="status-indicator bg-success"></div>
 									</div>
 									<div>

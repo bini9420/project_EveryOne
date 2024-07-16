@@ -126,4 +126,65 @@
 		</if>
 	</select>
 	
+	<insert id="insertProductByOwner">
+		insert into product(pnum, id, pname, pimage, price, pcontent, stock, pcategory, inputdate)
+		values(seqprod.nextval, #{id}, #{pname}, #{pimage}, #{price}, #{pcontent}, #{stock}, #{pcategory}, sysdate)
+	</insert>
+	
+	<select id="getTotalCountForOwner" resultType="int">
+   		select count(*) from product where 1=1 and id=#{id}
+	    <!-- dcategory에 대한 조건 추가 -->
+	    <if test="whatColumn != null and whatColumn != ''">
+	        AND pcategory = #{whatColumn}
+	    </if>
+	    
+	    <!-- pname 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+	    <if test="inputPname != null and inputPname != ''">
+	        AND pname LIKE #{inputPname}
+	    </if>
+	
+	    <!-- pnum 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+	    <if test="inputPnum != null and inputPnum != ''">
+	        AND pnum LIKE #{inputPnum}
+	    </if>
+	
+	    <!-- inputdate 조건: 날짜 범위로 필터링 -->
+	    <if test="inputDay1 != null and inputDay1 != ''">
+	        AND inputdate &gt;= #{inputDay1}
+	    </if>
+	    <if test="inputDay2 != null and inputDay2 != ''">
+	        AND inputdate &lt;= #{inputDay2}
+	    </if>
+	</select>
+	
+	<select id="getAllProductForOwner" resultType="product">
+		select * from product
+		<where>
+	    	id=#{id}
+		    <!-- pcategory에 대한 조건 추가 -->
+		    <if test="whatColumn != null and whatColumn != ''">
+		        and pcategory = #{whatColumn} 
+		    </if>
+		    
+		    <!-- pname 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+		    <if test="inputPname != null and inputPname != ''">
+		        and pname LIKE #{inputPname} 
+		    </if>
+		
+		    <!-- pnum 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+		    <if test="inputPnum != null and inputPnum != ''">
+		        and pnum LIKE #{inputPnum} 
+		    </if>
+		
+		    <!-- inputdate 조건: 날짜 범위로 필터링 -->
+		    <if test="inputDay1 != null and inputDay1 != ''">
+		        and inputdate &gt;= #{inputDay1} 
+		    </if>
+		    <if test="inputDay2 != null and inputDay2 != ''">
+		        and inputdate &lt;= #{inputDay2} 
+		    </if>
+	    </where>
+	    order by pnum
+	</select>
+	
 </mapper>

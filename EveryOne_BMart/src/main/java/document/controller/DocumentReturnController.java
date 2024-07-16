@@ -38,7 +38,7 @@ public class DocumentReturnController {
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("whatColumn", whatColumn);
-		map.put("keyowrd", "%" + keyword + "%");
+		map.put("keyword", "%" + keyword + "%");
 		map.put("id", mb.getId());
 		
 		int totalCount = documentDao.getReturnCount(map);

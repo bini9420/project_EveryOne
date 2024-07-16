@@ -154,10 +154,7 @@
 	<select id="getAllReturnDocument" resultType="document.model.DocumentBean">
 		select * from (select * from document where dstatus=-1 and writer=#{id})
 		<if test="whatColumn == 'all'">
-			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword} 
-		</if>
-		<if test="whatColumn == 'dcategory'">
-			where dcategory like #{keyword} 
+			where dnum like #{keyword} or title like #{keyword} 
 		</if>
 		<if test="whatColumn == 'dnum'">
 			where dnum like #{keyword} 
@@ -171,10 +168,7 @@
 	<select id="getReturnCount" resultType="int">
 		select count(*) from (select * from document where dstatus=-1 and writer=#{id}) 
 		<if test="whatColumn == 'all'">
-			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword} 
-		</if>
-		<if test="whatColumn == 'dcategory'">
-			where dcategory like #{keyword} 
+			where dnum like #{keyword} or title like #{keyword} 
 		</if>
 		<if test="whatColumn == 'dnum'">
 			where dnum like #{keyword} 
@@ -185,7 +179,7 @@
  	</select>
 	
 	<select id="getAllApproveDocument" resultType="document.model.DocumentBean">
-		select * from (select * from document where request=1 and approval=1 and writer=#{id}) 
+		select * from (select * from document where request=1 and dstatus=1 and writer=#{id}) 
 		<if test="whatColumn == 'all'">
 			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword} 
 		</if>
@@ -202,7 +196,7 @@
 	</select>
 	
 	<select id="getApproveCount" resultType="int">
-		select count(*) from (select * from document where request=1 and approval=1 and writer=#{id})  
+		select count(*) from (select * from document where request=1 and dstatus=1 and writer=#{id})  
 		<if test="whatColumn == 'all'">
 			where dcategory like #{keyword} or dnum like #{keyword} or title like #{keyword} 
 		</if>
@@ -218,19 +212,31 @@
  	</select>
  	
  	<select id="getWaitDocumentList" resultType="document.model.DocumentBean">
- 		select * from document where request=1 and dstatus=0 and writer=#{id}
+ 		<![CDATA[
+		    select *  from (select * from document where request=1 and dstatus=0 and writer=#{id} order by writeday desc)
+		    where rownum <= 5
+	    ]]>
  	</select>
  	
  	<select id="getApproveDocumentList" resultType="document.model.DocumentBean">
- 		select * from document where request=1 and dstatus=1 and writer=#{id}
+ 		<![CDATA[
+		    select *  from (select * from document where request=1 and dstatus=1 and writer=#{id} order by writeday desc)
+		    where rownum <= 5
+	    ]]>
  	</select>
  	
  	<select id="getTempDocumentList" resultType="document.model.DocumentBean">
- 		select * from document where request=0 and writer=#{id}
+ 		<![CDATA[
+		    select *  from (select * from document where request=0 and writer=#{id} order by writeday desc)
+		    where rownum <= 5
+	    ]]>
  	</select>
  	
  	<select id="getReturnDocumentList" resultType="document.model.DocumentBean">
- 		select * from document where dstatus=-1 and writer=#{id}
+ 		<![CDATA[
+		    select *  from (select * from document where dstatus=-1 and writer=#{id} order by writeday desc)
+		    where rownum <= 5
+	    ]]>
  	</select>
  	
 	<select id="whatNumber" resultType="int">
@@ -249,7 +255,7 @@
  	</insert>
  	
  	<update id="updateDocument">
- 		update document set dcategory=#{dcategory}, writeday=sysdate, title=#{title}, dcontent=#{dcontent}, orginname=#{orginname, jdbcType=VARCHAR}
+ 		update document set dcategory=#{dcategory}, writeday=sysdate, title=#{title, jdbcType=VARCHAR}, dcontent=#{dcontent}, prdcategory=#{prdcategory}, prdname=#{prdname}
  		where dnum=#{dnum}
  	</update>
  	
@@ -257,47 +263,204 @@
  		delete from document where dnum=#{dnum}
  	</delete>
  	
- 	<insert id="insertReviewCheck">
- 		insert into review_check(rnum, writer, writeday, title, content, prdnum, re_writer, re_writeday, request)
- 		values(#{rnum}, #{writer}, sysdate, #{title}, #{content}, #{prdnum}, #{re_writer}, #{re_writeday}, 1)
- 	</insert>
- 	
- 	<select id="whatRnumber" resultType="String">
-		select max(rownum) from 
-		(select * from review_check)
-	</select> 
-	
-	<select id="getRTotalCount" resultType="int">
-		select count(*) from (select * from review_check where 1=1 and writer=#{id}) 
-		<if test="whatColumn == 'all'">
-			where rnum like #{keyword} or title like #{keyword}  or prdnum like #{keyword}
-		</if>
-		<if test="whatColumn == 'rnum'">
-			where rnum like #{keyword} 
-		</if>
-		<if test="whatColumn == 'title'">
-			where title like #{keyword} 
-		</if>
-		<if test="whatColumn == 'prdnum'">
-			where prdnum like #{keyword} 
-		</if>
-	</select>
-	
-	<select id="getAllReviewCheck" resultType="document.model.ReviewcheckBean">
-		select * from (select * from review_check where 1=1 and writer=#{id}) 
-		<if test="whatColumn == 'all'">
-			where rnum like #{keyword} or title like #{keyword}  or prdnum like #{keyword}
-		</if>
-		<if test="whatColumn == 'rnum'">
-			where rnum like #{keyword} 
-		</if>
-		<if test="whatColumn == 'title'">
-			where title like #{keyword} 
-		</if>
-		<if test="whatColumn == 'prdnum'">
-			where prdnum like #{keyword} 
-		</if>
+	<select id="getAllDocumentForAdmin" resultType="document.model.DocumentBean">
+		select * from document
+	    <where>
+	    	1=1
+		    <!-- dcategory에 대한 조건 추가 -->
+		    <if test="whatColumn != null and whatColumn != ''">
+		        and dcategory = #{whatColumn} 
+		    </if>
+		    
+		    <!-- dnum 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+		    <if test="inputDnum != null and inputDnum != ''">
+		        and dnum LIKE #{inputDnum} 
+		    </if>
+		
+		    <!-- title 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+		    <if test="inputTitle != null and inputTitle != ''">
+		        and title LIKE #{inputTitle} 
+		    </if>
+		
+		    <!-- writeday 조건: 날짜 범위로 필터링 -->
+		    <if test="inputDay1 != null and inputDay1 != ''">
+		        and writeday &gt;= #{inputDay1} 
+		    </if>
+		    <if test="inputDay2 != null and inputDay2 != ''">
+		        and writeday &lt;= #{inputDay2} 
+		    </if>
+	    </where>
 		order by writeday desc
 	</select>
-
+	
+	<select id="getTotalCountForAdmin" resultType="int">
+   		select count(*) from document where 1=1
+	    <!-- dcategory에 대한 조건 추가 -->
+	    <if test="whatColumn != null and whatColumn != ''">
+	        AND dcategory = #{whatColumn}
+	    </if>
+	    
+	    <!-- dnum 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+	    <if test="inputDnum != null and inputDnum != ''">
+	        AND dnum LIKE #{inputDnum}
+	    </if>
+	
+	    <!-- title 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+	    <if test="inputTitle != null and inputTitle != ''">
+	        AND title LIKE #{inputTitle}
+	    </if>
+	
+	    <!-- writeday 조건: 날짜 범위로 필터링 -->
+	    <if test="inputDay1 != null and inputDay1 != ''">
+	        AND writeday &gt;= #{inputDay1}
+	    </if>
+	    <if test="inputDay2 != null and inputDay2 != ''">
+	        AND writeday &lt;= #{inputDay2}
+	    </if>
+	</select>
+	
+	<update id="updateApproval">
+		update document set approval=1, dstatus=1, approveday=sysdate where dnum=#{dnum}
+	</update>
+	
+	<update id="updateReason">
+		update document set approval=1, dstatus=-1, reason=#{reason}, approveday=sysdate where dnum=#{dnum}
+	</update>
+	
+	<select id="getAllWaitDocumentForAdmin" resultType="document.model.DocumentBean">
+		select * from document 
+		<where>
+	    	request=1 and dstatus=0
+		    <!-- dcategory에 대한 조건 추가 -->
+		    <if test="whatColumn != null and whatColumn != ''">
+		        and dcategory = #{whatColumn} 
+		    </if>
+		    
+		    <!-- dnum 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+		    <if test="inputDnum != null and inputDnum != ''">
+		        and dnum LIKE #{inputDnum} 
+		    </if>
+		
+		    <!-- title 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+		    <if test="inputTitle != null and inputTitle != ''">
+		        and title LIKE #{inputTitle} 
+		    </if>
+		
+		    <!-- writeday 조건: 날짜 범위로 필터링 -->
+		    <if test="inputDay1 != null and inputDay1 != ''">
+		        and writeday &gt;= #{inputDay1} 
+		    </if>
+		    <if test="inputDay2 != null and inputDay2 != ''">
+		        and writeday &lt;= #{inputDay2} 
+		    </if>
+	    </where>
+		order by writeday desc
+	</select>
+	
+	<select id="getWaitTotalCountForAdmin" resultType="int">
+   		select count(*) from document 
+   		<where>
+	    	request=1 and dstatus=0
+		    <!-- dcategory에 대한 조건 추가 -->
+		    <if test="whatColumn != null and whatColumn != ''">
+		        and dcategory = #{whatColumn} 
+		    </if>
+		    
+		    <!-- dnum 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+		    <if test="inputDnum != null and inputDnum != ''">
+		        and dnum LIKE #{inputDnum} 
+		    </if>
+		
+		    <!-- title 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+		    <if test="inputTitle != null and inputTitle != ''">
+		        and title LIKE #{inputTitle} 
+		    </if>
+		
+		    <!-- writeday 조건: 날짜 범위로 필터링 -->
+		    <if test="inputDay1 != null and inputDay1 != ''">
+		        and writeday &gt;= #{inputDay1} 
+		    </if>
+		    <if test="inputDay2 != null and inputDay2 != ''">
+		        and writeday &lt;= #{inputDay2} 
+		    </if>
+	    </where>
+	</select>
+	
+	<select id="getAllCompleteDocumentForAdmin" resultType="document.model.DocumentBean">
+		select * from document 
+		<where>
+	    	approval=1
+		    <!-- dcategory에 대한 조건 추가 -->
+		    <if test="whatColumn != null and whatColumn != ''">
+		        and dcategory = #{whatColumn} 
+		    </if>
+		    
+		    <!-- dnum 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+		    <if test="inputDnum != null and inputDnum != ''">
+		        and dnum LIKE #{inputDnum} 
+		    </if>
+		
+		    <!-- title 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+		    <if test="inputTitle != null and inputTitle != ''">
+		        and title LIKE #{inputTitle} 
+		    </if>
+		
+		    <!-- writeday 조건: 날짜 범위로 필터링 -->
+		    <if test="inputDay1 != null and inputDay1 != ''">
+		        and writeday &gt;= #{inputDay1} 
+		    </if>
+		    <if test="inputDay2 != null and inputDay2 != ''">
+		        and writeday &lt;= #{inputDay2} 
+		    </if>
+	    </where>
+		order by writeday desc
+	</select>
+	
+	<select id="getCompleteTotalCountForAdmin" resultType="int">
+   		select count(*) from document 
+   		<where>
+	    	approval=1
+		    <!-- dcategory에 대한 조건 추가 -->
+		    <if test="whatColumn != null and whatColumn != ''">
+		        and dcategory = #{whatColumn} 
+		    </if>
+		    
+		    <!-- dnum 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+		    <if test="inputDnum != null and inputDnum != ''">
+		        and dnum LIKE #{inputDnum} 
+		    </if>
+		
+		    <!-- title 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
+		    <if test="inputTitle != null and inputTitle != ''">
+		        and title LIKE #{inputTitle} 
+		    </if>
+		
+		    <!-- writeday 조건: 날짜 범위로 필터링 -->
+		    <if test="inputDay1 != null and inputDay1 != ''">
+		        and writeday &gt;= #{inputDay1} 
+		    </if>
+		    <if test="inputDay2 != null and inputDay2 != ''">
+		        and writeday &lt;= #{inputDay2} 
+		    </if>
+	    </where>
+	    order by writeday desc
+	</select>
+	
+	<select id="getWaitDocumentForAdmin" resultType="int">
+		select count(*) from document where request=1 and approval=0 and dstatus=0
+	</select>
+	
+	<update id="requestDocument">
+		update document set request=1, writeday=sysdate, title=#{title}, dcontent=#{dcontent}, prdcategory=#{prdcategory}, prdname=#{prdname}
+		where dnum=#{dnum}
+	</update>
+	
+	<update id="requestDocumentByDnum">
+		update document set request=1 where dnum=#{dnum}
+	</update>
+	
+	<select id="getWaitCountForAdmin" resultType="int">
+		select count(*) from document where request=1 and dstatus=0
+	</select>
+	
 </mapper>

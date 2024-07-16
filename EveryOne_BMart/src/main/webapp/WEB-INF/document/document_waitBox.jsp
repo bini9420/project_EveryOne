@@ -61,12 +61,12 @@
 		<div class="col-xl-12">
 			<div class="card shadow mb-4">
 				<div class="card-body">
+				<form action="document_wait.dc">
 				<table align="center">
 					<tr>
 						<td class="searchTd spaceTd">
 							<select class="form-select form-select-sm" name="whatColumn">
 								<option value="all">전체검색
-								<option value="dcategory">문서종류
 								<option value="dnum">문서번호
 								<option value="title">제목
 							</select>
@@ -75,10 +75,12 @@
 							<input type="text" class="form-control form-control-sm" name="keyword">
 						</td>
 						<td align="center">
-							<a href="#" class="btn btn-primary btn-sm" id="searchBtn">Search</a>
+							<input type="submit" class="btn btn-primary" id="searchBtn" value="Search">
+							<!-- <a href="#" class="btn btn-primary btn-sm" id="searchBtn">Search</a> -->
 						</td>
 					</tr>
 				</table>
+				</form>
 				</div>
 			</div>
 		</div>
@@ -117,27 +119,11 @@
               					<h6 class="mb-1">${waitDocument.title}</h6>
               				</td>
               				<td>
-              					<h6 class="mb-1">${waitDocument.writeday}</h6>
+              					<fmt:parseDate value="${waitDocument.writeday}" var="writeday" pattern="yyyy-MM-dd HH:mm"/>
+              					<h6 class="mb-1"><fmt:formatDate value="${writeday}" pattern="yyyy-MM-dd HH:mm"/></h6>
               				</td>
               			</tr>
               		</c:forEach>
-              		<c:forEach var="waitReviewCheck" items="${lists}">
-              			<tr onclick="detailDocument('${waitReviewCheck.rnum}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-              				<td> 
-              					<h6 class="mb-1">[리뷰검토]</h6>
-              				</td>
-              				<td>
-              					<h6 class="mb-1">${waitReviewCheck.rnum}</h6>
-              				</td> 
-              				<td>
-              					<h6 class="mb-1">${waitReviewCheck.title}</h6>
-              				</td>
-              				<td>
-              					<h6 class="mb-1">${waitReviewCheck.writeday}</h6>
-              				</td>
-              			</tr>
-              		</c:forEach>
-              		
                 </tbody>
               </table>
               

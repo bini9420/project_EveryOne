@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.Date" %>		
 <%@ include file="../common/common.jsp"%>	
 <link href="<%=request.getContextPath()%>/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -13,7 +14,6 @@
 	}
 	.btn-secondary {
 		font-family: "Spoqa Han Sans Neo", sans-serif;
-		margin: auto;
 	}
 	.table {
 		margin: auto;
@@ -30,22 +30,14 @@
 	.selectedTh {
 		background-color: #9ad5d4;
 	}
-	#writeBtn {
+/* 	#writeBtn, #writebtn, #requestBtn, #deleteBtn, #closeBtn {
 		margin: auto;
-	}
+	} */
 </style>    
 
-<!-- jQuery를 먼저 로드 -->
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 <!-- Bootstrap JavaScript 로드 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-Ygo40xjq8a1+urx6cXhZYn5qN08yDQd6ikP6b8YdU0vg8D1UGtP9rVSo0nsNMznE" crossorigin="anonymous"></script>
 <script>
-	function update(dnum) {
-		$('#update_modal').load("document_update.dc?dnum=" + dnum);
-		$('#documentUpdate').modal('show');
-	}
-	
 	function deleteItem(dnum) {
 		const isCheck = confirm('정말 삭제하시겠습니까?');
 		if(isCheck) {
@@ -54,6 +46,7 @@
 	}
 </script>
 
+<input type="hidden" name="dnum" value="${document.dnum}">
 <!-- 모달 본문 -->
 <div class="modal-header">
     <h1 class="modal-title fs-5" id="staticBackdropLabel" align="left"><b>[${document.dcategory}] ${document.title}</b></h1>
@@ -77,7 +70,8 @@
                             <label for="documentWriteday" class="form-label">작성일자</label>
                         </th>
                         <td>
-                            <label class="form-label">${document.writeday}</label>
+                        	<fmt:parseDate value="${document.writeday}" var="writeday" pattern="yyyy-MM-dd HH:mm"/> <!-- parseDate: String -> Date타입으로 변경 -->
+                            <label class="form-label"><fmt:formatDate value="${writeday}" pattern="yyyy-MM-dd HH:mm"/></label>
                         </td> 
                     </tr>
                     
@@ -150,37 +144,58 @@
             </div>
         </div>
         
-        <!-- 첨부파일 테이블 -->
+        <!-- 상품 카테고리 or 상품명 테이블 -->
         <div class="row mt-4">
             <div class="col-md-12">
-                <table class="table bsb-table-xl text-nowrap align-middle m-0" id="table3">
+                <table class="table bsb-table-xl text-nowrap align-middle m-0" id="table6">
                     <tr>
-                        <th>첨부파일</th>
-                        <td id="title"><a href="<%=request.getContextPath()+"/resources/document/"%>${document.orginname}">${document.orginname}</a></td>
+                    	<c:if test="${(document.prdcategory ne 'prdcategory') && (document.prdcategory ne '')}">
+                        <th>상품 카테고리</th>
+                        <td id="pcategory">${document.prdcategory}</td>
+                        </c:if>
+                        
+                        <c:if test="${(document.prdname ne 'prdname') && (document.prdname ne '')}">
+                        <th>상품명</th>
+                        <td id="pname">${document.prdname}</td>
+                        </c:if>
                     </tr>
                 </table>	 
             </div>
         </div>
+        
+        
+        <!-- 반려사유 테이블 -->
+        <c:if test="${document.dstatus eq -1}">
+        <div class="row mt-2">
+            <div class="col-md-12">
+                <table class="table bsb-table-xl text-nowrap align-middle m-0" id="table5" border=1>
+                    <tr>
+                        <th class="font-weight-bold text-danger">반려사유</th>
+                        <td class="font-weight-bold">${document.reason}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        </c:if>
     </div>
 </div>
 
 <div class="modal-footer">
-    <c:if test="${document.dstatus ne 0}">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+    <c:if test="${document.approval eq 1}">
+        <button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
     </c:if>
     
-    <c:if test="${document.dstatus eq 0 }">
-        <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">닫기</button>
-        <button type="button" id="writeBtn" onclick="update('${document.dnum}')" class="btn btn-primary me-2">작성</button>
+    <c:if test="${document.request eq 0}">
+    	<button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
         <button type="button" id="deleteBtn" onclick="deleteItem('${document.dnum}')" class="btn btn-danger">삭제</button>
+        <button type="button" id="writeBtn" onclick="location.href='document_update.dc?dnum=${document.dnum}'" class="btn btn-warning">수정</button>
+        <button type="submit" id="requestBtn" onclick="location.href='document_request.dc?dnum=${document.dnum}'" class="btn btn-primary">요청</button>
     </c:if>
     
-    <!-- 작성 모달 -->
-    <div class="modal fade" id="documentUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg"> <!-- 필요에 따라 modal-lg 추가 -->
-            <div class="modal-content" id="update_modal">
-                <!-- document_write.dc에서 로드된 내용이 여기에 삽입됩니다. -->
-            </div>
-        </div>
-    </div>
+    <c:if test="${(document.approval eq 0) && (document.request eq 1)}">
+        <button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        <button type="button" id="deleteBtn" onclick="deleteItem('${document.dnum}')" class="btn btn-danger">삭제</button>
+        <button type="button" id="writeBtn" onclick="location.href='document_update.dc?dnum=${document.dnum}'" class="btn btn-warning">수정</button>
+    </c:if>
 </div>
+

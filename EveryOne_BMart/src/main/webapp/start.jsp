@@ -29,7 +29,7 @@
 			</ul>
 		</div>
 	</nav>
-	   
+	
 	<nav class="navbar navbar-expand-lg w-75 mx-auto" style="margin-top:200">
 		<div class="container">
 			<ul class="navbar-nav mx-auto" >

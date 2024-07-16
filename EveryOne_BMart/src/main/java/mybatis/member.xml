@@ -17,4 +17,8 @@
 	<update id="updateMemberImage">
 		update member set image=#{image} where id=#{id}
 	</update>
+	
+	<select id="getWaitDocumentCountForAdmin" resultType="int">
+		select count(*) from document where request=1 and dstatus=0
+	</select>
 </mapper>

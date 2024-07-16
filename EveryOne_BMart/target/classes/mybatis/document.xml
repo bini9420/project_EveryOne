@@ -266,7 +266,7 @@
 	<select id="getAllDocumentForAdmin" resultType="document.model.DocumentBean">
 		select * from document
 	    <where>
-	    	1=1
+	    	1=1 and request=1
 		    <!-- dcategory에 대한 조건 추가 -->
 		    <if test="whatColumn != null and whatColumn != ''">
 		        and dcategory = #{whatColumn} 
@@ -294,7 +294,7 @@
 	</select>
 	
 	<select id="getTotalCountForAdmin" resultType="int">
-   		select count(*) from document where 1=1
+   		select count(*) from document where 1=1 and request=1
 	    <!-- dcategory에 대한 조건 추가 -->
 	    <if test="whatColumn != null and whatColumn != ''">
 	        AND dcategory = #{whatColumn}
@@ -463,4 +463,19 @@
 		select count(*) from document where request=1 and dstatus=0
 	</select>
 	
+	<select id="getPrdname" resultType="String">
+		select prdname from document where dnum=#{dnum}
+	</select>
+	
+	<update id="updateProductAd">
+		update product set ad=1 where pname=#{pname}
+	</update>
+	
+	<select id="getWriter" resultType="String">
+		select writer from document where dnum=#{dnum}
+	</select>
+	
+	<delete id="deleteBusinessId">
+		delete from business where id=#{writer}
+	</delete>
 </mapper>

@@ -315,5 +315,29 @@ public class DocumentDao {
 		return count;
 	}//getWaitCountForAdmin
 
+	public String getPrdname(String dnum) {
+		String pname = null;
+		pname = sqlSessionTemplate.selectOne(namespace + ".getPrdname", dnum);
+		
+		return pname;
+	}//getPrdname
+
+	//★ 관리자 > 광고요청 승인시 Product 테이블의 ad칼럼 0->1로 변경
+	public void updateProductAd(String pname) {
+		sqlSessionTemplate.update(namespace + ".updateProductAd", pname);
+	}//updateProductAd
+
+	//★ 관리자 > 폐점요청 승인시 business 테이블에서 삭제할 id(writer) 조회
+	public String getWriter(String dnum) {
+		String writer = null;
+		writer = sqlSessionTemplate.selectOne(namespace + ".getWriter", dnum);
+		
+		return writer; 
+	}//getWriter
+
+	//★ 관리자 > 폐점요청 승인시 business 테이블에서 id를 조건으로 레코드 삭제
+	public void deleteBusinessId(String writer) {
+		sqlSessionTemplate.delete(namespace + ".deleteBusinessId", writer);
+	}//deleteBusinessId
 
 }

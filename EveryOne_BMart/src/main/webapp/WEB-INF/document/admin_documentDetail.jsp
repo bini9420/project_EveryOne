@@ -20,7 +20,7 @@
 	#table2 {
 		text-align: center;
 	}
-	#table3 td {
+	#table3 td, #table6 td {
         width: 100%; 
     }
     #table4 {
@@ -126,6 +126,25 @@
                         <td><pre><c:out value="${document.dcontent}"/></pre></td>
                     </tr>
                 </table>
+            </div>
+        </div>
+        
+        <!-- 상품 카테고리 or 상품명 테이블 -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <table class="table bsb-table-xl text-nowrap align-middle m-0" id="table6">
+                    <tr>
+                    	<c:if test="${(document.prdcategory ne 'prdcategory') && (document.prdcategory ne '')}">
+                        <th>상품 카테고리</th>
+                        <td id="pcategory">${document.prdcategory}</td>
+                        </c:if>
+                        
+                        <c:if test="${(document.prdname ne 'prdname') && (document.prdname ne '')}">
+                        <th>상품명</th>
+                        <td id="pname">${document.prdname}</td>
+                        </c:if>
+                    </tr>
+                </table>	 
             </div>
         </div>
         

@@ -2,8 +2,10 @@ package product.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import document.model.DocumentBean;
+import model.EnterBean;
 import model.MemberBean;
 import model.ProductBean;
 import product.model.ProductDao;
@@ -33,7 +37,19 @@ public class ProductInsertController {
 	ServletContext servletContext;
 
 	@RequestMapping(value=command, method=RequestMethod.GET)
-	public String insert() {
+	public String insert(HttpSession session, HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		//상품등록 승인된 사람만 getPage로 이동
+		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
+		DocumentBean db = productDao.checkProductApproval(mb.getId()); 
+		if(db == null) {
+			out.println("<script>");
+			out.println("alert('상품등록 결재 승인이 필요합니다'); location.href='omain.mb'");
+			out.println("</script>");
+			out.flush();
+		} 
 		return getPage;
 	}
 	

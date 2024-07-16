@@ -9,6 +9,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import document.model.DocumentBean;
+import model.EnterBean;
 import model.ProductBean;
 import utility.MemberListPaging;
 import utility.PagingPlus;
@@ -107,5 +109,14 @@ public class ProductDao {
 		
 		return lists;
 	}//getAllProductForOwner
+
+	//★ o_top.jsp에서 상품등록 클릭시 로그인한 id를 조건으로 입점요청 승인여부 확인
+	public DocumentBean checkProductApproval(String id) {
+		DocumentBean db = null;
+		db = sqlSessionTemplate.selectOne(namespace + ".checkProductApproval", id);
+		 
+		return db;
+	}//checkEnterApproval
+
 
 }

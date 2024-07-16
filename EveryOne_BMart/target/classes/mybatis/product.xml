@@ -187,4 +187,7 @@
 	    order by pnum
 	</select>
 	
+	<select id="checkProductApproval" resultType="document.model.DocumentBean">
+		select count(*) from document where writer=#{id} and dcategory='상품등록' and dstatus=1
+	</select>
 </mapper>

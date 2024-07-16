@@ -163,4 +163,16 @@ public class MemberDao {
 		return member;
 	}
 
+	//네이버 정보 확인
+	public MemberBean findnaver(MemberBean mb) {
+		MemberBean member = null;
+		member = sqlSessionTemplate.selectOne(namespace+".findnaver", mb);
+		return member;
+	}
+
+	//네이버 정보 저장
+	public void naverinsert(MemberBean mb) {
+		sqlSessionTemplate.insert(namespace+".naverinsert",mb);
+	}
+
 }

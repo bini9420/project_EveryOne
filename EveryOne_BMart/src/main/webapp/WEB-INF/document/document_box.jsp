@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../common/common.jsp" %>	
+<%@ include file="../common/common.jsp" %>
+<%@ include file="../member/owner/o_top.jsp" %>	
 <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/tables/table-1/assets/css/table-1.css">
 <style>
@@ -27,12 +28,12 @@
 		cursor: pointer;
 	}
 </style>
-<%@ include file="../member/owner/o_top.jsp" %>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	function detailDocument(dnum) {
 	    //alert("선택한 문서 번호: " + dnum);
-		$('.modal-content').load("document_detail.dc?dnum="+dnum);
+		$('#detailContent .modal-content').load("document_detail.dc?dnum="+dnum);
 		$('#staticBackdrop').modal('show');
 	}
 </script>
@@ -288,7 +289,7 @@
  									  <!-- Modal -->
 									  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 										<div class="modal-dialog modal-lg">
-											<div class="modal-content">
+											<div class="modal-content" id="detailContent">
 												   <!-- document_DetailView.jsp가 들어올 부분 -->   
 											</div>
 										</div>

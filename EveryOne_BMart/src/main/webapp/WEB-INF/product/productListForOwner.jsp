@@ -62,7 +62,7 @@
 										<option value="스포츠/레저/캠핑">스포츠/레저/캠핑
 									</select>
 								</td>
-								<td class="searchTd text-gray-800"><b>상품명</b></td>
+								<td class="searchTd text-gray-800"><b>상&nbsp;&nbsp;품&nbsp;&nbsp;명</b></td>
 								<td class="searchTd spaceTd" colspan="3">
 									<input type="text" class="form-control form-control-sm" name="inputPname">
 								</td>

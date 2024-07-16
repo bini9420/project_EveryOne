@@ -47,6 +47,41 @@ public class OrdersDao {
         params.put("id", id);
         return sqlSessionTemplate.selectList(namespace + ".getOrdersBySeller", params, rowBounds);
 	}
+
+	public int getOrdersCountBySellerAndMonth(String id, int month) {
+		int cnt = -1;
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		params.put("month", month);
+        cnt = sqlSessionTemplate.selectOne("getOrdersCountBySellerAndMonth", params);
+        return cnt;
+	}
+
+    public List<OrdersBean> getOrdersBySellerAndMonth(Paging pageInfo, String id, int month) {
+    	RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+    	Map<String, Object> params = new HashMap<String, Object>();
+    	params.put("id", id);
+    	params.put("month", month);
+    	return sqlSessionTemplate.selectList(namespace + ".getOrdersBySellerAndMonth", params, rowBounds);
+    }    
     
-    
+    public int getOrdersCountBySellerAndYearAndMonth(String id, int year, int month) {
+        int cnt = -1;
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("id", id);
+        params.put("year", year);
+        params.put("month", month);
+        cnt = sqlSessionTemplate.selectOne(namespace + ".getOrdersCountBySellerAndYearAndMonth", params);
+        return cnt;
+    }
+
+    public List<OrdersBean> getOrdersBySellerAndYearAndMonth(Paging pageInfo, String id, int year, int month) {
+        RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("id", id);
+        params.put("year", year);
+        params.put("month", month);
+        return sqlSessionTemplate.selectList(namespace + ".getOrdersBySellerAndYearAndMonth", params, rowBounds);
+    }
+
 }

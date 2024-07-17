@@ -29,19 +29,11 @@
 									
 									<hr>
 									<form class="user text-center">
-										<div class="form-group row mx-auto">
-											<!-- 카카오 로그인 -->
-											<a id="kakao-login-btn" class="m-1"
-											href="https://kauth.kakao.com/oauth/authorize?client_id=f851426109160a96d2785229bdb40d68&redirect_uri=http://localhost:8080/ex/kakaoLogin.mb&response_type=code&prompt=login">
-												<img src="resources/img/kakao.png" style="height:40px" alt="kakao login btn">
-											</a>  
-											
-											<!-- 네이버 로그인 -->
-											<a id="naver-login-btn" class="m-1"
-											href="https://nid.naver.com/oauth2.0/authorize?client_id=OYNrHlNkztOFUhRZwKT4&redirect_uri=http://localhost:8080/ex/naverLogin.mb&response_type=code&state=state&prompt=login">
-												<img src="resources/img/naver.png" style="height:40px" alt="naver login btn">
-											</a>  
-										</div>
+										<!-- 카카오 로그인 -->
+										<a id="kakao-login-btn" class="m-1"
+										href="https://kauth.kakao.com/oauth/authorize?client_id=f851426109160a96d2785229bdb40d68&redirect_uri=http://localhost:8080/ex/kakaoLogin.mb&response_type=code&prompt=login">
+											<img src="resources/img/kakao.png" style="height:40px" alt="kakao login btn">
+										</a>  
 									</form>
 									<hr>
 									

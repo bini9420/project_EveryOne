@@ -2,26 +2,30 @@
 drop table member cascade constraints;
 create table member(
   id varchar2(20) primary key,
-  name varchar2(15) not null,
-  password varchar2(30) not null,
-  phone varchar2(30) not null,
-  email varchar2(50) not null,
+  name varchar2(15),
+  password varchar2(30),
+  phone1 varchar2(20),
+  phone2 varchar2(20),
+  phone3 varchar2(20),
+  email1 varchar2(20) not null,
+  email2 varchar2(20) not null,
   image varchar2(30)
 );
 
 --관리자
-insert into member(id, name, password, phone, email) values('admin', '관리자', '1111', '010-1111-1111', 'admin@gmail.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('admin', '관리자', '1111', '010', '1111', '1111', 'admin', 'gmail.com');
 
 --B마트 회원
-insert into member(id, name, password, phone, email) values('lee', '이영희', '1111', '010-2222-2222', 'lee1234@gmail.com');
-insert into member(id, name, password,  phone, email) values('park', '박나래', '1111', '010-3333-3333', 'minsu@naver.com');
-insert into member(id, name, password,  phone, email) values('choi', '최지우', '1111', '010-4444-4444', 'jiwoo@daum.net');
-insert into member(id, name, password,  phone, email) values('jung', '정현우', '1111', '010-5555-5555', 'hyunwoo@gmail.com');
-insert into member(id, name, password,  phone, email) values('kang', '강은지', '1111', '010-6666-6666', 'eunji@hanmail.com');
-insert into member(id, name, password, phone, email) values('yoon', '윤지훈', '1111',  '010-7777-7777', 'jihoon@gmail.com');
-insert into member(id, name, password,  phone, email) values('ahn', '안수민', '1111', '010-8888-8888', 'sumin@hanmail.net');
-insert into member(id, name, password,  phone, email) values('oh', '오지현', '1111',  '010-9999-9999', 'jihyun@naver.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('lee', '이영희', '1111', '010', '2222', '2222', 'lee1234', 'gmail.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('park', '박나래', '1111', '011', '3333', '3333', 'minsu', 'naver.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('choi', '최지우', '1111', '010', '4444', '4444', 'jiwoo', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('jung', '정현우', '1111', '010', '5555', '5555', 'hyunwoo', 'gmail.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('kang', '강은지', '1111', '011', '6666', '6666', 'eunji', 'hanmail.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('yoon', '윤지훈', '1111', '011', '7777', '7777', 'jihoon', 'gmail.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('ahn', '안수민', '1111', '011', '8888', '8888', 'sumin', 'hanmail.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('oh', '오지현', '1111', '010', '9999', '9999', 'jihyun', 'naver.com');
 
+commit;
 
 
 --회원 배송지 테이블

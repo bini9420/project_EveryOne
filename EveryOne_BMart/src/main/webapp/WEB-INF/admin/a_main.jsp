@@ -106,7 +106,7 @@
 							<div
 								class="text-xs font-weight-bold text-warning text-uppercase mb-1">
 								<h5>
-									<a href="">게시판</a>
+									<a href="dlist.nt">게시판</a>
 								</h5>
 							</div>
 							<div class="h5 mb-0 font-weight-bold text-gray-800">18</div>

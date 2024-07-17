@@ -35,7 +35,7 @@
 				<div class="card shadow mb-3">
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary">매출관리</h6>
-						<button type="button" class="btn float-right btn-sm btn-outline-primary">+</button>
+						<button type="button" class="btn float-right btn-sm btn-outline-primary" onclick="location.href='list.od'">+</button>
 					</div>
 					<div class="card-body">
 						<div class="text-center">
@@ -61,7 +61,7 @@
 				<div class="card shadow mb-3">
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary">재고관리</h6>
-						<button type="button" class="btn float-right btn-sm btn-outline-primary">+</button>
+						<button type="button" class="btn float-right btn-sm btn-outline-primary" onClick="location.href='list.prd'">+</button>
 					</div>
 					<div class="card-body">
 						<div class="text-center">
@@ -87,7 +87,7 @@
 				<div class="card shadow mb-3">
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary">게시판</h6>
-						<button type="button" class="btn float-right btn-sm btn-outline-primary">+</button>
+						<button type="button" class="btn float-right btn-sm btn-outline-primary" onClick="location.href='dlist.nt'">+</button>
 					</div>
 					<div class="card-body">
 						<div class="text-center">

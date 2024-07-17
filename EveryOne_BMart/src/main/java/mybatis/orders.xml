@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="orders.model.Orders">
+
+	<select id="getOrdersCount" resultType="int">
+		select count(*) as cnt
+		from orderInfo
+		where id = #{id}
+	</select>
+
+	<select id="selectAllOrders" resultType="OrdersBean">
+		SELECT * FROM orderInfo
+		where id = #{id}
+		order by onum desc
+	</select>
+
+	<select id="selectOrderById" parameterType="int"
+		resultType="OrdersBean">
+		SELECT * FROM orderInfo
+		WHERE onum = #{onum}
+	</select>
+
+	<select id="getOrdersCountBySeller" resultType="int">
+		SELECT COUNT(*)
+		AS cnt
+		FROM orderInfo o
+		JOIN product p ON o.pnum = p.pnum
+		WHERE p.id =
+		#{id}
+	</select>
+
+	<select id="getOrdersBySeller" resultType="OrdersBean">
+		SELECT o.*
+		FROM
+		orderInfo o
+		JOIN product p ON o.pnum = p.pnum
+		WHERE p.id = #{id}
+		ORDER BY
+		o.onum DESC
+	</select>
+
+	<select id="getOrdersCountBySellerAndMonth" parameterType="map"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM orderInfo o
+		JOIN product p ON o.pnum = p.pnum
+		WHERE p.id = #{id}
+		AND EXTRACT(MONTH FROM o.orderdate) = #{month}
+	</select>
+
+	<select id="getOrdersBySellerAndMonth" parameterType="map"
+		resultType="OrdersBean">
+		SELECT o.*
+		FROM orderInfo o
+		JOIN product p ON o.pnum = p.pnum
+		WHERE p.id = #{id}
+		AND EXTRACT(MONTH FROM o.orderdate) = #{month}
+		ORDER BY o.onum DESC
+	</select>
+
+	 <select id="getOrdersCountBySellerAndYearAndMonth" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+        FROM orderInfo o
+        JOIN product p ON o.pnum = p.pnum
+        WHERE p.id = #{id}
+        AND EXTRACT(YEAR FROM o.orderdate) = #{year}
+        AND EXTRACT(MONTH FROM o.orderdate) = #{month}
+    </select>
+
+    <select id="getOrdersBySellerAndYearAndMonth" parameterType="map" resultType="OrdersBean">
+        SELECT o.*
+        FROM orderInfo o
+        JOIN product p ON o.pnum = p.pnum
+        WHERE p.id = #{id}
+        AND EXTRACT(YEAR FROM o.orderdate) = #{year}
+        AND EXTRACT(MONTH FROM o.orderdate) = #{month}
+        ORDER BY o.onum DESC
+    </select>
+
+</mapper>

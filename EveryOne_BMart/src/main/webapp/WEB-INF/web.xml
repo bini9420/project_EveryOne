@@ -156,4 +156,53 @@
 		<url-pattern>*.prd</url-pattern>
 	</servlet-mapping>
 	
+	<!-- 게시판 & 공지사항 -->
+	<servlet>
+		<servlet-name>notice</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/notice-servlet.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>notice</servlet-name>
+		<url-pattern>*.nt</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 리뷰 -->
+	<servlet>
+		<servlet-name>review</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/review-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>review</servlet-name>
+		<url-pattern>*.rv</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 주문 -->
+	<servlet>
+		<servlet-name>orders</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/orders-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>orders</servlet-name>
+		<url-pattern>*.od</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

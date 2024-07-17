@@ -174,13 +174,13 @@
 
 			<!-- Nav Item - Charts -->
 			<li class="nav-item">
-				<a class="nav-link" href="charts.html">
+				<a class="nav-link" href="list.nt">
 					<i class="fas fa-fw fa-chart-area"></i> 
 					<span>공지사항</span>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="charts.html">
+				<a class="nav-link" href="dlist.nt">
 					<i class="fas fa-fw fa-chart-area"></i> 
 					<span>문의사항</span>
 				</a>

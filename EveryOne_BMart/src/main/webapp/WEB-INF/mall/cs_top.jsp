@@ -23,18 +23,20 @@
 	<!-- carousel --> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 	
+	<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/style.css">
+	
 	<!-- fonts -->
 	<link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 	
 	<!--  -->
 	<link href="resources/css/mall-plus.css" rel="stylesheet" type="text/css">
-
 </head>
 
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg bg-primary">
 	<div class="container">
-		<a href="cs.mall" class="mx-auto my-2"><i class="fi fi-rr-chatbot-speech-bubble text-white fst-normal fw-bolder" style="font-size: 35"> 고객센터</i></a>
+		<a href="list.nt" class="mx-auto my-2"><i class="fi fi-rr-chatbot-speech-bubble text-white fst-normal fw-bolder" style="font-size: 35"> 고객센터</i></a>
 	</div>
 </nav>
  

@@ -23,11 +23,14 @@ import schedule.model.CalendarDao;
 
 	@ResponseBody
 	@RequestMapping(value = command, method = RequestMethod.POST)
-	public Map<String, Object> deleteCalendar(@RequestParam(value = "title", required = false) String title) {
+	public Map<String, Object> deleteCalendar(@RequestParam(value = "title", required = false) String title,
+			@RequestParam(value = "startDate", required = false) String start
+			
+			) {
 		Map<String, Object> response = new HashMap<>();
 
 		try {
-			int rowsAffected = calendarDao.deleteSchedule(title);
+			int rowsAffected = calendarDao.deleteSchedule(title,start);
 
 			if (rowsAffected > 0) {
 				response.put("status", "success");

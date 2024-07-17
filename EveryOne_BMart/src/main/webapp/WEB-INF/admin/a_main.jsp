@@ -412,11 +412,27 @@ $(document).ready(function () {
             right: 'dayGridMonth,timeGridDay,listWeek'
         },
      
+      
         navLinks: true,
         editable: true,
         selectable: true,
         droppable: true, // allows things to be dropped onto the calendar
-
+        
+       /*  events: function(fetchInfo, successCallback, failureCallback) {
+            $.ajax({
+                url: "/schedule/showSchedule",
+                method: "GET",
+                dataType: "json",
+                success: function(data) {
+                    successCallback(data);
+                },
+                error: function() {
+                    failureCallback();
+                }
+            });
+        },
+         */
+       
         eventDrop: function (info) {
             if (confirm("'" + info.event.title + "' 일정을 수정하시겠습니까?")) {
                 var events = [{

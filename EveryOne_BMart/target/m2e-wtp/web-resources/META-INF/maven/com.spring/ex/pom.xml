@@ -59,7 +59,6 @@
 
 
 
-
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>

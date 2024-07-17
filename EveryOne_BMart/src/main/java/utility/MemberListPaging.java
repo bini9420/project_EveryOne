@@ -244,47 +244,47 @@ public class MemberListPaging {
 		String added_param =  "&keyword=" + keyword ; // &whatColumn=singer&keyword=아
 		
 		
-		if (this.beginPage != 1) { // 앞쪽, pageSize:한 화면에 보이는 레코드 수
-			// 처음 목록보기를 하면 pageNumber는 1이 되고 beginPage도 1이 된다. 
-			result += "&nbsp;<button class='btn btn-primary' href='" + url  
-					+ "?pageNumber=" + ( 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>맨 처음</button>&nbsp;" ;
-			result += "&nbsp;<button class='btn btn-primary' href='" + url 
-					+ "?pageNumber=" + (this.beginPage - 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>이전</button>&nbsp;" ;
+		// 앞쪽
+		if (this.beginPage != 1) { 
+			// 처음 목록보기를 하면 pageNumber는 1이 되고 beginPage도 1이 된다. pageSize:한 화면에 보이는 레코드 수
+			result += "&nbsp;<a href='" + url  
+					+ "&pageNumber=1&pageSize=" + this.pageSize 
+					+ added_param + "'>[처음으로]</a>&nbsp;" ;
+			result += "&nbsp;<a href='" + url 
+					+ "&pageNumber=" + (this.beginPage - 1 ) + "&pageSize=" + this.pageSize 
+					+ added_param + "'>[이전]</a>&nbsp;" ;
 		}
-		
+
 		//가운데
 		for (int i = this.beginPage; i <= this.endPage ; i++) {
 			if ( i == this.pageNumber ) {
-				result += "&nbsp;<font class='btn btn-primary'>" + i + "</font>&nbsp;"	;
-						
+				result += "&nbsp;<font color='red'>[" + i + "]</font>&nbsp;"   ;
+
 			} else {
-				result += "&nbsp;<a class='btn btn-primary' href='" + url   
-						+ "?pageNumber=" + i + "&pageSize=" + this.pageSize 
-						+ added_param + "'>" + i + "</a>&nbsp;" ;
-				
+				result += "&nbsp;<a href='" + url   
+						+ "&pageNumber=" + i + "&pageSize=" + this.pageSize 
+						+ added_param + "'>[" + i + "]</a>&nbsp;" ;
 			}
 		}
-		
-		System.out.println("result:"+result);
-		System.out.println();
-		// result:&nbsp;<a href='/ex/list.ab?pageNumber=1&pageSize=2&whatColumn=null&keyword=null'>1</a>&nbsp;&nbsp;<font color='red'>2</font>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=3&pageSize=2&whatColumn=null&keyword=null'>3</a>&nbsp;
-		
-		if ( this.endPage != this.totalPage) { // 뒤쪽
+		/*
+		현재 페이지가 2일 때 result
+		&nbsp;<a href='/ex/list.ab?pageNumber=1&pageSize=2&whatColumn=null&keyword=null'>1</a>&nbsp;
+		&nbsp;<font color='red'>2</font>&nbsp;
+		&nbsp;<a href='/ex/list.ab?pageNumber=3&pageSize=2&whatColumn=null&keyword=null'>3</a>&nbsp;
+		*/
+
+		// 뒤쪽
+		if ( this.endPage != this.totalPage) {
 			// endPage:지금 보는 페이지의 끝(지금 보는 페이지가 13이라면 endPage는 20), totalPage:전체 페이지수
-			
+
 			result += "&nbsp;<a href='" + url  
-					+ "?pageNumber=" + (this.endPage + 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>다음</a>&nbsp;" ;
-			
+					+ "&pageNumber=" + (this.endPage + 1 ) + "&pageSize=" + this.pageSize 
+					+ added_param + "'>[다음]</a>&nbsp;" ;
+
 			result += "&nbsp;<a href='" + url  
-					+ "?pageNumber=" + (this.totalPage ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>맨 끝</a>&nbsp;" ;
-		}		
-		System.out.println("result2:"+result);
-		// result2 : <a href='/ex/list.ab?pageNumber=1&pageSize=2'>맨 처음</a>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=3&pageSize=2&whatColumn=null&keyword=null'>이전</a>&nbsp;&nbsp;<font color='red'>4</font>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=5&pageSize=2&whatColumn=null&keyword=null'>5</a>&nbsp;
-		
+					+ "&pageNumber=" + (this.totalPage ) + "&pageSize=" + this.pageSize 
+					+ added_param + "'>[끝으로]</a>&nbsp;" ;
+		}      
 		return result ;
 	}	
 	

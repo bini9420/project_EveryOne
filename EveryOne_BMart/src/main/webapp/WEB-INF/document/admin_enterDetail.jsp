@@ -128,7 +128,7 @@
                 <table class="table bsb-table-xl text-nowrap align-middle m-0" id="table4">
                     <tr>
                         <th>첨부파일</th>
-                        <td id="file"><a href="<%=request.getContextPath()+"/resources/document/"%>${enter.originname}">${enter.originname}</a></td>
+                        <td id="file"><a href="<%=request.getContextPath()+"/resources/document/"%>${enter.originname}" target='_blank'>${enter.originname}</a></td>
                     </tr>
                 </table>	 
             </div>

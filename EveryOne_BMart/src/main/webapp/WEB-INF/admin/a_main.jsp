@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>	
 <style>
  #approveBox:hover {
  	cursor: pointer;
@@ -75,7 +75,7 @@
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
 							<div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-								<h5>결재함(결재 대기 건수)</h5>
+								<h5>결재 요청</h5>
 							</div>
 							<div class="row no-gutters align-items-center">
 								<div class="col-auto">

@@ -21,7 +21,7 @@
 	#table2 {
 		text-align: center;
 	}
-	#table3 td {
+	#table3 td, #table6 td {
         width: 100%; 
     }
     #table4 {
@@ -110,10 +110,17 @@
                     <tr id="approvalText">
                         <th>승인</th>
                     </tr>
-                    <c:if test="${document.approval eq 1}">
+                    <c:if test="${document.dstatus eq 1}">
                         <tr>
                             <td>
                                 <i class="fas fa-user-check fa-2x text-gray-800"></i>
+                            </td>
+                        </tr>
+                    </c:if>
+                    <c:if test="${document.dstatus eq -1}">
+                        <tr>
+                            <td>
+                                <i class="fas fa-user-slash fa-2x text-gray-800"></i>
                             </td>
                         </tr>
                     </c:if>
@@ -149,12 +156,12 @@
             <div class="col-md-12">
                 <table class="table bsb-table-xl text-nowrap align-middle m-0" id="table6">
                     <tr>
-                    	<c:if test="${(document.prdcategory ne 'prdcategory') && (document.prdcategory ne '')}">
+                    	<c:if test="${document.dcategory eq '상품등록'}">
                         <th>상품 카테고리</th>
                         <td id="pcategory">${document.prdcategory}</td>
                         </c:if>
                         
-                        <c:if test="${(document.prdname ne 'prdname') && (document.prdname ne '')}">
+                        <c:if test="${document.dcategory eq '광고요청'}">
                         <th>상품명</th>
                         <td id="pname">${document.prdname}</td>
                         </c:if>

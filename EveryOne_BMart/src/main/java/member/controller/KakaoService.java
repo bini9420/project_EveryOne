@@ -119,7 +119,7 @@ public class KakaoService {
 		}
 		
 		// 정보가 저장되있는지 확인하는 코드.
-		MemberBean result = memberDao.findkakao(member);
+		MemberBean result = memberDao.findMember(member);
 		System.out.println("S:" + result);
 		
 		if(result == null) {
@@ -129,7 +129,7 @@ public class KakaoService {
 			
 			//정보 저장 후 컨트롤러에 정보를 보내는 코드
 			//result를 리턴으로 보내면 null이 리턴되므로 위 코드를 사용.
-			return memberDao.findkakao(member);
+			return memberDao.findMember(member);
 			
 		} else {
 			return result;

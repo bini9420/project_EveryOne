@@ -29,7 +29,7 @@ public class CheckBusinessController {
 		
 		int cnt = -1;
 		cnt = memberDao.checkBusiness(id);
-		
+		System.out.println("chackBusiness test");
 		if(cnt <= 0) {
 			out.append("<script>");
 			out.append("alert('입점요청이 승인되지 않아서 사업자 페이지에 접속할 수 없습니다.'); history.back();");
@@ -37,6 +37,13 @@ public class CheckBusinessController {
 			return null;
 		}
 		
-		return gotoPage;
+		return gotoPage + "?id=" + id;
 	}
+	
+	@RequestMapping("/omain.mb")
+	public String omain(@RequestParam("id") String id) {
+		System.out.println("omain test");
+		return "owner/o_main";
+	}
+	
 }

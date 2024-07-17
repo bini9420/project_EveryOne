@@ -17,6 +17,16 @@
 	
 	<!-- fonts -->
 	<link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<style>
+		#goBmart {
+			background-color: white;
+			font-family: "Spoqa Han Sans Neo", sans-serif;
+		}
+		#goBmart:hover {
+			cursor: pointer;
+			background-color: #F8F9FA;
+		}
+	</style>
 </head>
 
 <body class="bg-primary">
@@ -47,7 +57,7 @@
 		</div>
 	</nav>
 	<div class="text-center">
-		<button class="btn btn-light" onClick="location='main.mall'">B마트 바로가기👆🏻</button>
+		<button class="btn btn-light" id="goBmart" onClick="location='main.mall'">B마트 바로가기👆🏻</button>
 	</div>
 
 	

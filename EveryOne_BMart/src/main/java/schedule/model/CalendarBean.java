@@ -1,14 +1,11 @@
 package schedule.model;
 
 public class CalendarBean {
-	
+
 	private String title;
 	private String startDate;
 	private String endDate;
 	private String memo;
-	
-	
-	
 	
 	public String getTitle() {
 		return title;
@@ -35,8 +32,5 @@ public class CalendarBean {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
-	
-	
-	
 	
 }

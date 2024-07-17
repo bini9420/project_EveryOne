@@ -28,6 +28,7 @@
 	}
 </style>
 
+<%@ include file="../member/owner/o_top.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	function detailDocument(dnum) {
@@ -35,8 +36,11 @@
 		$('.modal-content').load("document_detail.dc?dnum="+dnum);
 		$('#staticBackdrop').modal('show');
 	}
+	
+	$('#staticBackdrop').on('hidden.bs.modal', function (e) {
+	    $('.modal-backdrop').remove(); // 배경 레이어 제거
+	});
 </script>
-<%@ include file="../member/owner/o_top.jsp" %>
 
 <!-- document_box.jsp<br> -->
                 <!-- Begin Page Content -->

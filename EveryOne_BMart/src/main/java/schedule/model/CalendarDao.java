@@ -25,7 +25,7 @@ public class CalendarDao {
     }
     
     public int deleteSchedule(String title, String start) {
-        Map<String, String> params = new HashMap<>();
+        Map<String, String> params = new HashMap<String, String>();
         params.put("title", title);
         params.put("start", start);
         return sqlSessionTemplate.delete(namespace + ".deleteSchedule", params);
@@ -35,4 +35,3 @@ public class CalendarDao {
         return sqlSessionTemplate.update(namespace + ".updateSchedule", calendarBean);
     }
 }
-

@@ -9,17 +9,11 @@
 	}
 </style>
 
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	jQuery.noConflict();
-	function review() {
-	    //alert(1);
-		$('#reviewCheckDocument .modal-content').load("document_rcheckInsert.dc");
-		$('#reviewCheckDocument').modal();
-	}
 	function show() {
 		$('#documentWrite .modal-content').load("document_write.dc");
-		$('#documentWrite').modal();
+		$('#documentWrite').modal('show');
 		$('#requestDocument').css('bgcolor', '#2ac1bc');
 		$('#requestDocumnet').css('border-color', '#bae8e6');
 	}
@@ -140,18 +134,10 @@
             </div>
             <!-- 결재작성 -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapsePages1"
-                    aria-expanded="true" aria-controls="collapsePages1">
+                <a class="nav-link" href="javascript:show()">
                     <i class="fas fa-fw fa-pen"></i>
                     <span>결재작성</span>
                 </a>
-                <div id="collapsePages1" class="collapse" aria-labelledby="headingPages1" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                       <h6 class="collapse-header">결재양식</h6>
-                        <a class="collapse-item" href="javascript:show()">요청·신청</a>
-                        <a class="collapse-item" href="javascript:review()">리뷰검토</a>
-                    </div>
-                </div>
             </li>
             
 			<!-- 결재 요청 작성 모달 -->
@@ -162,16 +148,6 @@
 			    </div>
 			  </div>
 			</div>
-            
-            <!-- 리뷰검토 문서 작성 모달 -->
-			<div class="modal fade" id="reviewCheckDocument" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			  <div class="modal-dialog">
-			    <div class="modal-content">
-	
-			    </div>
-			  </div>
-			</div>
-
             
             <!-- 결재함 Menu -->
             <li class="nav-item">

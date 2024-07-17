@@ -17,20 +17,14 @@ import schedule.model.CalendarDao;
 @Controller
 @RequestMapping("/schedule")
 public class CalendarController {
-
-	
 	
 	@Autowired 
     private CalendarDao calendarDao;
-
-    
-    
-    
     
 	@RequestMapping(value="/showSchedule", method=RequestMethod.POST)
     public ResponseEntity<List<CalendarBean>> getSchedule() {
         List<CalendarBean> scheduleList = calendarDao.showSchedule();
-        return new ResponseEntity<>(scheduleList, HttpStatus.OK);
+        return new ResponseEntity<List<CalendarBean>>(scheduleList, HttpStatus.OK);
     }
 
 	@RequestMapping(value="/addSchedule", method=RequestMethod.POST)
@@ -47,9 +41,9 @@ public class CalendarController {
                 calendarBean.setEndDate(end);
                 calendarDao.addSchedule(calendarBean);
             }
-            return new ResponseEntity<>("Event added successfully", HttpStatus.CREATED);
+            return new ResponseEntity<String>("Event added successfully", HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error adding event: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<String>("Error adding event: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -67,9 +61,9 @@ public class CalendarController {
                 calendarBean.setEndDate(end);
                 calendarDao.updateSchedule(calendarBean);
             }
-            return new ResponseEntity<>("Event updated successfully", HttpStatus.OK);
+            return new ResponseEntity<String>("Event updated successfully", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error updating event: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<String>("Error updating event: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -82,9 +76,9 @@ public class CalendarController {
 
                 calendarDao.deleteSchedule(title, start);
             }
-            return new ResponseEntity<>("Event deleted successfully", HttpStatus.OK);
+            return new ResponseEntity<String>("Event deleted successfully", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error deleting event: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<String>("Error deleting event: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

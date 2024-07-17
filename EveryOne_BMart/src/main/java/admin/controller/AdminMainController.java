@@ -18,8 +18,9 @@ public class AdminMainController {
 	
 	@RequestMapping(value=command)
 	public String adminMain(Model model) {
-		int count = adminDao.getWaitDocumentCountForAdmin();
-		model.addAttribute("count", count);
+		//일반 결재대기 건수
+		int documentCount = adminDao.getWaitDocumentCountForAdmin();
+		model.addAttribute("documentCount", documentCount);
 		
 		return getPage;
 	}

@@ -25,10 +25,14 @@
 		
 		    <!-- writeday 조건: 날짜 범위로 필터링 -->
 		    <if test="inputDay1 != null and inputDay1 != ''">
-		        and writeday &gt;= #{inputDay1} 
+			    <![CDATA[
+			    AND TO_CHAR(writeday, 'YYYY-MM-DD') >= #{inputDay1}
+			    ]]>
 		    </if>
 		    <if test="inputDay2 != null and inputDay2 != ''">
-		        and writeday &lt;= #{inputDay2} 
+			    <![CDATA[
+			    AND TO_CHAR(writeday, 'YYYY-MM-DD') <= #{inputDay2}
+			    ]]>
 		    </if>
 	    </where>
 		order by writeday desc
@@ -45,19 +49,23 @@
 	    <if test="inputDnum != null and inputDnum != ''">
 	        AND dnum LIKE #{inputDnum}
 	    </if>
-	
+	 
 	    <!-- title 조건: '%'을 사용하여 LIKE 조건으로 감싸기 -->
 	    <if test="inputTitle != null and inputTitle != ''">
 	        AND title LIKE #{inputTitle}
 	    </if>
 	
-	    <!-- writeday 조건: 날짜 범위로 필터링 -->
-	    <if test="inputDay1 != null and inputDay1 != ''">
-	        AND writeday &gt;= #{inputDay1}
-	    </if>
-	    <if test="inputDay2 != null and inputDay2 != ''">
-	        AND writeday &lt;= #{inputDay2}
-	    </if>
+		<!-- writeday 조건: 날짜 범위로 필터링 -->
+		<if test="inputDay1 != null and inputDay1 != ''">
+			<![CDATA[
+			    AND TO_CHAR(writeday, 'YYYY-MM-DD') >= #{inputDay1}
+			]]>
+		</if>
+		<if test="inputDay2 != null and inputDay2 != ''">
+		    <![CDATA[
+			    AND TO_CHAR(writeday, 'YYYY-MM-DD') <= #{inputDay2}
+		    ]]>
+		</if>
 	</select>
 	
 	<select id="getWaitDocument" resultType="int">
@@ -284,10 +292,14 @@
 		
 		    <!-- writeday 조건: 날짜 범위로 필터링 -->
 		    <if test="inputDay1 != null and inputDay1 != ''">
-		        and writeday &gt;= #{inputDay1} 
+			    <![CDATA[
+			    AND TO_CHAR(writeday, 'YYYY-MM-DD') >= #{inputDay1}
+			    ]]>
 		    </if>
 		    <if test="inputDay2 != null and inputDay2 != ''">
-		        and writeday &lt;= #{inputDay2} 
+			    <![CDATA[
+			    AND TO_CHAR(writeday, 'YYYY-MM-DD') <= #{inputDay2}
+			    ]]>
 		    </if>
 	    </where>
 		order by writeday desc
@@ -310,13 +322,17 @@
 	        AND title LIKE #{inputTitle}
 	    </if>
 	
-	    <!-- writeday 조건: 날짜 범위로 필터링 -->
-	    <if test="inputDay1 != null and inputDay1 != ''">
-	        AND writeday &gt;= #{inputDay1}
-	    </if>
-	    <if test="inputDay2 != null and inputDay2 != ''">
-	        AND writeday &lt;= #{inputDay2}
-	    </if>
+		<!-- writeday 조건: 날짜 범위로 필터링 -->
+		<if test="inputDay1 != null and inputDay1 != ''">
+		    <![CDATA[
+			    AND TO_CHAR(writeday, 'YYYY-MM-DD') >= #{inputDay1}
+			]]>
+		</if>
+		<if test="inputDay2 != null and inputDay2 != ''">
+		    <![CDATA[
+			    AND TO_CHAR(writeday, 'YYYY-MM-DD') <= #{inputDay2}
+		    ]]>
+		</if>
 	</select>
 	
 	<update id="updateApproval">
@@ -346,13 +362,17 @@
 		        and title LIKE #{inputTitle} 
 		    </if>
 		
-		    <!-- writeday 조건: 날짜 범위로 필터링 -->
-		    <if test="inputDay1 != null and inputDay1 != ''">
-		        and writeday &gt;= #{inputDay1} 
-		    </if>
-		    <if test="inputDay2 != null and inputDay2 != ''">
-		        and writeday &lt;= #{inputDay2} 
-		    </if>
+			<!-- writeday 조건: 날짜 범위로 필터링 -->
+			<if test="inputDay1 != null and inputDay1 != ''">
+			    <![CDATA[
+				    AND TO_CHAR(writeday, 'YYYY-MM-DD') >= #{inputDay1}
+				]]>
+			</if>
+			<if test="inputDay2 != null and inputDay2 != ''">
+			    <![CDATA[
+				    AND TO_CHAR(writeday, 'YYYY-MM-DD') <= #{inputDay2}
+			    ]]>
+			</if>
 	    </where>
 		order by writeday desc
 	</select>
@@ -376,13 +396,17 @@
 		        and title LIKE #{inputTitle} 
 		    </if>
 		
-		    <!-- writeday 조건: 날짜 범위로 필터링 -->
-		    <if test="inputDay1 != null and inputDay1 != ''">
-		        and writeday &gt;= #{inputDay1} 
-		    </if>
-		    <if test="inputDay2 != null and inputDay2 != ''">
-		        and writeday &lt;= #{inputDay2} 
-		    </if>
+		<!-- writeday 조건: 날짜 범위로 필터링 -->
+		<if test="inputDay1 != null and inputDay1 != ''">
+		    <![CDATA[
+			    AND TO_CHAR(writeday, 'YYYY-MM-DD') >= #{inputDay1}
+			]]>
+		</if>
+		<if test="inputDay2 != null and inputDay2 != ''">
+		    <![CDATA[
+			    AND TO_CHAR(writeday, 'YYYY-MM-DD') <= #{inputDay2}
+		    ]]>
+		</if>
 	    </where>
 	</select>
 	
@@ -405,13 +429,17 @@
 		        and title LIKE #{inputTitle} 
 		    </if>
 		
-		    <!-- writeday 조건: 날짜 범위로 필터링 -->
-		    <if test="inputDay1 != null and inputDay1 != ''">
-		        and writeday &gt;= #{inputDay1} 
-		    </if>
-		    <if test="inputDay2 != null and inputDay2 != ''">
-		        and writeday &lt;= #{inputDay2} 
-		    </if>
+			<!-- writeday 조건: 날짜 범위로 필터링 -->
+			<if test="inputDay1 != null and inputDay1 != ''">
+			    <![CDATA[
+				    AND TO_CHAR(writeday, 'YYYY-MM-DD') >= #{inputDay1}
+				]]>
+			</if>
+			<if test="inputDay2 != null and inputDay2 != ''">
+			    <![CDATA[
+				    AND TO_CHAR(writeday, 'YYYY-MM-DD') <= #{inputDay2}
+			    ]]>
+			</if>
 	    </where>
 		order by writeday desc
 	</select>
@@ -435,13 +463,17 @@
 		        and title LIKE #{inputTitle} 
 		    </if>
 		
-		    <!-- writeday 조건: 날짜 범위로 필터링 -->
-		    <if test="inputDay1 != null and inputDay1 != ''">
-		        and writeday &gt;= #{inputDay1} 
-		    </if>
-		    <if test="inputDay2 != null and inputDay2 != ''">
-		        and writeday &lt;= #{inputDay2} 
-		    </if>
+		<!-- writeday 조건: 날짜 범위로 필터링 -->
+		<if test="inputDay1 != null and inputDay1 != ''">
+		    <![CDATA[
+			    AND TO_CHAR(writeday, 'YYYY-MM-DD') >= #{inputDay1}
+			]]>
+		</if>
+		<if test="inputDay2 != null and inputDay2 != ''">
+		    <![CDATA[
+			    AND TO_CHAR(writeday, 'YYYY-MM-DD') <= #{inputDay2}
+		    ]]>
+		</if>
 	    </where>
 	    order by writeday desc
 	</select>

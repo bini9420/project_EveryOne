@@ -4,6 +4,9 @@
  #approveBox:hover {
  	cursor: pointer;
  }
+ #approvalRequest {
+ 	display: inline;
+ }
 </style>
 
 <%@ include file="a_top.jsp"%>
@@ -75,16 +78,17 @@
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
 							<div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-								<h5>결재 요청</h5>
+								<h5 id="approvalRequest">결재 요청</h5>
 							</div>
 							<div class="row no-gutters align-items-center">
 								<div class="col-auto">
-									<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${count}건</div>
+									<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${documentCount}건</div>
 								</div>
 								<div class="col">
 									<div class="progress progress-sm mr-2">
+										<fmt:formatNumber var="dcount" value="${documentCount}"/>
 										<div class="progress-bar bg-info" role="progressbar"
-											style="width: ${count}%" aria-valuenow="${count}" aria-valuemin="0" aria-valuemax="10"></div>
+											style="width: ${dcount*10}%" aria-valuenow="${documentCount}" aria-valuemin="0" aria-valuemax="10"></div>
 									</div>
 								</div>
 							</div>

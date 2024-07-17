@@ -68,6 +68,9 @@
 			height: 85%;
 			width: 85%;
 		}
+		#enterBadge, #rcheckBadge {
+			margin-left: 4px;
+		}
 	</style>
 </head>
 

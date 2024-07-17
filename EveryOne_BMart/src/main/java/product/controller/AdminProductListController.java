@@ -20,7 +20,7 @@ import utility.MemberListPaging;
 @Controller
 public class AdminProductListController {
 
-	private final String command = "productList.prd";
+	private final String command = "adminProductList.prd";
 	private final String getPage = "adminPrdList";
 
 	@Autowired

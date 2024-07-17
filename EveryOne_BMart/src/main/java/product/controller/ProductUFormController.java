@@ -25,7 +25,7 @@ import product.model.ProductDao;
 public class ProductUFormController {
 	private final String command = "productUpdate.prd";
 	private final String getPage = "adminPrdUpdateForm";
-	private final String gotoPage = "redirect:/productList.prd";
+	private final String gotoPage = "redirect:/adminProductList.prd";
 	
 
 	@Autowired

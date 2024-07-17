@@ -16,8 +16,8 @@
 		<if test="keyword != null and keyword != ''">
 			where id like #{keyword}
 			or name like #{keyword}
-			or email like #{keyword}
-			or phone like #{keyword}
+			or email1 like #{keyword}
+			or email2 like #{keyword}
 		</if>
 	</select>
 
@@ -27,17 +27,20 @@
 		<if test="keyword != null and keyword != ''">
 			where id like #{keyword}
 			or name like #{keyword}
-			or email like #{keyword}
-			or phone like #{keyword}
+			or email1 like #{keyword}
+			or email2 like #{keyword}
 		</if>
 	</select>
 
-	<select id="getBMemList" resultType="model.MemberBean">
+	<select id="getBMemList" resultType="model.BusinessBean">
 		select * from business
 		<if test="keyword != null and keyword != ''">
 			where id like #{keyword}
 			or bcode like #{keyword}
+			or id like #{keyword}
 			or type like #{keyword}
+			or addr1 like #{keyword}
+			or addr2 like #{keyword}
 		</if>
 		order by bcode desc
 	</select>

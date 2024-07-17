@@ -62,6 +62,11 @@ create table business(
 );
 
 insert into business values('11223344','lee','전자기기','04050','서울 마포구 양화로 140','애플스토어');
+insert into business values('11223345','park','전자기기','04050','서울 마포구 양화로 140','애플스토어');
+insert into business values('11223346','choi','전자기기','04050','서울 마포구 양화로 140','애플스토어');
+insert into business values('11223347','jung','전자기기','04050','서울 마포구 양화로 140','애플스토어');
+insert into business values('11223348','kang','전자기기','04050','서울 마포구 양화로 140','애플스토어');
+insert into business values('11223349','yoon','전자기기','04050','서울 마포구 양화로 140','애플스토어');
 
 
 --카테고리 테이블

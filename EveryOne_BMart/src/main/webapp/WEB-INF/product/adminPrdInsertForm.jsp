@@ -11,7 +11,7 @@
 
 
 <form:form commandName="product" name="myform"
-	action="productInsert.prd" method="post" enctype="multipart/form-data">
+	action="adminProductInsert.prd" method="post" enctype="multipart/form-data">
 
 	<input type="hidden" name="pageNumber" value="${pageNumber}">
 

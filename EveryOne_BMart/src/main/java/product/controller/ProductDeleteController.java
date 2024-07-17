@@ -17,7 +17,7 @@ import product.model.ProductDao;
 @Controller
 public class ProductDeleteController {
 	private final String command = "/productDelete.prd";
-	private final String gotoPage = "redirect:/productList.prd";
+	private final String gotoPage = "redirect:/adminProductList.prd";
 
 	@Autowired
 	ProductDao productDao;

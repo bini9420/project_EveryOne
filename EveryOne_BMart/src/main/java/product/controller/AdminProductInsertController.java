@@ -20,9 +20,9 @@ import product.model.ProductDao;
 
 @Controller
 public class AdminProductInsertController {
-	private final String command = "productInsert.prd";
+	private final String command = "adminProductInsert.prd";
 	private final String getPage = "adminPrdInsertForm"; 
-	private final String gotoPage = "redirect:/productList.prd";
+	private final String gotoPage = "redirect:/adminProductList.prd";
 
 	@Autowired 
 	private ProductDao productDao;

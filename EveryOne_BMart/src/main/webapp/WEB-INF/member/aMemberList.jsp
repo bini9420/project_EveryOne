@@ -54,8 +54,8 @@
 					<tr>
 						<th>${mb.id }</th>
 						<th>${mb.name }</th>
-						<th>${mb.phone }</th>
-						<th>${mb.email }</th>
+						<th>${mb.phone1 }-${mb.phone2 }-${mb.phone3 }</th>
+						<th>${mb.email1 }${mb.email2 }</th>
 					</tr>
 
 				</c:forEach>

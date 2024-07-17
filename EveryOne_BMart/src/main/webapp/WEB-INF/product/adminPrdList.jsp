@@ -54,7 +54,7 @@ function check(){
 
 
 			<div class="search">
-				<form action="productList.prd"
+				<form action="adminProductList.prd"
 					class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 
 
@@ -74,7 +74,7 @@ function check(){
 
 
 
-				<a href="productInsert.prd" class="plusbtn"> <i
+				<a href="adminProductInsert.prd" class="plusbtn"> <i
 					class="fi fi-br-plus-small"></i></a>
 
 			</div>

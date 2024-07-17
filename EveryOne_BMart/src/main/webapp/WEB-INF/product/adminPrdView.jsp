@@ -12,7 +12,7 @@
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">
 			<button type="button" class="btn-outline-info"
-				onclick="location.href='productList.prd?pageNumber=${param.pageNumber}&keyword=${keyword }'">
+				onclick="location.href='adminProductList.prd?pageNumber=${param.pageNumber}&keyword=${keyword }'">
 				<i class="fi fi-rr-list"></i>
 			</button>
 		</h6>
@@ -20,7 +20,7 @@
 	<div class="card-body">
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTable">
-				<form:form commandName="product" action="productList.prd"
+				<form:form commandName="product" action="adminProductList.prd"
 					method="post" enctype="multipart/form-data">
 					<input type="hidden" name="pnum" value="${product.pnum }">
 					<input type="hidden" name="pageNumber" value="${param.pageNumber}">

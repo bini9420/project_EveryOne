@@ -23,7 +23,7 @@
 							<div
 								class="text-xs font-weight-bold text-primary text-uppercase mb-1">
 								<h4>
-									<a href="aMemberList.mb">회원</a>/<a href="productList.prd">상품관리</a>
+									<a href="aMemberList.mb">회원</a>/<a href="adminProductList.prd">상품관리</a>
 								</h4>
 							</div>
 							<div class="h5 mb-0 font-weight-bold text-gray-800">100명</div>
@@ -67,7 +67,7 @@
 							<div
 								class="text-xs font-weight-bold text-info text-uppercase mb-1">
 								<h4>
-									<a href="">결재함</a>
+									<a href="admin_allBox.dc">결재함</a>
 								</h4>
 							</div>
 							<div class="row no-gutters align-items-center">
@@ -100,7 +100,7 @@
 							<div
 								class="text-xs font-weight-bold text-warning text-uppercase mb-1">
 								<h4>
-									<a href="">게시판</a>
+									<a href="adlist.nt">게시판</a>
 								</h4>
 							</div>
 							<div class="h5 mb-0 font-weight-bold text-gray-800">18</div>

@@ -201,7 +201,7 @@ button {
 				</div>
 			</li>
 			<li class="nav-item">
-			<a class="nav-link collapsed" href="#"
+			<a class="nav-link collapsed" href="adminProductList.prd"
 				data-toggle="collapse" data-target="#collapseProducts"
 				aria-expanded="true" aria-controls="collapseUtilities"> 
 				<i class="fas fa-fw fa-wrench"></i> <span>상품관리</span>
@@ -210,9 +210,9 @@ button {
 					aria-labelledby="headingProducts" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Product Manage:</h6>
-						<a class="collapse-item" href="productList.prd">상품목록</a> 
-						<a class="collapse-item" href="productInsert.prd">상품등록</a> 
-						<a class="collapse-item" href="productList.prd">상품수정</a> 
+						<a class="collapse-item" href="adminProductList.prd">상품목록</a> 
+						<a class="collapse-item" href="adminProductInsert.prd">상품등록</a> 
+						<a class="collapse-item" href="adminProductList.prd">상품수정</a> 
 						<a class="collapse-item" href="productDelete.prd">상품삭제</a>
 					</div>
 				</div></li>
@@ -237,7 +237,7 @@ button {
 			<div class="sidebar-heading">Approve</div>
 
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
+			<li class="nav-item"><a class="nav-link collapsed" href="admin_allBox.dc"
 				data-toggle="collapse" data-target="#collapsePages"
 				aria-expanded="true" aria-controls="collapsePages"> 
 				<i class="fas fa-fw fa-folder"></i> <span>결재함</span>

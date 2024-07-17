@@ -25,7 +25,7 @@
 					<i class="fi fi-rr-file-edit"></i>
 				</button>
 				<button type="button" class="btn-outline-info"
-					onclick="location.href='productList.prd?pageNumber=${param.pageNumber}&keyword=${keyword }'">
+					onclick="location.href='adminProductList.prd?pageNumber=${param.pageNumber}&keyword=${keyword }'">
 					<i class="fi fi-rr-list"></i>
 				</button>
 			</h6>

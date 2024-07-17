@@ -38,7 +38,7 @@ public class LoginController {
 		
 		MemberBean mb = adminDao.getMember(member.getId());  
 		System.out.println("mb:" + mb);
-
+		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		if(mb == null){ // 해당 아이디가 존재하지 않는다.
@@ -65,7 +65,7 @@ public class LoginController {
 				}
 			}else {
 				out.append("<script>");
-				out.append("alert('관리자 아이디가 아닙니다. 아이디를 다시 입력해주세요.')");
+				out.append("alert('관리자 아이디가 아닙니다. 아이디를 다시 입력해주세요.');");
 				out.append("</script>");
 				return new ModelAndView( getPage ) ;
 			}

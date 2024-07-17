@@ -11,6 +11,7 @@
 
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 <script>
+	jQuery.noConflict();
 	function review() {
 	    //alert(1);
 		$('#reviewCheckDocument .modal-content').load("document_rcheckInsert.dc");

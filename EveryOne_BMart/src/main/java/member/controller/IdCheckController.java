@@ -22,7 +22,7 @@ public class IdCheckController {
 		
 		int count = memberDao.checkId(id);
 
-		if(count > 0) { //중복된 아이디가 있으면
+		if(count > 0) { //존재한다면
 			return "no";
 		}else {
 			return "yes";

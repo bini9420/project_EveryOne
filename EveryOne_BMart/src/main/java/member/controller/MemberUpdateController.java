@@ -77,7 +77,6 @@ public class MemberUpdateController {
 				//회원의 image를 수정
 				member.setImage(multi.getOriginalFilename());
 				memberDao.updateMemberImage(member);
-				session.setAttribute("loginInfo", member);
 			}
 		}else {//기존에 등록한 이미지가 있을 때
 			if(multi.getOriginalFilename().length() > 0) {
@@ -106,12 +105,12 @@ public class MemberUpdateController {
 				//회원의 image를 수정
 				member.setImage(multi.getOriginalFilename());
 				memberDao.updateMemberImage(member);
-				session.setAttribute("loginInfo", member);
 			}
 		}
 		
+		session.setAttribute("loginInfo", member);
 		out.append("<script>");
-		out.append("alert('수정되었습니다!'); location.href='mypage.mb'");
+		out.append("alert('수정되었습니다!'); location.href='mypage.mb?index=memberInfoUpdate'");
 		out.append("</script>");
 		return null;
 	}

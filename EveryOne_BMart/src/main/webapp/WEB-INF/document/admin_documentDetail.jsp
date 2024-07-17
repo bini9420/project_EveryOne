@@ -102,6 +102,13 @@
                             </td>
                         </tr>
                     </c:if>
+                    <c:if test="${document.dstatus eq -1}">
+                        <tr>
+                            <td>
+                                <i class="fas fa-user-slash fa-2x text-gray-800"></i>
+                            </td>
+                        </tr>
+                    </c:if>
                 </table>
             </div>     
         </div>   

@@ -82,6 +82,7 @@
 						<c:if test="${enter.approveday != null}">
 							<th>승인일</th>
 						</c:if>
+						<th>첨부파일</th>
 						<th>상태</th>
 						<c:if test="${enter.dstatus eq 0}">
 							<td rowspan="2"><button type="button" class="btn btn-secondary btn-sm" onclick="location.href='enter_delete.dc?eno=${enter.eno}'">삭제</button></td>
@@ -102,6 +103,9 @@
 								<fmt:formatDate value="${approveday}" pattern="yyyy-MM-dd"/>
 							</td>
 						</c:if>
+						<td>
+							<a href="<%=request.getContextPath()%>/resources/document/${enter.originname}" target='_blank'>${enter.originname}</a>
+						</td>
 						<c:choose>
 							<c:when test="${enter.dstatus == -1}">
 								<td><span class="badge bg-danger">반려</span></td>

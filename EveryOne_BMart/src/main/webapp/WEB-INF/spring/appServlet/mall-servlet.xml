@@ -17,3 +17,4 @@
 	<context:component-scan base-package="mall" />
 
 </beans>
+ 

@@ -154,11 +154,15 @@ public class MemberDao {
 	}
 
 	// 카카오 정보 확인
-	public MemberBean findkakao(MemberBean mb) {
+	public MemberBean findMember(MemberBean mb) {
 		System.out.println("find id: "+mb.getId());
 		MemberBean member = null;
-		member = sqlSessionTemplate.selectOne(namespace+".findKakao", mb);
+		member = sqlSessionTemplate.selectOne(namespace+".findMember", mb);
 		return member;
 	}
 
+	//네이버 회원 추가
+	public void naverInsert(MemberBean mb) {
+		sqlSessionTemplate.insert(namespace+".naverInsert",mb);
+	}
 }

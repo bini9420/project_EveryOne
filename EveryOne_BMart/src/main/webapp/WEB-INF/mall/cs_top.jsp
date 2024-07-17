@@ -20,7 +20,7 @@
 	
 	<!-- Core theme CSS (includes Bootstrap)-->
 	<link href="resources/css/mall.css" rel="stylesheet" />
-	<!-- carousel --> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 	
 	<!-- fonts -->

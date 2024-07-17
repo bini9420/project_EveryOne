@@ -9,6 +9,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import member.model.AddressBean;
+import member.model.MemberBean;
+import orders.model.OrdersBean;
 import utility.MallPaging;
 
 @Component("mall")
@@ -26,6 +29,9 @@ public class MallDao {
 	private String watch = "watch";
 	private String interest = "interest";
 	private String cart = "cart";
+	private String member = "member";
+	private String addr = "address";
+	private String order = "orders.model.Orders";
 	
 	//카테고리 띄우기
 	public List<CategoryBean> getAllCategory() {
@@ -43,9 +49,8 @@ public class MallDao {
 	
 	//상품 정보 조회
 	public ProductBean getProductInfo(int pnum) {
-		ProductBean product = null;
-		product = sqlSessionTemplate.selectOne(product+".getProductInfo", pnum);
-		return product;
+		ProductBean pb = sqlSessionTemplate.selectOne(product+".getProductInfo", pnum);
+		return pb;
 	}
 	
 	//최근 본 상품 목록
@@ -116,12 +121,39 @@ public class MallDao {
 		cnt = sqlSessionTemplate.update(cart+".updateCart", map);
 		return cnt;
 	}
+	//장바구니 개수 수정
+	public int updateCartQty(Map<String, String> map) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.update(cart+".updateCartQty", map);
+		return cnt;
+	}
+	
 
 	//장바구니에 담긴 개수
 	public int getCartTotalCount(String id) {
 		int cnt = -1;
 		cnt = sqlSessionTemplate.selectOne(cart+".getCartTotalCount", id);
 		return cnt;
+	}
+	
+	//장바구니 리스트 조회
+	public List<CartBean> getCartById(String id) {
+		List<CartBean> clist = new ArrayList<CartBean>();
+		clist = sqlSessionTemplate.selectList(cart+".getCartById", id);
+		return clist;
+	}
+	
+	//장바구니 담긴 상품 삭제
+	public int deleteCart(int pnum) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.delete(cart+".deleteCart", pnum);
+		return cnt;
+	}
+	
+	//장바구니에 담긴 상품의 주문 개수 조회
+	public int getQtyByPnum(int pnum) {
+		int qty = sqlSessionTemplate.selectOne(cart+".getQtyByPnum", pnum);
+		return qty;
 	}
 
 	//id, pnum으로 watch 조회
@@ -181,5 +213,27 @@ public class MallDao {
 	public void insertInterest(InterestBean ib) {
 		sqlSessionTemplate.insert(interest+".insertInterest", ib);
 	}
+	
+	//상품 정보 조회
+	public MemberBean getBmartMember(String id) {
+		MemberBean mb = null;
+		mb = sqlSessionTemplate.selectOne(member + ".getBmartMember", id);
+		return mb;
+	}
+	
+	//배송지 목록 조회
+	public List<AddressBean> getAddressList(String id) {
+		List<AddressBean> alists = new ArrayList<AddressBean>();
+		alists = sqlSessionTemplate.selectList(addr+".getAddressList", id);
+		return alists;
+	}
+	
+	//주문 정보 삽입
+    public int insertOrder(OrdersBean ob){
+    	int cnt = -1;
+    	cnt = sqlSessionTemplate.insert(order+".insertOrder", ob);
+    	return cnt; 
+    }
+
 	
 }

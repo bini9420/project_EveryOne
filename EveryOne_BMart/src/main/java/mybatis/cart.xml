@@ -21,4 +21,19 @@
 	<select id="getCartTotalCount" resultType="int">
 		select count(*) from cart where id=#{id}
 	</select>
+	<select id="getCartById" resultType="cart">
+		select * from cart where id = #{id}
+	</select>
+		<update id="updateCartQty" parameterType="map">
+		update cart set qty = #{pqty}
+		where pnum = #{pnum}
+	</update>
+	<delete id="deleteCart">
+		delete from cart 
+		where pnum = #{pnum}
+	</delete>
+		<select id="getQtyByPnum" resultType="Integer">
+		select qty from cart
+		where pnum = #{pnum}
+	</select>
 </mapper>

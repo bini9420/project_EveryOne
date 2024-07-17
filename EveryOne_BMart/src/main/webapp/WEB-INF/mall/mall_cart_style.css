@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+<style type="text/css">
+	table{
+		border-collapse: collapse;
+		width: 70%;
+	}
+	.firstTr{
+		border-bottom: 1px solid #414141;
+		border-bottom-width: 2px;
+		font-weight: bold;
+		color: #353535;
+		font-size: 14px;
+	}
+	.firstTr a{
+	  text-decoration: none;
+	  color: inherit;
+	}
+	.amountTr{
+		border-bottom: 1px solid #e6e6e6;
+		border-bottom-width: 2px;
+	}	
+	td{
+		padding: 10px;
+	}
+	img{
+		display: block;
+		margin: auto;
+	}
+	.cart{
+		margin-top: 50px;
+	}
+	.d-flex input{
+		margin-left: 100px;
+		width: 300px;
+	}
+	.countBtn button {
+		background-color: inherit;
+		border: 0px;
+	}
+	.count{
+		background-color: inherit;
+		border: 0.5px solid #f3f5f7;
+		border-radius: 5px;
+	}
+	.countInput{
+		text-align: center;
+	}
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+	  -webkit-appearance: none;
+	  margin: 0;
+	}
+	.sum, .total{
+		text-align: right;
+	}
+	tr:last-child{
+		border-bottom: inherit;
+	}
+	tr:last-child td{
+		text-align: center;
+	}
+	tr:last-child input{
+		border: 0px;
+		border-radius: 5px;
+		background-color: #2ac1bc;
+		color: white;
+		font-weight: bold;
+		width: 200px;
+		height: 60px;
+		font-size: 30px;
+	}
+	#selectAll{
+		cursor:pointer;
+		width:20px;
+  		height:20px;
+  		border:2px solid #F47C7C;
+  		border-radius: 5px;
+	}
+	#rowSelect{
+		cursor:pointer;
+		width:20px;
+  		height:20px;
+  		border:2px solid #F47C7C;
+  		border-radius: 5px;
+	}
+	.count{
+		margin: auto;
+		padding: auto;
+	}
+	.dFee{
+		text-align: right;
+	}
+	.productImg, .title, .orderAmount, .deleteBtn{
+		text-align: center;
+	}
+	.cntBtn{
+		width: 130px;
+		text-align: center;
+	}
+	.updateBtn{
+		text-align: right;
+	}
+	.updateBtn input{
+		border: 0px;
+		border-radius: 5px;
+		background-color: #2ac1bc;
+		color: white;
+		font-weight: bold;
+		width: 100px;
+		height: 30px;
+		font-size: 14px;
+	}
+</style>

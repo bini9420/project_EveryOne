@@ -27,17 +27,17 @@
 		cursor: pointer;
 	}
 </style>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 <script type="text/javascript">
 	function detailDocument(dnum) {
 	    //alert("선택한 문서 번호: " + dnum);
 		$('.modal-content').load("document_detail.dc?dnum="+dnum);
-		$('#staticBackdrop').modal();
+		$('#staticBackdrop').modal('show');
 	}
 </script>
-
 <%@ include file="../member/owner/o_top.jsp" %>
+
 <!-- document_box.jsp<br> -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         
-                        <!-- 임시저장 -->
+                        <!-- 임시저장 Card-->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-warning shadow h-100 py-2" id="tempBox" onclick="location.href='document_temp.dc'">
                                 <div class="card-body">
@@ -189,11 +189,9 @@
 											<td class="searchTd spaceTd">
 												<select class="form-select form-select-sm" name="whatColumn">
 													<option value="">선택
-													<option value="입점요청">입점요청
 													<option value="상품등록">상품등록
 													<option value="광고요청">광고요청
 													<option value="폐점신청">폐점신청
-													<option value="리뷰검토">리뷰검토
 												</select>
 											</td>
 											<td class="searchTd text-gray-800"><b>문서번호</b></td>
@@ -225,7 +223,6 @@
 						</div>
 					</div>
 					</div>
-
 
 					
 					<!-- 결재문서 목록-->
@@ -264,7 +261,8 @@
 							                      <h6 class="mb-1">${document.title}</h6>
 							                    </td>
 							                    <td>
-							                      <h6 class="mb-1">${document.writeday}</h6>
+							                      <fmt:parseDate value="${document.writeday}" var="writeday" pattern="yyyy-MM-dd HH:mm"/>
+							                      <h6 class="mb-1"><fmt:formatDate value="${writeday}" pattern="yyyy-MM-dd HH:mm"/></h6>
 							                    </td>
 							                    <!-- 
 							                    	-1: 반려 / 0: 대기(결재진행중) / 1: 승인(결재완료) / 10: 임시저장

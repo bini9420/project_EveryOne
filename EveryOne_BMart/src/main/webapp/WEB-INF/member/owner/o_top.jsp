@@ -11,10 +11,17 @@
 
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 <script>
+	jQuery.noConflict();
 	function review() {
 	    //alert(1);
 		$('#reviewCheckDocument .modal-content').load("document_rcheckInsert.dc");
 		$('#reviewCheckDocument').modal();
+	}
+	function show() {
+		$('#documentWrite .modal-content').load("document_write.dc");
+		$('#documentWrite').modal();
+		$('#requestDocument').css('bgcolor', '#2ac1bc');
+		$('#requestDocumnet').css('border-color', '#bae8e6');
 	}
 </script>
 
@@ -27,13 +34,10 @@
 
     <!-- Custom fonts for this template-->
     <link href="<%=request.getContextPath()%>/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="<%=request.getContextPath()%>/resources/css/sb-admin-2.min.css" rel="stylesheet">
-
 </head>
  
 <body id="page-top">
@@ -66,13 +70,27 @@
             <hr class="sidebar-divider">
             <!-- Heading -->
             <div class="sidebar-heading">
-                Register
+                Product
             </div>
             <!-- 물품 등록 Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="product_insert.mall">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseFive"
+                    aria-expanded="true" aria-controls="#collapseFour">
                     <i class="fas fa-fw fa-plus"></i>
-                    <span>물품등록</span></a>
+                    <span>상품관리</span>
+                </a>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="productInsert.prd">상품등록</a>
+                        <a class="collapse-item" href="productList.prd">상품목록</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <i class="fas fa-fw fa-comments"></i>
+                    <span>상품리뷰</span>
+                </a>
             </li>
 
             <!-- Manage -->
@@ -130,13 +148,22 @@
                 <div id="collapsePages1" class="collapse" aria-labelledby="headingPages1" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                        <h6 class="collapse-header">결재양식</h6>
-                        <a class="collapse-item" href="javascript:show()" data-bs-toggle="modal" data-bs-target="#documentWrite">요청·신청</a>
-                        <a class="collapse-item" href="javascript:review()" data-bs-toggle="modal" data-bs-target="#documentReviewCheck">리뷰검토</a>
+                        <a class="collapse-item" href="javascript:show()">요청·신청</a>
+                        <a class="collapse-item" href="javascript:review()">리뷰검토</a>
                     </div>
                 </div>
             </li>
             
+			<!-- 결재 요청 작성 모달 -->
+			<div class="modal fade" id="documentWrite" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+	
+			    </div>
+			  </div>
+			</div>
             
+            <!-- 리뷰검토 문서 작성 모달 -->
 			<div class="modal fade" id="reviewCheckDocument" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog">
 			    <div class="modal-content">
@@ -163,7 +190,7 @@
                         <a class="collapse-item" href="document_return.dc">반려함</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">기타</h6>
-                        <a class="collapse-item" href="document_rcheckList.dc">리뷰검토함</a>
+                        <a class="collapse-item" href="rcheckList.dc">리뷰검토함</a>
                     </div>
                 </div>
             </li>
@@ -180,8 +207,8 @@
             <!-- Sidebar Message -->
             <div class="sidebar-card d-none d-lg-flex">
                 <img class="sidebar-card-illustration mb-2" src="<%=request.getContextPath()%>/resources/img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>사용자 홈</strong> 으로 이동!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Go to consumer pages</a>
+                <p class="text-center mb-2"><strong>B-마트</strong> Home으로 이동!</p>
+                <a class="btn btn-success btn-sm" href="main.mall">Go to B-MART page</a>
             </div>
 
         </ul>

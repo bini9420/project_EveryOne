@@ -1,5 +1,7 @@
 package model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProductBean {
 	private int pnum;
 	private String id;
@@ -15,6 +17,21 @@ public class ProductBean {
 	private String inputdate;
 	private int ordercount;
 	private int ad;
+	
+	//DB 테이블에 존재하지 않는 변수 추가
+	private MultipartFile upload;
+	
+	public MultipartFile getUpload() {
+		return upload;
+	}
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
+		if(this.upload != null) {
+			System.out.println(upload.getName()); //upload
+			System.out.println(upload.getOriginalFilename()); //진짜 file 이름
+			pimage = upload.getOriginalFilename();
+		}
+	}
 	
 	public int getPnum() {
 		return pnum;

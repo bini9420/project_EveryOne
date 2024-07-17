@@ -6,28 +6,30 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="">
 	<meta name="author" content="">
 	
 	<title>관리자</title>
 	
 	<!-- Custom fonts for this template-->
-	<link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<link href="<%=request.getContextPath()%>/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 	
 	<!-- Custom styles for this template-->
-	<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="<%=request.getContextPath()%>/resources/css/sb-admin-2.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-rounded/css/uicons-bold-rounded.css">
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-straight/css/uicons-bold-straight.css'>
 	
 	<!-- Custom styles for this page -->
-	<link href="resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<link href="<%=request.getContextPath()%>/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 	
 	<style>  
+		body {
+			font-family: "Spoqa Han Sans Neo", sans-serif;
+		}
 		.btn-outline-info {          
 			float: right;
 			margin-left: 10px;
@@ -157,16 +159,15 @@
 				</a>
 				<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Approve Screens:</h6>
-						<a class="collapse-item" href="login.html">전체문서함</a> 
-						<a class="collapse-item" href="register.html">결재대기함</a> 
-						<a class="collapse-item" href="forgot-password.html">결재완료함</a> 
-						<a class="collapse-item" href="404.html">임시저장함</a> 
-						<a class="collapse-item" href="blank.html">반려함</a>
+						<h6 class="collapse-header">결재함</h6>
+						<a class="collapse-item" href="admin_allBox.dc">전체문서함</a> 
+						<a class="collapse-item" href="admin_waitBox.dc">결재대기함</a> 
+						<a class="collapse-item" href="admin_complete.dc">결재완료함</a> 
 						<div class="collapse-divider"></div>
 						<hr>
-						<h6 class="collapse-header">기타:</h6>
-						<a class="collapse-item" href="404.html">리뷰검토함</a>
+						<h6 class="collapse-header">기타</h6>
+						<a class="collapse-item" href="admin_enterBox.dc">입점신청함</a>
+						<a class="collapse-item" href="admin_rcheckBox.dc">리뷰검토함</a>
 					</div>
 				</div>
 			</li>
@@ -315,7 +316,7 @@
 								<a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
 										<img class="rounded-circle"
-											src="resources/img/undraw_profile_1.svg" alt="...">
+											src="<%=request.getContextPath()%>/resources/img/undraw_profile_1.svg" alt="...">
 										<div class="status-indicator bg-success"></div>
 									</div>
 									<div class="font-weight-bold">
@@ -327,7 +328,7 @@
 								<a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
 										<img class="rounded-circle"
-											src="resources/img/undraw_profile_2.svg" alt="...">
+											src="<%=request.getContextPath()%>/resources/img/undraw_profile_2.svg" alt="...">
 										<div class="status-indicator"></div>
 									</div>
 									<div>
@@ -339,7 +340,7 @@
 								<a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
 										<img class="rounded-circle"
-											src="resources/img/undraw_profile_3.svg" alt="...">
+											src="<%=request.getContextPath()%>/resources/img/undraw_profile_3.svg" alt="...">
 										<div class="status-indicator bg-warning"></div>
 									</div>
 									<div>
@@ -351,7 +352,6 @@
 								</a> 
 								<a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
-
 										<div class="status-indicator bg-success"></div>
 									</div>
 									<div>

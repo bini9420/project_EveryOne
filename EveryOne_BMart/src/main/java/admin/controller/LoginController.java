@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import admin.model.AdminDao;
+import document.model.DocumentDao;
 import model.MemberBean;
 
 @Controller
@@ -51,7 +52,8 @@ public class LoginController {
 		}else{ // 해당 아이디가 존재한다.
 			if(mb.getPassword().equals(member.getPassword())) { // 비번 일치
 				session.setAttribute("loginInfo", mb); // loginInfo:로그인한 사람의 정보
-				return new ModelAndView( gotoPage ) ;
+				
+				return new ModelAndView( gotoPage );
 				
 			}else { // 비번 불일치
 				System.out.println("비번 불일치");
@@ -60,7 +62,7 @@ public class LoginController {
 				out.println("</script>");
 				out.flush();
 				//mav.setViewName(getPage);
-				return new ModelAndView( getPage ) ;
+				return new ModelAndView( getPage );
 			}
 		}
 	}

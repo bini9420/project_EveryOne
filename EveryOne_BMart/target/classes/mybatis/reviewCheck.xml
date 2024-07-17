@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="reviewCheck.ReviewCheck">
+	<insert id="insertReviewCheck">
+ 		insert into review_check(rnum, writer, writeday, title, content, prdnum, re_writer, re_writeday, request)
+ 		values(#{rnum}, #{writer}, sysdate, #{title}, #{content}, #{prdnum}, #{re_writer}, #{re_writeday}, 1)
+ 	</insert>
+ 	
+ 	<select id="whatRnumber" resultType="String">
+		select max(rownum) from (select * from review_check)
+	</select> 
+	
+	<select id="getRTotalCount" resultType="int">
+		select count(*) from (select * from review_check where 1=1 and writer=#{id}) 
+		<if test="whatColumn == 'all'">
+			where rnum like #{keyword} or title like #{keyword}  or prdnum like #{keyword}
+		</if>
+		<if test="whatColumn == 'rnum'">
+			where rnum like #{keyword} 
+		</if>
+		<if test="whatColumn == 'title'">
+			where title like #{keyword} 
+		</if>
+		<if test="whatColumn == 'prdnum'">
+			where prdnum like #{keyword} 
+		</if>
+	</select>
+	
+	<select id="getAllReviewCheck" resultType="reviewCheck">
+		select * from (select * from review_check where 1=1 and writer=#{id}) 
+		<if test="whatColumn == 'all'">
+			where rnum like #{keyword} or title like #{keyword}  or prdnum like #{keyword}
+		</if>
+		<if test="whatColumn == 'rnum'">
+			where rnum like #{keyword} 
+		</if>
+		<if test="whatColumn == 'title'">
+			where title like #{keyword} 
+		</if>
+		<if test="whatColumn == 'prdnum'">
+			where prdnum like #{keyword} 
+		</if>
+		order by writeday desc
+	</select>
+	
+	<select id="getRcheckByRnum" resultType="reviewCheck">
+		select * from review_check where rnum=#{rnum}
+	</select>
+	
+	<delete id="deleteReviewCheck">
+		delete from review_check where rnum=#{rnum}
+	</delete>
+
+	<insert id="tempSaveRCheck">
+		insert into review_check(rnum, writer, writeday, title, content, prdnum, re_writer, re_writeday, request, dstatus)
+		values(#{rnum}, #{writer}, sysdate,  #{title}, #{content}, #{prdnum}, #{re_writer}, #{re_writeday}, 0, 0)
+	</insert>
+	
+	<update id="updateApproval">
+		update review_check set approval=1, dstatus=1 where rnum=#{rnum}
+	</update>
+	
+	<update id="updateReason">
+		update review_check set reason=#{reason}, approval=1, dstatus=-1 where rnum=#{rnum}
+	</update>
+	
+	<select id="getAllRcheckDocumentForAdmin" resultType="reviewCheck">
+		select * from review_check 
+		<if test="whatColumn == 'all'">
+			where rnum like #{keyword} or writer like #{keyword} or prdnum like #{keyword} 
+		</if>
+		<if test="whatColumn == 'rnum'">
+			where rnum like #{keyword} 
+		</if>
+		<if test="whatColumn == 'writer'">
+			where writer like #{keyword} 
+		</if>
+		<if test="whatColumn == 'prdnum'">
+			where prdnum like #{keyword} 
+		</if>
+		order by approval, writeday desc 
+	</select>
+	
+	<select id="getRcheckTotalCountForAdmin" resultType="int">
+		select count(*) from review_check 
+		<if test="whatColumn == 'all'">
+			where rnum like #{keyword} or writer like #{keyword} or prdnum like #{keyword} 
+		</if>
+		<if test="whatColumn == 'rnum'">
+			where rnum like #{keyword} 
+		</if>
+		<if test="whatColumn == 'writer'">
+			where writer like #{keyword} 
+		</if>
+		<if test="whatColumn == 'prdnum'">
+			where prdnum like #{keyword} 
+		</if>
+		order by approval, writeday desc 
+	</select>
+</mapper>

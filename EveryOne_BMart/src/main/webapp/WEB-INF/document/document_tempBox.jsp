@@ -5,9 +5,6 @@
 <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/tables/table-1/assets/css/table-1.css">
 <!-- document_box.jsp(임시저장 카드 클릭) => DocumentTempContoller.java(+lists: 임시저장된 문서들) => document__tempBox.jsp -->
 <style>
-	.justify-content-center {
-		margin: 40px 0px;
-	}
 	.table-responsive {
 		width: 100%;
 	}
@@ -25,15 +22,12 @@
 	.spaceTd {
 		margin-right: 20px;
 	}
-	.dateSize {
-		width: 50%;
-		display: inline-block;
-	}
 	#searchBtn {
 		margin-left: 20px;
 	}
 </style>
 
+<%@ include file="../member/owner/o_top.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 <script type="text/javascript">
@@ -44,7 +38,6 @@
 	}
 </script>
 
-<%@ include file="../member/owner/o_top.jsp" %>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12 col-md-6 mb-4">
@@ -124,7 +117,8 @@
               					<h6 class="mb-1">${tempDocument.title}</h6>
               				</td>
               				<td>
-              					<h6 class="mb-1">${tempDocument.writeday}</h6>
+              					<fmt:parseDate value="${tempDocument.writeday}" var="writeday" pattern="yyyy-MM-dd HH:mm"/>
+              					<h6 class="mb-1"><fmt:formatDate value="${writeday}" pattern="yyyy-MM-dd HH:mm"/></h6>
               				</td>
               			</tr>
               		</c:forEach>

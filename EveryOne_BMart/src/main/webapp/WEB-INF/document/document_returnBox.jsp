@@ -5,9 +5,6 @@
 <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/tables/table-1/assets/css/table-1.css">
 
 <style>
-	.justify-content-center {
-		margin: 40px 0px;
-	}
 	.table-responsive {
 		width: 100%;
 	}
@@ -25,15 +22,12 @@
 	.spaceTd {
 		margin-right: 20px;
 	}
-	.dateSize {
-		width: 50%;
-		display: inline-block;
-	}
 	#searchBtn {
 		margin-left: 20px;
 	}
 </style>
 
+<%@ include file="../member/owner/o_top.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 <script type="text/javascript">
@@ -44,7 +38,6 @@
 	}
 </script>
 
-<%@ include file="../member/owner/o_top.jsp" %>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12 col-md-6 mb-4">
@@ -68,24 +61,25 @@
 		<div class="col-xl-12">
 			<div class="card shadow mb-4">
 				<div class="card-body">
-				<table align="center">
-					<tr onclick="detailDocument('${tempDocument.dnum}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-						<td class="searchTd spaceTd">
-							<select class="form-select form-select-sm" name="whatColumn">
-								<option value="all">전체검색
-								<option value="dcategory">문서종류
-								<option value="dnum">문서번호
-								<option value="title">제목
-							</select>
-						</td>
-						<td class="searchTd spaceTd" colspan="3">
-							<input type="text" class="form-control form-control-sm" name="keyword">
-						</td>
-						<td align="center">
-							<a href="#" class="btn btn-primary btn-sm" id="searchBtn">Search</a>
-						</td>
-					</tr>
-				</table>
+				<form action="document_return.dc">
+					<table align="center">
+						<tr>
+							<td class="searchTd spaceTd">
+								<select class="form-select form-select-sm" name="whatColumn">
+									<option value="all">전체검색
+									<option value="dnum">문서번호
+									<option value="title">제목
+								</select>
+							</td>
+							<td class="searchTd spaceTd" colspan="3">
+								<input type="text" class="form-control form-control-sm" name="keyword">
+							</td>
+							<td align="center">
+								<a href="#" class="btn btn-primary btn-sm" id="searchBtn">Search</a>
+							</td>
+						</tr>
+					</table>
+				</form>
 				</div>
 			</div>
 		</div>
@@ -115,7 +109,7 @@
                 </thead>
                 <tbody>
               		<c:forEach var="returnDocument" items="${lists}">
-              			<tr>
+              			<tr onclick="detailDocument('${returnDocument.dnum}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
               				<td> 
               					<h6 class="mb-1">[${returnDocument.dcategory}]</h6>
               				</td>
@@ -126,13 +120,15 @@
               					<h6 class="mb-1">${returnDocument.title}</h6>
               				</td>
               				<td>
-              					<h6 class="mb-1">${returnDocument.writeday}</h6>
+              					<fmt:parseDate value="${returnDocument.writeday}" var="writeday" pattern="yyyy-MM-dd HH:mm"/> <!-- parseDate: String -> Date타입으로 변경 -->
+              					<h6 class="mb-1"><fmt:formatDate value="${writeday}" pattern="yyyy-MM-dd HH:mm"/></h6>
               				</td>
               				<td>
               					<h6 class="mb-1">${returnDocument.reason}</h6>
               				</td>
               				<td>
-              					<h6 class="mb-1">${returnDocument.approveday}</h6>
+              					<fmt:parseDate value="${returnDocument.approveday}" var="approveday" pattern="yyyy-MM-dd HH:mm"/> <!-- parseDate: String -> Date타입으로 변경 -->
+              					<h6 class="mb-1"><fmt:formatDate value="${approveday}" pattern="yyyy-MM-dd HH:mm"/></h6>
               				</td>
               			</tr>
               		</c:forEach>

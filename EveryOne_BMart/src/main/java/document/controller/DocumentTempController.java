@@ -39,14 +39,14 @@ public class DocumentTempController {
 	// GET: document_box.jsp에서 임시저장 카드 클릭, o_top.jsp에서 임시저장함 클릭
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String temp(@RequestParam(value = "whatColumn", required = false) String whatColumn,
-			@RequestParam(value = "keyword", required = false) String keyword,
-			@RequestParam(value = "pageNumber", required = false) String pageNumber, HttpServletRequest request,
-			HttpSession session, Model model) {
+					   @RequestParam(value = "keyword", required = false) String keyword,
+					   @RequestParam(value = "pageNumber", required = false) String pageNumber, HttpServletRequest request,
+					   HttpSession session, Model model) {
 		MemberBean mb = (MemberBean) session.getAttribute("loginInfo");
 
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("whatColumn", whatColumn);
-		map.put("keyowrd", "%" + keyword + "%");
+		map.put("keyword", "%" + keyword + "%");
 		map.put("id", mb.getId());
 
 		int totalCount = documentDao.getTempCount(map);

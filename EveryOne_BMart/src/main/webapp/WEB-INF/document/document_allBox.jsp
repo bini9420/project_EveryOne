@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/tables/table-1/assets/css/table-1.css">
 <!-- o_top.jsp => 전체문서함 클릭(document_allBox.dc 요청) => DocumentAllBoxController.java => document_allBox.jsp -->
+<%@ include file="../member/owner/o_top.jsp"%>
 <style>
 	.table-responsive {
 		width: 100%;
@@ -20,10 +21,17 @@
 		margin-left: 20px;
 		margin-top: 10px;
 	}
-
 </style>
- 
-<%@ include file="../member/owner/o_top.jsp"%>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script type="text/javascript">	
+	function detailDocument(dnum) {
+	    //alert("선택한 문서 번호: " + dnum);
+		$('.modal-content').load("document_detail.dc?dnum="+dnum);
+		$('#staticBackdrop').modal('show');
+	}
+</script>
+
 <div class="container-fruid" id="allBoxContainer">
 	<div class="row">
 		<div class="col-lg-12 col-md-6 mb-4">
@@ -71,13 +79,14 @@
 				                		</td>
 				                		<td>
 				                		  <h6 class="mb-1">${waitDocument.dnum}</h6>
-				                     	  <span class="text-secondary fs-7">Web, UI Design</span>
+				                     	  <span class="text-secondary fs-7">작성자: ${waitDocument.writer}</span>
 				                		</td>
 				                		<td>
 					                      <h6 class="mb-1">${waitDocument.title}</h6>
 					                    </td>
 					                    <td>
-					                      <h6 class="mb-1">${waitDocument.writeday}</h6>
+					                      <fmt:parseDate value="${waitDocument.writeday}" var="w_writeday" pattern="yyyy-MM-dd HH:mm"/>
+					                      <h6 class="mb-1"><fmt:formatDate value="${w_writeday}" pattern="yyyy-MM-dd HH:mm"/></h6>
 					                    </td>
 				                	</tr>
 				                </c:forEach>
@@ -124,13 +133,14 @@
 				                		</td>
 				                		<td>
 				                		  <h6 class="mb-1">${approveDocument.dnum}</h6>
-				                     	  <span class="text-secondary fs-7">Web, UI Design</span>
+				                     	  <span class="text-secondary fs-7">작성자: ${approveDocument.writer}</span>
 				                		</td>
 				                		<td>
 					                      <h6 class="mb-1">${approveDocument.title}</h6>
 					                    </td>
 					                    <td>
-					                      <h6 class="mb-1">${approveDocument.writeday}</h6>
+					                      <fmt:parseDate value="${approveDocument.writeday}" var="a_writeday" pattern="yyyy-MM-dd HH:mm"/>
+					                      <h6 class="mb-1"><fmt:formatDate value="${a_writeday}" pattern="yyyy-MM-dd HH:mm"/></h6>
 					                    </td>
 				                	</tr>
 				                </c:forEach>
@@ -176,13 +186,14 @@
 				                		</td>
 				                		<td>
 				                		  <h6 class="mb-1">${tempDocument.dnum}</h6>
-				                     	  <span class="text-secondary fs-7">Web, UI Design</span>
+				                     	  <span class="text-secondary fs-7">작성자: ${tempDocument.writer}</span>
 				                		</td>
 				                		<td>
 					                      <h6 class="mb-1">${tempDocument.title}</h6>
 					                    </td>
 					                    <td>
-					                      <h6 class="mb-1">${tempDocument.writeday}</h6>
+					                      <fmt:parseDate value="${tempDocument.writeday}" var="t_writeday" pattern="yyyy-MM-dd HH:mm"/>
+					                      <h6 class="mb-1"><fmt:formatDate value="${t_writeday}" pattern="yyyy-MM-dd HH:mm"/></h6>
 					                    </td>
 				                	</tr>
 				                </c:forEach>
@@ -228,13 +239,14 @@
 				                		</td>
 				                		<td>
 				                		  <h6 class="mb-1">${returnDocument.dnum}</h6>
-				                     	  <span class="text-secondary fs-7">Web, UI Design</span>
+				                     	  <span class="text-secondary fs-7">작성자: ${returnDocument.writer}</span>
 				                		</td>
 				                		<td>
 					                      <h6 class="mb-1">${returnDocument.title}</h6>
 					                    </td>
 					                    <td>
-					                      <h6 class="mb-1">${returnDocument.writeday}</h6>
+					                      <fmt:parseDate value="${returnDocument.writeday}" var="r_writeday" pattern="yyyy-MM-dd HH:mm"/>
+					                      <h6 class="mb-1"><fmt:formatDate value="${r_writeday}" pattern="yyyy-MM-dd HH:mm"/></h6>
 					                    </td>
 				                	</tr>
 				                </c:forEach>

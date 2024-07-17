@@ -15,16 +15,6 @@
 	}
 </style>
 
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
-<script>
-	function show() {
-		$('#documentWrite .modal-content').load("document_write.dc");
-		$('#documentWrite').modal();
-		$('#requestDocument').css('bgcolor', '#2ac1bc');
-		$('#requestDocumnet').css('border-color', '#bae8e6');
-	}
-</script>
-
 <%@ include file="o_top.jsp"%>
 <div class="container-fluid">
 
@@ -34,14 +24,6 @@
 		<a href="javascript:show()" data-bs-toggle="modal" data-bs-target="#documentWrite"
 			class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
 			class="fas fa-download fa-sm text-white-50" id="requestDocument"></i> 결재 요청</a>
-			
-		<div class="modal fade" id="documentWrite" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-
-		    </div>
-		  </div>
-		</div>
 	</div>
 
 	<!-- Content Row -->
@@ -101,7 +83,7 @@
 		</div>
 		
 		<div class="col-md-3 sm-6">
-				<!-- Illustrations -->
+				<!-- 게시판 -->
 				<div class="card shadow mb-3">
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary">게시판</h6>
@@ -111,7 +93,7 @@
 						<div class="text-center">
 							<img class="img-fluid px-3 px-sm-4 mt-3 mb-4"
 								style="width: 25rem;"
-								src="<%=request.getContextPath()%>/resources/img/undraw_posting_photo.svg"
+								src="<%=request.getContextPath()%>/resources/images/board.png"
 								alt="...">
 						</div>
 						<p>

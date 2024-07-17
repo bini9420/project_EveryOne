@@ -27,7 +27,6 @@ public class MemberLoginController {
 	@Autowired
 	MemberDao memberDao;
 	
-	
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String loginForm() {
 		

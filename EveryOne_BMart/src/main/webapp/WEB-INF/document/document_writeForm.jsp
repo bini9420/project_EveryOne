@@ -123,21 +123,24 @@
 	        return;
 	    }
 	    
-	    var prdnameElement = document.getElementById('productName');
-	    if (!prdnameElement.checkValidity()) {
-	        // 유효성 검사 실패 시 처리 (예: 경고 메시지 출력)
-	        alert('상품명을 입력해주세요.');
-	        return;
+	    if(selectElement == '상품등록') {
+	    	var prdnameElement = document.getElementById('productName');
+		    if (!prdnameElement.checkValidity()) {
+		        // 유효성 검사 실패 시 처리 (예: 경고 메시지 출력)
+		        alert('상품명을 입력해주세요.');
+		        return;
+		    }
 	    }
 	    
-	    var prdcategoryElement = document.getElementById('productCategory');
-	    if (!prdcategoryElement.checkValidity()) {
-	        // 유효성 검사 실패 시 처리 (예: 경고 메시지 출력)
-	        alert('상품 카테고리를 입력해주세요.');
-	        return;
+	    if(selectElement =='광고요청') {
+	    	var prdcategoryElement = document.getElementById('productCategory');
+		    if (!prdcategoryElement.checkValidity()) {
+		        // 유효성 검사 실패 시 처리 (예: 경고 메시지 출력)
+		        alert('상품 카테고리를 입력해주세요.');
+		        return;
+		    }
 	    }
 	
-	    // select 요소의 유효성 검사가 통과되면 폼을 제출
 	    document.myform.action = "document_temp.dc";
 	    document.myform.submit();
 	}

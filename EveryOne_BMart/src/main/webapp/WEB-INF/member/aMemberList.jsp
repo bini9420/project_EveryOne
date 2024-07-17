@@ -21,7 +21,7 @@
 
 					<div class="input-group">
 						<input type="text" name="keyword"
-							class="form-control bg-light border-0 small reading"
+							class="form-control bg-white border-0 small reading"
 							placeholder="Search for..." aria-label="Search"
 							aria-describedby="basic-addon2">
 						<div class="input-group-append">

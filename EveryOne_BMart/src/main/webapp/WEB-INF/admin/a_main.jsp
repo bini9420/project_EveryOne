@@ -100,7 +100,7 @@
 							<div
 								class="text-xs font-weight-bold text-warning text-uppercase mb-1">
 								<h4>
-									<a href="adlist.nt">게시판</a>
+									<a href="dlist.nt">문의사항</a>
 								</h4>
 							</div>
 							<div class="h5 mb-0 font-weight-bold text-gray-800">18</div>

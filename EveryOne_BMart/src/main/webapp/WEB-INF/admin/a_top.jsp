@@ -236,30 +236,27 @@ button {
 			<!-- Heading -->
 			<div class="sidebar-heading">Approve</div>
 
-			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="admin_allBox.dc"
-				data-toggle="collapse" data-target="#collapsePages"
-				aria-expanded="true" aria-controls="collapsePages"> 
-				<i class="fas fa-fw fa-folder"></i> <span>결재함</span>
-			</a>
-				<div id="collapsePages" class="collapse"
-					aria-labelledby="headingPages" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Approve Screens:</h6>
-						<a class="collapse-item" href="login.html">전체문서함</a> 
-						<a	class="collapse-item" href="register.html">결재대기함</a> 
-						<a	class="collapse-item" href="forgot-password.html">결재완료함</a> 
-						<a	class="collapse-item" href="404.html">임시저장함</a>
-						<a	class="collapse-item" href="blank.html">반려함</a>
-						<div class="collapse-divider"></div>
-						<hr>
-						<h6 class="collapse-header">기타:</h6>
-						<a class="collapse-item" href="404.html">리뷰검토함</a>
-
-
-					</div>
-				</div>
-			</li>
+		<!-- 결재함 메뉴 -->
+         <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+               aria-expanded="true" aria-controls="collapsePages"> 
+               <i class="fas fa-fw fa-folder"></i> 
+               <span>결재함</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+               <div class="bg-white py-2 collapse-inner rounded">
+                  <h6 class="collapse-header">결재함</h6>
+                  <a class="collapse-item" href="admin_allBox.dc">전체문서함</a> 
+                  <a class="collapse-item" href="admin_waitBox.dc">결재대기함</a> 
+                  <a class="collapse-item" href="admin_complete.dc">결재완료함</a> 
+                  <div class="collapse-divider"></div>
+                  <hr>
+                  <h6 class="collapse-header">기타</h6>
+                  <a class="collapse-item" href="admin_enterBox.dc">입점신청함</a>
+                  <a class="collapse-item" href="admin_rcheckBox.dc">리뷰검토함</a>
+               </div>
+            </div>
+         </li>
 
 			<!-- Nav Item - Charts -->
 			<li class="nav-item"><a class="nav-link" href="charts.html">
@@ -287,7 +284,7 @@ button {
 					<strong>관리자</strong> 
 				</p> -->
 				<a class="btn btn-success btn-sm"
-					href="https://startbootstrap.com/theme/sb-admin-pro"> Let's go BMart! 
+					href="main.mall"> Let's go BMart! 
 				</a>
 			</div>
 		</ul>
@@ -462,13 +459,7 @@ button {
 								aria-labelledby="userDropdown">
 								<a class="dropdown-item" href="adProfile.mb"> <i
 									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
-								</a> <a class="dropdown-item" href=""> <i
-									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-									Settings
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-									Activity Log
-								</a>
+								</a> 
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#" data-toggle="modal"
 									data-target="#logoutModal"> <i
@@ -494,7 +485,7 @@ button {
 									<div class="modal-footer">
 										<button class="btn btn-secondary" type="button"
 											data-dismiss="modal">Cancel</button>
-										<a class="btn btn-primary" href="logout.jsp">Logout</a>
+										<a class="btn btn-primary" href="logout.ad">Logout</a>
 									</div>
 								</div>
 							</div>

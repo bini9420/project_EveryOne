@@ -43,7 +43,7 @@
 						<!-- Product actions-->
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
-								<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?id=${loginInfo.id}&pnum=${in.pnum}&qty=1">장바구니 담기</a>
+								<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?index=interest&id=${loginInfo.id}&pnum=${in.pnum}&qty=1">장바구니 담기</a>
 		                    	<a class="btn flex-shrink-0 py-2 px-3 btn-danger"
 		                    	href="updateInterest.mall?page=interest&index=del&id=${loginInfo.id}&pnum=${in.pnum}">
 			                    	<i class="fi fi-rs-heart"></i>

@@ -129,7 +129,7 @@
 							</li>
 							<li><hr class="dropdown-divider" /></li>
 							<li>
-								<a class="dropdown-item" href="#!">
+								<a class="dropdown-item" href="register.mb">
 									<i class="fi fi-rr-user-add fst-normal"> 회원가입 </i>
 								</a>
 							</li>
@@ -141,7 +141,7 @@
 						<!-- heart icon -->
 						<a class="nav-link active" aria-current="page" href="mypage.mb">
 							<i class="fi fi-rr-user icon"></i>
-							<font class="fs-6 text-primary fw-bolder">${loginInfo.name} 님</font>
+							<font class="fs-6 text-primary fw-bolder">${loginInfo.id} 님</font>
 						</a>
 					</li>
 				</c:if>

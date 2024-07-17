@@ -45,15 +45,6 @@
 										</div>
 										<input type="submit" value="로그인" class="btn btn-primary btn-user btn-block">
 
-									<hr>
-									
-										<button type="submit" class="btn btn-warning btn-user btn-block" id="kakao-login-btn">
-											<i class="fab fa-google fa-fw"></i> 카카오로 로그인하기
-										</button>
-										
-										<button type="submit" class="btn btn-google btn-user btn-block"> 
-											<i class="fab fa-google fa-fw"></i> 구글로 로그인하기
-										</button>
 									</form>
 									
 									<hr>

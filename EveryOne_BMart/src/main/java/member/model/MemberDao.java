@@ -49,8 +49,8 @@ public class MemberDao {
 		return cnt;
 	}
 
-	public void insertAddress(AddressBean address) {
-		sqlSessionTemplate.insert(address+".insertAddress", address);
+	public void insertAddress(AddressBean addr) {
+		sqlSessionTemplate.insert(address+".insertAddress", addr);
 	}
 	
 	//배송지 목록 조회
@@ -68,8 +68,8 @@ public class MemberDao {
 	}
 	
 	//주소 수정
-	public void updateAddress(AddressBean address) {
-		sqlSessionTemplate.update(address+".updateAddress",address);
+	public void updateAddress(AddressBean addr) {
+		sqlSessionTemplate.update(address+".updateAddress", addr);
 	}
 	
 	//주소 삭제
@@ -121,6 +121,44 @@ public class MemberDao {
 	//리뷰 삭제
 	public void deleteReview(int rnum) {
 		sqlSessionTemplate.delete(review+".deleteReview", rnum);
+	}
+
+	//아이디 중복체크
+	public int checkId(String id) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.selectOne(namespace+".checkId", id);
+		return cnt;
+	}
+
+	public void insertMember(MemberBean member) {
+		sqlSessionTemplate.insert(namespace+".insertMember", member);
+	}
+	
+	//아이디 찾기
+	public MemberBean getMemberId(MemberBean member) {
+		MemberBean mb = null;
+		mb = sqlSessionTemplate.selectOne(namespace+".getMemberId", member);
+		return mb;
+	}
+
+	//비밀번호 찾기
+	public MemberBean getMemberPw(MemberBean member) {
+		MemberBean mb = null;
+		mb = sqlSessionTemplate.selectOne(namespace+".getMemberPw", member);
+		return mb;
+	}
+
+	//kakao 정보 저장
+	public void kakaoinsert(MemberBean mb) {
+		sqlSessionTemplate.insert(namespace+".kakaoInsert",mb);
+	}
+
+	// 카카오 정보 확인
+	public MemberBean findkakao(MemberBean mb) {
+		System.out.println("find id: "+mb.getId());
+		MemberBean member = null;
+		member = sqlSessionTemplate.selectOne(namespace+".findKakao", mb);
+		return member;
 	}
 
 }

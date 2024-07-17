@@ -26,7 +26,7 @@ public class ProductDao {
 
 	public List<ProductBean> getProductList(Map<String, String> map, MemberListPaging pageInfo) {
 		List<ProductBean> lists = new ArrayList<ProductBean>();
-		
+
 		System.out.println(map.get("keyword"));
 		RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
 		System.out.println(pageInfo.getOffset());
@@ -45,7 +45,7 @@ public class ProductDao {
 	}// getTotalCount
 
 	public int insertProduct(ProductBean pb) {
-		// TODO Auto-generated method stub
+		
 		int cnt = -1;
 
 		cnt = sqlSessionTemplate.insert(namespace + ".insertProduct", pb);
@@ -85,14 +85,14 @@ public class ProductDao {
 		cnt = sqlSessionTemplate.insert(namespace + ".insertCategory", type);
 		System.out.println("insertCategory cnt : " + cnt);
 		return cnt;
-		
+
 	}
 
-	 
-	
-	
-	
-	
 
-	
+
+
+
+
+
+
 }

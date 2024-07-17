@@ -375,24 +375,6 @@
 </script>
 
 
-<style>
-        .fc-header-toolbar .fc-button {
-            font-size: 12px; /* 작은 글꼴 크기 */
-            padding: 5px 10px; /* 작은 버튼 크기 */
-        }
-
-        .fc-header-toolbar .fc-button-primary {
-            background-color: #2ac1bc; /* 기본 버튼 배경색 */
-            color: #fff; /* 기본 버튼 글자색 */
-            border-color: #2ac1bc; /* 기본 버튼 테두리 색 */
-        }
-
-        .fc-header-toolbar .fc-button-primary:hover {
-            background-color: #2ac1bc; /* 마우스 호버 시 배경색 */
-            border-color: #2ac1bc; /* 마우스 호버 시 테두리 색 */
-        }
-    </style>
-
 
 
 

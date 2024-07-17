@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,16 +30,7 @@ public class ProductInsertController {
 	@Autowired
 	ServletContext servletContext;
 	
-	// productList.jsp에서 추가하기 클릭
-	/*
-	 * @RequestMapping(value = command, method = RequestMethod.GET) public String
-	 * insert(HttpSession session) { //로그인 성공하면 loginInfo 세션 설정
-	 * System.out.println("loginInfo:" + session.getAttribute("loginInfo")); // null
-	 * if(session.getAttribute("loginInfo") == null) { //
-	 * 
-	 * return "redirect:/loginForm.mb"; //MemberLoginController=>memberLoginForm.jsp
-	 * }else { return getPage; } }
-	 */
+
 	 
 	
 	
@@ -62,7 +52,7 @@ public class ProductInsertController {
 		System.out.println("prod.getPname():"+product.getPname());
 		System.out.println("prod.getPcontent():"+product.getPcontent());
 		System.out.println("prod.getPrice():"+product.getPrice());
-		System.out.println("prod.getPimage():"+product.getPimage()); // null, 시계.jpg
+		System.out.println("prod.getPimage():"+product.getPimage()); // null, �떆怨�.jpg
 		System.out.println("prod.getUpload():"+product.getUpload());
 		System.out.println("prod.getMall():"+product.getMall());
 		

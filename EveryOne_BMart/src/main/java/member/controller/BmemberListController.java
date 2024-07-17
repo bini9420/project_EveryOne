@@ -20,21 +20,22 @@ import utility.MemberListPaging;
 public class BmemberListController {
 	private final String command = "bMemberList.mb";
 	private final String getPage = "bMemberList";
-	
+
 	@Autowired
 	MemberDao memberDao;
-	
+
 	// main에서 회원 목록보기 눌렀을때 회원 목록보기
 	@RequestMapping(command)
 	public String mlist(
-			
-			@RequestParam(value="keyword", required=false) String keyword,
-			@RequestParam(value="pageNumber", required=false) String pageNumber,
-			HttpServletRequest request,
-			Model model) {
+
+		@RequestParam(value="keyword", required=false) String keyword,
+		@RequestParam(value="pageNumber", required=false) String pageNumber,
+		HttpServletRequest request,
+		Model model) {
 		System.out.println("keyword"+keyword);
-		Map<String, String> map = new HashMap<String, String>();
 		
+		Map<String, String> map = new HashMap<String, String>();
+
 		if (keyword != null && !keyword.trim().isEmpty()) {
 			map.put("keyword", "%" + keyword + "%");
 		} else {
@@ -49,12 +50,12 @@ public class BmemberListController {
 		List<BusinessBean> bmemberLists = memberDao.getBMemList(map, pageInfo);
 		model.addAttribute("bmemLists", bmemberLists);
 		model.addAttribute("pageInfo", pageInfo);
-		
-		
-		
+
+
+
 		return getPage;
-	
-		
-		
+
+
+
 	}
 }

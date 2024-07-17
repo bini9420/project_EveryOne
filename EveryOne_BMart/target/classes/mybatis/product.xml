@@ -16,7 +16,7 @@
 			or pnum like #{keyword}
 		</if>
 	</select>
-	
+
 
 	<select id="getProductList" resultType="mall.model.ProductBean">
 		select * from product
@@ -66,37 +66,33 @@
 	<update id="updateProduct">
 		update product set pname = #{pname},price = #{price},
 		stock=#{stock},pimage= #{pimage},pcontent = #{pcontent}
-		where pnum =#{pnum}
-	
-	</update>
-	
-	<update id="updateStock"> 
-		update product 
-	    set stock = stock - #{stock}
-	    where pnum = #{pnum}
-		
-	</update> 
+		where pnum=#{pnum}
 
-	<update id="updateOrdercount"> 
-		update product set ordercount = ordercount+#{ordercount} 
-		where pnum = #{pnum} 
-	</update> 
-		
-	
-	
+	</update>
+
+	<update id="updateStock">
+		update product
+		set stock = stock - #{stock}
+		where pnum = #{pnum}
+
+	</update>
+
+	<update id="updateOrdercount">
+		update product set ordercount = ordercount+#{ordercount}
+		where pnum = #{pnum}
+	</update>
+
+
+
 	<select id="getRangeTest" resultType="mall.model.ProductBean">
-		select rownum, pname,
-		ordercount
-		from (select rownum, pname, ordercount from product order by
-		ordercount
-		desc)
+		select rownum, pname, ordercount
+		from (select rownum, pname, ordercount from product order by ordercount desc)
 		where rownum between 1 and 5
 	</select>
 
 	<select id="getCateChart" resultType="mall.model.ProductBean">
 
-		select
-		pcategory,sum(ordercount) as ordercount
+		select pcategory,sum(ordercount) as ordercount
 		from product
 		group by pcategory
 
@@ -104,7 +100,7 @@
 
 
 
-	
+
 
 </mapper>
 

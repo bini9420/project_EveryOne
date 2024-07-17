@@ -41,13 +41,11 @@ public class ProductUFormController {
 			@RequestParam(value="pageNumber", required = true) int pageNumber,
 			@RequestParam(value="keyword", required = false) String keyword,
 			HttpSession session,Model model) {
-
-		System.out.println(this.getClass()+" GET");
-		System.out.println("pnum:"+pnum);
-		System.out.println("pageNumber:"+pageNumber);
-		System.out.println("keyword:"+keyword);
-		ModelAndView mav = new ModelAndView();
 	
+			System.out.println(this.getClass()+" GET");
+			System.out.println("pnum:"+pnum);
+			System.out.println("pageNumber:"+pageNumber);
+			System.out.println("keyword:"+keyword);
 			ProductBean pb = productDao.detailViewByNum(pnum);
 
 			model.addAttribute("product" , pb);

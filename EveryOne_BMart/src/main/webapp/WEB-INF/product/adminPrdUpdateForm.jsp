@@ -79,18 +79,14 @@
 
 					<tr>
 						<th>상품 이미지</th>
-						<td>
-						<img src="<%=request.getContextPath() + "/resources/uploadImage/" %>${product.pimage}"
-							width="100" height="100" /> <br>
-						<br> <input type="file" name="upload"
-							value="${product.pimage }"><br>
-						<br> <!-- upload:새로 업로드할 파일명 --> <input type="text"
+						<td><img
+							src="<%=request.getContextPath() + "/resources/uploadImage/" %>${product.pimage}"
+							width="100" height="100" /> <br> <br> <input
+							type="file" name="upload" value="${product.pimage }"><br>
+							<br> <!-- upload:새로 업로드할 파일명 --> <input type="text"
 							name="upload2" value="${product.pimage }"> <!-- upload2:삭제할 파일명 -->
 						</td>
 					</tr>
 
 				</table>
 </form:form>
-</div>
-</div>
-</div>

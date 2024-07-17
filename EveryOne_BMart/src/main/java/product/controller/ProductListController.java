@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mall.model.ProductBean;
-import member.model.MemberBean;
 import product.model.ProductDao;
 import utility.MemberListPaging;
 
@@ -36,13 +35,6 @@ public class ProductListController {
 			Model model,
 			HttpSession session
 			) {
-
-
-		/*if(session.getAttribute("loginInfo") == null) { // 
-
-			return "redirect:/loginForm.mb"; //MemberLoginController=>memberLoginForm.jsp
-		}else {
-		 */
 
 
 		System.out.println("keyword"+keyword);

@@ -13,25 +13,19 @@
 
 
 
-
-
-  
-  
-
-
-
 <!-- Page level custom scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> 
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
 
 <script src="././resources/js/demo/chart-area-demo.js"></script>
 <!-- <script src="././resources/js/demo/chart-pie-demo.js"></script> -->
 
 <!-- Bootstrap core JavaScript-->
-     <!-- <script src="/resources/vendor/jquery/jquery.min.js"></script> -->
+<!-- <script src="/resources/vendor/jquery/jquery.min.js"></script> -->
 <script src="././resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
@@ -42,8 +36,9 @@
 
 <!-- Page level plugins -->
 <!-- <script src="././resources/vendor/chart.js/Chart.min.js"></script> -->
- <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
- 
+<script
+	src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
+
 
 <!-- Custom fonts for this template-->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
@@ -66,21 +61,34 @@
 <link rel='stylesheet'
 	href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 
-<style>  
+<style>
+.fc-header-toolbar .fc-button {
+	font-size: 12px; /* 작은 글꼴 크기 */
+	padding: 5px 10px; /* 작은 버튼 크기 */
+}
 
+.fc-header-toolbar .fc-button-primary {
+	background-color: #2ac1bc; /* 기본 버튼 배경색 */
+	color: #fff; /* 기본 버튼 글자색 */
+	border-color: #2ac1bc; /* 기본 버튼 테두리 색 */
+}
+
+.fc-header-toolbar .fc-button-primary:hover {
+	background-color: #2ac1bc; /* 마우스 호버 시 배경색 */
+	border-color: #2ac1bc; /* 마우스 호버 시 테두리 색 */
+}
 
 #calendar-container {
-  position: relative;
-  z-index: 1;
-  margin: 50px;
+	position: relative;
+	z-index: 1;
+	margin: 50px;
 }
 
 #calendar {
-  max-width: 1100px;
- 
+	max-width: 1100px;
 }
 
-.btn-outline-info {          
+.btn-outline-info {
 	float: right;
 	margin-left: 10px;
 	font-size: 2rem;
@@ -91,7 +99,7 @@
 	display: flex;
 	justify-content: center;
 }
-             
+
 .plusbtn {
 	float: right;
 	margin-left: 10px;
@@ -118,7 +126,31 @@
 	height: 85%;
 	width: 85%;
 }
+
+.search {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center; /* 세로축 가운데 정렬 */
+	margin-left: 85%;
+}
+
+.trash {
+	font-size: 30px;
+}
+
+button {
+	border: none; /* 경계선 없애기 */
+	background: none; /* 배경 없애기 */
+	padding: 0; /* 패딩 없애기 */
+	cursor: pointer; /* 커서 포인터로 변경 */
+}
+
+.reading {
+	border: 1px solid;
+}
 </style>
+
+
 </head>
 
 <body id="page-top">
@@ -132,9 +164,7 @@
 			id="accordionSidebar">
 
 			<!-- Side bar - Brand -->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="adminMain.ad">
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="adminMain.ad">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -154,47 +184,49 @@
 
 
 			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseMember"
-				aria-expanded="true" aria-controls="collapseMember"> <i
-					class="fas fa-fw fa-wrench"></i> <span>회원관리</span>
+			<li class="nav-item">
+				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMember"
+				aria-expanded="true" aria-controls="collapseMember"> 
+				<i class="fas fa-fw fa-wrench"></i> <span>회원관리</span>
 
 			</a>
 				<div id="collapseMember" class="collapse"
 					aria-labelledby="headingMember" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Member Manage:</h6>
-						<a class="collapse-item" href="aMemberList.mb">일반회원목록</a>
+						<a class="collapse-item" href="aMemberList.mb">일반회원목록</a> 
 						<a class="collapse-item" href="bMemberList.mb">사업자회원목록</a>
 
 					</div>
-				</div></li>
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				</div>
+			</li>
+			<li class="nav-item">
+			<a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseProducts"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-wrench"></i> <span>상품관리</span>
+				aria-expanded="true" aria-controls="collapseUtilities"> 
+				<i class="fas fa-fw fa-wrench"></i> <span>상품관리</span>
 			</a>
 				<div id="collapseProducts" class="collapse"
 					aria-labelledby="headingProducts" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Product Manage:</h6>
-						<a class="collapse-item" href="productList.prd">상품목록</a> <a
-							class="collapse-item" href="productInsert.prd">상품등록</a> <a
-							class="collapse-item" href="productList.prd">상품수정</a> <a
-							class="collapse-item" href="productDelete.prd">상품삭제</a>
+						<a class="collapse-item" href="productList.prd">상품목록</a> 
+						<a class="collapse-item" href="productInsert.prd">상품등록</a> 
+						<a class="collapse-item" href="productList.prd">상품수정</a> 
+						<a class="collapse-item" href="productDelete.prd">상품삭제</a>
 					</div>
 				</div></li>
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseSales"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-wrench"></i> <span>매출관리</span>
+				aria-expanded="true" aria-controls="collapseUtilities"> 
+				<i class="fas fa-fw fa-wrench"></i> <span>매출관리</span>
 			</a>
 				<div id="collapseSales" class="collapse"
 					aria-labelledby="headingSales" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Sales Manage:</h6>
-						<a class="collapse-item" href="top.sale">상품 매출</a> <a
-							class="collapse-item" href="utilities-border.html">회원 매출</a>
+						<a class="collapse-item" href="top.sale">상품 매출</a> 
+						<a class="collapse-item" href="utilities-border.html">회원 매출</a>
 					</div>
 				</div></li>
 
@@ -207,18 +239,18 @@
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapsePages"
-				aria-expanded="true" aria-controls="collapsePages"> <i
-					class="fas fa-fw fa-folder"></i> <span>결재함</span>
+				aria-expanded="true" aria-controls="collapsePages"> 
+				<i class="fas fa-fw fa-folder"></i> <span>결재함</span>
 			</a>
 				<div id="collapsePages" class="collapse"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Approve Screens:</h6>
-						<a class="collapse-item" href="login.html">전체문서함</a> <a
-							class="collapse-item" href="register.html">결재대기함</a> <a
-							class="collapse-item" href="forgot-password.html">결재완료함</a> <a
-							class="collapse-item" href="404.html">임시저장함</a> <a
-							class="collapse-item" href="blank.html">반려함</a>
+						<a class="collapse-item" href="login.html">전체문서함</a> 
+						<a	class="collapse-item" href="register.html">결재대기함</a> 
+						<a	class="collapse-item" href="forgot-password.html">결재완료함</a> 
+						<a	class="collapse-item" href="404.html">임시저장함</a>
+						<a	class="collapse-item" href="blank.html">반려함</a>
 						<div class="collapse-divider"></div>
 						<hr>
 						<h6 class="collapse-header">기타:</h6>
@@ -226,7 +258,8 @@
 
 
 					</div>
-				</div></li>
+				</div>
+			</li>
 
 			<!-- Nav Item - Charts -->
 			<li class="nav-item"><a class="nav-link" href="charts.html">
@@ -254,8 +287,8 @@
 					<strong>관리자</strong> 
 				</p> -->
 				<a class="btn btn-success btn-sm"
-					href="https://startbootstrap.com/theme/sb-admin-pro"> Let's go
-					BMart! </a>
+					href="https://startbootstrap.com/theme/sb-admin-pro"> Let's go BMart! 
+				</a>
 			</div>
 		</ul>
 		<!-- End of Sidebar -->

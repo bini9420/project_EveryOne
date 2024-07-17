@@ -24,17 +24,17 @@ public class ProductDetailController {
 			@RequestParam("pageNumber") int pageNumber,
 			@RequestParam(value="keyword", required = false) String keyword,
 			Model model) {
-
-		System.out.println(this.getClass());
-		System.out.println(pnum);
-		System.out.println(pageNumber);
-		System.out.println(keyword);
-		
-		ProductBean pb =  productDao.detailViewByNum(pnum);
-		model.addAttribute("product", pb);
-		model.addAttribute("pageNumber", pageNumber);
-		model.addAttribute("keyword", keyword);
-
-		return getPage; // productDetailView
+	
+			System.out.println(this.getClass());
+			System.out.println(pnum);
+			System.out.println(pageNumber);
+			System.out.println(keyword);
+			
+			ProductBean pb =  productDao.detailViewByNum(pnum);
+			model.addAttribute("product", pb);
+			model.addAttribute("pageNumber", pageNumber);
+			model.addAttribute("keyword", keyword);
+	
+			return getPage; // productDetailView
 	}
 }

@@ -26,20 +26,20 @@ public class MemberDeleteController {
 			@RequestParam("keyword") String keyword,
 			RedirectAttributes redirectAttributes) {
 
-		System.out.println("삭제버튼 클릭하면 넘어오는 id : " + id);
-		mdao.deleteMember(id); 
-		
-		try {
-			String encodedKeyword = URLEncoder.encode(keyword, "UTF-8");
-			String encodedWhatColumn = URLEncoder.encode(whatColumn, "UTF-8");
-
-			String redirectUrl = gotoPage+"?pageNumber=" + pageNumber + "&whatColumn=" + encodedWhatColumn + "&keyword=" + encodedKeyword;
-			return redirectUrl;
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-			System.out.println("url인코딩 오류");
-			return gotoPage;
+			System.out.println("삭제버튼 클릭하면 넘어오는 id : " + id);
+			mdao.deleteMember(id); 
+			
+			try {
+				String encodedKeyword = URLEncoder.encode(keyword, "UTF-8");
+				String encodedWhatColumn = URLEncoder.encode(whatColumn, "UTF-8");
+	
+				String redirectUrl = gotoPage+"?pageNumber=" + pageNumber + "&whatColumn=" + encodedWhatColumn + "&keyword=" + encodedKeyword;
+				return redirectUrl;
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+				System.out.println("url인코딩 오류");
+				return gotoPage;
+			}
 		}
-	}
 
 }

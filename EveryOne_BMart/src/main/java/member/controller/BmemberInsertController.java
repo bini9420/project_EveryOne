@@ -25,22 +25,22 @@ public class BmemberInsertController {
 	@Autowired
 	MemberDao memberDao;
 
-	
-	
+
+
 	//사업자 입점 신청이 들어왔을때 
 	@RequestMapping(value=command)
 	public String insertMem(	 
-							@ModelAttribute("business") BusinessBean business,
-							HttpServletResponse response) throws IOException {
-		
+		@ModelAttribute("business") BusinessBean business,
+		HttpServletResponse response) throws IOException {
+
 		System.out.println("business.getBcode()"+business.getBcode());
 		System.out.println("business.getType()"+business.getType());
 		System.out.println("business.getId()"+business.getId());
-		
-	
+
+
 		Integer cnt = -1;     
 		cnt = memberDao.insertBMember(business);
-		
+
 		return gotoPage;
 	}
 }

@@ -16,16 +16,14 @@ import schedule.model.CalendarDao;
 
 
 	private final String command="scheduleDelete.scd";
-	private final String gotoPage="adminSchedule";
-
-
+	
 	@Autowired CalendarDao calendarDao;
 
 	@ResponseBody
 	@RequestMapping(value = command, method = RequestMethod.POST)
 	public Map<String, Object> deleteCalendar(@RequestParam(value = "title", required = false) String title,
 			@RequestParam(value = "startDate", required = false) String start
-			
+
 			) {
 		Map<String, Object> response = new HashMap<>();
 

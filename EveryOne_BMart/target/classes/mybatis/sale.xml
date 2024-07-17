@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sale">
+
+
+	<select id="getAriaChart" resultType="sale.model.OrderInfoBean">
+
+		
+		SELECT
+				TO_CHAR(orderdate, 'YYYY-MM') AS orderdate,
+				SUM(o.pamount * p.price) AS totalPrice
+				FROM
+				orderInfo o
+				INNER JOIN
+				product p
+				ON
+				o.pnum = p.pnum
+				GROUP BY
+				TO_CHAR(orderdate, 'YYYY-MM')
+				ORDER BY
+				orderdate
+
+
+	</select>
+
+
+
+
+
+</mapper>          
+     

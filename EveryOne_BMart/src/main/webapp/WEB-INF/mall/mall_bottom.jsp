@@ -6,7 +6,7 @@
 		<div class="container">
 			<ul class="navbar-nav mx-auto" >
 				<li class="nav-item mx-5" >
-					<a class="nav-link" aria-current="page" href="cs.mall">
+					<a class="nav-link" aria-current="page" href="list.nt">
 						고객센터
 					</a>
 				</li>

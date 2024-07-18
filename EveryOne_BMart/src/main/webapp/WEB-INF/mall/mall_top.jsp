@@ -78,83 +78,86 @@
 
 
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg">
-	<div class="container">
-		<img src="resources/img/Bmart_logo.png" onclick="main.mall" alt="B마트_logo" style="width:200; height: 60">&nbsp;&nbsp;
-		<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="plists.mall">
-	        <div class="input-group">
-			    <input type="text" class="form-control bg-light border-0 px-3" placeholder="상품을 검색하세요(●'◡'●)"
-			        aria-label="Search" aria-describedby="basic-addon2" name="keyword" style="width: 250">
-			    <div class="input-group-append">
-			        <button class="btn btn-primary" type="submit">
-			            <i class="fi fi-rr-search search"></i>
-			        </button>
-			    </div>
-			</div>
-       	</form>
-		<div class="collapse navbar-collapse ms-lg-5" id="navbarSupportedContent">
-			<ul class="navbar-nav mb-2 mb-lg-0 ms-lg-5 ps-lg-5">
-				<li class="nav-item ms-lg-5 mx-1">
-					<!-- home icon -->
-					<a class="nav-link active" aria-current="page" href="main.mall">
-						<i class="fi fi-rr-home icon"></i>
-					</a>
-				</li>
-				<li class="nav-item mx-1">
-					<!-- heart icon -->
-					<a class="nav-link active" aria-current="page" href="interest.mall">
-						<i class="fi fi-rr-heart icon"></i>
-					</a>
-				</li>
-				<li class="nav-item mx-1">
-					<!-- cart icon -->
-					<a class="nav-link active position-relative" aria-current="page" href="cart.mall">
-						<i class="fi fi-rr-shopping-basket icon"></i>
-						<!-- Counter - Messages -->
-						<c:if test="${loginInfo ne null}">
-                        	<span class="position-absolute top-1 start-100 translate-middle badge rounded-pill btn-danger">${cartTotalCount}</span>
-                        </c:if>
-					</a>
-				</li>
-				<c:if test="${loginInfo eq null}">
-					<li class="nav-item dropdown mx-1">
-						<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<i class="fi fi-rr-user icon"></i>
-						</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li>
-								<a class="dropdown-item" href="login.mb">
-									<i class="fi fi-rr-users fst-normal"> 로그인 </i>
-								</a>
-							</li>
-							<li><hr class="dropdown-divider" /></li>
-							<li>
-								<a class="dropdown-item" href="register.mb">
-									<i class="fi fi-rr-user-add fst-normal"> 회원가입 </i>
-								</a>
-							</li>
-						</ul>
-					</li>
-				</c:if>
-				<c:if test="${loginInfo ne null}">
-					<li class="nav-item">
-						<!-- heart icon -->
-						<a class="nav-link active" aria-current="page" href="mypage.mb">
-							<i class="fi fi-rr-user icon"></i>
-							<font class="fs-6 text-primary fw-bolder">${loginInfo.id} 님</font>
-						</a>
-					</li>
-				</c:if>
-			</ul>
+<div class="continer mx-auto w-75">
+	<nav class="navbar navbar-expand-lg">
+		<div class="container">
+			<img src="resources/img/Bmart_logo.png" alt="B마트_logo" style="width:200; height: 60">&nbsp;&nbsp;
+			<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="plists.mall">
+		        <div class="input-group">
+				    <input type="text" class="form-control bg-light border-0 px-3" placeholder="상품을 검색하세요(●'◡'●)"
+				        aria-label="Search" aria-describedby="basic-addon2" name="keyword" style="width: 250">
+				    <div class="input-group-append">
+				        <button class="btn btn-primary" type="submit">
+				            <i class="fi fi-rr-search search"></i>
+				        </button>
+				    </div>
+				</div>
+	       	</form>
 		</div>
-	</div>
-</nav>
-
+		<div class="container w-75">
+			<div class="collapse navbar-collapse ms-lg-5" id="navbarSupportedContent">
+				<ul class="navbar-nav mb-2 mb-lg-0 ms-lg-5 ps-lg-5">
+					<li class="nav-item ms-lg-5 mx-1">
+						<!-- home icon -->
+						<a class="nav-link active" aria-current="page" href="main.mall">
+							<i class="fi fi-rr-home icon"></i>
+						</a>
+					</li>
+					<li class="nav-item mx-1">
+						<!-- heart icon -->
+						<a class="nav-link active" aria-current="page" href="interest.mall">
+							<i class="fi fi-rr-heart icon"></i>
+						</a>
+					</li>
+					<li class="nav-item mx-1">
+						<!-- cart icon -->
+						<a class="nav-link active position-relative" aria-current="page" href="cart.mall">
+							<i class="fi fi-rr-shopping-basket icon"></i>
+							<!-- Counter - Messages -->
+							<c:if test="${loginInfo ne null}">
+	                        	<span class="position-absolute top-1 start-100 translate-middle badge rounded-pill btn-danger">${cartTotalCount}</span>
+	                        </c:if>
+						</a>
+					</li>
+					<c:if test="${loginInfo ne null}">
+						<li class="nav-item">
+							<!-- heart icon -->
+							<a class="nav-link active" aria-current="page" href="mypage.mb">
+								<i class="fi fi-rr-user icon"></i>
+								<font class="fs-6 text-primary fw-bolder">${loginInfo.id} 님😊</font>
+							</a>
+						</li>
+					</c:if>
+					<c:if test="${loginInfo eq null}">
+						<li class="nav-item dropdown mx-1">
+							<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fi fi-rr-user icon"></i>
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li>
+									<a class="dropdown-item" href="login.mb">
+										<i class="fi fi-rr-users fst-normal"> 로그인 </i>
+									</a>
+								</li>
+								<li><hr class="dropdown-divider" /></li>
+								<li>
+									<a class="dropdown-item" href="register.mb">
+										<i class="fi fi-rr-user-add fst-normal"> 회원가입 </i>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</c:if>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</div>
 <!-- category -->
-<nav class="navbar navbar-expand-lg mx-auto" style="border-bottom: 1px solid #D3D3D3; box-shadow: 0px 3px 5px -2px gray">
-	<div class="container px-4">
+<nav class="navbar navbar-expand-lg" style="border-bottom: 1px solid #D3D3D3; box-shadow: 0px 3px 5px -2px gray">
+	<div class="container">
 		<ul class="navbar-nav" >
-			<li class="nav-item dropdown mx-5">
+			<li class="nav-item dropdown me-5">
 				<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					<font size="3" style="font-style: normal;">카테고리</font>
 				</a>

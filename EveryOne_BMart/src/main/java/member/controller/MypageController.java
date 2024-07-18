@@ -67,7 +67,7 @@ public class MypageController {
 				int totalCount = memberDao.getReviewCountById(member.getId());
 				String url = request.getContextPath()+this.command+"?id="+member.getId();
 				
-				ReviewPaging pageInfo = new ReviewPaging(pageNumber, null, totalCount, url, null, keyword);
+				ReviewPaging pageInfo = new ReviewPaging(pageNumber, null, totalCount, url, null);
 				
 				List<ReviewDetailBean> rdetail = memberDao.getReviewById(member.getId(), pageInfo);
 				

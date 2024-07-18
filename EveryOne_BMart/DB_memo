@@ -61,12 +61,6 @@ create table business(
   addr2 varchar2(30)
 );
 
-insert into business values('11223344','lee','전자기기','04050','서울 마포구 양화로 140','애플스토어');
-insert into business values('11223345','park','전자기기','04050','서울 마포구 양화로 140','애플스토어');
-insert into business values('11223346','choi','전자기기','04050','서울 마포구 양화로 140','애플스토어');
-insert into business values('11223347','jung','전자기기','04050','서울 마포구 양화로 140','애플스토어');
-insert into business values('11223348','kang','전자기기','04050','서울 마포구 양화로 140','애플스토어');
-insert into business values('11223349','yoon','전자기기','04050','서울 마포구 양화로 140','애플스토어');
 
 
 --카테고리 테이블
@@ -114,12 +108,12 @@ create table product(
   pnum number primary key,
   id varchar2(20) not null,
   pname varchar2(50) not null,
-  pimage varchar2(30),
+  pimage varchar2(50),
   price number not null,
   capacity varchar2(20),
   pcontent varchar2(300) not null,
   expritydate varchar2(100),
-  origin varchar2(30),
+  origin varchar2(50),
   stock number default 1,
   pcategory varchar2(30) references category(name),
   inputdate date default sysdate,
@@ -129,39 +123,116 @@ create table product(
 
 --쌀·잡곡·견과
 insert into product 
-values(seqprod.nextval, 'admin', 'test1', null, 2233, '500g', 'test2', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '쌀/잡곡/견과', sysdate, 2, 0);
+values(seqprod.nextval, 'admin', '대왕님표 여주쌀', '대왕님표 여주쌀.jpg', 14990, '2kg', '좋은 땅에서 좋은 영양분을 그대로 먹고 자란 쌀', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  10, '쌀·잡곡·견과', sysdate, 2, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '임금님표 이천쌀', '임금님표 이천쌀.jpg', 31990, '4kg', '쌀만 잘 골라도 밥 맛이 달라지는 법!', '신선식품으로 가급적 빠른 섭취를 권장 드립니다.', '국내산',  20, '쌀·잡곡·견과', sysdate, 1, 1);
+
+insert into product 
+values(seqprod.nextval, 'admin', '오늘의 곡물 국산 찹쌀', '오늘의 곡물 국산 찹쌀.jpg', 5990, '1kg', '밥 맛이 심심하게 느껴질 땐?', '신선식품으로 가급적 빠른 섭취를 권장 드립니다.', '국산',  11, '쌀·잡곡·견과', sysdate, 4, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '김포금쌀 고시히카리', '김포금쌀 고시히카리.jpg', 28990, '4kg', '맑고 투명한 속쌀! 차별화 된 맛', '신선식품으로 가급적 빠른 섭취를 권장 드립니다.', '김포시',  44, '쌀·잡곡·견과', sysdate, 10, 1);
+
+insert into product 
+values(seqprod.nextval, 'admin', '공주 깐밤', null, 9990, '150g', '가을을 알리는 탐스러운 열매', '신선식품으로 가급적 빠른 섭취를 권장 드립니다.', '국산',  10, '쌀·잡곡·견과', sysdate, 2, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '나를 위한 선물 호두', null, 9990, '600g', '너두? 나두? 호두!', '신선식품으로 가급적 빠른 섭취를 권장 드립니다.', '미국',  50, '쌀·잡곡·견과', sysdate, 5, 1);
+
+insert into product 
+values(seqprod.nextval, 'admin', '팽성농협 추청현미', null, 27990, '4.5kg', '품질 걱정 없이, 보관 걱정 없이!', '신선식품으로 가급적 빠른 섭취를 권장 드립니다.', '경기도',  33, '쌀·잡곡·견과', sysdate, 7, 0);
 
 
 --국·탕·찌개
---음료·커피·생수
+insert into product 
+values(seqprod.nextval, 'admin', '북창동 소고기 순두부찌개', null, 10990, '620g', '모두가 좋아하는 소고기 순두부', '신선식품으로 가급적 빠른 섭취를 권장 드립니다.', null,  11, '국·탕·찌개', sysdate, 5, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '고래사어묵 어묵탕 한 그릇', '고래사어묵 어묵탕 한 그릇.jpg', 4690, '200g', '어묵탕 끓이기가 세상에서 제일 쉬웠어요', '소비기한으로부터 최소 37일 이상 남은 상품으로 배송', null,  22, '국·탕·찌개', sysdate, 3, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '비비고 소고기 미역국', null, 5890, '500g', '부드럽게 넘어가는 미역 한 줄기', '후면 표시일까지', null,  33, '국·탕·찌개', sysdate, 10, 1);
+
+insert into product 
+values(seqprod.nextval, 'admin', '프로즌 원팩 마라탕', null, 10390, '450g', '한국인 입맛에 딱 맞춘 원팩 마라탕', '별도 표시일까지', null,  44, '국·탕·찌개', sysdate, 5, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '목우촌 냉동 주부9단 부대찌개', '목우촌 냉동 주부9단 부대찌개.jpg', 7990, '500g', '칼질 한 번 없이 만나는 푸짐한 한 끼', '후면 별도 표시일까지', null,  55, '국·탕·찌개', sysdate, 7, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '비비고 사골곰탕', '비비고 사골곰탕.jpg', 1390, '500g', '가정에서 만드는 정성 그대로 담은 비비고 사골곰탕', '후면 별도 표시일까지', null,  34, '국·탕·찌개', sysdate, 11, 1);
+
+insert into product 
+values(seqprod.nextval, 'admin', '오모가리 김치찌개', '오모가리 김치찌개.jpg', 6490, '500g', '익숙한 메뉴에 60년 노하우를 솔솔!', '하단 별도 표시일까지', null,  21, '국·탕·찌개', sysdate, 4, 1);
+
+
 --정육·수산·계란
+insert into product 
+values(seqprod.nextval, 'admin', 'CJ 1등급 목초란', 'CJ 1등급 목초란.jpg', 6490, '10구', '매일 먹는 거니까, 더 신선한 것으로!', '전면 우측 상단 포기일까지', null,  14, '정육·수산·계란', sysdate, 4, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '위너스 고추장 제육불고기', '위너스 고추장 제육불고기.jpg', 11990, '600g', '쫄깃한 고기와 양념의 조화 제육불고기', '신선식품으로 가급적 빠른 섭취를 권장 드립니다.', null,  55, '정육·수산·계란', sysdate, 22, 1);
+
+insert into product 
+values(seqprod.nextval, 'admin', '무항생제 대란', null, 3560, '10구', '무항생제 인증 대란', '별도 포기일까지', null,  30, '정육·수산·계란', sysdate, 2, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '신선하림 냉장 닭윙(날개)', '신선하림 냉장 닭윙.jpg', 6990, '300g', '뼈에서 쏙쏙! 말라먹는 재미가 쏠쏠', '신선식품으로 가급적 빠른 섭취를 권장 드립니다.', null,  30, '정육·수산·계란', sysdate, 7, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '노르웨이 그라브락스 냉장 연어', '노르웨이 냉장 연어.jpg', 11990, '140g', '우리 집으로 찾아 온 북유럽식 연어요리', '여름철 기온이 높으니, 당일 섭취 권장', '연어(노르웨이산)',  21, '정육·수산·계란', sysdate, 9, 1);
+
+insert into product 
+values(seqprod.nextval, 'admin', '안동 간고등어', null, 4990, '250g', '천일염으로 맛을 낸 안동 간고등어', '별도 표기일까지', '고등어(국산)',  35, '정육·수산·계란', sysdate, 11, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '쭈꾸미도사 대창쭈꾸미', '쭈꾸미도사 대창쭈꾸미.jpg', 13390, '320g', '불맛나는 고소한 대창과 매콤한 쭈꾸미의 환상조합', '별도 표기일까지', '쭈꾸미(베트남, 태국산)',  46, '정육·수산·계란', sysdate, 20, 1);
+
+
 --라면·면
+insert into product 
+values(seqprod.nextval, 'admin', '농심 신라면', '농심 신라면.jpg', 3900, '120g 5개입', '얼큰한 국물과 쫄깃한 면발', '측면 표기일까지', null,  77, '라면·면', sysdate, 21, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '오뚜기 열라면', '오뚜기 열라면.jpg', 3580, '120g 5개입', '뜨겁고 열나게 매운 라면', '측면 표기일까지', null,  67, '라면·면', sysdate, 17, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '팔도 비빔면', '팔도 비빔면.jpg', 3370, '130g 5개입', '입 안 가득 퍼지는 매콤달콤함', '측면 표기일까지', null,  70, '라면·면', sysdate, 19, 1);
+
+insert into product 
+values(seqprod.nextval, 'admin', '농심 짜파게티 더블랙', '농심 짜파게티 더블랙.jpg', 6690, '116g 4개입', '더 진하고 고소한 맛, 튀기지 않은 건면', '측면 표기일까지', null,  45, '라면·면', sysdate, 11, 1);
+
+insert into product 
+values(seqprod.nextval, 'admin', '비비고 시원바지락칼국수', '비비고 시원바지락칼국수.jpg', 6890, '642g', '간편하게 완성하는 비비고 시원한바지락칼국수', '전면표시일까지', null,  23, '라면·면', sysdate, 5, 1);
+
+insert into product 
+values(seqprod.nextval, 'admin', '백설 자른햇당면', '백설 자른햇당면.jpg', 2990, '300g', '명반을 넣지 않은 당면', '후면 하단 표기일까지', '중국',  33, '라면·면', sysdate, 10, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '옛날국수 중면', '옛날국수 중면.jpg', 3790, '900g', '잘 퍼지지 않는 중면', '후면 하단 표기일까지', null,  34, '라면·면', sysdate, 12, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '농심 김치사발면', '농심 김치사발면.jpg', 2970, '86g 3개묶음', '김치의 맛을 살려 더 맛있는 김치사발면', '하단 표기일까지', null,  27, '라면·면', sysdate, 4, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '농심 튀김우동 큰사발', null, 2780, '111g 2개묶음', '가쓰오부시의 깊은 맛', '하단 표기일까지', null,  25, '라면·면', sysdate, 8, 0);
+
+
 --과일·채소
---양념·장류·오일
+insert into product 
+values(seqprod.nextval, 'admin', '알배기 배추 1봉', null, 3990, '통', '고소하고 달콤한 알배기 배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국산',  5, '과일·채소', sysdate, 5, 1);
+
+insert into product 
+values(seqprod.nextval, 'admin', '햇양파', null, 3790, '1.5kg', '단단하고 아삭한 양파', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  43, '과일·채소', sysdate, 4, 1);
+
+insert into product 
+values(seqprod.nextval, 'admin', '조각 양배추', null, 1990, '500g', '신선하게 즐기는 조각 양배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일·채소', sysdate, 2, 1);
+
+
 --우유·유제품
---햄·어묵·통조림
---생활·기타
-
 insert into product 
-values(seqprod.nextval, 'admin', '알배기 배추 1봉', null, 3990, '통', '고소하고 달콤한 알배기 배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국산',  5, '과일/채소', sysdate, 5, 1);
-
-insert into product 
-values(seqprod.nextval, 'admin', '햇양파', null, 3790, '1.5kg', '단단하고 아삭한 양파', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  43, '과일/채소', sysdate, 4, 1);
-
-insert into product 
-values(seqprod.nextval, 'admin', '조각 양배추', null, 1990, '500g', '신선하게 즐기는 조각 양배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 2, 1);
-
-insert into product 
-values(seqprod.nextval, 'admin', '애사비 제로소다 오리지널', null, 10900, '500ml 6개', '국산 사과초모식초로 만든 탄산음료', null, null,  33, '음료/커피/생수', sysdate, 1, 1);
-
-insert into product 
-values(seqprod.nextval, 'admin', '제주 삼다수 그린 무라벨', null, 7600, '2L 6개', '매일 마시기 좋은 생수', null, null,  77, '음료/커피/생수', sysdate, 8, 1);
-
-insert into product 
-values(seqprod.nextval, 'admin', '서울우유', null, 2900, '1000ml', '1등급이 무려 2개!', null, '국내산',  44, '우유/유제품', sysdate, 10, 1);
-
-
-
+values(seqprod.nextval, 'admin', '서울우유', null, 2900, '1000ml', '1등급이 무려 2개!', null, '국내산',  44, '우유·유제품', sysdate, 10, 1);
 
 
 --최근 본 상품
@@ -180,10 +251,6 @@ create table watch(
   wdate date default sysdate
 );
 
-insert into watch values(wseq.nextval, 'lee', 5, sysdate);
-insert into watch values(wseq.nextval, 'lee', 3, sysdate);
-
-
 
 --찜한 상품
 drop sequence iseq;
@@ -199,11 +266,6 @@ create table interest(
   id varchar2(20) references member(id) on delete cascade,
   pnum number references product(pnum) on delete cascade
 );
-
-insert into interest values(iseq.nextval, 'lee', 1);
-insert into interest values(iseq.nextval, 'lee', 3);
-insert into interest values(iseq.nextval, 'lee', 6);
-insert into interest values(iseq.nextval, 'lee', 9);
 
 
 --장바구니
@@ -221,9 +283,6 @@ create table cart(
   pnum number references product(pnum) on delete cascade,
   qty number default 1
 );
-
-insert into cart values(cseq.nextval, 'lee', 6, 2);
-
 
 -- 주문 테이블
 drop sequence seqorder;
@@ -314,7 +373,6 @@ insert into state values(10, '임시저장');
 
 
 -- 리뷰검토 문서 테이블
-
 drop table review_check cascade constraints;
 create table review_check (
 	rnum varchar2(15) primary key,
@@ -335,29 +393,28 @@ create table review_check (
 
 
 -- 입점신청 문서 테이블
-
 drop table enter cascade constraints;
 create table enter (
-   eno varchar2(15) primary key,
-   writer varchar2(30) references member(id) on delete cascade,
-   writeday date default sysdate,
-  title varchar2(100) not null,
-   businesscode varchar2(30) not null,
-   postnum varchar2(30) not null,
-   addr1 varchar2(100) not null,
-   addr2 varchar2(50) not null,
-  request number default 0,
-   reason varchar2(100),
-   originname varchar2(100),
-   updatename varchar2(100),
-   approval number default 0,
-   approveday date,
-   okimage varchar2(100),
-   dstatus number references state(snum) on delete set null
+	eno varchar2(15) primary key,
+	writer varchar2(30) references member(id) on delete cascade,
+	writeday date default sysdate,
+	title varchar2(100) not null,
+	businesscode varchar2(30) not null,
+	postnum varchar2(30) not null,
+	addr1 varchar2(100) not null,
+	addr2 varchar2(50) not null,
+	request number default 0,
+	reason varchar2(100),
+	originname varchar2(100),
+	updatename varchar2(100),
+	approval number default 0,
+	approveday date,
+	okimage varchar2(100),
+	dstatus number references state(snum) on delete set null
 );
 
 insert into enter 
-values('A-1', 'lee', sysdate, '입점을 신청합니다.', '11223344', '04050', '서울 마포구 양화로 140', '애플스토어', 1, null, null, null, 1, sysdate, null, 1);
+values('A-1', 'lee', sysdate, '입점을 신청합니다.', '11223344', '04050', '서울 마포구 양화로 140', '애플스토어', 1, null, null, null, 0, sysdate, null, 0);
 
 
 

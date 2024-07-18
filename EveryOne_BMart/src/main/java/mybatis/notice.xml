@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="notice.model.Notice">
+
+	<select id="getNoticeCount" resultType="int">
+    select count(*) as cnt from notice
+	    <if test="whatColumn != null and whatColumn != ''">
+	        <choose>
+	            <when test="whatColumn == all">	
+	            
+	            </when>
+	            <when test="whatColumn == 'subject'">
+	                where subject like #{keyword}
+	            </when>
+	            <when test="whatColumn == 'category'">
+	                where category like #{keyword}
+	            </when>
+	        </choose>
+	    </if>
+	</select>
+	
+	<select id="getNotice" resultType="NoticeBean">
+	    select * from notice
+	    where noti = 'n'
+	    <if test="whatColumn != null and whatColumn != ''">
+	        <choose>
+	            <when test="whatColumn == 'subject'">
+	                and subject like #{keyword}
+	            </when>
+	            <when test="whatColumn == 'category'">
+	                and category like #{keyword}
+	            </when>
+	        </choose>
+	    </if>
+	    order by nnum desc
+	</select>
+
+    <select id="getNoticeY" resultType="NoticeBean">
+        select * from notice
+        where noti = 'y'
+        <if test="whatColumn != null and whatColumn != ''">
+            <choose>
+                <when test="whatColumn == 'subject'">
+                    and subject like #{keyword}
+                </when>
+                <when test="whatColumn == 'category'">
+                    and category like #{keyword}
+                </when>
+            </choose>
+        </if>
+        order by nnum desc
+    </select>
+	
+	<update id="updateReadCount" parameterType="int">
+        update notice set readcount = readcount + 1
+        where nnum = #{nnum}
+    </update>
+    
+    <select id="getReadCount" parameterType="int" resultType="int">
+        select readcount from notice where nnum = #{nnum}
+    </select>
+    
+    <select id="viewContent" resultType="NoticeBean">
+    	select * from notice
+    	where nnum = #{nnum}
+    </select>
+    
+    <insert id="insertNotice">
+    	insert into notice(nnum,category,subject,content,id,noti)
+    	values(notice_seq.nextval,#{category},#{subject},#{content},#{id},#{noti})
+    </insert>
+    
+    <delete id="deleteNotice">
+    	delete from notice
+    	where nnum = #{nnum}
+    </delete>
+    
+    <update id="updateNotice">
+   		update notice set noti = #{noti}, category = #{category}, subject = #{subject}, content = #{content}
+    	where nnum = #{nnum}
+    </update>
+    
+    <!-- 여기까지 notice, 밑으론 description -->
+    
+    <select id="getDesCount" resultType="int">
+	    select count(*) as cnt from description
+		    <if test="whatColumn != null and whatColumn != ''">
+		        <choose>
+		            <when test="whatColumn == all">	
+		            
+		            </when>
+		            <when test="whatColumn == 'dsubject'">
+		                where dsubject like #{keyword}
+		            </when>
+		            <when test="whatColumn == 'id'">
+		                where id like #{keyword}
+		            </when>
+		        </choose>
+		    </if>
+	</select>
+	
+	<select id="getDes" resultType="DescriptionBean">
+	    SELECT dnum, id, dsubject, password, ddate, ref, re_step, re_level, dcontent
+    		FROM (
+       		SELECT rownum AS rank, dnum, id, dsubject, password,ddate, ref, re_step, re_level, dcontent
+       			FROM (
+            	SELECT dnum, id, dsubject, password,ddate, ref, re_step, re_level, dcontent
+            		FROM description
+					    <if test="whatColumn != null and whatColumn != ''">
+					        <choose>
+					            <when test="whatColumn == 'dsubject'">
+					                where dsubject like #{keyword}
+					            </when>
+					            <when test="whatColumn == 'id'">
+					                where id like #{keyword}
+					            </when>
+					        </choose>
+						</if>
+			    ORDER BY ref DESC, re_step ASC
+			    )
+		    )
+    	ORDER BY ref DESC, re_step ASC
+	</select>
+	
+	<insert id="insertDes">
+		insert into description(dnum,dsubject,password,ddate,ref,re_step,re_level,dcontent,id)
+		values(des_seq.nextval,#{dsubject},#{password},sysdate,des_seq.currval,0,0,#{dcontent},#{id})
+	</insert>
+	
+	<select id="viewDes" resultType="DescriptionBean">
+		select * from description
+    	where dnum = #{dnum}
+	</select>
+    
+    <delete id="deleteDes">
+        DELETE FROM description WHERE dnum = #{dnum}
+    </delete>
+    
+    <delete id="deleteAdmin">
+    	delete from description where dnum = #{dnum}
+    </delete>
+	
+	<select id="selectPassword" parameterType="int" resultType="string">
+        select password
+        from description
+        where dnum = #{dnum}
+    </select>
+    
+    <update id="updateDes">
+    	update description
+        set dsubject = #{dsubject}, dcontent = #{dcontent}
+        where dnum = #{dnum}
+    </update>
+    
+    <update id="updateReplyStep" parameterType="map">
+        update description
+        set re_step = re_step + 1
+        where ref = #{ref} and re_step > #{re_step}
+    </update>
+    
+    <insert id="replyDes" parameterType="DescriptionBean">
+    	INSERT INTO description (dnum, id, dsubject, password, ddate, ref, re_step, re_level, dcontent)
+   		VALUES (des_seq.nextval, #{id, jdbcType=VARCHAR}, #{dsubject, jdbcType=VARCHAR}, 
+            #{password, jdbcType=VARCHAR}, sysdate, #{ref, jdbcType=INTEGER}, 
+            #{re_step, jdbcType=INTEGER}, #{re_level, jdbcType=INTEGER}, #{dcontent, jdbcType=VARCHAR})
+    </insert>
+    
+</mapper>

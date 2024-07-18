@@ -60,7 +60,7 @@ function check(){
 
 					<div class="input-group">
 						<input type="text" name="keyword"
-							class="form-control bg-light border-0 small reading"
+							class="form-control bg-white border-0 small reading"
 							placeholder="Search for..." aria-label="Search"
 							aria-describedby="basic-addon2">
 						<div class="input-group-append">
@@ -74,8 +74,9 @@ function check(){
 
 
 
-				<a href="adminProductInsert.prd" class="plusbtn"> <i
-					class="fi fi-br-plus-small"></i></a>
+				<a href="adminProductInsert.prd" class="plusbtn"> 
+				<i class="fi fi-br-plus-small"></i>
+				</a>
 
 			</div>
 		</div>
@@ -116,17 +117,13 @@ function check(){
 								value="${prd.pnum }"></th>
 							<th>${prd.pnum }</th>
 							<th>${prd.pcategory }</th>
-							<th><a
-								href="prodDetail.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}"
-								style="color: gray;">${prd.pname }</a></th>
+							<th><a href="prodDetail.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}" style="color: gray;">${prd.pname }</a></th>
 							<th>${prd.price }</th>
 							<th>${prd.ordercount }</th>
 							<th>${fn:substring(prd.inputdate, 0, 10)}</th>
 							<th>${prd.stock }</th>
-							<th><a
-								href="productUpdateForm.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}">수정</a></th>
-							<th><a
-								href="productDelete.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}">삭제</a></th>
+							<th><a href="productUpdateForm.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}">수정</a></th>
+							<th><a href="productDelete.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}">삭제</a></th>
 						</tr>
 
 

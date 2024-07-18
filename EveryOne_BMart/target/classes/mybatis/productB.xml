@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product.model.Product">
+	
+	<select id = "getProductCount" resultType="int">
+		select count(*) as cnt from product
+		where id = #{id}
+	</select>
+	
+	 <select id="getTotalProductCount" resultType="int">
+        SELECT COUNT(*) 
+        FROM product
+        <if test="whatColumn != null and whatColumn != ''">
+	        <choose>
+	            <when test="whatColumn == all">	
+	            
+	            </when>
+	            <when test="whatColumn == 'id'">
+	                where id like #{keyword}
+	            </when>
+	        </choose>
+	    </if>
+    </select>
+    
+	<select id="selectAllProducts" resultType="ProductBean">
+        SELECT * FROM product
+        <if test="whatColumn != null and whatColumn != ''">
+	        <choose>
+	            <when test="whatColumn == all">	
+	            
+	            </when>
+	            <when test="whatColumn == 'id'">
+	                where id like #{keyword}
+	            </when>
+	        </choose>
+	    </if>
+        order by pnum desc
+    </select>
+	
+	<select id="selectProductsByUser" parameterType="String" resultType="ProductBean">
+        SELECT * 
+        FROM product 
+        WHERE id = #{id}
+        ORDER BY pnum DESC
+    </select>
+    
+    <select id="selectProductById" parameterType="int" resultType="ProductBean">
+        SELECT * FROM product WHERE pnum = #{pnum}
+    </select>
+
+    <update id="updateStock" parameterType="ProductBean">
+        UPDATE product
+        SET stock = #{stock}
+        WHERE pnum = #{pnum}
+    </update>
+    
+    <delete id="deleteProduct">
+    	delete from product
+    	where pnum = #{pnum}
+    </delete>
+    
+    <update id="updateProduct">
+    	update product set pname = #{pname}, price = #{price}, stock = #{stock}, capacity = #{capacity}, pcontent = #{pcontent}, expritydate = #{expritydate}, origin = #{origin}, pcategory = #{pcategory}, inputdate = sysdate, ordercount = #{ordercount}, pimage = #{pimage, jdbcType=VARCHAR}
+    	where pnum = #{pnum}
+    </update>
+    
+    <insert id="insertProduct">
+    	insert into product(pnum, id, pname, price, capacity, pcontent, expritydate, origin, stock, pcategory, inputdate, pimage)
+    	values(seqprod.nextval, #{id}, #{pname}, #{price}, #{capacity},#{pcontent}, #{expritydate}, #{origin}, #{stock}, #{pcategory}, sysdate, #{pimage, jdbcType=VARCHAR})
+    </insert>
+    
+    <!-- 광고 승인 후
+    <update id="updateAD">
+    	update product
+    	set ad = #{ad}
+    	where pnum = #{pnum}
+    </update>
+     -->
+   
+</mapper>

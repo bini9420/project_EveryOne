@@ -204,7 +204,16 @@ public class MallPaging {
 	private String getPagingHtml( String url ){ //페이징 문자열을 만든다.
 		String result = "" ;
 		//added_param 변수 : 검색 관련하여 추가되는 파라미터 리스트
-		String added_param = "&category=" + category + "&range=" + range + "&keyword=" + keyword;
+		String added_param = "";
+		if(category != null) {
+			added_param = "&category=" + category + "&range=" + range;
+		}else {
+			if(keyword == null) {
+				added_param = "&range=" + range;
+			}else {
+				added_param = "&range=" + range + "&keyword=" + keyword;
+			}
+		}
 		
 		// 앞쪽
 		if (this.beginPage != 1) { 
@@ -213,7 +222,7 @@ public class MallPaging {
 					+ "?pageNumber=1&pageSize=" + this.pageSize 
 					+ added_param + "'>[처음으로]</a>&nbsp;" ;
 			result += "&nbsp;<a href='" + url 
-					+ "?pageNumber=" + (this.beginPage - 1 ) + "&pageSize=" + this.pageSize 
+					+ "?pageNumber=" + (this.pageNumber - 1 ) + "&pageSize=" + this.pageSize 
 					+ added_param + "'>[이전]</a>&nbsp;" ;
 		}
 
@@ -240,7 +249,7 @@ public class MallPaging {
 			// endPage:지금 보는 페이지의 끝(지금 보는 페이지가 13이라면 endPage는 20), totalPage:전체 페이지수
 
 			result += "&nbsp;<a href='" + url  
-					+ "?pageNumber=" + (this.endPage + 1 ) + "&pageSize=" + this.pageSize 
+					+ "?pageNumber=" + (this.pageNumber + 1 ) + "&pageSize=" + this.pageSize 
 					+ added_param + "'>[다음]</a>&nbsp;" ;
 
 			result += "&nbsp;<a href='" + url  

@@ -17,7 +17,6 @@ public class ReviewPaging {
 	private String pagingHtml = "";//하단의 숫자 페이지 링크
 
 	//정렬을 위한 변수
-	private String keyword = "" ; //검색
 	private String range = "" ; //정렬
 
 	public int getTotalCount() {
@@ -117,12 +116,6 @@ public class ReviewPaging {
 		this.pagingHtml = pagingHtml;
 	}
 	
-	public String getKeyword() {
-		return keyword;
-	}
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
 	public String getRange() {
 		return range;
 	}
@@ -132,7 +125,7 @@ public class ReviewPaging {
 	}
 
 	public ReviewPaging(String _pageNumber, String _pageSize, int totalCount,
-				String url, String range, String keyword) {      
+				String url, String range) {      
 
 		//처음 시작할 때 페이지 번호를 자동으로 1로 지정
 		if(  _pageNumber == null || _pageNumber.equals("null") || _pageNumber.equals("")  ){
@@ -185,8 +178,7 @@ public class ReviewPaging {
 		
 		this.url = url ; //  /ex/요청mapping명 => 예시) /ex/list
 		this.range = range ;
-		this.keyword = keyword;
-		System.out.println("range: "+range+"/keyword: "+keyword);
+		System.out.println("range: "+range);
 
 		this.pagingHtml = getPagingHtml(url) ;
 		System.out.println("pagingHtml: \n"+pagingHtml+"\n");
@@ -195,7 +187,7 @@ public class ReviewPaging {
 	private String getPagingHtml( String url ){ //페이징 문자열을 만든다.
 		String result = "" ;
 		//added_param 변수 : 검색 관련하여 추가되는 파라미터 리스트
-		String added_param = "&range=" + range + "&keyword=" + keyword;
+		String added_param = "&range=" + range;
 		
 		// 앞쪽
 		if (this.beginPage != 1) { 

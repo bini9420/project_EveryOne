@@ -66,7 +66,7 @@ public class ProductDetailController {
 		int totalCount = mallDao.getReviewDetailCount(sb);
 		String url = request.getContextPath()+this.command+"?pnum="+pnum;
 		
-		ReviewPaging pageInfo = new ReviewPaging(pageNumber, null, totalCount, url, range, null);
+		ReviewPaging pageInfo = new ReviewPaging(pageNumber, null, totalCount, url, range);
 		
 		//reviewDetail => ¸®ºä + product => ³»¿ëÀ» ¹­À½
 		List<ReviewDetailBean> rdetail = mallDao.getReviewDetail(sb, pageInfo);

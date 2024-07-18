@@ -59,11 +59,11 @@ public class productUpdateController {
 		int cnt = productDao.updateProduct(product);
 
 		MultipartFile multi = product.getUpload();
-		String uploadPath = servletContext.getRealPath("/resources/uploadImage/");
+		String uploadPath = servletContext.getRealPath("/resources/images/");
 		
 		if(cnt != -1) {
 			
-			String deletePath = servletContext.getRealPath("/resources/uploadImage/");
+			String deletePath = servletContext.getRealPath("/resources/images/");
 			File file = new File(deletePath+File.separator+product.getUpload2());
 			
 			System.out.println("File : " + file);

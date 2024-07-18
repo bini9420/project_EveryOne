@@ -42,6 +42,10 @@
 						<hr>  -->
 						<a class="nav-link text-primary" aria-current="page"
 							href="main.mall"> 배민 B마트로 돌아가기 </a>
+						<c:if test="${loginInfo.id == 'admin'}">
+							<a class="nav-link text-primary" aria-current="page"
+								href="adminMain.ad"> 관리자페이지로 돌아가기 </a>
+						</c:if>
 						<!-- <a
 							class="nav-link text-primary" aria-current="page" href="#">
 							배민 상회로 돌아가기 </a> -->

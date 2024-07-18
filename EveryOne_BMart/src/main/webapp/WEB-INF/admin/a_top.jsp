@@ -258,7 +258,7 @@ button {
 								<i class="fi fi-bs-admin-alt" style="font-size: 25px;"></i>
 							</a> 
 							<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="adProfile.mb"> 
+								<a class="dropdown-item" href="adProfile.ad"> 
 									<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400">
 									</i> Profile
 								</a> 

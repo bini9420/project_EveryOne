@@ -18,5 +18,6 @@
 	<context:component-scan base-package="doc" />
 	<context:component-scan base-package="sale" />
 	<context:component-scan base-package="schedule" />
+	<context:component-scan base-package="member" />
 
 </beans>

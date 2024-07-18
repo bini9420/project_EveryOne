@@ -18,7 +18,7 @@
                         <div class="card-body">
                             <div class="table-responsive">
                    
-                           <form:form commandName="adminLists" action="a_profileUpdate.mb" method="post" enctype="multipart/form-data">
+                           <form:form commandName="adminLists" action="a_profileUpdate.ad" method="post" enctype="multipart/form-data">
                                 <table class="table table-bordered" id="dataTable">
                                     <thead>
                                         <tr>

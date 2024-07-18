@@ -10,8 +10,7 @@
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800 title">상품수정</h1>
 
-<form:form commandName="product" action="productUpdate.prd"
-	method="post" enctype="multipart/form-data">
+<form:form commandName="product" action="adminProductUpdate.prd" method="post" enctype="multipart/form-data">
 
 	<input type="hidden" name="pnum" value="${product.pnum }">
 	<input type="hidden" name="pageNumber" value="${param.pageNumber}">

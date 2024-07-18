@@ -28,7 +28,7 @@ function checkboxArr(){
 	});
 
 	$.ajax({
-		url:'/ex/productDelete.prd',
+		url:'/ex/adminProductDelete.prd',
 		type:'get',
 		dataType:'text',
 		async : false,
@@ -88,7 +88,7 @@ function check(){
 
 	<div class="card-body">
 		<div class="table-responsive">
-			<form action="productDelete.prd" method="post">
+			<form action="adminProductDelete.prd" method="post">
 				<table class="table table-bordered" id="dataTable">
 					<thead>
 						<tr>
@@ -117,13 +117,13 @@ function check(){
 								value="${prd.pnum }"></th>
 							<th>${prd.pnum }</th>
 							<th>${prd.pcategory }</th>
-							<th><a href="prodDetail.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}" style="color: gray;">${prd.pname }</a></th>
+							<th><a href="adminProductDetail.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}" style="color: gray;">${prd.pname }</a></th>
 							<th>${prd.price }</th>
 							<th>${prd.ordercount }</th>
 							<th>${fn:substring(prd.inputdate, 0, 10)}</th>
 							<th>${prd.stock }</th>
-							<th><a href="productUpdateForm.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}">수정</a></th>
-							<th><a href="productDelete.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}">삭제</a></th>
+							<th><a href="adminProductUpdateForm.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}">수정</a></th>
+							<th><a href="adminProductDelete.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}">삭제</a></th>
 						</tr>
 
 

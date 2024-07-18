@@ -22,7 +22,6 @@ public class CategoryInsertController {
 		productDao.insertCategory(type);  
 		
 		
-		
 	}
 	
 	

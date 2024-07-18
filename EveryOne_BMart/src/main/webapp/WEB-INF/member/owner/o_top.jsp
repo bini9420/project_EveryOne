@@ -85,7 +85,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="allrvlist.rv">
                     <i class="fas fa-fw fa-comments"></i>
                     <span>상품리뷰</span>
                 </a>

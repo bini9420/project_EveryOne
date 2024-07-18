@@ -13,10 +13,12 @@
 	<link rel="icon" type="image/x-icon" href="resources/img/baemin.png" />
 	<title>배민</title>
 
-	<link href="resources/css/mall.css" rel="stylesheet" />
-	
 	<!-- fonts -->
 	<link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	
+	<!-- CSS -->
+	<link href="resources/css/mall.css" rel="stylesheet" />
+	
 	<style>
 		#goBmart {
 			background-color: white;

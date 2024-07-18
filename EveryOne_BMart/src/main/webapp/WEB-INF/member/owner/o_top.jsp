@@ -87,7 +87,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link">
+                <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-comments"></i>
                     <span>상품리뷰</span>
                 </a>
@@ -109,8 +109,7 @@
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Sales</h6>
-                        <a class="collapse-item" href="buttons.html">상품별 매출현황</a>
-                        <a class="collapse-item" href="cards.html">월별 매출현황</a>
+                        <a class="collapse-item" href="list.od">전체 매출현황</a>
                     </div>
                 </div>
             </li>
@@ -125,8 +124,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Stock</h6>
-                        <a class="collapse-item" href="utilities-color.html">상품별 재고현황</a>
-                        <a class="collapse-item" href="utilities-border.html">카테고리별 재고현황</a>
+                        <a class="collapse-item" href="list.prd">전체 재고현황</a>
                     </div>
                 </div>
             </li>

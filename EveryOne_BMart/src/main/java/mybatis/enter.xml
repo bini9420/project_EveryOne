@@ -7,7 +7,7 @@
 
 <mapper namespace="enter">
 	<select id="getEnter" resultType="enter">
-		select * from enter where writer=#{id}
+		select * from enter where writer=#{id} and eno like 'A%'
 	</select>
 	
 	<select id="whatEnumber" resultType="String">

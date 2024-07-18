@@ -100,7 +100,7 @@
 						<i class="fi fi-rr-home icon"></i>
 					</a>
 				</li>
-				<li class="nav-item mx-1">
+				<li class="nav-item mx-1"> 
 					<!-- heart icon -->
 					<a class="nav-link active" aria-current="page" href="interest.mall">
 						<i class="fi fi-rr-heart icon"></i>

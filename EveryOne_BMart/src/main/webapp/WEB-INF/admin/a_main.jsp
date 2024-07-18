@@ -474,6 +474,4 @@ $(document).ready(function () {
 });
 
 </script>
-</div>
-</div>
 <%@ include file="a_bottom.jsp" %>

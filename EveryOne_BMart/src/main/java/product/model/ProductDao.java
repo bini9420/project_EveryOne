@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import document.model.DocumentBean;
-import model.EnterBean;
 import model.ProductBean;
 import utility.MemberListPaging;
 import utility.PagingPlus;
@@ -41,7 +40,7 @@ public class ProductDao {
 
 	public int getTotalCount(Map<String, String> map) {
 		int count = -1;
-		count = sqlSessionTemplate.selectOne(namespace + ".getTotalCount", map);
+		count = sqlSessionTemplate.selectOne(namespace + ".adminTotalCount", map);
 		System.out.println("count : " + count);
 		
 		return count;
@@ -117,6 +116,33 @@ public class ProductDao {
 		 
 		return db;
 	}//checkEnterApproval
+
+	//★ ownerPrdList.jsp에서 상품 테이블 행 클릭시 상품 정보 조회(조건: 상품번호)
+	public ProductBean getProductByPnum_Owner(String pnum) {
+		ProductBean pb = null;
+		pb = sqlSessionTemplate.selectOne(namespace + ".getProductByPnum_Owner", pnum);
+		
+		return pb;
+	}//getProductByPnum_Owner
+
+	
+	//★ ownerPrdDetailView.jsp에서 저장 버튼 클릭시 변경된 내용 수정
+	public int updateProductByOwner(ProductBean product) {
+		int cnt = -100;
+		cnt = sqlSessionTemplate.update(namespace + ".updateProductByOwner", product);
+		
+		return cnt;
+	}//updateProductByOwner
+
+	//★ ownerPrdInsertForm.jsp에서 필요
+	public List<ProductBean> getPcategoryListByWriter(String id) {
+		List<ProductBean> lists = new ArrayList<ProductBean>();
+		lists = sqlSessionTemplate.selectList(namespace + ".getPcategoryListByWriter", id);
+		
+		return lists;
+	}//getPcategoryListByWriter
+
+	
 
 
 }

@@ -80,7 +80,7 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg">
 	<div class="container">
-		<img src="resources/img/Bmart_logo.png" alt="B마트_logo" style="width:200; height: 60">&nbsp;&nbsp;
+		<img src="resources/img/Bmart_logo.png" onclick="main.mall" alt="B마트_logo" style="width:200; height: 60">&nbsp;&nbsp;
 		<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="plists.mall">
 	        <div class="input-group">
 			    <input type="text" class="form-control bg-light border-0 px-3" placeholder="상품을 검색하세요(●'◡'●)"

@@ -69,11 +69,9 @@
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
-                                                    <fmt:formatNumber value="${waitDocumentCount}" type="number" var="waitNumber"/>
-                                                    <fmt:formatNumber value="${(waitNumber+0.0)/(totalCount+0.0)}" type="percent" var="waitNum"/>
                                                         <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: ${waitNum}" aria-valuenow="${waitNum}" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
+                                                            style="width: ${waitDocumentCount*10}" aria-valuenow="${waitDocumentCount}" aria-valuemin="0"
+                                                            aria-valuemax="10"></div>
                                                     </div> 
                                                 </div>
                                             </div>
@@ -100,10 +98,8 @@
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
-                                                    <fmt:formatNumber value="${tempDocumentCount}" type="number" var="tempNumber"/>
-                                                    <fmt:formatNumber value="${(tempNumber+0.0)/(totalCount+0.0)}" type="percent" var="tempNum"/>
                                                         <div class="progress-bar bg-warning" role="progressbar"
-                                                            style="width: ${tempNum}" aria-valuenow="${tempNum}" aria-valuemin="0"
+                                                            style="width: ${tempDocumentCount*10}" aria-valuenow="${tempDocumentCount}" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div> 
                                                 </div>
@@ -131,10 +127,8 @@
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
-                                                    <fmt:formatNumber value="${returnDocumentCount}" type="number" var="returnNumber"/>
-                                                    <fmt:formatNumber value="${(returnNumber+0.0)/(totalCount+0.0)}" type="percent" var="returnNum"/>
                                                         <div class="progress-bar bg-danger" role="progressbar"
-                                                            style="width: ${returnNum}" aria-valuenow="${returnNum}" aria-valuemin="0"
+                                                            style="width: ${returnDocumentCount*10}" aria-valuenow="${returnDocumentCount}" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div> 
                                                 </div>
@@ -162,10 +156,8 @@
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
-                                                    <fmt:formatNumber value="${approveDocumentCount}" type="number" var="approveNumber"/>
-                                                    <fmt:formatNumber value="${(approveNumber+0.0)/(totalCount+0.0)}" type="percent" var="approveNum"/>
                                                         <div class="progress-bar bg-success" role="progressbar"
-                                                            style="width: ${approveNum}" aria-valuenow="${approveNum}" aria-valuemin="0"
+                                                            style="width: ${approveDocumentCount*10}" aria-valuenow="${approveDocumentCount}" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div> 
                                                 </div>
@@ -308,9 +300,18 @@
                </div>
                 <!-- /.container-fluid -->
             <!-- End of Main Content -->
-     <div class="container-fluid">
-     	<div class="row">
-     		<p align="center">${pageplus.pageNumber}</p>
-     	</div>
-     </div>
+            
+<div class="pagination-wrapper">
+	<nav aria-label="Page navigation example">
+		<ul class="pagination">
+			<li class="page-item"><a class="page-link" href="#"
+				aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+			</a></li>
+			<li class="page-item">&nbsp;<font class='btn btn-primary'>1</font>&nbsp;</li>
+			<li class="page-item"><a class="page-link" href="#"
+				aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+			</a></li>
+		</ul>
+	</nav>
+</div>
 <%@ include file="../member/owner/o_bottom.jsp" %>

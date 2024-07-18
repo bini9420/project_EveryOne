@@ -35,7 +35,7 @@
 				<div class="card shadow mb-3">
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary">매출관리</h6>
-						<button type="button" class="btn float-right btn-sm btn-outline-primary">+</button>
+						<button type="button" class="btn float-right btn-sm btn-outline-primary" onclick="location.href='list.od'">+</button>
 					</div>
 					<div class="card-body">
 						<div class="text-center">
@@ -50,8 +50,7 @@
 							a constantly updated collection of beautiful svg images that you
 							can use completely free and without attribution!
 						</p>
-						<a target="_blank" rel="nofollow" href="https://undraw.co/">Browse
-							Illustrations on unDraw &rarr;</a>
+						<a target="_blank" rel="nofollow" href="https://undraw.co/">Go to the Page &rarr;</a>
 					</div>
 				</div>
 		</div>
@@ -61,7 +60,7 @@
 				<div class="card shadow mb-3">
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary">재고관리</h6>
-						<button type="button" class="btn float-right btn-sm btn-outline-primary">+</button>
+						<button type="button" class="btn float-right btn-sm btn-outline-primary" onClick="location.href='list.prd'">+</button>
 					</div>
 					<div class="card-body">
 						<div class="text-center">
@@ -76,8 +75,7 @@
 							a constantly updated collection of beautiful svg images that you
 							can use completely free and without attribution!
 						</p>
-						<a target="_blank" rel="nofollow" href="https://undraw.co/">Browse
-							Illustrations on unDraw &rarr;</a>
+						<a target="_blank" rel="nofollow" href="https://undraw.co/">Go to the Page &rarr;</a>
 					</div>
 				</div>
 		</div>
@@ -87,7 +85,7 @@
 				<div class="card shadow mb-3">
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary">게시판</h6>
-						<button type="button" class="btn float-right btn-sm btn-outline-primary">+</button>
+						<button type="button" class="btn float-right btn-sm btn-outline-primary" onClick="location.href='dlist.nt'">+</button>
 					</div>
 					<div class="card-body">
 						<div class="text-center">
@@ -102,8 +100,7 @@
 							a constantly updated collection of beautiful svg images that you
 							can use completely free and without attribution!
 						</p>
-						<a target="_blank" rel="nofollow" href="https://undraw.co/">Browse
-							Illustrations on unDraw &rarr;</a>
+						<a target="_blank" rel="nofollow" href="https://undraw.co/">Go to the Page &rarr;</a>
 					</div>
 				</div>
 		</div>
@@ -128,8 +125,7 @@
 							a constantly updated collection of beautiful svg images that you
 							can use completely free and without attribution!
 						</p>
-						<a target="_blank" rel="nofollow" href="https://undraw.co/">Browse
-							Illustrations on unDraw &rarr;</a>
+						<a target="_blank" rel="nofollow" href="document_box.dc">Go to the Page &rarr;</a>
 					</div>
 				</div>
 		</div>

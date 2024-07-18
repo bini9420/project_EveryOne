@@ -4,11 +4,11 @@
 <%@ include file="../common/common.jsp" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link rel="documentStyle.css">
-    <link href="<%=request.getContextPath()%>/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="<%=request.getContextPath()%>/resources/css/sb-admin-2.min.css" rel="stylesheet">
+<!-- Custom styles for this template-->
+<link href="<%=request.getContextPath()%>/resources/css/sb-admin-2.min.css" rel="stylesheet">
 <style>
 	#exampleModalLabel, .form-label {
 		font-family: "Spoqa Han Sans Neo", sans-serif;
@@ -59,20 +59,19 @@
 		float: left;
 	}
 	#documentImg {
-    margin-right: 0; /* 이미지 오른쪽 여백 제거 */
-    padding-right: 0; /* 이미지 오른쪽 패딩 제거 */
+	    margin-right: 0; 
+	    padding-right: 0;
 	}
-	
 	.modal-header h5 {
-	    margin-left: 0; /* 제목의 왼쪽 여백 제거 */
-	    padding-left: 0; /* 제목의 왼쪽 패딩 제거 */
-	}
-	.err {
-		color: #e74a3b;
-		font-size: small;
+	    margin-left: 0; 
+	    padding-left: 0; 
 	}
 	#insertPrdcategory, #insertPrdname {
 		display: none;
+	}
+		.form-check-input:checked {
+		background-color: #2ac1bc;	
+		border-color: #2ac1bc;
 	}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -92,10 +91,7 @@
 	                if (!form.checkValidity()) {
 	                    event.preventDefault()
 	                    event.stopPropagation()
-	                } else {
-	                    form.submit(); 
 	                }
-	
 	                form.classList.add('was-validated')
 	            }, false)
 	        })
@@ -180,7 +176,6 @@
     <!-- Modal Title with no margin to align closely with the icon -->
     <h5 class="modal-title mb-0" id="exampleModalLabel"><b>결재 문서 작성</b></h5>
 </div>
- 
       
       <div class="modal-body">
 	      <form name="myform" class="row g-3 needs-validation" method="post" enctype="multipart/form-data" novalidate>
@@ -280,8 +275,20 @@
 			  
 			 <!-- 상품등록 관련 카테고리 입력란 -->  
 			 <div class="col-md-12" id="insertPrdcategory">
-			     <label for="productCategory" class="form-label">상품 카테고리 <font color="red">*</font></label>
-			     <input type="text" class="form-control form-control-sm" name="prdcategory" id="productCategory">
+			    <label for="productCategory" class="form-label">상품 카테고리 <font color="red">*</font></label>
+				<div class="form-check">
+				 	<input class="form-check-input" type="radio" name="prdcategory" id="flexRadioDefault1">
+				 	<label class="form-check-label" for="flexRadioDefault1">전자기기</label>
+				 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				 	<input class="form-check-input" type="radio" name="prdcategory" id="flexRadioDefault2">
+				 	<label class="form-check-label" for="flexRadioDefault2">가구/인테리어</label>
+				 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				 	<input class="form-check-input" type="radio" name="prdcategory" id="flexRadioDefault3">
+				 	<label class="form-check-label" for="flexRadioDefault3">주방용품</label>
+				 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				 	<input class="form-check-input" type="radio" name="prdcategory" id="flexRadioDefault4">
+				 	<label class="form-check-label" for="flexRadioDefault4">반려용품</label>
+				</div>			     
 			     <div class="invalid-feedback">
 			         상품등록 신청시 카테고리 입력은 필수입니다
 			     </div>

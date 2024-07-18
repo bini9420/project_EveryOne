@@ -12,8 +12,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import model.ProductBean;
-import sale.model.SalesDao;
 import sale.model.OrderInfoBean;
+import sale.model.SalesDao;
 
 @Controller
 public class MonthlyController {
@@ -26,10 +26,12 @@ public class MonthlyController {
 
 	@RequestMapping(command)
 	public String rangeTest(Model model) {
-		// Data for the Area Chart
-		List<OrderInfoBean> alists = salesDao.getAriaChart();
+
+		//월별 매출 그래프 
 		Gson gson = new Gson();
 		JsonArray areaArray = new JsonArray();
+
+		List<OrderInfoBean> alists = salesDao.getAriaChart();
 
 		for (OrderInfoBean ob : alists) {
 			JsonObject object = new JsonObject();
@@ -40,11 +42,11 @@ public class MonthlyController {
 		String areaJson = gson.toJson(areaArray);
 		model.addAttribute("areaJson", areaJson);
 
-		// Data for the Pie Chart
-		List<ProductBean> plists = salesDao.getRangeTest();
+		//TOP5 파이 차트 
 		JsonArray pieArray = new JsonArray();
+		List<ProductBean> plists = salesDao.getRangeTest();
 
-		// Limit to top 5 products
+
 		int limit = Math.min(plists.size(), 5);
 		for (int i = 0; i < limit; i++) {
 			ProductBean pb = plists.get(i);
@@ -53,12 +55,19 @@ public class MonthlyController {
 			object.addProperty("ordercount", pb.getOrdercount());
 			pieArray.add(object);
 		}
-		
-		List<ProductBean> clists = salesDao.getCateChart();
-		
+
+		String pieJson = gson.toJson(pieArray);
+		model.addAttribute("pieJson", pieJson);
+
+
+
+
+
 		JsonArray barArray = new JsonArray();
-		
-		
+		List<ProductBean> clists = salesDao.getCateChart();
+
+
+
 		for(ProductBean product :clists) {
 			JsonObject object = new JsonObject();
 			object.addProperty("pcategory", product.getPcategory());
@@ -67,18 +76,10 @@ public class MonthlyController {
 		}
 		String barJson = gson.toJson(barArray);
 		model.addAttribute("barJson",barJson);
-		
-		String pieJson = gson.toJson(pieArray);
-		model.addAttribute("pieJson", pieJson);
 
-		
-		/*
-		 * List<ProductBean> pnumlists = salesDao.getPnumSale();
-		 * model.addAttribute("pnumlists",pnumlists);
-		 */
-		
+
 		return getPage;
-		
+
 	}
 
 

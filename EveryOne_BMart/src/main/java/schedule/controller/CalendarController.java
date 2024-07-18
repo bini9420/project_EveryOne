@@ -20,7 +20,7 @@ public class CalendarController {
 	
 	@Autowired 
     private CalendarDao calendarDao;
-    
+
 	@RequestMapping(value="/showSchedule", method=RequestMethod.POST)
     public ResponseEntity<List<CalendarBean>> getSchedule() {
         List<CalendarBean> scheduleList = calendarDao.showSchedule();
@@ -28,12 +28,12 @@ public class CalendarController {
     }
 
 	@RequestMapping(value="/addSchedule", method=RequestMethod.POST)
-    public ResponseEntity<String> addEvent(@RequestBody List<Map<String, Object>> events) {
-        try {
-            for (Map<String, Object> event : events) {
-                String title = (String) event.get("title");
-                String start = (String) event.get("start");
-                String end = (String) event.get("end");
+	public ResponseEntity<String> addEvent(@RequestBody List<Map<String, Object>> events) {
+		try {
+			for (Map<String, Object> event : events) {
+				String title = (String) event.get("title");
+				String start = (String) event.get("start");
+				String end = (String) event.get("end");
 
                 CalendarBean calendarBean = new CalendarBean();
                 calendarBean.setTitle(title);
@@ -46,14 +46,15 @@ public class CalendarController {
             return new ResponseEntity<String>("Error adding event: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+		
 
 	@RequestMapping(value="/updateSchedule", method=RequestMethod.POST)
-    public ResponseEntity<String> updateEvent(@RequestBody List<Map<String, Object>> events) {
-        try {
-            for (Map<String, Object> event : events) {
-                String title = (String) event.get("title");
-                String start = (String) event.get("start");
-                String end = (String) event.get("end");
+	public ResponseEntity<String> updateEvent(@RequestBody List<Map<String, Object>> events) {
+		try {
+			for (Map<String, Object> event : events) {
+				String title = (String) event.get("title");
+				String start = (String) event.get("start");
+				String end = (String) event.get("end");
 
                 CalendarBean calendarBean = new CalendarBean();
                 calendarBean.setTitle(title);
@@ -66,13 +67,14 @@ public class CalendarController {
             return new ResponseEntity<String>("Error updating event: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+				
 
 	@RequestMapping(value="/deleteSchedule", method=RequestMethod.POST)
-    public ResponseEntity<String> deleteEvent(@RequestBody List<Map<String, Object>> events) {
-        try {
-            for (Map<String, Object> event : events) {
-                String title = (String) event.get("title");
-                String start = (String) event.get("start");
+	public ResponseEntity<String> deleteEvent(@RequestBody List<Map<String, Object>> events) {
+		try {
+			for (Map<String, Object> event : events) {
+				String title = (String) event.get("title");
+				String start = (String) event.get("start");
 
                 calendarDao.deleteSchedule(title, start);
             }
@@ -82,3 +84,4 @@ public class CalendarController {
         }
     }
 }
+ 

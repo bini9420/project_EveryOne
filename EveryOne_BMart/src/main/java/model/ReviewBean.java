@@ -1,35 +1,53 @@
 package model;
 
-import javax.validation.constraints.NotNull;
+import java.sql.Date;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ReviewBean {
-	private int rnum;
-	private String id;
-	private int pnum;
 	
-	@NotBlank
+	private int rnum;
+	private int onum;
+	private int pnum;
+	private int score;
+	private String id;
 	private String rcomment;
 	private String image;
-	private String rdate;
+	private Date rdate;
+	private MultipartFile upload;
+	private String upload2;
+	public MultipartFile getUpload() {
+		return upload;
+	}
+	public void setUpload(MultipartFile upload) {
+		System.out.println("setUpload()");
+		System.out.println("upload:" + upload);
+		
+		this.upload = upload;
+		if(this.upload != null) {
+			System.out.println(upload.getName()); // upload
+			System.out.println(upload.getOriginalFilename());
+			image = upload.getOriginalFilename();
+		}
+	}
 	
-	@NotNull
-	private int score;
-	private int onum;
-	
+	public String getUpload2() {
+		return upload2;
+	}
+	public void setUpload2(String upload2) {
+		this.upload2 = upload2;
+	}
 	public int getRnum() {
 		return rnum;
 	}
 	public void setRnum(int rnum) {
 		this.rnum = rnum;
 	}
-	public String getId() {
-		return id;
+	public int getOnum() {
+		return onum;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setOnum(int onum) {
+		this.onum = onum;
 	}
 	public int getPnum() {
 		return pnum;
@@ -37,6 +55,20 @@ public class ReviewBean {
 	public void setPnum(int pnum) {
 		this.pnum = pnum;
 	}
+	
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getRcomment() {
 		return rcomment;
 	}
@@ -49,47 +81,11 @@ public class ReviewBean {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public String getRdate() {
+	public Date getRdate() {
 		return rdate;
 	}
-	public void setRdate(String rdate) {
+	public void setRdate(Date rdate) {
 		this.rdate = rdate;
-	}
-	public int getScore() {
-		return score;
-	}
-	public void setScore(int score) {
-		this.score = score;
-	}
-	public int getOnum() {
-		return onum;
-	}
-	public void setOnum(int onum) {
-		this.onum = onum;
-	}
-	
-	
-	//리뷰 사진 업로드를 위한 변수 추가
-	private MultipartFile upload;
-	public MultipartFile getUpload() {
-		return upload;
-	}
-	public void setUpload(MultipartFile upload) {
-		System.out.println("setUpload_upload: "+upload); //파일 이름이 아니라 주소가 들어감.
-		this.upload = upload;
-		if(this.upload != null) { //파일을 선택했으면
-			System.out.println(upload.getName()); //name속성값
-			System.out.println(upload.getOriginalFilename()); //파일의 이름
-			image = upload.getOriginalFilename(); //이미지 변수에 파일의 이름을 넣음
-		}
-	}
-	
-	private String upload2;
-	public String getUpload2() {
-		return upload2;
-	}
-	public void setUpload2(String upload2) {
-		this.upload2 = upload2;
 	}
 	
 }

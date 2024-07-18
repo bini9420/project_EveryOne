@@ -341,4 +341,22 @@ public class DocumentDao {
 		sqlSessionTemplate.delete(namespace + ".deleteBusinessId", writer);
 	}//deleteBusinessId
 
+	public String getPrdcategory(String dnum) {
+		String prdCategory = null;
+		sqlSessionTemplate.selectOne(namespace + ".getPrdcategory", dnum);
+		
+		return prdCategory;
+	}//getPrdcategory
+
+	public int checkPrdcategory(String prdcategory) {
+		int count = -100;
+		count = sqlSessionTemplate.selectOne(namespace + ".checkPrdcategory", prdcategory);
+		
+		return count;
+	}//checkPrdcategory
+
+	public void insertCategory(String prdcategory) {
+		sqlSessionTemplate.insert(namespace + ".insertCategory", prdcategory);
+	}//insertCategory
+
 }

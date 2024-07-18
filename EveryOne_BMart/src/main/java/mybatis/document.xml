@@ -510,4 +510,16 @@
 	<delete id="deleteBusinessId">
 		delete from business where id=#{writer}
 	</delete>
+	
+	<select id="getPrdcategory" resultType="String">
+		select prdcategory from document where dnum=#{dnum}
+	</select>
+	
+	<select id="checkPrdcategory" resultType="int">
+		select count(*) from category where name=#{prdcategory}
+	</select>
+	
+	<insert id="insertCategory">
+		insert into category values(cate_seq, #{prdcategory})
+	</insert>
 </mapper>

@@ -17,4 +17,23 @@
 	<delete id="deleteReview">
 		delete from review where rnum=#{rnum}
 	</delete>
+	
+	<select id="getReviewCount" resultType="int">
+		select count(*) as cnt from review
+		where pnum = #{pnum}
+	</select>
+	
+	<select id="getReviewsByProduct" resultType="review">
+        SELECT * FROM review WHERE pnum = #{pnum}
+    </select>
+
+    <select id="getAverageScore" resultType="double">
+        SELECT AVG(score) FROM review WHERE pnum = #{pnum}
+    </select>
+    
+    <select id="getReview" parameterType="int" resultType="review">
+        SELECT * FROM review WHERE rnum = #{rnum}
+    </select>
+
+    
 </mapper>

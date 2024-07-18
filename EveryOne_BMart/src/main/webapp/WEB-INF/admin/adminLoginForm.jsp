@@ -22,7 +22,6 @@
 
 </head>
 
-
 <body class="bg-primary">
 	<div class="container">
 		<!-- Outer Row -->

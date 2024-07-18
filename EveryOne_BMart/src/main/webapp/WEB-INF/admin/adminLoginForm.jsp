@@ -36,7 +36,7 @@
 								<img src="<%=request.getContextPath()%>/resources/img/bmart_bag.jpg" width="100%", height="100%">
 							</div>
 							<div class="col-lg-6">
-							<div class="col-lg-6 mx-auto py-5">
+							<div class="mx-auto py-5">
 								<div class="p-5">
 									<div class="text-center">
 										<h3 class="text-muted mb-4">로그인</h3>

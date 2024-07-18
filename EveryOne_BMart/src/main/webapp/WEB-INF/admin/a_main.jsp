@@ -442,7 +442,7 @@ $(document).ready(function () {
             }
         },
         
-       
+             
     
         eventClick: function (info) {
             if (confirm("'" + info.event.title + "' 일정을 삭제하시겠습니까?")) {
@@ -474,6 +474,4 @@ $(document).ready(function () {
 });
 
 </script>
-</div>
-</div>
 <%@ include file="a_bottom.jsp" %>

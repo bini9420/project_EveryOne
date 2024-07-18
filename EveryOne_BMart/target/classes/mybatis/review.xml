@@ -34,6 +34,9 @@
     <select id="getReview" parameterType="int" resultType="review">
         SELECT * FROM review WHERE rnum = #{rnum}
     </select>
-
+	
+	<select id="GetAllReviews" resultType="review">
+		SELECT R.*, P.pnum FROM review R JOIN Product P ON R.pnum = P.pnum
+	</select>
     
 </mapper>

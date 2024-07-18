@@ -85,7 +85,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="allrvlist.rv">
                     <i class="fas fa-fw fa-comments"></i>
                     <span>상품리뷰</span>
                 </a>
@@ -108,7 +108,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Sales</h6>
                         <a class="collapse-item" href="owner_prdSales.prd">상품별 매출현황</a>
-                        <a class="collapse-item" href="cards.html">월별 매출현황</a>
                         <a class="collapse-item" href="list.od">전체 매출현황</a>
                     </div>
                 </div>

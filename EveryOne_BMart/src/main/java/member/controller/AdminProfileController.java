@@ -9,7 +9,7 @@ import member.model.MemberDao;
 import model.MemberBean;
 
 @Controller
-public class adminProfileController {
+public class AdminProfileController {
 	
 	
 	private final String command = "adProfile.mb";

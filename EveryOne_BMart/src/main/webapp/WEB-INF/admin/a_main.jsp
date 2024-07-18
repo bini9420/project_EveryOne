@@ -441,7 +441,6 @@ $(document).ready(function () {
                 calendar.unselect();
             }
         },
-        
        
     
         eventClick: function (info) {

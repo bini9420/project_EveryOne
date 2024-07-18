@@ -33,24 +33,27 @@
 						<!-- Nested Row within Card Body -->
 						<div class="row">
 							<div class="col-lg-6 d-none d-lg-block bg-login-image">
-								<img src="<%=request.getContextPath()%>/resources/img/bmart_bag.jpg" width="100%", height="100%">
+								<img src="resources/img/bmart_bag.jpg" width="100%", height="100%">
 							</div>
+							
+							<!-- 로그인 입력창 -->
 							<div class="col-lg-6">
-							<div class="col-lg-6 mx-auto py-5">
-								<div class="p-5">
-									<div class="text-center">
-										<h3 class="text-muted mb-4">로그인</h3>
+								<div class="mx-auto py-5">
+									<div class="p-5">
+										<div class="text-center">
+											<h3 class="text-muted mb-4">로그인</h3>
+										</div>
+										<form class="user" method="post" action="login.ad">
+											<div class="form-group">
+												<input type="text" class="form-control form-control-user" name="id" placeholder="아이디(ID)">
+											</div>
+											<div class="form-group">
+												<input type="password" class="form-control form-control-user" name="password" placeholder="비밀번호(PW)">
+											</div>
+											<input type="submit" value="로그인" class="btn btn-primary btn-user btn-block">
+	
+										</form>
 									</div>
-									<form class="user" method="post" action="login.ad">
-										<div class="form-group">
-											<input type="text" class="form-control form-control-user" name="id" placeholder="아이디(ID)">
-										</div>
-										<div class="form-group">
-											<input type="password" class="form-control form-control-user" name="password" placeholder="비밀번호(PW)">
-										</div>
-										<input type="submit" value="로그인" class="btn btn-primary btn-user btn-block">
-
-									</form>
 								</div>
 							</div>
 						</div>

@@ -32,11 +32,11 @@
 					<div class="card-body p-0">
 						<!-- Nested Row within Card Body -->
 						<div class="row">
-							<!-- 이미지 -->
 							<div class="col-lg-6 d-none d-lg-block bg-login-image">
 								<img src="resources/img/bmart_bag.jpg" width="100%", height="100%">
 							</div>
-							<!-- 로그인 입력 -->
+							
+							<!-- 로그인 입력창 -->
 							<div class="col-lg-6">
 								<div class="mx-auto py-5">
 									<div class="p-5">

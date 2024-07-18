@@ -22,8 +22,8 @@ import model.ProductBean;
 import product.model.ProductDao;
 
 @Controller
-public class ProductUFormController {
-	private final String command = "productUpdate.prd";
+public class AdminProductUpdateController {
+	private final String command = "adminProductUpdate.prd";
 	private final String getPage = "adminPrdUpdateForm";
 	private final String gotoPage = "redirect:/adminProductList.prd";
 	
@@ -35,7 +35,7 @@ public class ProductUFormController {
 	ServletContext servletContext;
 
 	// productList.jsp에서 수정클릭
-	@RequestMapping(value = "productUpdateForm.prd", method = RequestMethod.GET)
+	@RequestMapping(value = "adminProductUpdateForm.prd", method = RequestMethod.GET)
 	public String updateForm(	
 			@RequestParam(value="pnum", required = true) int pnum,
 			@RequestParam(value="pageNumber", required = true) int pageNumber,

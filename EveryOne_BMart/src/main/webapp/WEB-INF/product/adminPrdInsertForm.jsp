@@ -28,8 +28,7 @@
 				<button type="submit" class="btn-outline-info">
 					<i class="fi fi-br-plus-small"></i>
 				</button>
-				<button type="button" class="btn-outline-info"
-					onclick="location.href='productList.prd?pageNumber=${pageNumber}'">
+				<button type="button" class="btn-outline-info" onclick="location.href='productList.prd?pageNumber=${pageNumber}'">
 					<i class="fi fi-rr-list"></i>
 				</button>
 			</h6>
@@ -37,19 +36,17 @@
 		<div class="card-body">
 			<div class="table-responsive">
 				<table class="table table-bordered" id="dataTable">
-
-
 					<tr>
 						<th>카테고리</th>
-						<td><select name="pcategory">
+						<td>
+							<select name="pcategory">
 								<c:forEach var="cate" items="<%=pcate %>">
 									<option value="${cate}"
 										<c:if test="${product.cate eq cate}">selected</c:if>>${cate}</option>
 								</c:forEach>
-						</select></td>
-
+							</select>
+						</td>
 					</tr>
-
 					<tr>
 						<th>등록인아이디</th>
 						<td><input type="hidden" name="id" value="${loginInfo.id}">${loginInfo.id}</td>

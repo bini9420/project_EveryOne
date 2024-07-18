@@ -102,6 +102,11 @@ button {
 .reading {
 	border: 1px solid;
 }
+
+.profilebtn{
+	text-align: center;
+}
+
 </style>
 </head>
 

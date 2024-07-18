@@ -83,23 +83,22 @@ create table category(
 	name varchar2(30) primary key
 );
 
-insert into category values(cate_seq.nextval,'쌀/잡곡/견과');
-insert into category values(cate_seq.nextval,'국/탕/찌개');
-insert into category values(cate_seq.nextval,'음료/커피/생수');
-insert into category values(cate_seq.nextval,'정육/수산/계란');
-insert into category values(cate_seq.nextval,'라면/면');
-insert into category values(cate_seq.nextval,'과일/채소');
-insert into category values(cate_seq.nextval,'양념/장류/오일');
-insert into category values(cate_seq.nextval,'우유/유제품');
-insert into category values(cate_seq.nextval,'햄/어묵/통조림');
-insert into category values(cate_seq.nextval,'생활/기타');
+insert into category values(cate_seq.nextval,'쌀·잡곡·견과');
+insert into category values(cate_seq.nextval,'국·탕·찌개');
+insert into category values(cate_seq.nextval,'음료·커피·생수');
+insert into category values(cate_seq.nextval,'정육·수산·계란');
+insert into category values(cate_seq.nextval,'라면·면');
+insert into category values(cate_seq.nextval,'과일·채소');
+insert into category values(cate_seq.nextval,'양념·장류·오일');
+insert into category values(cate_seq.nextval,'우유·유제품');
+insert into category values(cate_seq.nextval,'햄·어묵/통조림');
+insert into category values(cate_seq.nextval,'생활·기타');
 
 insert into category values(cate_seq.nextval, '전자기기');
-insert into category values(cate_seq.nextval, '가구/인테리어');
+insert into category values(cate_seq.nextval, '가구·인테리어');
 insert into category values(cate_seq.nextval, '주방용품');
 insert into category values(cate_seq.nextval, '반려용품');
-insert into category values(cate_seq.nextval, '스포츠/레저/캠핑');
-
+insert into category values(cate_seq.nextval, '스포츠·레저·캠핑');
 
 
 --상품 테이블
@@ -128,7 +127,21 @@ create table product(
   ad number default 0
 );
 
---B마트 상품
+--쌀·잡곡·견과
+insert into product 
+values(seqprod.nextval, 'admin', 'test1', null, 2233, '500g', 'test2', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '쌀/잡곡/견과', sysdate, 2, 0);
+
+
+--국·탕·찌개
+--음료·커피·생수
+--정육·수산·계란
+--라면·면
+--과일·채소
+--양념·장류·오일
+--우유·유제품
+--햄·어묵·통조림
+--생활·기타
+
 insert into product 
 values(seqprod.nextval, 'admin', '알배기 배추 1봉', null, 3990, '통', '고소하고 달콤한 알배기 배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국산',  5, '과일/채소', sysdate, 5, 1);
 
@@ -147,23 +160,7 @@ values(seqprod.nextval, 'admin', '제주 삼다수 그린 무라벨', null, 7600, '2L 6개'
 insert into product 
 values(seqprod.nextval, 'admin', '서울우유', null, 2900, '1000ml', '1등급이 무려 2개!', null, '국내산',  44, '우유/유제품', sysdate, 10, 1);
 
-insert into product 
-values(seqprod.nextval, 'admin', 'test1', null, 2233, '500g', 'test2', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 2, 0);
 
-insert into product 
-values(seqprod.nextval, 'admin', 'test2', null, 1100, '500g', 'test3', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 5, 0);
-
-insert into product 
-values(seqprod.nextval, 'admin', 'test3', null, 2000, '500g', 'test4', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 8, 0);
-
-insert into product 
-values(seqprod.nextval, 'admin', 'test4', null, 790, '500g', 'test5', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', '2024-07-01', 2, 0);
-
-insert into product 
-values(seqprod.nextval, 'admin', 'test5', null, 1000, '500g', 'test6', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', '2024-07-01', 9, 0);
-
-insert into product 
-values(seqprod.nextval, 'admin', 'test6', null, 3400, '500g', 'test7', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', '2024-07-01', 12, 0);
 
 
 

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import model.AddressBean;
 import model.EnterBean;
 import model.MemberBean;
+import model.BusinessBean;
 import model.ReviewBean;
 import model.ReviewDetailBean;
 import utility.MemberListPaging;
@@ -36,11 +37,7 @@ public class MemberDao {
 		member = sqlSessionTemplate.selectOne(namespace + ".getMember", id);
 		return member;
 	}
-
 	
-	
-
-
 	public int getTotalCount(Map<String,String> map) {
 		int cnt = sqlSessionTemplate.selectOne(namespace+".getTotalCount", map);
 		return cnt;
@@ -50,6 +47,7 @@ public class MemberDao {
 		RowBounds rowbounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
 		return sqlSessionTemplate.selectList(namespace + ".getMemberList", map, rowbounds);
 	}
+	
 	public List<BusinessBean> getBMemList(Map<String,String> map, MemberListPaging pageInfo) {
 		RowBounds rowbounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
 		return sqlSessionTemplate.selectList(namespace + ".getBMemList", map, rowbounds);

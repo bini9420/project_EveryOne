@@ -129,36 +129,36 @@ create table product(
 
 --쌀·잡곡·견과
 insert into product 
-values(seqprod.nextval, 'admin', 'test1', null, 2233, '500g', 'test2', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '쌀/잡곡/견과', sysdate, 2, 0);
+values(seqprod.nextval, 'admin', 'test1', null, 2233, '500g', 'test2', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '쌀·잡곡·견과', sysdate, 2, 0);
 
 
 --국·탕·찌개
---음료·커피·생수
 --정육·수산·계란
 --라면·면
---과일·채소
 --양념·장류·오일
---우유·유제품
 --햄·어묵·통조림
 --생활·기타
 
+--과일·채소
 insert into product 
-values(seqprod.nextval, 'admin', '알배기 배추 1봉', null, 3990, '통', '고소하고 달콤한 알배기 배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국산',  5, '과일/채소', sysdate, 5, 1);
+values(seqprod.nextval, 'admin', '알배기 배추 1봉', null, 3990, '통', '고소하고 달콤한 알배기 배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국산',  5, '과일·채소', sysdate, 5, 1);
 
 insert into product 
-values(seqprod.nextval, 'admin', '햇양파', null, 3790, '1.5kg', '단단하고 아삭한 양파', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  43, '과일/채소', sysdate, 4, 1);
+values(seqprod.nextval, 'admin', '햇양파', null, 3790, '1.5kg', '단단하고 아삭한 양파', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  43, '과일·채소', sysdate, 4, 1);
 
 insert into product 
-values(seqprod.nextval, 'admin', '조각 양배추', null, 1990, '500g', '신선하게 즐기는 조각 양배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일/채소', sysdate, 2, 1);
+values(seqprod.nextval, 'admin', '조각 양배추', null, 1990, '500g', '신선하게 즐기는 조각 양배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일·채소', sysdate, 2, 1);
+
+--음료·커피·생수
+insert into product 
+values(seqprod.nextval, 'admin', '애사비 제로소다 오리지널', null, 10900, '500ml 6개', '국산 사과초모식초로 만든 탄산음료', null, null,  33, '음료·커피·생수', sysdate, 1, 1);
 
 insert into product 
-values(seqprod.nextval, 'admin', '애사비 제로소다 오리지널', null, 10900, '500ml 6개', '국산 사과초모식초로 만든 탄산음료', null, null,  33, '음료/커피/생수', sysdate, 1, 1);
+values(seqprod.nextval, 'admin', '제주 삼다수 그린 무라벨', null, 7600, '2L 6개', '매일 마시기 좋은 생수', null, null,  77, '음료·커피·생수', sysdate, 8, 1);
 
+--우유·유제품
 insert into product 
-values(seqprod.nextval, 'admin', '제주 삼다수 그린 무라벨', null, 7600, '2L 6개', '매일 마시기 좋은 생수', null, null,  77, '음료/커피/생수', sysdate, 8, 1);
-
-insert into product 
-values(seqprod.nextval, 'admin', '서울우유', null, 2900, '1000ml', '1등급이 무려 2개!', null, '국내산',  44, '우유/유제품', sysdate, 10, 1);
+values(seqprod.nextval, 'admin', '서울우유', null, 2900, '1000ml', '1등급이 무려 2개!', null, '국내산',  44, '우유·유제품', sysdate, 10, 1);
 
 
 

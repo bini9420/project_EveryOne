@@ -17,6 +17,7 @@ public class ProductBean {
 	private String inputdate;
 	private int ordercount;
 	private int ad;
+	private String upload2;
 	
 	//DB 테이블에 존재하지 않는 변수 추가
 	private MultipartFile upload;
@@ -32,6 +33,15 @@ public class ProductBean {
 			pimage = upload.getOriginalFilename();
 		}
 	}
+	
+	public String getUpload2() {
+		return upload2;
+	}
+	public void setUpload2(String upload2) {
+		this.upload2 = upload2;
+	}
+	
+	
 	
 	public int getPnum() {
 		return pnum;

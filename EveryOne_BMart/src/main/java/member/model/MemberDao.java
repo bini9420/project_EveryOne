@@ -2,6 +2,7 @@ package member.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -11,8 +12,10 @@ import org.springframework.stereotype.Component;
 import model.AddressBean;
 import model.EnterBean;
 import model.MemberBean;
+import model.BusinessBean;
 import model.ReviewBean;
 import model.ReviewDetailBean;
+import utility.MemberListPaging;
 import utility.ReviewPaging;
 
 
@@ -34,7 +37,41 @@ public class MemberDao {
 		member = sqlSessionTemplate.selectOne(namespace + ".getMember", id);
 		return member;
 	}
+	
+	public int getTotalCount(Map<String,String> map) {
+		int cnt = sqlSessionTemplate.selectOne(namespace+".getTotalCount", map);
+		return cnt;
+	}//getTotalCount
 
+	public List<MemberBean> getMemberList(Map<String,String> map, MemberListPaging pageInfo) {
+		RowBounds rowbounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		return sqlSessionTemplate.selectList(namespace + ".getMemberList", map, rowbounds);
+	}
+	
+	public List<BusinessBean> getBMemList(Map<String,String> map, MemberListPaging pageInfo) {
+		RowBounds rowbounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		return sqlSessionTemplate.selectList(namespace + ".getBMemList", map, rowbounds);
+	}
+
+
+	public int insertBMember(BusinessBean business) {
+		int cnt = -1;
+
+		cnt = sqlSessionTemplate.insert(namespace+".insertBMember",business);
+
+		return cnt;
+	}//insertMember
+
+
+	public int deleteMember(String id) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.delete(namespace + ".deleteMember", id);
+		System.out.println("deleteMember cnt:"+cnt);
+		return cnt;
+
+	}//deleteMember
+
+	
 	public void updateMember(MemberBean member) {
 		sqlSessionTemplate.update(namespace+".updateMember", member);
 	}

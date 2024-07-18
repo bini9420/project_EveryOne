@@ -6,6 +6,100 @@
 	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="product">
+
+
+		<select id="adminTotalCount" resultType="int"
+		parameterType="hashmap">
+		select count(*) from product
+		<if test="keyword != null and keyword != ''">
+			where pname like #{keyword}
+			or pcategory like #{keyword}
+			or pnum like #{keyword}
+		</if>
+	</select>
+
+
+	<select id="getProductList" resultType="model.ProductBean">
+		select * from product
+		<if test="keyword != null and keyword != ''">
+			where pname like #{keyword}
+			or pcategory like #{keyword}
+			or pnum like #{keyword}
+		</if>
+		order by pnum desc
+	</select>
+
+	<insert id="insertProduct">
+		insert into product(pnum,id, pname,
+		pimage, price,
+		capacity, pcontent, expritydate, origin, stock,
+		pcategory, inputdate,
+		ordercount, ad)
+		values(seqprod.nextval,#{id},#{pname},
+		#{pimage,jdbcType=VARCHAR}, #{price}, #{capacity},
+		#{pcontent},
+		#{expritydate}, #{origin},#{stock},#{pcategory},sysdate,0,0)
+
+	</insert>
+
+	<delete id="deleteProduct">
+		delete from product where pnum=#{pnum}
+
+	</delete>
+
+
+
+	<!-- 상품 상세보기,상품 수정하기, 장바구니 목록의 상품 -->
+	<select id="detailViewByNum" resultType="model.ProductBean">
+		select * from product
+		where pnum = #{pnum}
+	</select>
+
+
+	<insert id="insertCategory">
+		insert into category (num,name)
+		values(cate_seq.nextval,#{name})
+
+
+	</insert>
+
+
+	<update id="updateProduct">
+		update product set pname = #{pname},price = #{price},
+		stock=#{stock},pimage= #{pimage},pcontent = #{pcontent}
+		where pnum=#{pnum}
+
+	</update>
+
+	<update id="updateStock">
+		update product
+		set stock = stock - #{stock}
+		where pnum = #{pnum}
+
+	</update>
+
+	<update id="updateOrdercount">
+		update product set ordercount = ordercount+#{ordercount}
+		where pnum = #{pnum}
+	</update>
+
+
+
+	<select id="getRangeTest" resultType="product">
+		select rownum, pname, ordercount
+		from (select rownum, pname, ordercount from product order by ordercount desc)
+		where rownum between 1 and 5
+	</select>
+
+	<select id="getCateChart" resultType="product">
+
+		select pcategory,sum(ordercount) as ordercount
+		from product
+		group by pcategory
+
+	</select>
+
+	
 	<select id="getBestProduct" resultType="product">
 		select * from (select * from product order by ordercount desc) where rownum between 1 and 10
 	</select>

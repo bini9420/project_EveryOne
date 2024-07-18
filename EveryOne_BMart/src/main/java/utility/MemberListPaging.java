@@ -256,15 +256,14 @@ public class MemberListPaging {
 		}
 
 		//가운데
-		for (int i = this.beginPage; i <= this.endPage ; i++) {
-			if ( i == this.pageNumber ) {
-				result += "&nbsp;<font color='red'>[" + i + "]</font>&nbsp;"   ;
-
-			} else {
-				result += "&nbsp;<a href='" + url   
-						+ "&pageNumber=" + i + "&pageSize=" + this.pageSize 
-						+ added_param + "'>[" + i + "]</a>&nbsp;" ;
-			}
+		for (int i = this.beginPage; i <= this.endPage; i++) {
+		    if (i == this.pageNumber) {
+		        result += "&nbsp;<button class='btn btn-primary' disabled>" + i + "</button>&nbsp;";
+		    } else {
+		        result += "&nbsp;<a class='btn btn-primary' href='" + url 
+		                + "?pageNumber=" + i + "&pageSize=" + this.pageSize 
+		                + added_param + "'>" + i + "</a>&nbsp;";
+		    }
 		}
 		/*
 		현재 페이지가 2일 때 result

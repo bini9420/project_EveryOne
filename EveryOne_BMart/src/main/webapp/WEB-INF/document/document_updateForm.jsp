@@ -65,12 +65,12 @@
 		float: left;
 	}
 	#documentImg {
-    margin-right: 0; /* 이미지 오른쪽 여백 제거 */
-    padding-right: 0; /* 이미지 오른쪽 패딩 제거 */
+    	margin-right: 0; 
+    	padding-right: 0; 
 	}
 	.modal-header h5 {
-	    margin-left: 0; /* 제목의 왼쪽 여백 제거 */
-	    padding-left: 0; /* 제목의 왼쪽 패딩 제거 */
+	    margin-left: 0;
+	    padding-left: 0;
 	}
 	#updateFile {
 		margin-left: -10px;

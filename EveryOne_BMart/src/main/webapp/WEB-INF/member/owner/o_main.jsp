@@ -50,8 +50,7 @@
 							a constantly updated collection of beautiful svg images that you
 							can use completely free and without attribution!
 						</p>
-						<a target="_blank" rel="nofollow" href="https://undraw.co/">Browse
-							Illustrations on unDraw &rarr;</a>
+						<a target="_blank" rel="nofollow" href="https://undraw.co/">Go to the Page &rarr;</a>
 					</div>
 				</div>
 		</div>
@@ -76,8 +75,7 @@
 							a constantly updated collection of beautiful svg images that you
 							can use completely free and without attribution!
 						</p>
-						<a target="_blank" rel="nofollow" href="https://undraw.co/">Browse
-							Illustrations on unDraw &rarr;</a>
+						<a target="_blank" rel="nofollow" href="https://undraw.co/">Go to the Page &rarr;</a>
 					</div>
 				</div>
 		</div>
@@ -102,8 +100,7 @@
 							a constantly updated collection of beautiful svg images that you
 							can use completely free and without attribution!
 						</p>
-						<a target="_blank" rel="nofollow" href="https://undraw.co/">Browse
-							Illustrations on unDraw &rarr;</a>
+						<a target="_blank" rel="nofollow" href="https://undraw.co/">Go to the Page &rarr;</a>
 					</div>
 				</div>
 		</div>
@@ -128,8 +125,7 @@
 							a constantly updated collection of beautiful svg images that you
 							can use completely free and without attribution!
 						</p>
-						<a target="_blank" rel="nofollow" href="https://undraw.co/">Browse
-							Illustrations on unDraw &rarr;</a>
+						<a target="_blank" rel="nofollow" href="document_box.dc">Go to the Page &rarr;</a>
 					</div>
 				</div>
 		</div>

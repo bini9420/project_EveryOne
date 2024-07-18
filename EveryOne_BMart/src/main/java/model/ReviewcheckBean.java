@@ -15,6 +15,7 @@ public class ReviewcheckBean {
 	private String approveday;
 	private String okimage;
 	private int dstatus;
+	
 	public String getRnum() {
 		return rnum;
 	}

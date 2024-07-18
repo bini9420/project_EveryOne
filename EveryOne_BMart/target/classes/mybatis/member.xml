@@ -9,7 +9,56 @@
 	<select id = "getMember" resultType = "member">
 		select * from member where id = #{id}
 	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from member
+		<if test="keyword != null and keyword != ''">
+			where id like #{keyword}
+			or name like #{keyword}
+			or email1 like #{keyword}
+			or email2 like #{keyword}
+		</if>
+	</select>
 
+	<select id="getMemberList" resultType="model.MemberBean"
+		parameterType="hashmap">
+		select * from member
+		<if test="keyword != null and keyword != ''">
+			where id like #{keyword}
+			or name like #{keyword}
+			or email1 like #{keyword}
+			or email2 like #{keyword}
+		</if>
+	</select>
+
+	<select id="getBMemList" resultType="model.BusinessBean">
+		select * from business
+		<if test="keyword != null and keyword != ''">
+			where id like #{keyword}
+			or bcode like #{keyword}
+			or id like #{keyword}
+			or type like #{keyword}
+			or addr1 like #{keyword}
+			or addr2 like #{keyword}
+		</if>
+		order by bcode desc
+	</select>
+
+	<insert id="insertBMember">
+		insert into business (bcode,id,type,post,addr1,addr2)
+		values(#{bcode},#{id},null,#{post},#{addr1},#{addr2})
+	</insert>
+
+	<delete id="deleteMember">
+		delete from member where id=#{id}
+	</delete>
+
+	<update id="updateCate">
+		update business set type=#{type}
+		where id=#{id}
+
+	</update>
+	
 	<update id="updateMember">
 		update member 
 		set password=#{password}, name=#{name}, phone1=#{phone1}, phone2=#{phone2}, phone3=#{phone3}, email1=#{email1}, email2=#{email2} 
@@ -37,12 +86,16 @@
 		select * from member where id=#{id} and name=#{name}
 	</select>
 	
-	<select id="findKakao" resultType="member">
-		select * from member where email1=#{email1} and email2=#{email2}
+	<select id="findMember" resultType="member">
+		select * from member where id=#{id}
 	</select>
 	
 	<insert id="kakaoInsert">
 		insert into member(id, password, email1, email2) values(#{id}, '1111', #{email1}, #{email2})
+	</insert>
+	 
+	<insert id="naverInsert">
+		insert into member(id, password, name, email1, email2) values(#{id}, '1111', #{name}, #{email1}, #{email2})
 	</insert>
 	
 	<select id="getWaitDocumentCountForAdmin" resultType="int">

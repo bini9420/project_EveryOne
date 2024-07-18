@@ -41,7 +41,7 @@ public class ProductDao {
 
 	public int getTotalCount(Map<String, String> map) {
 		int count = -1;
-		count = sqlSessionTemplate.selectOne(namespace + ".getTotalCount", map);
+		count = sqlSessionTemplate.selectOne(namespace + ".adminTotalCount", map);
 		System.out.println("count : " + count);
 		
 		return count;
@@ -117,6 +117,15 @@ public class ProductDao {
 		 
 		return db;
 	}//checkEnterApproval
+
+	public ProductBean getProductByPnum_Owner(String pnum) {
+		ProductBean pb = null;
+		pb = sqlSessionTemplate.selectOne(namespace + ".getProductByPnum_Owner", pnum);
+		
+		return pb;
+	}//getProductByPnum_Owner
+
+	
 
 
 }

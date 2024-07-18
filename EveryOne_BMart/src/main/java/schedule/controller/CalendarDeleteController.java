@@ -17,9 +17,7 @@ import schedule.model.CalendarDao;
 
 
 	private final String command="scheduleDelete.scd";
-	private final String gotoPage="adminSchedule";
-
-
+	
 	@Autowired CalendarDao calendarDao;
 
 	@ResponseBody
@@ -28,6 +26,7 @@ import schedule.model.CalendarDao;
 			@RequestParam(value = "startDate", required = false) String start
 			) {
 		Map<String, Object> response = new HashMap<String, Object>(); 
+
 
 		try {
 			int rowsAffected = calendarDao.deleteSchedule(title,start);
@@ -46,7 +45,6 @@ import schedule.model.CalendarDao;
 
 		return response;
 	}
-
 
 }
 

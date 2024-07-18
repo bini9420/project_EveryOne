@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
@@ -35,6 +36,7 @@
 								<img src="<%=request.getContextPath()%>/resources/img/bmart_bag.jpg" width="100%", height="100%">
 							</div>
 							<div class="col-lg-6">
+							<div class="col-lg-6 mx-auto py-5">
 								<div class="p-5">
 									<div class="text-center">
 										<h3 class="text-muted mb-4">로그인</h3>
@@ -49,12 +51,6 @@
 										<input type="submit" value="로그인" class="btn btn-primary btn-user btn-block">
 
 									</form>
-									
-									<hr>
-									
-									<div class="text-center">
-										<a class="small" href="forgot-password.html">비밀번호를 잊어버렸나요?</a>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -63,6 +59,8 @@
 			</div>
 		</div>
 	</div>
+
+
 
 	<!-- Bootstrap core JavaScript-->
     <script src="resources/vendor/jquery/jquery.min.js"></script>
@@ -73,5 +71,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="resources/js/sb-admin-2.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

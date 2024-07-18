@@ -28,7 +28,6 @@ public class LoginController {
 	
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String adminLogin() {
-		
 		//System.out.println(this.getClass()+" GET");
 		return getPage;
 	}

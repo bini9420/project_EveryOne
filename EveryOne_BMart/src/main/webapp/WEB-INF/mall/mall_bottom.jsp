@@ -23,14 +23,12 @@
 				</li>
 			</ul>
 			
-				<!-- 입점신청 Form(enter_insertForm.jsp) 모달창 -->
-				<div class="modal fade" id="enterWrite" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="enterModalLabel" aria-hidden="true">
-				  <div class="modal-dialog">
-				    <div class="modal-content" id="enter-content">
-		
-				    </div>
-				  </div>
+			<!-- 입점신청 Form(enter_insertForm.jsp) 모달창 -->
+			<div class="modal fade" id="enterWrite" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="enterModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content" id="enter-content"></div>
 				</div>
+			</div>
 		</div>
 	</nav> 
 	<div class="bg-primary">

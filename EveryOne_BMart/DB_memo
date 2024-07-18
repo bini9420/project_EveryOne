@@ -25,6 +25,7 @@ insert into member(id, name, password, phone1, phone2, phone3, email1, email2) v
 insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('ahn', '안수민', '1111', '011', '8888', '8888', 'sumin', 'hanmail.net');
 insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('oh', '오지현', '1111', '010', '9999', '9999', 'jihyun', 'naver.com');
 
+commit;
 
 
 --회원 배송지 테이블
@@ -61,6 +62,11 @@ create table business(
 );
 
 insert into business values('11223344','lee','전자기기','04050','서울 마포구 양화로 140','애플스토어');
+insert into business values('11223345','park','전자기기','04050','서울 마포구 양화로 140','애플스토어');
+insert into business values('11223346','choi','전자기기','04050','서울 마포구 양화로 140','애플스토어');
+insert into business values('11223347','jung','전자기기','04050','서울 마포구 양화로 140','애플스토어');
+insert into business values('11223348','kang','전자기기','04050','서울 마포구 양화로 140','애플스토어');
+insert into business values('11223349','yoon','전자기기','04050','서울 마포구 양화로 140','애플스토어');
 
 
 --카테고리 테이블
@@ -111,7 +117,7 @@ create table product(
   pname varchar2(50) not null,
   pimage varchar2(30),
   price number not null,
-  capacity varchar2(20) not null,
+  capacity varchar2(20),
   pcontent varchar2(300) not null,
   expritydate varchar2(100),
   origin varchar2(30),

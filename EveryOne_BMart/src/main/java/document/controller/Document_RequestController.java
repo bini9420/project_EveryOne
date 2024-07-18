@@ -15,7 +15,7 @@ import document.model.DocumentBean;
 import document.model.DocumentDao;
 
 @Controller
-public class document_RequestController {
+public class Document_RequestController {
 	private final String command = "document_request.dc";
 	
 	@Autowired

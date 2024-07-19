@@ -102,6 +102,7 @@
 		<div class="card h-100" style="border: 0px">
 			<div class="card-body">
 				<h5 class="card-title text-primary fw-bolder">주문내역</h5>
+				<c:if test="${fn:length(olist) > 0}">
 				<c:forEach var="i" begin="0" end="${fn:length(olist) - 1}" items="${olist}" step="1" varStatus="status">
 					<div class="orderDiv">
 					<form action="insertForm.rv" method="post">
@@ -174,6 +175,7 @@
 					</div>
 					<br>
 				</c:forEach>
+				</c:if>
 				<p class="card-text"></p>
 			</div> 
 		</div>

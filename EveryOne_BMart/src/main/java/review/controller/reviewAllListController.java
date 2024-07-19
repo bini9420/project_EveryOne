@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import model.ReviewBean;
 import review.model.ReviewDao;
@@ -20,7 +21,7 @@ public class reviewAllListController {
 	private final String gotoPage = "AllReviewList";
 	
 	@RequestMapping(command)
-	public String listAllReviews(Model model) {
+	public String listAllReviews(@RequestParam(value="rnum", required=false) String rnum, Model model) {
 		List<ReviewBean> reviews = reviewDao.getAllReviews();
 		model.addAttribute("reviews", reviews);
 		

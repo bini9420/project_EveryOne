@@ -9,7 +9,7 @@
 	<c:if test="${fn:length(plists) > 0}">
 		<c:if test="${category ne null}">
 			<div class="mb-2 text-center fs-3">
-				<font class="fw-bolder" style="color:#2ac1bc">[ ${category} ]</font>
+				<font class="fw-bolder text-primary">[ ${category} ]</font>
 			</div>
 			<div class="mt-5 mb-3 p-2 text-end bg-light">
 				<a href="plists.mall?category=${category}&range=recently">최신순</a>&nbsp;|&nbsp;
@@ -21,7 +21,7 @@
 		
 		<c:if test="${keyword ne null}">
 			<div class="mb-2 text-center fs-3">
-				<font class="fw-bolder" style="color: #2ac1bc">[ 상품 검색 결과 ]</font>
+				<font class="fw-bolder text-primary">[ 상품 검색 결과 ]</font>
 			</div>
 			<div class="mt-5 mb-3 p-2 text-end bg-light">
 				<a href="plists.mall?keyword=${keyword}&range=recently">최신순</a>&nbsp;|&nbsp;
@@ -33,7 +33,7 @@
 		
 		<c:if test="${keyword eq null && category eq null}">
 			<div class="mb-4 text-center fs-3">
-				<font class="fw-bolder" style="color: #2ac1bc">[ 신상품 ]</font>
+				<font class="fw-bolder text-primary">[ 신상품 ]</font>
 			</div>
 			<div class="mt-5 mb-3 p-2 text-end bg-light">
 				<a href="plists.mall?range=recently">최신순</a>&nbsp;|&nbsp;
@@ -169,16 +169,34 @@
 		</div>
 	</c:if>
 	<c:if test="${fn:length(plists) == 0}">
-		<div class="row justify-content-center mb-3">
+		<div class="row justify-content-center mb-3 h-50">
 			<div class="mb-4 text-center">
 				<c:if test="${category ne null}">
-					<font size="4">해당 카테고리에 등록된 상품이 없습니다.</font>
+					<div class="mb-5 text-center fs-3">
+						<font class="fw-bolder text-primary">[ ${category} ]</font>
+					</div>
+					<div class="mt-5 text-center">
+						<img src="resources/img/no-product.png" alt="..." class="m-3 productImg"/><br>
+						<font size="4">해당 카테고리에 등록된 상품이 없습니다.</font>
+					</div>
 				</c:if>
 				<c:if test="${keyword ne null}">
-					<font size="4">상품명에 검색어가 포함된 상품이 없습니다.</font>
+					<div class="mb-2 text-center fs-3">
+						<font class="fw-bolder text-primary">[ 상품 검색 결과 ]</font>
+					</div>
+					<div class="text-center mt-5">
+						<img src="resources/img/no-product.png" alt="..." class="m-3 productImg"/><br>
+						<font size="4">상품명에 검색어가 포함된 상품이 없습니다.</font>
+					</div>
 				</c:if>
 				<c:if test="${keyword eq null && category eq null}">
-					<font size="4">최근 등록된 상품이 없습니다.</font>
+					<div class="mb-4 text-center fs-3">
+						<font class="fw-bolder text-primary">[ 신상품 ]</font>
+					</div>
+					<div class="mt-5 text-center">
+						<img src="resources/img/no-product.png" alt="..." class="m-3 productImg"/><br>
+						<font size="4">최근 등록된 상품이 없습니다.</font>
+					</div>
 				</c:if>
 			</div>
 		</div>

@@ -31,7 +31,7 @@ public class AdminDocumentDetailController {
 	@Autowired
 	ReviewcheckDao reviewcheckDao;
 	
-	//GET: admin_allBox.jsp에서 테이블row 선택시 문서 상세보기로 이동
+	//GET: admin_allBox.jsp, admin_enterBox.jsp, admin_rcheckBox.jsp 에서 테이블row 선택시 문서 상세보기로 이동
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String adminDetail(@RequestParam(value="dnum", required=false) String dnum,
 							  @RequestParam(value="eno", required=false) String eno,

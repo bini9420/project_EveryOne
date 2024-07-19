@@ -434,7 +434,6 @@ $(document).ready(function () {
                 calendar.unselect();
             }
         },
-       
     
         eventClick: function (info) {
             if (confirm("'" + info.event.title + "' 일정을 삭제하시겠습니까?")) {

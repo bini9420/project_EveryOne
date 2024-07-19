@@ -41,8 +41,6 @@ public class ProductBean {
 		this.upload2 = upload2;
 	}
 	
-	
-	
 	public int getPnum() {
 		return pnum;
 	}

@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import document.model.DocumentBean;
-import model.EnterBean;
 import model.MemberBean;
 import model.ProductBean;
 import product.model.ProductDao;
@@ -41,12 +39,12 @@ public class ProductInsertController {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		//ìƒí’ˆë“±ë¡ ìŠ¹ì¸ëœ ì‚¬ëŒë§Œ getPageë¡œ ì´ë™
+		//»óÇ°µî·Ï ½ÂÀÎµÈ »ç¶÷¸¸ getPage·Î ÀÌµ¿
 		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
-		DocumentBean db = productDao.checkProductApproval(mb.getId()); 
-		if(db == null) {
+		int count = productDao.checkProductApproval(mb.getId()); 
+		if(count <= 0) {
 			out.println("<script>");
-			out.println("alert('ìƒí’ˆë“±ë¡ ê²°ì¬ ìŠ¹ì¸ì´ í•„ìš”í•©ë‹ˆë‹¤'); location.href='omain.mb'");
+			out.println("alert('»óÇ°µî·Ï °áÀç ½ÂÀÎÀÌ ÇÊ¿äÇÕ´Ï´Ù'); location.href='omain.mb'");
 			out.println("</script>");
 			out.flush();
 		} 
@@ -61,7 +59,7 @@ public class ProductInsertController {
 		System.out.println("prod.getPname():"+product.getPname());
 		System.out.println("prod.getPcontent():"+product.getPcontent());
 		System.out.println("prod.getPrice():"+product.getPrice());
-		System.out.println("prod.getPimage():"+product.getPimage()); // null, ì‹œê³„.jpg
+		System.out.println("prod.getPimage():"+product.getPimage()); // null, ½Ã°è.jpg
 		System.out.println("prod.getUpload():"+product.getUpload());
 		
 		MultipartFile multi = product.getUpload();
@@ -78,7 +76,7 @@ public class ProductInsertController {
 			mav.setViewName(getPage);
 			return mav; 
 		}
-		
+		 
 		int cnt = -1;
 		cnt = productDao.insertProduct(product);
 		if(cnt != -1) {

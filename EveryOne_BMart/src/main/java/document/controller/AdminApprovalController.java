@@ -2,6 +2,11 @@ package document.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,6 +23,7 @@ import document.model.EnterDao;
 import document.model.ReviewcheckDao;
 import model.EnterBean;
 import model.MemberBean;
+import model.ReviewcheckBean;
 
 @Controller
 public class AdminApprovalController {
@@ -80,6 +86,27 @@ public class AdminApprovalController {
 		} else if(rnum != null) { //리뷰검토
 			reviewcheckDao.updateApproval(rnum);
 			
+			ReviewcheckBean rcheck = reviewcheckDao.getRcheckByRnum(rnum);
+			System.out.println("id: " + rcheck.getRe_writer());
+			System.out.println("pnum: " + rcheck.getPrdnum());
+			System.out.println("re_writeday: " + rcheck.getRe_writeday());
+			
+			// 문자열을 LocalDateTime 객체로 파싱
+	        LocalDateTime datetime = LocalDateTime.parse(rcheck.getRe_writeday(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
+	        // LocalDateTime 객체에서 LocalDate 객체(날짜 부분)만 추출
+	        LocalDateTime dateOnly = datetime.toLocalDate().atStartOfDay();
+	        // 날짜를 원하는 형식으로 포맷팅 (예: "yyyy-MM-dd")
+	        String re_writeday = dateOnly.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			
+			
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("pnum", rcheck.getPrdnum());
+			map.put("rdate", re_writeday);
+			map.put("id", rcheck.getRe_writer());
+			
+			//선택된 리뷰검토요청 문서에서 리뷰작성자, 리뷰작성일을 조건으로 review 테이블의 레코드 삭제
+			reviewcheckDao.deleteReview(map);
+			
 			out.println("<script>");
 			out.println("alert('결재가 완료되었습니다.'); location.href='admin_rcheckBox.dc'");
 			out.println("</script>");
@@ -88,3 +115,4 @@ public class AdminApprovalController {
 		return null;
 	}
 }
+	

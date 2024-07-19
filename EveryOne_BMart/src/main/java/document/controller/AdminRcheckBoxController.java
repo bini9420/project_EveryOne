@@ -44,7 +44,7 @@ public class AdminRcheckBoxController {
 		
 		List<ReviewcheckBean> lists= reviewcheckDao.getAllRcheckDocumentForAdmin(map, pageInfo);
 		model.addAttribute("lists", lists);
-
+		
 		return getPage;
 	}
 }

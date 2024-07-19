@@ -1,6 +1,8 @@
 package review.controller;
 
+
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import model.ReviewBean;
+
 import review.model.ReviewDao;
 
 @Controller
@@ -17,8 +20,9 @@ public class reviewListController {
 	@Autowired
 	ReviewDao reviewDao;
 	
-	private final String command = "list.rv";
-	private final String gotoPage = "reviewList";
+	private final String command = "list.rv";	
+	private final String getPage = "reviewPrdList";
+	
 	
 	@RequestMapping(command)
 	public String list(@RequestParam(value="pnum",required=false) int pnum,
@@ -37,7 +41,7 @@ public class reviewListController {
             model.addAttribute("noReviewsMessage", "등록된 리뷰가 없습니다.");
         }
         
-		return gotoPage;
+		return getPage;
 	}
 	
 }

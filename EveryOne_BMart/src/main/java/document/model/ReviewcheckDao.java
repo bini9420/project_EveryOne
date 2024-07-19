@@ -9,13 +9,14 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import model.ReviewBean;
 import model.ReviewcheckBean;
 import utility.Paging;
 
 @Component
 public class ReviewcheckDao {
 
-	String namespace = "reviewCheck.ReviewCheck";
+	String namespace = "reviewCheck";
 	
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
@@ -53,7 +54,7 @@ public class ReviewcheckDao {
 	public ReviewcheckBean getRcheckByRnum(String rnum) {
 		ReviewcheckBean rcheck = null;
 		rcheck = sqlSessionTemplate.selectOne(namespace + ".getRcheckByRnum", rnum);
-		
+		System.out.println("rcheck: " + rcheck);
 		return rcheck;
 	}//getRcheckByRnum
 
@@ -88,4 +89,29 @@ public class ReviewcheckDao {
 		
 		return lists; 
 	}//getAllRcheckDocumentForAdmin
+
+	public ReviewBean getReview(String rnum) {
+		ReviewBean rb = sqlSessionTemplate.selectOne(namespace + ".getReview", rnum);
+		
+		return rb;
+	}//getReview
+
+	public void insertRcheck(Map<String, String> map) {
+		sqlSessionTemplate.insert(namespace + ".insertRcheck", map);
+	}//insertRcheck
+
+	public String whatRcheckNumber() {
+		String maxNum = "0";
+		if(sqlSessionTemplate.selectOne(namespace + ".whatRcheckNumber") == null) {
+			maxNum = "0";
+		} else {
+			maxNum = sqlSessionTemplate.selectOne(namespace + ".whatRcheckNumber"); 
+		}
+		return maxNum; 
+	}//whatRcheckNumber
+
+	public void deleteReview(Map<String, String> map) {
+		int count = sqlSessionTemplate.delete(namespace + ".deleteReview", map);
+		System.out.println("count: " + count);
+	}//deleteReview
 }

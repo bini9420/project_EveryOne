@@ -416,6 +416,51 @@ create table enter (
 insert into enter 
 values('A-1', 'lee', sysdate, '입점을 신청합니다.', '11223344', '04050', '서울 마포구 양화로 140', '애플스토어', 1, null, null, null, 0, sysdate, null, 0);
 
+-- 공지사항 테이블
+drop sequence notice_seq;
+
+CREATE SEQUENCE notice_seq 
+START WITH 1 
+INCREMENT BY 1 
+NOCACHE;
+
+drop table notice CASCADE CONSTRAINTS;
+
+create table notice (
+	nnum number primary key,
+	category varchar2(20) not null,
+	subject varchar2(30) not null,
+	content varchar2(100) not null,
+	ndate Date default sysdate,
+	readcount number default 0,
+	noti varchar2(10)	default 'n' not null,
+	id varchar2(20) not null,
+	FOREIGN KEY (id) REFERENCES member(id)
+);
+
+--게시판 테이블
+drop sequence des_seq;
+
+CREATE SEQUENCE des_seq 
+START WITH 1 
+INCREMENT BY 1 
+NOCACHE;
+
+drop table description CASCADE CONSTRAINTS;
+
+create table description (
+	dnum number primary key,
+	id varchar2(20),
+	FOREIGN KEY (id) REFERENCES member(id),
+	dsubject varchar2(50) not null,
+	dcontent varchar2(1000) not null,
+	ddate date default sysdate,
+	password varchar2(30),
+	ref number,
+	re_step number not null,
+	re_level number not null
+);
+
 
 
 commit;

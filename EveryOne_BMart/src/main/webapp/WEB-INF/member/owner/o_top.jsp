@@ -84,14 +84,21 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="allrvlist.rv">
-                    <i class="fas fa-fw fa-comments"></i>
-                    <span>상품리뷰</span>
-                </a>
-            </li>
+			<li class="nav-item">
+				<a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseSix"
+				aria-expanded="true" aria-controls="#collapseFour"> <i
+					class="fas fa-fw fa-comments"></i> <span>상품리뷰</span>
+				</a>
+				<div id="collapseSix" class="collapse"
+					aria-labelledby="headingFour" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" href="allrvlist.rv">전체 리뷰</a>
+						<a class="collapse-item" href="listRV.prd">상품별 리뷰</a>
+					</div>
+				</div>
+			</li>
 
-            <!-- Manage -->
+			<!-- Manage -->
             <hr class="sidebar-divider">
             <!-- Heading -->
             <div class="sidebar-heading">

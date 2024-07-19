@@ -101,4 +101,11 @@
 	<select id="getWaitDocumentCountForAdmin" resultType="int">
 		select count(*) from document where request=1 and dstatus=0
 	</select>
+	<select id = "getBmartMember" resultType = "member">
+		select * from member where id = #{id}
+	</select>
+	<select id="getOrderInfo" resultType="model.OrdersBean">
+		select * from orderinfo 
+		where id = #{id}
+	</select>
 </mapper>

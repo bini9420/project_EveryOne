@@ -2,6 +2,7 @@ package member.controller;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,11 +43,28 @@ public class MypageController {
 		//입점요청내역이 있는지 확인
 		EnterBean enter = memberDao.getEnter(member.getId());
 		if(enter != null) {
+			
 			model.addAttribute("enter", enter);
 		}
 		
 		if(index != null) { //어떤 버튼을 선택했는지에 따라서 다른 결과를 리턴
 			model.addAttribute("index", index);
+			
+			if(index.equals("orderList")) {
+				System.out.println(index);
+				List<model.OrdersBean> olist = memberDao.getOrderInfo(member.getId());
+				List<model.ProductBean> plist = new ArrayList<model.ProductBean>();
+				int pnum = 0;
+				model.ProductBean pb = new model.ProductBean();
+				for(model.OrdersBean orderbean : olist ) {
+					pnum = orderbean.getPnum();
+					System.out.println("pnum: "+pnum);
+					pb = memberDao.getProductInfo(pnum);
+					plist.add(pb);
+				}
+				model.addAttribute("olist", olist);
+				model.addAttribute("plist", plist);
+			}
 			
 			if(index.equals("memberInfoUpdate")) {
 				model.addAttribute("member", member);

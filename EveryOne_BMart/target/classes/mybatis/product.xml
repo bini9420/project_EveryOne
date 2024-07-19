@@ -278,4 +278,14 @@
 	<select id="getProductByPnum_Owner" resultType="product">
 		select * from product where pnum=#{pnum}
 	</select>
+		<select id="getStockByPnum" resultType="Integer">
+		select stock from product
+		where pnum = #{pnum}
+	</select>
+	<update id="minusStock" parameterType="map">
+		update product set stock = #{minusStock} where pnum=#{pnum}
+	</update>
+	<update id="plustStock" parameterType="map">
+		update product set stock = #{plusStock} where pnum=#{pnum}
+	</update>
 </mapper>

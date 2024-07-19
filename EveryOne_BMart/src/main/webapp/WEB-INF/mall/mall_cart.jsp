@@ -128,6 +128,16 @@
 		text-align: center;
 		padding-bottom: 50px;
 	}
+	#showMoreBtn{
+		border: 0px;
+		border-radius: 5px;
+		background-color: #3c3c3c;
+		color: white;	
+		font-weight: bold;
+		width: 200px;
+		height: 60px;
+		font-size: 30px;
+	}
 </style>
 
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.js"></script>
@@ -135,6 +145,39 @@
 	
 $(document).ready(function(){
 	calculateTotalAmount();
+	
+    // 초기 품목 수량
+    var itemsPerPage = 5;
+    var $productRows = $('.countBtn'); // 품목 행 선택
+    
+    // 페이지 로드 시 초기 설정 (5개 이상인 경우 "더보기" 버튼 표시)
+    showHideProductRows(itemsPerPage);
+    
+    // 더보기 버튼 클릭 시 처리
+    $('#showMoreBtn').on('click', function() {
+    	event.preventDefault(); // 기본 이벤트 처리 막기
+    	
+        itemsPerPage += 5; // 5개씩 추가 표시
+        showHideProductRows(itemsPerPage);
+    });
+    
+    // 품목 행 표시/숨기기 함수
+    function showHideProductRows(itemsToShow) {
+        $productRows.each(function(index) {
+            if (index < itemsToShow) {
+                $(this).show(); // 보이기
+            } else {
+                $(this).hide(); // 숨기기
+            }
+        });
+        
+        // 더보기 버튼 표시 여부 결정
+        if ($productRows.length > itemsToShow) {
+            $('#showMoreBtn').show(); // 남은 품목이 있으면 더보기 버튼 표시
+        } else {
+            $('#showMoreBtn').hide(); // 모든 품목을 표시하면 더보기 버튼 숨기기
+        }
+    }
 });
 
  	function up(index){
@@ -235,10 +278,12 @@ $(document).ready(function(){
 	
 	function order(){
          var checkedBoxes = $('input:checkbox[name="rowSelect"]:checked');
-        if (checkedBoxes.length === 0) {
-            alert("수량 변경할 상품을 선택하세요.");
-            return;
-        }
+         
+ 	    if (checkedBoxes.length === 0) {
+	        alert("주문할 상품을 선택하세요.");
+	        return false; // 주문 중단
+	    }
+	    return true;
         
         var pnumArray = [];
         var pqtyArray = [];
@@ -262,15 +307,7 @@ $(document).ready(function(){
 	    }
     	location.href = url;
 	}
-	function order() {
-	    var checkedBoxes = $('input:checkbox[name="rowSelect"]:checked');
-	    
-	    if (checkedBoxes.length === 0) {
-	        alert("주문할 상품을 선택하세요.");
-	        return false; // 주문 중단
-	    }
-	    return true;
-	}
+	
 </script>
 <head>
 
@@ -372,6 +409,11 @@ $(document).ready(function(){
 			</span>원<br>
 		</td>
 	</tr>
+	<tr>
+    <td colspan="6" class="orderTd">
+        <button id="showMoreBtn" style="display: none;">더보기</button>
+    </td>
+	</tr>	
 	<tr>
 		<td colspan="6" class="orderTd">
 			<input type="submit" class="orderBtn" value="주문하기">

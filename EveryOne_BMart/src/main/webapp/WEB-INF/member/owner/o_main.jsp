@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- Begin Page Content -->
+<%@ include file="o_top.jsp"%>
 <style>
 	h6 {
 		display: inline-block;
-	}
-	.btn-outline-primary {
-		width: 30px;
-		height: 30px;
 	}
 	#requestDocument:hover {
 		background-color: #7dc9c6 !important;
@@ -15,15 +11,15 @@
 	}
 </style>
 
-<%@ include file="o_top.jsp"%>
-<div class="container-fluid">
+<div class="container-fluid h-100">
 
 	<!-- Page Heading -->
 	<div class="d-sm-flex align-items-center justify-content-between mb-3">
 		<h1 class="h3 mb-0 text-gray-800"></h1>
 		<a href="javascript:show()" data-bs-toggle="modal" data-bs-target="#documentWrite"
-			class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-			class="fas fa-download fa-sm text-white-50" id="requestDocument"></i> 결재 요청</a>
+			class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+			<i class="fas fa-download fa-sm text-white-50" id="requestDocument"></i> 결재 요청
+		</a>
 	</div>
 
 	<!-- Content Row -->
@@ -60,7 +56,7 @@
 				<div class="card shadow mb-3">
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary">재고관리</h6>
-						<button type="button" class="btn float-right btn-sm btn-outline-primary" onClick="location.href='list.prd'">+</button>
+						<button type="button" class="btn float-right btn-sm btn-outline-primary" onClick="location.href='productList_owner.prd'">+</button>
 					</div>
 					<div class="card-body">
 						<div class="text-center">

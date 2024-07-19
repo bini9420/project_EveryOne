@@ -1,82 +1,76 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../common/common.jsp"%>
+<%@ include file="../member/owner/o_top.jsp"%>
 <!-- Begin Page Content -->
 <style>
-h6 {
-	display: inline-block;
-}
-
-.btn-outline-primary {
-	width: 30px;
-	height: 30px;
-}
-
-#requestDocument:hover {
-	background-color: #7dc9c6 !important;
-	border-color: #bae8e6 !important;
-}
-/* New CSS rules for sales management section */
-.sales-management {
-	width: 100%;
-	border-collapse: collapse;
-	margin: 20px 0;
-}
-
-.sales-management th, .sales-management td {
-	border: 1px solid #ddd;
-	padding: 8px;
-	text-align: center;
-}
-
-.sales-management th {
-	background-color: #f2f2f2;
-	color: black;
-}
-
-.sales-management tr:hover {
-	background-color: #f1f1f1;
-}
-
-.sales-management .no-orders {
-	text-align: center;
-	color: red;
-}
-
-.sales-management .pagination a {
-	margin: 0 5px;
-	text-decoration: none;
-	color: #007bff;
-}
-
-.sales-management .pagination a.active {
-	font-weight: bold;
-	color: #0056b3;
-}
-
-.sales-management .total-row {
-	font-weight: bold;
-	background-color: #f9f9f9;
-}
-
-.year-filter, .month-filter {
-	margin-bottom: 10px;
-}
-
-.year-filter a, .month-filter a {
-	margin-right: 10px;
-	text-decoration: none;
-	color: #007bff;
-}
-
-.year-filter a.active, .month-filter a.active {
-	font-weight: bold;
-	color: #0056b3;
-}
+	h6 {
+		display: inline-block;
+	}
+	
+	#requestDocument:hover {
+		background-color: #7dc9c6 !important;
+		border-color: #bae8e6 !important;
+	}
+	/* New CSS rules for sales management section */
+	.sales-management {
+		width: 100%;
+		border-collapse: collapse;
+		margin: 20px 0;
+	}
+	
+	.sales-management th, .sales-management td {
+		border: 1px solid #ddd;
+		padding: 8px;
+		text-align: center;
+	}
+	
+	.sales-management th {
+		background-color: #f2f2f2;
+		color: black;
+	}
+	
+	.sales-management tr:hover {
+		background-color: #f1f1f1;
+	}
+	
+	.sales-management .no-orders {
+		text-align: center;
+		color: red;
+	}
+	
+	.sales-management .pagination a {
+		margin: 0 5px;
+		text-decoration: none;
+		color: #007bff;
+	}
+	
+	.sales-management .pagination a.active {
+		font-weight: bold;
+		color: #0056b3;
+	}
+	
+	.sales-management .total-row {
+		font-weight: bold;
+		background-color: #f9f9f9;
+	}
+	
+	.year-filter, .month-filter {
+		margin-bottom: 10px;
+	}
+	
+	.year-filter a, .month-filter a {
+		margin-right: 10px;
+		text-decoration: none;
+		color: #007bff;
+	}
+	
+	.year-filter a.active, .month-filter a.active {
+		font-weight: bold;
+		color: #0056b3;
+	}
 </style>
 
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+<script type="text/javascript" src="resources/js/jquery.js"></script>
 <script>
     function show() {
         $('#documentWrite .modal-content').load("document_write.dc");
@@ -92,8 +86,7 @@ h6 {
     });
 </script>
 
-<%@ include file="../member/owner/o_top.jsp"%>
-<div class="container-fluid">
+<div class="container h-100">
 
 	<!-- Page Heading -->
 	<div class="d-sm-flex align-items-center justify-content-between mb-3">
@@ -127,7 +120,7 @@ h6 {
 						<c:if test="${selectedMonth == month}">selected</c:if>>${month}월</option>
 				</c:forEach>
 			</select>
-			<button type="submit">조회</button>
+			<button type="submit" class="btn btn-outline-secondary btn-sm">조회</button>
 		</form>
 		<table class="sales-management">
 			<tr>
@@ -142,7 +135,7 @@ h6 {
 			<c:choose>
 				<c:when test="${pageInfo.totalCount == 0}">
 					<tr>
-						<td colspan="7" class="no-orders">주문이 없습니다.</td>
+						<td colspan="7" class="no-orders p-5">주문이 없습니다.</td>
 					</tr>
 				</c:when>
 				<c:otherwise>

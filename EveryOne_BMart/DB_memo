@@ -25,6 +25,51 @@ insert into member(id, name, password, phone1, phone2, phone3, email1, email2) v
 insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('ahn', '안수민', '1111', '011', '8888', '8888', 'sumin', 'hanmail.net');
 insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('oh', '오지현', '1111', '010', '9999', '9999', 'jihyun', 'naver.com');
 
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('yeon', '태연', '1111', '010', '1010', '1010', 'yeon', 'naver.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('yoona', '윤아', '1111', '010', '1112', '1112', 'yoona', 'naver.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('glass', '유리', '1111', '010', '1313', '1313', 'glass', 'naver.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('soo', '수영', '1111', '010', '1414', '1414', 'soo', 'naver.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('sunny', '써니', '1111', '010', '1515', '1515', 'sunny', 'naver.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('winter', '윈터', '1111', '011', '1616', '1616', 'winter', 'naver.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('ning', '닝닝', '1111', '011', '1717', '1717', 'ning', 'naver.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('won', '해원', '1111', '011', '1818', '1818', 'won', 'naver.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('jiwoo', '지우', '1111', '011', '1919', '1919', 'jiwoo', 'naver.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('seolyoon', '설윤', '1111', '011', '2020', '2020', 'seolyoon', 'naver.com');
+
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('seok', '유재석', '1111', '010', '2121', '2121', 'seok', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('chan', '양세찬', '1111', '010', '2223', '2223', 'chan', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('jin', '지석진', '1111', '010', '2323', '2323', 'jin', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('gook', '김종국', '1111', '010', '2424', '2424', 'gook', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('hoon', '강훈', '1111', '010', '2525', '2525', 'hoon', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('geun', '이수근', '1111', '011', '2626', '2626', 'geun', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('dong', '강호동', '1111', '011', '2727', '2727', 'dong', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('min', '민경훈', '1111', '011', '2828', '2828', 'min', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('jang', '서장훈', '1111', '011', '2929', '2929', 'jang', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('cheol', '김영철', '1111', '011', '3030', '3030', 'cheol', 'daum.net');
+
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('do', '도영', '1111', '010', '3131', '3131', 'do', 'gmail.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('jae', '재현', '1111', '010', '3232', '3232', 'jae', 'gmail.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('haechan', '해찬', '1111', '010', '3334', '3334', 'haechan', 'gmail.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('jaemin', '재민', '1111', '010', '3434', '3434', 'jaemin', 'gmail.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('jisung', '지성', '1111', '010', '3535', '3535', 'jisung', 'gmail.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('jungwoo', '정우', '1111', '010', '3636', '3636', 'jungwoo', 'gmail.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('nayeon', '나연', '1111', '010', '3737', '3737', 'nayeon', 'gmail.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('jungyeon', '정연', '1111', '010', '3838', '3838', 'jungyeon', 'gmail.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('jihyo', '지효', '1111', '010', '3939', '3939', 'jihyo', 'gmail.com');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('mina', '미나', '1111', '010', '4040', '4040', 'mina', 'gmail.com');
+
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('sana', '사나', '1111', '011', '4141', '4141', 'sana', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('chae', '채영', '1111', '011', '4242', '4242', 'chae', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('da', '다현', '1111', '011', '4343', '4343', 'da', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('momo', '모모', '1111', '011', '4445', '4445', 'momo', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('karina', '카리나', '1111', '011', '4545', '4545', 'karina', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('jj', '지젤', '1111', '011', '4646', '4646', 'jj', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('hosi', '호시', '1111', '011', '4747', '4747', 'hosi', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('wooji', '우지', '1111', '011', '4848', '4848', 'wooji', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('ming', '민규', '1111', '011', '4949', '4949', 'ming', 'daum.net');
+insert into member(id, name, password, phone1, phone2, phone3, email1, email2) values('sg', '승관', '1111', '011', '5050', '5050', 'sg', 'daum.net');
+
+
 commit;
 
 
@@ -79,13 +124,13 @@ create table category(
 
 insert into category values(cate_seq.nextval,'쌀·잡곡·견과');
 insert into category values(cate_seq.nextval,'국·탕·찌개');
-insert into category values(cate_seq.nextval,'음료·커피·생수');
-insert into category values(cate_seq.nextval,'정육·수산·계란');
 insert into category values(cate_seq.nextval,'라면·면');
+insert into category values(cate_seq.nextval,'정육·수산·계란');
+insert into category values(cate_seq.nextval,'햄·어묵·통조림');
 insert into category values(cate_seq.nextval,'과일·채소');
 insert into category values(cate_seq.nextval,'양념·장류·오일');
+insert into category values(cate_seq.nextval,'음료·커피·생수');
 insert into category values(cate_seq.nextval,'우유·유제품');
-insert into category values(cate_seq.nextval,'햄·어묵/통조림');
 insert into category values(cate_seq.nextval,'생활·기타');
 
 insert into category values(cate_seq.nextval, '전자기기');
@@ -167,29 +212,6 @@ insert into product
 values(seqprod.nextval, 'admin', '오모가리 김치찌개', '오모가리 김치찌개.jpg', 6490, '500g', '익숙한 메뉴에 60년 노하우를 솔솔!', '하단 별도 표시일까지', null,  21, '국·탕·찌개', sysdate, 4, 1);
 
 
---정육·수산·계란
-insert into product 
-values(seqprod.nextval, 'admin', 'CJ 1등급 목초란', 'CJ 1등급 목초란.jpg', 6490, '10구', '매일 먹는 거니까, 더 신선한 것으로!', '전면 우측 상단 포기일까지', null,  14, '정육·수산·계란', sysdate, 4, 0);
-
-insert into product 
-values(seqprod.nextval, 'admin', '위너스 고추장 제육불고기', '위너스 고추장 제육불고기.jpg', 11990, '600g', '쫄깃한 고기와 양념의 조화 제육불고기', '신선식품으로 가급적 빠른 섭취를 권장 드립니다.', null,  55, '정육·수산·계란', sysdate, 22, 1);
-
-insert into product 
-values(seqprod.nextval, 'admin', '무항생제 대란', null, 3560, '10구', '무항생제 인증 대란', '별도 포기일까지', null,  30, '정육·수산·계란', sysdate, 2, 0);
-
-insert into product 
-values(seqprod.nextval, 'admin', '신선하림 냉장 닭윙(날개)', '신선하림 냉장 닭윙.jpg', 6990, '300g', '뼈에서 쏙쏙! 말라먹는 재미가 쏠쏠', '신선식품으로 가급적 빠른 섭취를 권장 드립니다.', null,  30, '정육·수산·계란', sysdate, 7, 0);
-
-insert into product 
-values(seqprod.nextval, 'admin', '노르웨이 그라브락스 냉장 연어', '노르웨이 냉장 연어.jpg', 11990, '140g', '우리 집으로 찾아 온 북유럽식 연어요리', '여름철 기온이 높으니, 당일 섭취 권장', '연어(노르웨이산)',  21, '정육·수산·계란', sysdate, 9, 1);
-
-insert into product 
-values(seqprod.nextval, 'admin', '안동 간고등어', null, 4990, '250g', '천일염으로 맛을 낸 안동 간고등어', '별도 표기일까지', '고등어(국산)',  35, '정육·수산·계란', sysdate, 11, 0);
-
-insert into product 
-values(seqprod.nextval, 'admin', '쭈꾸미도사 대창쭈꾸미', '쭈꾸미도사 대창쭈꾸미.jpg', 13390, '320g', '불맛나는 고소한 대창과 매콤한 쭈꾸미의 환상조합', '별도 표기일까지', '쭈꾸미(베트남, 태국산)',  46, '정육·수산·계란', sysdate, 20, 1);
-
-
 --라면·면
 insert into product 
 values(seqprod.nextval, 'admin', '농심 신라면', '농심 신라면.jpg', 3900, '120g 5개입', '얼큰한 국물과 쫄깃한 면발', '측면 표기일까지', null,  77, '라면·면', sysdate, 21, 0);
@@ -219,20 +241,94 @@ insert into product
 values(seqprod.nextval, 'admin', '농심 튀김우동 큰사발', null, 2780, '111g 2개묶음', '가쓰오부시의 깊은 맛', '하단 표기일까지', null,  25, '라면·면', sysdate, 8, 0);
 
 
+--정육·수산·계란
+insert into product 
+values(seqprod.nextval, 'admin', 'CJ 1등급 목초란', 'CJ 1등급 목초란.jpg', 6490, '10구', '매일 먹는 거니까, 더 신선한 것으로!', '전면 우측 상단 포기일까지', null,  14, '정육·수산·계란', sysdate, 4, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '위너스 고추장 제육불고기', '위너스 고추장 제육불고기.jpg', 11990, '600g', '쫄깃한 고기와 양념의 조화 제육불고기', '신선식품으로 가급적 빠른 섭취를 권장 드립니다.', null,  55, '정육·수산·계란', sysdate, 22, 1);
+
+insert into product 
+values(seqprod.nextval, 'admin', '무항생제 대란', null, 3560, '10구', '무항생제 인증 대란', '별도 포기일까지', null,  30, '정육·수산·계란', sysdate, 2, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '신선하림 냉장 닭윙(날개)', '신선하림 냉장 닭윙.jpg', 6990, '300g', '뼈에서 쏙쏙! 말라먹는 재미가 쏠쏠', '신선식품으로 가급적 빠른 섭취를 권장 드립니다.', null,  30, '정육·수산·계란', sysdate, 7, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '노르웨이 그라브락스 냉장 연어', '노르웨이 냉장 연어.jpg', 11990, '140g', '우리 집으로 찾아 온 북유럽식 연어요리', '여름철 기온이 높으니, 당일 섭취 권장', '연어(노르웨이산)',  21, '정육·수산·계란', sysdate, 9, 1);
+
+insert into product 
+values(seqprod.nextval, 'admin', '안동 간고등어', null, 4990, '250g', '천일염으로 맛을 낸 안동 간고등어', '별도 표기일까지', '고등어(국산)',  35, '정육·수산·계란', sysdate, 11, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '쭈꾸미도사 대창쭈꾸미', '쭈꾸미도사 대창쭈꾸미.jpg', 13390, '320g', '불맛나는 고소한 대창과 매콤한 쭈꾸미의 환상조합', '별도 표기일까지', '쭈꾸미(베트남, 태국산)',  46, '정육·수산·계란', sysdate, 20, 1);
+
+
 --과일·채소
 insert into product 
-values(seqprod.nextval, 'admin', '알배기 배추 1봉', null, 3990, '통', '고소하고 달콤한 알배기 배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국산',  5, '과일·채소', sysdate, 5, 1);
+values(seqprod.nextval, 'admin', '수플린 블루베리', '수플린 블루베리.jpg', 6990, '125g', '과육이 살아있는 미국산 블루베리', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '미국',  41, '과일·채소', sysdate, 21, 1);
 
 insert into product 
-values(seqprod.nextval, 'admin', '햇양파', null, 3790, '1.5kg', '단단하고 아삭한 양파', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  43, '과일·채소', sysdate, 4, 1);
+values(seqprod.nextval, 'admin', '강원농협 청양고추', '강원농협 청양고추.jpg', 2390, '150g', '자연과 함께 만든 알싸한 풍미', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '강원도',  33, '과일·채소', sysdate, 11, 0);
 
 insert into product 
-values(seqprod.nextval, 'admin', '조각 양배추', null, 1990, '500g', '신선하게 즐기는 조각 양배추', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  44, '과일·채소', sysdate, 2, 1);
+values(seqprod.nextval, 'admin', '제주 미니단호박 2입', '제주 미니단호박.jpg', 5790, '개당 600g이상', '포근포근 달큰달큰', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  33, '과일·채소', sysdate, 3, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '국내산 애호박', '국내산 애호박.jpg', 1200, '1개', '만능 채소 국내산 애호박', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국내산',  22, '과일·채소', sysdate, 5, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '신세계푸드 컷팅 파인애플', '신세계푸드 컷팅 파인애플.jpg', 11990, '900g', '필요없는 껍질은 버리고, 먹기 좋은 크기로!', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '필리핀산',  22, '과일·채소', sysdate, 8, 1);
+
+insert into product 
+values(seqprod.nextval, 'admin', '삼흥 당도선별 수박', '삼흥 당도선별 수박.jpg', 24990, '6~7kg', '믿고 먹는 풍미', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국산',  22, '과일·채소', sysdate, 11, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '서귀포 한라 하우스감귤', '서귀포 한라 하우스감귤.jpg', 11990, '700g', '톡 터지는 풍미', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국산',  22, '과일·채소', sysdate, 15, 1);
+
+insert into product 
+values(seqprod.nextval, 'admin', '신선누리 시금치', '신선누리 시금치.jpg', 5790, '200g', '신선한 녹색 채소가 전하는 자연의 기운', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국산',  22, '과일·채소', sysdate, 3, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '풀무원 국산 숙주', '풀무원 국산 숙주.jpg', 2690, '260g', '아삭함이 살아 있는 우리땅에서 기른 국산 숙주', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국산',  22, '과일·채소', sysdate, 7, 0);
+
+insert into product 
+values(seqprod.nextval, 'admin', '송이애 새송이버섯', '송이애 새송이버섯.jpg', 2990, '400g', '담백하게 즐기는 새송이버섯', '신선식품으로 가급적 빠른 시일내에 소비하세요.', '국산',  22, '과일·채소', sysdate, 7, 0);
 
 
 --우유·유제품
 insert into product 
 values(seqprod.nextval, 'admin', '서울우유', null, 2900, '1000ml', '1등급이 무려 2개!', null, '국내산',  44, '우유·유제품', sysdate, 10, 1);
+
+
+
+--전자기기
+insert into product 
+values(seqprod.nextval, 'lee', '전기포트', '전기포트.jpg', 49000, '1개', '대용량, 이중구조 무선 전기주전자', null, '중국',  33, '전자기기', sysdate, 10, 0);
+
+insert into product 
+values(seqprod.nextval, 'lee', '드라이기', '드라이기.jpg', 32000, '1개', '2100W 파원 바람으로 빠른 드라이', null, '대한민국',  33, '전자기기', sysdate, 5, 0);
+
+insert into product 
+values(seqprod.nextval, 'lee', '스탠드형 선풍기', '스탠드형 선풍기.jpg', 50000, '1개', '더위를 물러가게 해주는 여름 필수품', null, '대한민국',  44, '전자기기', sysdate, 22, 0);
+
+insert into product 
+values(seqprod.nextval, 'lee', '컬러 레이저 프린터', '컬러 레이저 프린터.jpg', 290000, '1개', '자동양면, 무선 컬러 프린터', null, '중국',  44, '전자기기', sysdate, 12, 0);
+
+insert into product 
+values(seqprod.nextval, 'lee', '믹서기', '믹서기.jpg', 59000, '1개', '100년 역사의 독일 기술력과 디자인', null, '루마니아',  44, '전자기기', sysdate, 4, 0);
+
+insert into product 
+values(seqprod.nextval, 'lee', '6인용 트위프레셔 밥솥(화이트)', '6인용 트위프레셔 밥솥(화이트).jpg', 250000, '1개', '다양하게 즐기는 새로운 밥맛의 경험', null, '대한민국',  55, '전자기기', sysdate, 33, 1);
+
+insert into product 
+values(seqprod.nextval, 'lee', '블렌드포스 글라스', '블렌드포스 글라스.jpg', 86000, '1개', '테팔 파워엘릭스 기술로 최대 30% 더 빠르게!', null, '중국',  55, '전자기기', sysdate, 15, 1);
+
+insert into product 
+values(seqprod.nextval, 'lee', '쿠쿠 전자레인지', '쿠쿠 전자레인지.jpg', 129000, '1개', '어디서 봐도 깔끔', null, '중국',  55, '전자기기', sysdate, 18, 1);
+
+insert into product 
+values(seqprod.nextval, 'lee', '컴팩트 세라믹 스트레이트너', '컴팩트 세라믹 스트레이트너.jpg', 32000, '1개', '딱 필요한 기능만 모아 모발 손상을 줄임!', null, '중국',  33, '전자기기', sysdate, 8, 1);
 
 
 --최근 본 상품

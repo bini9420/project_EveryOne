@@ -7,6 +7,7 @@
 
 <mapper namespace="business">
 	
+	<!-- 이미 사업자로 등록된 사람인지 조회 -->
 	<select id="checkBusiness" resultType="int">
 		select count(*) from business where id=#{id}
 	</select>

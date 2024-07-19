@@ -109,7 +109,7 @@
 			       		</tr>
 			       		<c:if test="${product.origin ne null}">
 			       		<tr>
-			       			<th colspan="2">원산지</th>
+			       			<th colspan="2">원산지(제조국)</th>
 			       			<td colspan="6">${product.origin}</td>
 			       		</tr>
 			       		</c:if>

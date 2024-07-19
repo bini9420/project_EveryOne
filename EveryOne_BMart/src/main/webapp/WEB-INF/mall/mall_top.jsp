@@ -99,7 +99,7 @@
 				<ul class="navbar-nav mb-2 mb-lg-0 ms-lg-5 ps-lg-5">
 					<li class="nav-item ms-lg-5 mx-1">
 						<!-- home icon -->
-						<a class="nav-link active" aria-current="page" href="main.mall">
+						<a class="nav-link active" aria-current="page" href="mypage.mb?index=orderList">
 							<i class="fi fi-rr-home icon"></i>
 						</a>
 					</li>
@@ -122,7 +122,7 @@
 					<c:if test="${loginInfo ne null}">
 						<li class="nav-item">
 							<!-- heart icon -->
-							<a class="nav-link active" aria-current="page" href="mypage.mb">
+							<a class="nav-link active" aria-current="page" href="mypage.mb?index=orderList">
 								<i class="fi fi-rr-user icon"></i>
 								<font class="fs-6 text-primary fw-bolder">${loginInfo.id} 님😊</font>
 							</a>

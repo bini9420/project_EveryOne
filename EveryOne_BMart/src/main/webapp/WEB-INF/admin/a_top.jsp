@@ -2,12 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@include file="../common/common.jsp"%>
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 
 
 <!-- Page level custom scripts -->
@@ -58,6 +58,7 @@
 	float: right;
 	margin-left: 10px;
 	font-size: 2rem;
+	display: inline-flex;
 }
 
 .content {
@@ -104,8 +105,9 @@ button {
 }
 
 .profilebtn{
-	text-align: center;
+	text-align: center;	
 }
+
 
 </style>
 </head>
@@ -258,7 +260,7 @@ button {
 								<i class="fi fi-bs-admin-alt" style="font-size: 25px;"></i>
 							</a> 
 							<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="adProfile.ad"> 
+								<a class="dropdown-item" href="adProfile.mb"> 
 									<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400">
 									</i> Profile
 								</a> 

@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../admin/a_top.jsp"%>
-
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.*" %>
+<%@ page import="javax.servlet.*" %>
+<%@ page import="javax.servlet.http.*" %>
 
 
 <!-- Begin Page Content -->
@@ -27,24 +31,7 @@
 					</div>
 				</div>
 			</div>
-
-			<!-- Bar Chart -->
-			<div class="card shadow mb-4">
-				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
-				</div>
-				<div class="card-body">
-					<div class="chart-container">
-						<canvas id="myBarChart"></canvas>
-					</div>
-
-				</div>
-			</div>
-
 		</div>
-
-
-
 		<!-- Donut Chart -->
 		<div class="col-xl-4 col-lg-5">
 			<div class="card shadow mb-4">
@@ -62,6 +49,41 @@
 		</div>
 	</div>
 </div>
+		
+		
+<% String months[] = {"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"}; %>
+
+        <table class="table bg-white">
+            <thead>
+                <tr>
+                    <c:forEach var="month" items="<%=months %>">
+                    <th>${month }</th>
+                    
+                    </c:forEach>
+                 </tr>
+             <tbody>
+             	 <tr>
+             	<c:forEach var="ams" items="${adminMonthlySale.keySet()}">
+             		<td>${ams}</td>	
+             	</c:forEach>
+             	</tr>
+             	<tr>
+             	<c:forEach var="ams" items="${adminMonthlySale.keySet()}">
+             		<td>${adminMonthlySale.get(ams)}</td>
+             	</c:forEach>
+             	</tr>
+             
+             
+                </tbody>
+				</table>
+					
+						<!--  <canvas id="myBarChart"></canvas>  -->
+
+
+
+
+
+
 
 
 <script>
@@ -196,4 +218,6 @@
         
         
     </script>
+  
+    
 <%@include file="../admin/a_bottom.jsp"%>

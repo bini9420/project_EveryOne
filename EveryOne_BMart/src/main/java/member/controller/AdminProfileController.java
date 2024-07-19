@@ -16,14 +16,15 @@ public class AdminProfileController {
 	private final String getPage = "a_profile";
 	
 	@Autowired
-	MemberDao memberDao;
+	MemberDao MemberDao;
+	
 	
 	@RequestMapping(command)
 	public String profile(HttpSession session,Model model) {
 		
 		MemberBean member = (MemberBean)session.getAttribute("loginInfo");
 		
-		MemberBean adminLists =memberDao.getMember(member.getId());
+		MemberBean adminLists =MemberDao.getMember(member.getId());
 		System.out.println("adminLists:"+adminLists);
 		
 		model.addAttribute("adminLists",adminLists);

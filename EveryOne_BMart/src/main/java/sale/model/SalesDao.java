@@ -2,6 +2,7 @@ package sale.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,9 @@ public class SalesDao {
 		return clists;
 	}
 
-
+	public List<Map<String,Integer>> getAdminMonthSumCount(){
+		return sqlSessionTemplate.selectList(namespace+".getAdminMonthSumCount"); 
+	}
 
 
 

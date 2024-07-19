@@ -1,6 +1,11 @@
 package sale.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -62,7 +67,7 @@ public class MonthlyController {
 
 
 
-
+		//bar차트
 		JsonArray barArray = new JsonArray();
 		List<ProductBean> clists = salesDao.getCateChart();
 
@@ -76,11 +81,58 @@ public class MonthlyController {
 		}
 		String barJson = gson.toJson(barArray);
 		model.addAttribute("barJson",barJson);
+		
+		
+		
+		//월별 매출 테이블
 
-
-		return getPage;
+		
+		  //List<Map<String, Integer>> monthSumCount = salesDao.getAdminMonthSumCount();
+		  
+		  
+		  
+			/*
+			 * Map<String, Integer> saleCountMap = monthSumCount.get(0);
+			 * System.out.println(saleCountMap); Map<String, Integer> saleAmountMap =
+			 * monthSumCount.get(1); System.out.println(monthSumCount);
+			 * 
+			 * List<Map<String, Integer>> resultList = new ArrayList<Map<String,
+			 * Integer>>(); resultList.add(saleCountMap); resultList.add(saleAmountMap);
+			 * 
+			 * model.addAttribute("monthSumCount", resultList); return getPage;
+			 */
+	        
+			
+			  //model.addAttribute("monthSumCount", monthSumCount); return getPage;
+			 
+			
+		
+		
+			
+			  List<Map<String, Integer>> monthSumCount =salesDao.getAdminMonthSumCount();
+			  
+			  List<Map<String,Integer>> resultList = new ArrayList<Map<String, Integer>>();
+			  
+			  Map<String,Integer> adminMonthlySale = null;
+			  
+			  
+			  
+			  for(Map<String,Integer> map : monthSumCount) {
+			  
+			  adminMonthlySale = new TreeMap<String, Integer>(map);
+			  
+				 Set<String> keyset = adminMonthlySale.keySet();
+				 for(String key: keyset) {
+				 System.out.println("key:"+key+"/value="+adminMonthlySale.get(key)); }
+			  
+			  }
+			 
+			  model.addAttribute("adminMonthlySale",adminMonthlySale);
+			
+			  return getPage;
+			 
+	        
 
 	}
-
 
 }

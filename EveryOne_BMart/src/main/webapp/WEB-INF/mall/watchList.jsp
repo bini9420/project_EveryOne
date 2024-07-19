@@ -88,8 +88,9 @@
 		</div>
 	</c:if>
 	<c:if test="${fn:length(wlists) == 0}">
-		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center h-75">
 			<div class="mt-4 mb-4 text-center">
+				<img src="resources/img/no-watch.png" alt="..." class="productImg m-3"/><br>
 				<font size="4">최근 본 상품이 없습니다.</font>
 			</div>
 		</div>

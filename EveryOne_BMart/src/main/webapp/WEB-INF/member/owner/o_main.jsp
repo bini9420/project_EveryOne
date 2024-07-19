@@ -55,7 +55,7 @@
 				<!-- 재고관리 -->
 				<div class="card shadow mb-3">
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">재고관리</h6>
+						<h6 class="m-0 font-weight-bold text-primary">상품관리</h6>
 						<button type="button" class="btn float-right btn-sm btn-outline-primary" onClick="location.href='productList_owner.prd'">+</button>
 					</div>
 					<div class="card-body">

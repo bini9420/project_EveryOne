@@ -122,7 +122,10 @@
 	<a href="" class="btn btn-icon-split" id="closeBtn">
 		<span class="text">닫기</span>
 	</a>
-        
+    <!-- 수정 버튼 -->
+    <a href="owner_prdUpdate.prd?pnum=${product.pnum }" class="btn btn-icon-split" id="updateBtn">
+		<span class="text">수정</span>
+	</a>    
 	<!-- 저장 버튼 -->
 	<a href="javascript:save()" class="btn btn-primary btn-icon-split" id="saveBtn">
 		<span class="text">저장</span>

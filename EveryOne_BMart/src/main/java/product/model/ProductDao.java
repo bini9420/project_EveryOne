@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import document.model.DocumentBean;
 import model.EnterBean;
+import model.ProductBBean;
 import model.ProductBean;
 import utility.MemberListPaging;
 import utility.PagingPlus;
@@ -125,7 +126,16 @@ public class ProductDao {
 		return pb;
 	}//getProductByPnum_Owner
 
-	
+	public ProductBean getProductById(int pnum) {
+		return sqlSessionTemplate.selectOne(namespace + ".selectProductById", pnum);
+	}
 
+	public int updateOwnerProduct(ProductBean product) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.update(namespace + ".updateOwnerProduct", product);
+		return cnt;
+	}
+
+	
 
 }

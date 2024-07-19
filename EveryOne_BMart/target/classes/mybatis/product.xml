@@ -278,4 +278,15 @@
 	<select id="getProductByPnum_Owner" resultType="product">
 		select * from product where pnum=#{pnum}
 	</select>
+	
+	<select id="selectProductById" parameterType="int" resultType="product">
+        SELECT * FROM product WHERE pnum = #{pnum}
+    </select>
+	
+	<update id="updateOwnerProduct">
+		update product set pname = #{pname}, price = #{price}, stock = #{stock}, capacity = #{capacity}, pcontent = #{pcontent}, expritydate = #{expritydate}, origin = #{origin}, pcategory = #{pcategory}, inputdate = sysdate, ordercount = #{ordercount}, pimage = #{pimage, jdbcType=VARCHAR}
+    	where pnum = #{pnum}
+	</update>
+    
+    
 </mapper>

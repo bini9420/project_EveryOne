@@ -121,7 +121,7 @@
             </li>
             
             <!-- 재고관리 Menu -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-box"></i>
@@ -131,10 +131,10 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Stock</h6>
-                        <a class="collapse-item" href="list.prd">전체 재고현황</a>
+                        <a class="collapse-item" href="owner_prdUpdate.prd">전체 재고현황</a>
                     </div>
                 </div>
-            </li>
+            </li> -->
 
 
             <!-- 전자결재 -->

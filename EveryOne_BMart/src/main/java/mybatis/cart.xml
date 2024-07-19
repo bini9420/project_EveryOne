@@ -32,7 +32,7 @@
 		delete from cart 
 		where pnum = #{pnum}
 	</delete>
-		<select id="getQtyByPnum" resultType="Integer">
+	<select id="getQtyByPnum" resultType="Integer">
 		select qty from cart
 		where pnum = #{pnum}
 	</select>

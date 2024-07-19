@@ -124,6 +124,10 @@
 		text-align: center;
 		color: #414141;
 	}
+	.orderTd{
+		text-align: center;
+		padding-bottom: 50px;
+	}
 </style>
 
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.js"></script>
@@ -369,7 +373,7 @@ $(document).ready(function(){
 		</td>
 	</tr>
 	<tr>
-		<td colspan="6">
+		<td colspan="6" class="orderTd">
 			<input type="submit" class="orderBtn" value="주문하기">
 		</td>
 	</tr>

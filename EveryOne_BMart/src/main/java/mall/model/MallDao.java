@@ -1,6 +1,7 @@
 package mall.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import member.model.AddressBean;
 import member.model.MemberBean;
@@ -155,6 +157,11 @@ public class MallDao {
 		int qty = sqlSessionTemplate.selectOne(cart+".getQtyByPnum", pnum);
 		return qty;
 	}
+	//상품의 재고 개수 조회
+	public int getStockByPnum(int pnum) {
+		int stock = sqlSessionTemplate.selectOne(product +".getStockByPnum", pnum);
+	return stock;
+	}
 
 	//id, pnum으로 watch 조회
 	public int getWatch(WatchBean wb) {
@@ -233,6 +240,37 @@ public class MallDao {
     	int cnt = -1;
     	cnt = sqlSessionTemplate.insert(order+".insertOrder", ob);
     	return cnt; 
+    }
+    
+    public List<OrdersBean> getOrderList(String id) {
+    	
+    	List<OrdersBean> olist = new ArrayList<OrdersBean>();
+    	olist = sqlSessionTemplate.selectList(order+".getOrderList", id);
+    	return olist;
+    }
+    
+    public int deleteOrder(int onum) {
+    	int cnt = -1;
+    	cnt = sqlSessionTemplate.delete(order+".deleteOrder", onum);
+    	return cnt;
+    }
+    
+    public int minusStock(int pnum, int minusStock) {
+    	Map<String, Integer> map = new HashMap<String, Integer>();
+    	map.put("pnum", pnum);
+    	map.put("minusStock", minusStock);
+    	int cnt = -1;
+    	cnt = sqlSessionTemplate.update(product+".minusStock", map);
+    	return cnt;
+    }
+    
+    public int plustStock(int pnum, int plusStock) {
+    	Map<String, Integer> map = new HashMap<String, Integer>();
+    	map.put("pnum", pnum);
+    	map.put("plusStock", plusStock);
+    	int cnt = -1;
+    	cnt = sqlSessionTemplate.update(product+".plustStock", map);
+    	return cnt;
     }
 
 	

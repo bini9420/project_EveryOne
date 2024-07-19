@@ -25,5 +25,8 @@
     <delete id="deleteReview">
         DELETE FROM review WHERE rnum = #{rnum}
     </delete>
-
+	<insert id="insertReview">
+		insert into review 
+		values(rseq.nextval,#{id},#{pnum},#{rcomment},#{image jdbcType=VARCHAR},sysdate,#{score},#{onum})
+	</insert>
 </mapper>

@@ -42,9 +42,29 @@ public class PayController {
 		int[] pamount = payInfo.getQty();
 		double[] orderprice = payInfo.getOrderprice();
 		List<OrdersBean> olist = new ArrayList<OrdersBean>();
-		int cnt = -1;
+		int cnt = -1; // 장바구니 삭제 성공/실패 확인
+		int mcnt = -1; // 재고수량 차감 성공/실패 확인
 		for(int i=0;i<pnumber.length;i++) {
+			
 			int pnum = pnumber[i];
+			int Pamount = pamount[i];
+			
+			//주문한 상품 장바구니에서 삭제
+			cnt = mallDao.deleteCart(pnum);
+			System.out.println("주문상품 장바구니 삭제 cnt: " + cnt);
+			
+			// 상품 재고수량 차감
+			int stock = mallDao.getStockByPnum(pnum);
+			System.out.println("paycontroller 기존 상품 재고수량: "+stock);
+			
+			int minusStock = stock - Pamount;
+			mcnt = mallDao.minusStock(pnum, minusStock);
+			
+			if(mcnt>0) {
+				System.out.println("재고수량 차감 완료");
+			}
+			// 상품 재고수량 차감
+			
 			ob.setId(payInfo.getId());
 			ob.setPnum(pnum);
 			ob.setPamount(pamount[i]);
@@ -56,11 +76,8 @@ public class PayController {
 			cnt = mallDao.insertOrder(ob);
 			olist.add(ob);
 		}
-		
 		mav.addObject("olist", olist);
-		mav.setViewName("redirect:/orderList.jsp");
 		return mav;
-		
 	}
 
 }

@@ -69,6 +69,7 @@
 	    	                    var msg = '결제 실패';
     	                  }
 	    	            alert(msg);
+	    	            window.opener.location.href="orderList.mall";
 	    		  }
 	    		);
 	</script>

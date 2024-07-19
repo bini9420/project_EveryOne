@@ -5,7 +5,11 @@ body {
 	padding: 0;
 }
 
+<<<<<<< HEAD
 .containerN {
+=======
+.container {
+>>>>>>> refs/remotes/origin/CHO
 	width: 80%;
 	margin: 0 auto;
 	padding: 20px;

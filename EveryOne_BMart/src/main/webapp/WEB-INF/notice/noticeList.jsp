@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <%@ include file="../mall/cs_top.jsp"%>
 
 <%-- <link rel="stylesheet" type="text/css"
@@ -134,6 +135,138 @@
 		<div class="col-sm-8">
 			<div class="card bg-light" style="border: 0px">
 				<div class="containerN">
+=======
+<%@ include file="../common/common.jsp"%>
+<%@ include file="../mall/cs_top.jsp"%>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(
+			function() {
+				$('.title-link')
+						.on(
+								'click',
+								function(e) {
+									e.preventDefault();
+									var nnum = $(this).data('nnum');
+									var contentArea = $('#content-' + nnum);
+
+									if (contentArea.is(':visible')) {
+										contentArea.slideUp();
+									} else {
+										$('.content-area').slideUp();
+
+										fetchContent(nnum, contentArea, $(this)
+												.data('pagenumber'), $(this)
+												.data('whatcolumn'), $(this)
+												.data('keyword'));
+									}
+								});
+
+				function fetchContent(nnum, contentArea, pageNumber,
+						whatColumn, keyword) {
+					$.ajax({
+						url : 'content.nt',
+						type : 'GET',
+						data : {
+							nnum : nnum,
+							pageNumber : pageNumber,
+							whatColumn : whatColumn,
+							keyword : keyword,
+							_ : new Date().getTime()
+						// cache-busting parameter
+						},
+						success : function(response) {
+							contentArea.html(response).slideDown();
+						},
+						error : function(xhr, status, error) {
+							console.log('Error loading content');
+							console.log('Status: ' + status);
+							console.log('Error: ' + error);
+							alert('Error loading content');
+						}
+					});
+				}
+
+				function autoRefresh() {
+					$('.title-link').each(
+							function() {
+								var nnum = $(this).data('nnum');
+								var contentArea = $('#content-' + nnum);
+								if (contentArea.is(':visible')) {
+									fetchContent(nnum, contentArea, $(this)
+											.data('pagenumber'), $(this).data(
+											'whatcolumn'), $(this).data(
+											'keyword'));
+								}
+							});
+				}
+
+				setInterval(autoRefresh, 30000); // Refresh every 30 seconds
+			});
+
+	function Delete(nnum, pageNumber) {
+		if (confirm("정말로 삭제하시겠습니까?")) {
+			location.href = 'delete.nt?nnum=' + nnum + "&pageNumber="
+					+ pageNumber;
+		}
+	}
+
+	function goUpdate(nnum, pageNumber) {
+		location.href = "update.nt?nnum=" + nnum + "&pageNumber=" + pageNumber;
+	}
+</script>
+
+<div class="container my-5 p-4">
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="card bg-light">
+				<div class="card-body">
+					<nav class="nav flex-column">
+						<!-- <form action="" method="post" class="d-flex">
+							<input type="text" name="keyword" class="form-control w-75"
+								placeholder="search">
+							<button type="button" class="btn btn-secondary ms-2">검색</button>
+						</form> -->
+						<div class="search-form">
+							<form action="list.nt" method="get">
+								<!-- <select name="whatColumn">
+									<option value="all">전체검색</option>
+									<option value="subject">제목</option>
+									<option value="category">구분</option>
+								</select> -->
+								<input type="hidden" name="whatColumn" value="subject">
+								<br> <input type="text" name="keyword"
+									placeholder="검색어를 입력하세요"> <input type="submit"
+									value="검색">
+							</form>
+						</div>
+						<hr>
+						<font class="my-2" color="#186E6A">배민 B마트</font> <a
+							class="nav-link text-muted" aria-current="page"
+							href="list.nt?whatColumn=category&keyword=FAQ"> FAQ </a> <a
+							class="nav-link text-muted" aria-current="page"
+							href="list.nt?whatColumn=category&keyword=공지사항"> 공지사항 </a>
+						<hr>
+						<!-- <font class="my-2" color="#186E6A">배민상회</font> <a
+							class="nav-link text-muted" aria-current="page" href="#"> F&A
+						</a> <a class="nav-link text-muted" aria-current="page" href="#">
+							공지사항 </a>
+						<hr>  -->
+						<a class="nav-link text-primary" aria-current="page"
+							href="main.mall"> 배민 B마트로 돌아가기 </a>
+						<!-- <a
+							class="nav-link text-primary" aria-current="page" href="#">
+							배민 상회로 돌아가기 </a> -->
+					</nav>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="card bg-light" style="border: 0px">
+				<div class="container">
+>>>>>>> refs/remotes/origin/CHO
 					<h1 class="board-title">공지사항</h1>
 					<table class="board-table">
 						<thead>

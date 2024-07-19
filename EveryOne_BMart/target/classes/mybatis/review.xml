@@ -39,4 +39,29 @@
 		SELECT R.*, P.pnum FROM review R JOIN Product P ON R.pnum = P.pnum
 	</select>
     
+	
+	<select id="getReviewCount" resultType="int">
+		select count(*) as cnt from review
+		where pnum = #{pnum}
+	</select>
+	
+	<select id="getReviewsByProduct" resultType="ReviewBean">
+        SELECT * FROM review WHERE pnum = #{pnum}
+    </select>
+
+    <select id="getAverageScore" resultType="double">
+        SELECT AVG(score) FROM review WHERE pnum = #{pnum}
+    </select>
+    
+    <select id="getReview" parameterType="int" resultType="ReviewBean">
+        SELECT * FROM review WHERE rnum = #{rnum}
+    </select>
+
+    <delete id="deleteReview">
+        DELETE FROM review WHERE rnum = #{rnum}
+    </delete>
+	<insert id="insertReview">
+		insert into review 
+		values(rseq.nextval,#{id},#{pnum},#{rcomment},#{image jdbcType=VARCHAR},sysdate,#{score},#{onum})
+	</insert>
 </mapper>

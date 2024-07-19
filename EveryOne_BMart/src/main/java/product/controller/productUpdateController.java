@@ -19,6 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import model.ProductBBean;
 import product.model.ProductBDao;
+import product.model.ProductBean;
+import product.model.ProductDao;
+	
 
 @Controller
 public class productUpdateController {

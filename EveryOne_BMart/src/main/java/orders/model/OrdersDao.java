@@ -84,5 +84,6 @@ public class OrdersDao {
         params.put("month", month);
         return sqlSessionTemplate.selectList(namespace + ".getOrdersBySellerAndYearAndMonth", params, rowBounds);
     }
-
+    
 }
+

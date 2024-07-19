@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 
 
+=======
+<%@ include file="../common/common.jsp" %>
+>>>>>>> refs/remotes/origin/CHO
 <c:choose>
 	<c:when test="${index eq null || fn:contains(index, 'orderList')}">
 		<div class="card h-100" style="border: 0px">

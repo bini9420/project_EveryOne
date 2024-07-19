@@ -59,9 +59,8 @@ public class descriptionListController {
 		 if (id != null && "admin".equals(id)) {
              return getPage;
          }
-					
-		return gotoPage;
+		 return gotoPage;
 		}
 	}
-	
 }
+					

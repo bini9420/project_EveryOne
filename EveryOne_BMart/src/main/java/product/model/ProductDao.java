@@ -13,6 +13,7 @@ import document.model.DocumentBean;
 import model.EnterBean;
 import model.ProductBean;
 import utility.MemberListPaging;
+import utility.Paging;
 import utility.PagingPlus;
 
 @Component
@@ -46,8 +47,9 @@ public class ProductDao {
 		
 		return count;
 	}// getTotalCount
-
-	public int insertProduct(ProductBean pb) {
+	
+	
+	public int insertProduct(product.model.ProductBean pb) {
 		int cnt = -1;
 		cnt = sqlSessionTemplate.insert(namespace + ".insertProduct", pb);
 		System.out.println("insertProduct cnt : " + cnt);
@@ -125,7 +127,35 @@ public class ProductDao {
 		return pb;
 	}//getProductByPnum_Owner
 
+	public List<ProductBean> selectAllProducts(Map<String, String> map, Paging pageInfo) {
+        RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+        return sqlSessionTemplate.selectList(namespace + ".selectAllProducts", map, rowBounds);
+    }
 	
+	public List<ProductBean> selectProductsByUser(Paging pageInfo, String id) {
+        RowBounds rowBounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+        return sqlSessionTemplate.selectList(namespace + ".selectProductsByUser", id, rowBounds);
+    }
+	
+	public ProductBean getProductById(int pnum) {
+		return sqlSessionTemplate.selectOne(namespace + ".selectProductById", pnum);
+	}
+	
+	public int updateStock(ProductBean pb) {
+		int cnt = -1;
+        cnt = sqlSessionTemplate.update(namespace + ".updateStock", pb);
+        return cnt;
+	}
 
+	public int getProductCount(String id) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.selectOne(namespace + ".getProductCount", id);
+		return cnt;
+	}
+
+	public int getTotalProductCount(Map<String, String> map) {
+		return sqlSessionTemplate.selectOne(namespace + ".getTotalProductCount",map);
+	}	
+	
 
 }

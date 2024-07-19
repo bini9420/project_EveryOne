@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import product.model.ProductBDao;
+import product.model.ProductDao;
 
 @Controller
 public class productDeleteController {
@@ -20,7 +20,7 @@ public class productDeleteController {
 	private final String gotoPage = "redirect:/list.prd";
 	
 	@Autowired
-	ProductBDao productDao;
+	ProductDao productDao;
 	
 	@RequestMapping(command)
 	public ModelAndView delete(@RequestParam(value="pnum") int pnum,

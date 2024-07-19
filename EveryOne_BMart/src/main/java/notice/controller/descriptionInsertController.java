@@ -53,7 +53,7 @@ public class descriptionInsertController {
 		ModelAndView mav = new ModelAndView();
 		MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo");
 		String id = loginInfo.getId();
-		
+
 		if(result.hasErrors()) {
 			mav.setViewName(gotoPage);
 			return mav; 

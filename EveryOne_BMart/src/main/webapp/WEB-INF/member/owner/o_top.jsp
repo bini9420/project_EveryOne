@@ -73,8 +73,12 @@
             
             <!-- 물품 등록 Menu -->
             <li class="nav-item">
+<<<<<<< HEAD
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseFive"
                     aria-expanded="true" aria-controls="#collapseFour">
+=======
+                <a class="nav-link" href="insert.prd">
+>>>>>>> refs/remotes/origin/CHO
                     <i class="fas fa-fw fa-plus"></i>
                     <span>상품관리</span>
                 </a>
@@ -114,7 +118,10 @@
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Sales</h6>
+<<<<<<< HEAD
                         <a class="collapse-item" href="owner_prdSales.prd">상품별 매출현황</a>
+=======
+>>>>>>> refs/remotes/origin/CHO
                         <a class="collapse-item" href="list.od">전체 매출현황</a>
                     </div>
                 </div>

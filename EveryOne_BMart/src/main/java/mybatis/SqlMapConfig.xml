@@ -40,6 +40,8 @@
 		<mapper resource="mybatis/enter.xml"/>
 		<mapper resource="mybatis/document.xml"/>
 		<mapper resource="mybatis/state.xml"/>
+		
+		
 		<mapper resource="mybatis/reviewCheck.xml"/>
 
 		<mapper resource="mybatis/admin.xml"/>

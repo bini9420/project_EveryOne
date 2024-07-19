@@ -148,7 +148,7 @@ public class Paging {
 //			&nbsp;<font color='red'>1</font>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=2&pageSize=2&whatColumn=null&keyword=null'>2</a>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=3&pageSize=2&whatColumn=null&keyword=null'>3</a>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=4&pageSize=2&whatColumn=null&keyword=null'>4</a>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=5&pageSize=2&whatColumn=null&keyword=null'>5</a>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=6&pageSize=2&whatColumn=null&keyword=null'>6</a>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=7&pageSize=2&whatColumn=null&keyword=null'>7</a>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=8&pageSize=2&whatColumn=null&keyword=null'>8</a>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=9&pageSize=2&whatColumn=null&keyword=null'>9</a>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=10&pageSize=2&whatColumn=null&keyword=null'>10</a>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=11&pageSize=2&whatColumn=null&keyword=null'>다음</a>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=22&pageSize=2&whatColumn=null&keyword=null'>맨 끝</a>&nbsp;
 
 	}
-
+	
 
 	public void setPagingHtml(String pagingHtml) {
 		this.pagingHtml = pagingHtml;
@@ -190,7 +190,7 @@ public class Paging {
 		this.pageNumber = Integer.parseInt( _pageNumber ) ; 
 
 		if( _pageSize == null || _pageSize.equals("null") || _pageSize.equals("") ){
-			_pageSize = "5" ; // 한 페이지에 보여줄 레코드 갯수
+			_pageSize = "10" ; // 한 페이지에 보여줄 레코드 갯수
 		}		
 		this.pageSize = Integer.parseInt( _pageSize ) ;
 		
@@ -198,26 +198,23 @@ public class Paging {
 
 		this.totalCount = totalCount ; 
 
-		this.totalPage = (int)Math.ceil((double)this.totalCount / this.pageSize) ; // 8.5 => 9
+		this.totalPage = (int)Math.ceil((double)this.totalCount / this.pageSize) ;
 		
 		this.beginRow = ( this.pageNumber - 1 )  * this.pageSize  + 1 ;
 		this.endRow =  this.pageNumber * this.pageSize ;
-		// pageNumber가 1이면 beginRow=1, endRow=2
-		// pageNumber가 2이면 beginRow=3, endRow=4
-		
 		// pageNumber가 2이면 beginRow=6, endRow=10
 		
 		if( this.pageNumber > this.totalPage ){
 			this.pageNumber = this.totalPage ;
 		}
-		
+		System.out.println("pageSize 1:" + pageSize);
 		this.offset = ( pageNumber - 1 ) * pageSize ; 
 		/*offset : 
 			한 페이지에 2개씩 출력할 때,
 			3페이지 클릭하면 앞에 4개 건너뛰고 5번째 부터 나와야 한다. 
 			위의 offset = (3-1)*2 => 4(건너뛸 갯수가 된다.)
-			(4페이지에 띄울려면 앞에 6개를 건너뛰어야 함)
 		*/	
+		System.out.println("pageSize 2:" + pageSize);
 		if( this.endRow > this.totalCount ){
 			this.endRow = this.totalCount  ;
 		}
@@ -227,13 +224,78 @@ public class Paging {
 		/*pageCount=10 : 한 화면에 보일 페이지 수,
 		pageNumber(현재 클릭한 페이지 수)가 12이면 beginPage = 11이 되고, endPage=20이 된다. */
 		
-		//System.out.println("pageNumber:"+pageNumber+"/totalPage:"+totalPage);	
+		System.out.println("pageNumber:"+pageNumber+"/totalPage:"+totalPage);	
 		
 		if( this.endPage > this.totalPage ){
 			this.endPage = this.totalPage ;
 		}
 		
-		//System.out.println("pageNumber2:"+pageNumber+"/totalPage2:"+totalPage);	
+		System.out.println("pageNumber2:"+pageNumber+"/totalPage2:"+totalPage);	
+		this.url = url ; //  /ex/list.ab
+		this.whatColumn = whatColumn ;
+		this.keyword = keyword ;
+		System.out.println("whatColumn:"+whatColumn+"/keyword:"+keyword);
+		
+		this.pagingHtml = getPagingHtml(url) ;
+	
+	
+	}
+	
+	public Paging(
+			String _pageNumber, 
+			String _pageSize,  
+			int totalCount,
+			String url 
+			) {		
+
+		if(  _pageNumber == null || _pageNumber.equals("null") || _pageNumber.equals("")  ){
+			System.out.println("_pageNumber:"+_pageNumber); // null
+			_pageNumber = "1" ;
+		}
+		this.pageNumber = Integer.parseInt( _pageNumber ) ; 
+
+		if( _pageSize == null || _pageSize.equals("null") || _pageSize.equals("") ){
+			_pageSize = "10" ; // 한 페이지에 보여줄 레코드 갯수
+		}		
+		this.pageSize = Integer.parseInt( _pageSize ) ;
+		
+		this.limit = pageSize ; // 한 페이지에 보여줄 레코드 갯수
+
+		this.totalCount = totalCount ; 
+
+		this.totalPage = (int)Math.ceil((double)this.totalCount / this.pageSize) ;
+		
+		this.beginRow = ( this.pageNumber - 1 )  * this.pageSize  + 1 ;
+		this.endRow =  this.pageNumber * this.pageSize ;
+		// pageNumber가 2이면 beginRow=6, endRow=10
+		
+		if( this.pageNumber > this.totalPage ){
+			this.pageNumber = this.totalPage ;
+		}
+		System.out.println("pageSize 1:" + pageSize);
+		this.offset = ( pageNumber - 1 ) * pageSize ; 
+		/*offset : 
+			한 페이지에 2개씩 출력할 때,
+			3페이지 클릭하면 앞에 4개 건너뛰고 5번째 부터 나와야 한다. 
+			위의 offset = (3-1)*2 => 4(건너뛸 갯수가 된다.)
+		*/	
+		System.out.println("pageSize 2:" + pageSize);
+		if( this.endRow > this.totalCount ){
+			this.endRow = this.totalCount  ;
+		}
+
+		this.beginPage = ( this.pageNumber - 1 ) / this.pageCount * this.pageCount + 1  ;
+		this.endPage = this.beginPage + this.pageCount - 1 ;
+		/*pageCount=10 : 한 화면에 보일 페이지 수,
+		pageNumber(현재 클릭한 페이지 수)가 12이면 beginPage = 11이 되고, endPage=20이 된다. */
+		
+		System.out.println("pageNumber:"+pageNumber+"/totalPage:"+totalPage);	
+		
+		if( this.endPage > this.totalPage ){
+			this.endPage = this.totalPage ;
+		}
+		
+		System.out.println("pageNumber2:"+pageNumber+"/totalPage2:"+totalPage);	
 		this.url = url ; //  /ex/list.ab
 		this.whatColumn = whatColumn ;
 		this.keyword = keyword ;
@@ -245,7 +307,7 @@ public class Paging {
 	}
 	
 	private String getPagingHtml( String url ){ //페이징 문자열을 만든다.
-		System.out.println("getPagingHtml url:"+url); // ex/list.ab (몇 페이지를 눌러도 list.ab가 요청되도록)
+		System.out.println("getPagingHtml url:"+url); 
 	
 		
 		String result = "" ;
@@ -257,10 +319,10 @@ public class Paging {
 			// 처음 목록보기를 하면 pageNumber는 1이 되고 beginPage도 1이 된다. 
 			result += "&nbsp;<a href='" + url  
 					+ "?pageNumber=" + ( 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>맨 처음</a>&nbsp;" ; // 1,2,3페이지를 지나 4페이지가 됐을때(4,5,6페이지) '맨 처음'이 4페이지 앞에 나오도록
+					+ added_param + "'>맨 처음</a>&nbsp;" ;
 			result += "&nbsp;<a href='" + url 
 					+ "?pageNumber=" + (this.beginPage - 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>이전</a>&nbsp;" ; //4,5,6페이지를 지나 7페이지(7,11,...)일 때, '이전'이 7페이지 앞에 나오도록
+					+ added_param + "'>이전</a>&nbsp;" ;
 		}
 		
 		//가운데

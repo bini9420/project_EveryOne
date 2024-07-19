@@ -40,7 +40,7 @@ public class ReviewDao {
     }
 
 	public List<ReviewBean> getAllReviews() {
-		List<ReviewBean> reviews = sqlSessionTemplate.selectList(namespace + ".GetAllReviews");
+		List<ReviewBean> reviews = sqlSessionTemplate.selectList(namespace + ".getAllReviews");
 		return reviews;
 	}
     

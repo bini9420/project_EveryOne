@@ -141,12 +141,12 @@
             <div class="col-md-12">
                 <table class="table bsb-table-xl text-nowrap align-middle m-0" id="table6">
                     <tr>
-                    	<c:if test="${(document.prdcategory ne 'prdcategory') && (document.prdcategory ne '')}">
+                    	<c:if test="${not empty document.prdcategory}">
                         <th>상품 카테고리</th>
                         <td id="pcategory">${document.prdcategory}</td>
                         </c:if>
                         
-                        <c:if test="${(document.prdname ne 'prdname') && (document.prdname ne '')}">
+                        <c:if test="${not empty document.prdname}">
                         <th>상품명</th>
                         <td id="pname">${document.prdname}</td>
                         </c:if>

@@ -35,7 +35,7 @@
         SELECT * FROM review WHERE rnum = #{rnum}
     </select>
 	
-	<select id="GetAllReviews" resultType="review">
+	<select id="getAllReviews" resultType="review">
 		SELECT R.*, P.pnum FROM review R JOIN Product P ON R.pnum = P.pnum
 	</select>
     

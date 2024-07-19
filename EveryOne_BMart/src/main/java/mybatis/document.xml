@@ -520,6 +520,6 @@
 	</select>
 	
 	<insert id="insertCategory">
-		insert into category values(cate_seq, #{prdcategory})
+		insert into category values(cate_seq.nextval, #{prdcategory})
 	</insert>
 </mapper>

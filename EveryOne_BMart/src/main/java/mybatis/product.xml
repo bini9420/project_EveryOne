@@ -271,16 +271,29 @@
 	    order by pnum
 	</select>
 	
-	<select id="checkProductApproval" resultType="document.model.DocumentBean">
-		select * from document where writer=#{id} and dcategory='상품등록' and dstatus=1
+	<select id="checkProductApproval" resultType="int">
+		select count(*) from document where writer=#{id} and dcategory='상품등록' and dstatus=1
 	</select>
 	
 	<select id="getProductByPnum_Owner" resultType="product">
 		select * from product where pnum=#{pnum}
 	</select>
 	
-	<select id="getPcategoryListByWriter" resultType="product">
+	<select id="getPcategoryListByWriter" resultType="document.model.DocumentBean">
 		select * from document where writer=#{id} and dcategory='상품등록'
 	</select>
 	
+	<delete id="deleteProductByOwner">
+		delete from product where pnum=#{pnum}
+	</delete>
+	
+	<update id="updateProductByOwner">
+		update product set price=#{price}, pcontent=#{pcontent}, stock=#{stock} where pnum=#{pnum}
+	</update>
+	
+	<select id="donutChartForOwner" resultType="product">
+		select rownum, pname, ordercount
+		from (select rownum, pname, ordercount from product where id=#{id} order by ordercount desc)
+		where rownum between 1 and 5 
+	</select>
 </mapper>

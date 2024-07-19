@@ -80,5 +80,9 @@ public class EnterDao {
 	public void updateReason(Map<String, String> map) {
 		sqlSessionTemplate.update(namespace + ".updateReason", map);
 	}//updateReason
+
+	public void insertBusiness(EnterBean eb) {
+		sqlSessionTemplate.insert(namespace + ".insertBusiness", eb);
+	}//insertBusiness
 }
  

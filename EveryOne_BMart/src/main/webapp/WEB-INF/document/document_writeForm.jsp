@@ -99,7 +99,7 @@
 	
 	    // 폼의 제출을 트리거
 	    document.myform.action = "document_write.dc";
-	    document.myform.dispatchEvent(new Event('submit', { cancelable: true }));
+	    document.myform.submit();
 	}
 	
 	//임시저장 클릭
@@ -277,16 +277,16 @@
 			 <div class="col-md-12" id="insertPrdcategory">
 			    <label for="productCategory" class="form-label">상품 카테고리 <font color="red">*</font></label>
 				<div class="form-check">
-				 	<input class="form-check-input" type="radio" name="prdcategory" id="flexRadioDefault1">
+				 	<input class="form-check-input" type="radio" name="prdcategory" id="flexRadioDefault1" value="전자기기">
 				 	<label class="form-check-label" for="flexRadioDefault1">전자기기</label>
 				 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				 	<input class="form-check-input" type="radio" name="prdcategory" id="flexRadioDefault2">
+				 	<input class="form-check-input" type="radio" name="prdcategory" id="flexRadioDefault2" value="가구/인테리어">
 				 	<label class="form-check-label" for="flexRadioDefault2">가구/인테리어</label>
 				 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				 	<input class="form-check-input" type="radio" name="prdcategory" id="flexRadioDefault3">
+				 	<input class="form-check-input" type="radio" name="prdcategory" id="flexRadioDefault3" value="주방용품">
 				 	<label class="form-check-label" for="flexRadioDefault3">주방용품</label>
 				 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				 	<input class="form-check-input" type="radio" name="prdcategory" id="flexRadioDefault4">
+				 	<input class="form-check-input" type="radio" name="prdcategory" id="flexRadioDefault4" value="반려용품1">
 				 	<label class="form-check-label" for="flexRadioDefault4">반려용품</label>
 				</div>			     
 			     <div class="invalid-feedback">

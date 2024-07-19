@@ -69,22 +69,10 @@ public class DocumentWriteController {
 			dnum += "D-" + num;
 		} 
 		document.setDnum(dnum);
-		System.out.println("dnum: " + document.getDnum());
 		
 		//작성자(writer) 설정
 		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
 		document.setWriter(mb.getId()); 
-		
-		//상품명(prdname) 설정
-		if(document.getPrdname() == null) {
-			System.out.println("여기로오나");
-			document.setPrdname("X");
-		}
-		
-		//상품 카테고리(prdcategory) 설정
-		if(document.getPrdcategory() == null) {
-			document.setPrdcategory("X");
-		}
 		
 		int cnt = -1;
 		cnt = documentDao.insertDocument(document);

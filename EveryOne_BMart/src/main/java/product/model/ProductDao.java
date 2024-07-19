@@ -9,7 +9,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import document.model.DocumentBean;
 import model.ProductBean;
 import utility.MemberListPaging;
 import utility.PagingPlus;
@@ -110,11 +109,11 @@ public class ProductDao {
 	}//getAllProductForOwner
 
 	//★ o_top.jsp에서 상품등록 클릭시 로그인한 id를 조건으로 입점요청 승인여부 확인
-	public DocumentBean checkProductApproval(String id) {
-		DocumentBean db = null;
-		db = sqlSessionTemplate.selectOne(namespace + ".checkProductApproval", id);
+	public int checkProductApproval(String id) {
+		int count = -1;
+		count = sqlSessionTemplate.selectOne(namespace + ".checkProductApproval", id);
 		 
-		return db;
+		return count;
 	}//checkEnterApproval
 
 	//★ ownerPrdList.jsp에서 상품 테이블 행 클릭시 상품 정보 조회(조건: 상품번호)
@@ -142,7 +141,9 @@ public class ProductDao {
 		return lists;
 	}//getPcategoryListByWriter
 
-	
-
+	//★ ownerPrdDetailView.jsp에서 삭제 버튼 클릭시 상품번호(pnum)을 조건으로 레코드 삭제
+	public void deleteProductByOwner(String pnum) {
+		sqlSessionTemplate.delete(namespace + ".deleteProductByOwner", pnum);
+	}//deleteProduct
 
 }

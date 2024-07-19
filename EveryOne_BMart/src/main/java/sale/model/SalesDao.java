@@ -20,12 +20,10 @@ public class SalesDao {
 	SqlSessionTemplate sqlSessionTemplate;
 
 	public List<OrderInfoBean> getMonthlySales() {
-
 		List<OrderInfoBean> lists= new ArrayList<OrderInfoBean>();
 
 		lists= sqlSessionTemplate.selectList(namespace2+".monthSale");
 		return lists;
-
 	}
 
 	public List<ProductBean> getRangeTest() {
@@ -48,7 +46,12 @@ public class SalesDao {
 		return clists;
 	}
 
-
+	public List<ProductBean> donutChartForOwner(String id) {
+		List<ProductBean> lists = new ArrayList<ProductBean>();
+		lists = sqlSessionTemplate.selectList(namespace2 + ".donutChartForOwner", id); 
+		
+		return lists;
+	}//donutChartForOwner
 
 
 

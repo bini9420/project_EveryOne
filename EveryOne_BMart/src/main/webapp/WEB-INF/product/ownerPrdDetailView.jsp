@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.Date" %>	
 <%@ include file="../common/common.jsp" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link rel="documentStyle.css">
@@ -33,39 +32,52 @@
 		background-color: #2ac1bc;	
 		border-color: #2ac1bc;
 	}
+	#updateBtn {
+		margin-right: 15px;
+	}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
-<script type="text/javascript">
-	//재고 수량 감소
-/* 	function minus() {
-		var stockInput = parseInt($('#stockInput').val());
-		if (stockInput > 0) {
-			var minusStock = --stockInput;
-			alert(minusStock);
-			$('#stockInput').val(minusStock);
-		}
+<script>
+	function plus(pnum) {
+		alert(pnum);
 	}
 	
-	//재고 수량 증가
-	function plus() {
-		var stockInput = parseInt($('#stockInput').val());
-		var plusStock = ++stockInput;
-		alert(plusStock);
-		$('#stockInput').val(plusStock);
-	}  */
-	
-	//저장 버튼 클릭시
-	function send(pnum) {
+	function minus(pnum) {
 		alert(pnum);
+	}
+
+	function send() {
+	    (() => {
+	        'use strict'
+
+	        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+	        const forms = document.querySelectorAll('.validated-form')
+
+	        // Loop over them and prevent submission
+	        Array.from(forms).forEach(form => {
+	            form.addEventListener('submit', event => {
+	                if (!form.checkValidity()) {
+	                    event.preventDefault()
+	                    event.stopPropagation()
+	                } 
+
+	                form.classList.add('was-validated')
+	            }, false)
+	        })
+	    })()
 
 	    // 폼의 제출을 트리거
-	    document.myform.action = "productUpdate_owner.prd?pnum=" + pnum;
-	    document.myform.submit();
+	    const myForm = document.querySelector('form[name="myform"]');
+	    if (myForm) {
+	        myForm.action = "productUpdate_owner.prd";
+	        myForm.submit();
+	    } else {
+	        console.error('폼을 찾을 수 없습니다.');
+	    }
 	}
 </script>
-
-<form name="myform" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
+<form class="validated-form" name="myform" method="post" enctype="multipart/form-data" id="update" novalidate>
+<input type="hidden" name="pnum" value="${product.pnum}">
 <div class="modal-header">
     <h1 class="modal-title fs-5" id="staticBackdropLabel" align="left"><b>[상품 정보] ${product.pname}</b></h1>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -122,7 +134,7 @@
                     	<fmt:formatNumber value="${product.price}" var="price" pattern="###,###"/>
                     	<th><label for="prdPrice" class="form-label">가격</label></th>
                     	<td>
-                    		<input type="text" class="form-control form-control-sm" name="price" value="&#8361;${price}" required>
+                    		<input type="text" class="form-control form-control-sm" name="price" placeholder="${product.price}" required>
 	                    	<div class="invalid-feedback">
 								가격 입력은 필수입니다
 							</div>
@@ -131,9 +143,9 @@
                     <tr>
                     	<th><label for="prdStock" class="form-label">재고</label></th>
                     	<td> 
-                    		<button type="button" class="btn btn-outline-primary btn-sm" id="minusBtn" onclick="minus()">-</button>
-						    <input type="text" class="form-control form-control-sm" name="stock" value="${product.stock}" id="stockInput" style="width: 10%" required>
-						    <button type="button" class="btn btn-outline-primary btn-sm" id="plusBtn" onclick="plus()">+</button>
+                    		<button type="button" class="btn btn-outline-primary btn-sm" id="minusBtn" onClick="javascript:this.form.stock.value--;">-</button>
+						    <input type="text" class="form-control form-control-sm" name="stock" placeholder="${product.stock}" id="stockInput" style="width: 10%" required>
+						    <button type="button" class="btn btn-outline-primary btn-sm" id="plusBtn" onClick="javascript:this.form.stock.value++;">+</button>
 						    <div class="invalid-feedback">
 								재고수량 입력은 필수입니다
 							</div>
@@ -157,21 +169,28 @@
 							</div>
                     	</td>
                     </tr>
-                </table>	 
+                </table>
             </div>
         </div>
     </div>
 </div>
       
-<div class="modal-footer">
-	<!-- 닫기 버튼 -->
-	<a href="" class="btn btn-outline-secondary btn-icon-split" id="closeBtn">
-		<span class="text">닫기</span>
+<div class="modal-footer d-flex justify-content-between">
+	<!-- 삭제 버튼 -->
+	<a href="productDelete_owner.prd?pnum=${product.pnum}" class="btn btn-outline-danger btn-icon-split" id="deleteBtn">
+		<span class="text">삭제</span>
 	</a>
-        
-	<!-- 저장 버튼 -->
-	<a href="javascript:send('${product.pnum}')" class="btn btn-outline-primary btn-icon-split" id="saveBtn">
-		<span class="text">저장</span>
-	</a>
+	
+	<div class="ml-auto">  
+		<!-- 저장 버튼 -->
+		<a onclick="javascript:send()" class="btn btn-outline-primary btn-icon-split" id="sendBtn">
+			<span class="text">저장</span>
+		</a>
+		      
+		<!-- 닫기 버튼 -->
+		<a href="" class="btn btn-outline-secondary btn-icon-split" id="closeBtn">
+			<span class="text">닫기</span>
+		</a>
+	</div>
 </div>
-</form>
+</form>	

@@ -73,7 +73,7 @@
 									<button onClick="confirmDelete('${review.rnum}', '${review.pnum}')">삭제</button>
 								</td>
 							</c:if>
-						</tr>
+						</tr> 
 					</c:forEach>
 				</table>
 			</c:otherwise>

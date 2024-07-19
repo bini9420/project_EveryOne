@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="admin">
+	<select id="getMember" resultType="member">
+		select * from member where id=#{id}
+	</select>
 	
+	<select id="getAdminDocument" resultType="doc.model.DocBean">
+		select * from document
+		order by dnum desc
+		FETCH FIRST 5 ROWS ONLY
+	</select>
 	
+	<select id="getWaitDocumentCountForAdmin" resultType="int">
+		select count(*) from document where request=1 and dstatus=0
+	</select>
 	
+	<select id="getWaitEnterCountForAdmin" resultType="int">
+		select count(*) from enter where request=1 and dstatus=0
+	</select>
+	
+	<select id="getAllMemberCount" resultType="int">
+		select count(*) from member
+	</select>
+	
+	<select id="getAllProductCount" resultType="int">
+		select count(*) from product where id='admin'
+	</select>
 </mapper>

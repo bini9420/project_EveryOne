@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import model.ProductBean;
@@ -28,7 +27,7 @@ public class OwnerProductUpdateController {
 	ServletContext servletContext;
 	
 	@RequestMapping(value=command, method=RequestMethod.POST)
-	public void update(@RequestParam("pnum") String pnum, ProductBean product, HttpServletResponse response) throws IOException {
+	public void update(ProductBean product, HttpServletResponse response) throws IOException {
 		System.out.println("여기요");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -37,21 +36,24 @@ public class OwnerProductUpdateController {
 		System.out.println("pcontent: " + product.getPcontent());
 		System.out.println("stock: " + product.getStock());
 		
-		//상품이미지(pimage) 설정
-		MultipartFile multi = product.getUpload();
-		String uploadPath = servletContext.getRealPath("/resources/product"); //image를 업로드하는 곳
-		
 		int cnt = -1;
 		cnt = productDao.updateProductByOwner(product); 
-		if(cnt != -1) { //삽입 성공
-			File destination = new File(uploadPath + "\\" + multi.getOriginalFilename()); // => 출력해보면 문자열로 나오지만 실제로 file로 생성됨
+		
+		if(cnt != -1) {
+			String updatePath = servletContext.getRealPath("/resources/uploadImage");
+
+			File file = new File(updatePath + "\\" + product.getUpload2());
+			file.delete();
 			
-			out.println("<script>");
-			out.println("alert('수정 및 저장이 완료되었습니다'); location.href='redirect:/productList_owner.prd");
-			out.println("</script>");
-			out.flush();
+			MultipartFile multi = product.getUpload();
+			File destination = new File(updatePath + "\\" + multi.getOriginalFilename());
 			try {
-				multi.transferTo(destination); //생성된 파일을 실제로 경로에다가 업로드하는 것
+				multi.transferTo(destination);
+				
+				out.println("<script>");
+				out.println("alert('수정 및 저장이 완료되었습니다'); location.href='productList_owner.prd'");
+				out.println("</script>");
+				out.flush();
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {

@@ -72,4 +72,8 @@
 	<update id="updateReason">
 		update enter set reason=#{reason}, approval=1, dstatus=-1 where eno=#{eno}
 	</update>
+	
+	<insert id="insertBusiness">
+		insert into business values(#{businesscode}, #{writer}, #{postnum}, #{addr1}, #{addr2})
+	</insert>
 </mapper>

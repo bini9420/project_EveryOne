@@ -107,7 +107,7 @@
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Sales</h6>
-                        <a class="collapse-item" href="owner_prdSales.prd">상품별 매출현황</a>
+                        <a class="collapse-item" href="owner_prdSales.sale">상품별 매출현황</a>
                         <a class="collapse-item" href="list.od">전체 매출현황</a>
                     </div>
                 </div>

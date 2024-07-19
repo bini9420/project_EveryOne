@@ -343,7 +343,7 @@ public class DocumentDao {
 
 	public String getPrdcategory(String dnum) {
 		String prdCategory = null;
-		sqlSessionTemplate.selectOne(namespace + ".getPrdcategory", dnum);
+		prdCategory = sqlSessionTemplate.selectOne(namespace + ".getPrdcategory", dnum);
 		
 		return prdCategory;
 	}//getPrdcategory

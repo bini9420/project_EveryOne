@@ -40,8 +40,8 @@ public class OwnerProductInsertController {
 		
 		//상품등록 승인된 사람만 getPage로 이동
 		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
-		DocumentBean db = productDao.checkProductApproval(mb.getId()); 
-		if(db == null) {
+		int count = productDao.checkProductApproval(mb.getId()); 
+		if(count <= 0) {
 			out.println("<script>");
 			out.println("alert('상품등록 결재 승인이 필요합니다'); location.href='omain.mb'");
 			out.println("</script>");
@@ -49,7 +49,6 @@ public class OwnerProductInsertController {
 		} 
 		
 		List<ProductBean> lists = productDao.getPcategoryListByWriter(mb.getId());
-		System.out.println("카테고리 개수: " + lists.size());
 		model.addAttribute("lists", lists);
 		return getPage;
 	}

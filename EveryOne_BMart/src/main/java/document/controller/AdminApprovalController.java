@@ -16,8 +16,8 @@ import document.model.DocumentBean;
 import document.model.DocumentDao;
 import document.model.EnterDao;
 import document.model.ReviewcheckDao;
+import model.EnterBean;
 import model.MemberBean;
-import product.model.ProductDao;
 
 @Controller
 public class AdminApprovalController {
@@ -70,6 +70,8 @@ public class AdminApprovalController {
 			out.flush();
 		} else if(eno != null) { //입점신청
 			enterDao.updateApproval(eno);
+			EnterBean eb = 	enterDao.getEnterByEno(eno);
+			enterDao.insertBusiness(eb);
 			
 			out.println("<script>");
 			out.println("alert('결재가 완료되었습니다.'); location.href='admin_enterBox.dc'");

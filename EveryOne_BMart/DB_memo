@@ -88,12 +88,6 @@ insert into category values(cate_seq.nextval,'우유·유제품');
 insert into category values(cate_seq.nextval,'햄·어묵/통조림');
 insert into category values(cate_seq.nextval,'생활·기타');
 
-insert into category values(cate_seq.nextval, '전자기기');
-insert into category values(cate_seq.nextval, '가구·인테리어');
-insert into category values(cate_seq.nextval, '주방용품');
-insert into category values(cate_seq.nextval, '반려용품');
-insert into category values(cate_seq.nextval, '스포츠·레저·캠핑');
-
 
 --상품 테이블
 drop sequence seqprod ;

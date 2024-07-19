@@ -1,13 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<style>
- #approveBox:hover {
- 	cursor: pointer;
- }
- #approvalRequest {
- 	display: inline;
- }
-</style>
 <%@ include file="../common/common.jsp"%>
 <%@ include file="a_top.jsp"%>
 
@@ -29,7 +21,7 @@
 									<a href="aMemberList.mb">회원</a>/<a href="adminProductList.prd">상품관리</a>
 								</h4>
 							</div>
-							<div class="h5 mb-0 font-weight-bold text-gray-800">100명</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">${memberCount}명/${productCount}개</div>
 						</div>
 						<div class="col-auto">
 							<i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -63,7 +55,7 @@
 
 		<!-- Earnings (Monthly) Card Example -->
 		<div class="col-xl-3 col-md-6 mb-4">
-			<div class="card border-left-info shadow h-100 py-2" onclick="location.href='admin_allBox.dc'" id="approveBox">
+			<div class="card border-left-info shadow h-100 py-2" id="approveBox">
 				<div class="card-body">
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
@@ -72,15 +64,16 @@
 							</div>
 							<div class="row no-gutters align-items-center">
 								<div class="col-auto">
-									<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${documentCount}건</div>
-								</div>
-								<div class="col">
-									<div class="progress progress-sm mr-2">
-										<div class="progress-bar bg-danger" role="progressbar"
-                                             style="width: ${documentCount*10}" aria-valuenow="${documentCount}" aria-valuemin="0"
-                                             aria-valuemax="10"></div>
-									</div>
-								</div>
+                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${waitCount}건</div>
+                                </div>
+                                <div class="col">
+                                	 
+                                     <div class="progress progress-sm mr-2">
+                                          <div class="progress-bar bg-info" role="progressbar"
+                                               style="width: ${waitCount*10}" aria-valuenow="${waitCount}" aria-valuemin="0"
+                                               aria-valuemax="10"></div>
+                                     </div> 
+                                </div>
 							</div>
 						</div>
 						<div class="col-auto">

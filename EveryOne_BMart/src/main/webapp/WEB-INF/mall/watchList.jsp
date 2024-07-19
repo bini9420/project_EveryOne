@@ -15,24 +15,27 @@
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
 			<c:forEach var="watch" items="${wlists}">
 				<div class="col my-4">
-					<div class="card h-100 text-center">
+					<div class="card text-center pb-3" style="height: 350">
 						<c:if test="${watch.ad == 1}">
 							<div class="text-end pt-2 pe-2">
 								<img src="resources/img/ad.png" style="width: 30; height: 25">
 							</div>
 						</c:if>
-						<!-- Product image-->
-						<a href="detail.mall?pnum=${watch.pnum}">
-							<c:if test="${watch.pimage ne null}">
-								<% String img = request.getContextPath()+"/resources/uploadImage/"; %>
-								<img src="<%=img%>${watch.pimage}" alt="interestProductImg" class="productImg">
-							</c:if>
-							<c:if test="${watch.pimage eq null}">
-								<img src="resources/img/no-pictures.png" alt="interestProductImg" class="productImg">
-							</c:if>
-						</a>
-						<!-- Product details-->
-						<div class="card-body p-4">
+						<c:if test="${watch.ad == 0}">
+							<div class="p-3"> </div>
+						</c:if>
+						<div class="card-body p-2">
+							<!-- Product image-->
+							<a href="detail.mall?pnum=${watch.pnum}">
+								<c:if test="${watch.pimage ne null}">
+									<% String img = request.getContextPath()+"/resources/uploadImage/"; %>
+									<img src="<%=img%>${watch.pimage}" alt="productImg" class="productImg">
+								</c:if>
+								<c:if test="${watch.pimage eq null}">
+									<img src="resources/img/no-pictures.png" alt="productImg" class="productImg">
+								</c:if>
+							</a>
+							<!-- Product details-->
 							<div class="text-center">
 								<!-- Product name-->
 								<h5 class="fw-bolder"><a href="#">${watch.pname}</a></h5>
@@ -41,7 +44,7 @@
 							</div>
 						</div>
 						<!-- Product actions-->
-						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+						<div class="card-footer border-top-0 bg-transparent">
 							<div class="text-center">
 								<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?index=watch&id=${loginInfo.id}&pnum=${watch.pnum}&qty=1">장바구니 담기</a>
 		                    	<c:if test="${fn:length(interestLists) > 0}">
@@ -88,8 +91,9 @@
 		</div>
 	</c:if>
 	<c:if test="${fn:length(wlists) == 0}">
-		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center h-75">
 			<div class="mt-4 mb-4 text-center">
+				<img src="resources/img/no-watch.png" alt="..." class="productImg m-3"/><br>
 				<font size="4">최근 본 상품이 없습니다.</font>
 			</div>
 		</div>

@@ -194,21 +194,21 @@ public class ReviewPaging {
 			// 처음 목록보기를 하면 pageNumber는 1이 되고 beginPage도 1이 된다. pageSize:한 화면에 보이는 레코드 수
 			result += "&nbsp;<a href='" + url  
 					+ "&pageNumber=1&pageSize=" + this.pageSize 
-					+ added_param + "'>[처음으로]</a>&nbsp;" ;
+					+ added_param + "' class='btn btn-outline-secondary btn-sm'><i class='fi fi-rr-angle-double-small-left'></i></a>&nbsp;" ;
 			result += "&nbsp;<a href='" + url 
-					+ "&pageNumber=" + (this.beginPage - 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>[이전]</a>&nbsp;" ;
+					+ "&pageNumber=" + (this.pageNumber - 1 ) + "&pageSize=" + this.pageSize 
+					+ added_param + "' class='btn btn-outline-secondary btn-sm'><i class='fi fi-rr-angle-small-left'></i></a>&nbsp;" ;
 		}
 
 		//가운데
 		for (int i = this.beginPage; i <= this.endPage ; i++) {
 			if ( i == this.pageNumber ) {
-				result += "&nbsp;<font color='red'>[" + i + "]</font>&nbsp;"   ;
+				result += "&nbsp;<font class='btn btn-primary btn-sm'>" + i + "</font>&nbsp;"   ;
 
 			} else {
 				result += "&nbsp;<a href='" + url   
 						+ "&pageNumber=" + i + "&pageSize=" + this.pageSize 
-						+ added_param + "'>[" + i + "]</a>&nbsp;" ;
+						+ added_param + "' class='btn btn-outline-secondary btn-sm'>" + i + "</a>&nbsp;" ;
 			}
 		}
 		/*
@@ -223,12 +223,12 @@ public class ReviewPaging {
 			// endPage:지금 보는 페이지의 끝(지금 보는 페이지가 13이라면 endPage는 20), totalPage:전체 페이지수
 
 			result += "&nbsp;<a href='" + url  
-					+ "&pageNumber=" + (this.endPage + 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>[다음]</a>&nbsp;" ;
+					+ "&pageNumber=" + (this.pageNumber + 1 ) + "&pageSize=" + this.pageSize 
+					+ added_param + "' class='btn btn-outline-secondary btn-sm'><i class='fi fi-rr-angle-small-right'></i></a>&nbsp;" ;
 
 			result += "&nbsp;<a href='" + url  
 					+ "&pageNumber=" + (this.totalPage ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>[끝으로]</a>&nbsp;" ;
+					+ added_param + "' class='btn btn-outline-secondary btn-sm'><i class='fi fi-rr-angle-double-small-right'></i></a>&nbsp;" ;
 		}      
 		return result ;
 	}   

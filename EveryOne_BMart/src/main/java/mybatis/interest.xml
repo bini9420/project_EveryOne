@@ -6,11 +6,12 @@
 	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="interest">
-	
+	<!-- 찜 상품 내역 지우기 -->
 	<delete id="deleteInterest">
 		delete from interest where id=#{id} and pnum=#{pnum}
 	</delete>
 	
+	<!-- 찜 상품 내역 추가하기 -->
 	<insert id="insertInterest">
 		insert into interest values(iseq.nextval, #{id}, #{pnum})
 	</insert>

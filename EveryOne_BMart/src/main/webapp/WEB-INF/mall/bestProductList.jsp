@@ -13,24 +13,27 @@
 			<c:forEach var="product" items="${plists}" varStatus="status">
 				<c:if test="${status.count <= 10}">
 					<div class="col mb-4">
-						<div class="card h-100 text-center">
+						<div class="card text-center pb-3" style="height: 350">
 							<c:if test="${product.ad == 1}">
 								<div class="text-end pt-2 pe-2">
 									<img src="resources/img/ad.png" style="width: 30; height: 25">
 								</div>
 							</c:if>
-							<!-- Product image-->
-							<a href="detail.mall?pnum=${product.pnum}">
-								<c:if test="${product.pimage ne null}">
-									<% String img = request.getContextPath()+"/resources/uploadImage/"; %>
-									<img src="<%=img%>${product.pimage}" alt="productImg" class="productImg">
-								</c:if>
-								<c:if test="${product.pimage eq null}">
-									<img src="resources/img/no-pictures.png" alt="productImg" class="productImg">
-								</c:if>
-							</a>
-							<!-- Product details--> 
-							<div class="card-body p-4">
+							<c:if test="${product.ad == 0}">
+								<div class="p-3"> </div>
+							</c:if>
+							<div class="card-body p-2">
+								<!-- Product image-->
+								<a href="detail.mall?pnum=${product.pnum}">
+									<c:if test="${product.pimage ne null}">
+										<% String img = request.getContextPath()+"/resources/uploadImage/"; %>
+										<img src="<%=img%>${product.pimage}" alt="productImg" class="productImg">
+									</c:if>
+									<c:if test="${product.pimage eq null}">
+										<img src="resources/img/no-pictures.png" alt="productImg" class="productImg">
+									</c:if>
+								</a>
+								<!-- Product details-->
 								<div class="text-center">
 									<!-- Product name-->
 									<h5 class="fw-bolder"><a href="#">${product.pname}</a></h5>
@@ -39,7 +42,7 @@
 								</div>
 							</div>
 							<!-- Product actions-->
-							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+							<div class="card-footer border-top-0 bg-transparent">
 								<div class="text-center">
 									<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?index=best&id=${loginInfo.id}&pnum=${product.pnum}&qty=1">장바구니 담기</a>
 									<!-- 로그인 해서 찜목록을 조회할 수 있을 때 -->

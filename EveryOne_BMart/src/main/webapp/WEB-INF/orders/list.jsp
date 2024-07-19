@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <%@ include file="../member/owner/o_top.jsp"%>
+<%@ include file="../common/common.jsp" %>
 <!-- Begin Page Content -->
 <style>
 	h6 {
@@ -91,15 +93,12 @@
 	<!-- Page Heading -->
 	<div class="d-sm-flex align-items-center justify-content-between mb-3">
 		<h1 class="h3 mb-0 text-gray-800"></h1>
-		<a href="javascript:show()" data-bs-toggle="modal"
-			data-bs-target="#documentWrite"
-			class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-			class="fas fa-download fa-sm text-white-50" id="requestDocument"></i>
-			결재 요청</a>
+		<a href="javascript:show()" data-bs-toggle="modal" data-bs-target="#documentWrite" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+			<i class="fas fa-download fa-sm text-white-50" id="requestDocument"></i>
+			결재 요청
+		</a>
 
-		<div class="modal fade" id="documentWrite" data-bs-backdrop="static"
-			data-bs-keyboard="false" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade" id="documentWrite" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content"></div>
 			</div>
@@ -111,13 +110,12 @@
 		<form id="dateForm" action="list.od" method="get">
 			<select id="yearSelect" name="year">
 				<c:forEach var="year" begin="2020" end="2024">
-					<option value="${year}"
-						<c:if test="${selectedYear == year}">selected</c:if>>${year}년</option>
+					<option value="${year}" <c:if test="${selectedYear == year}">selected</c:if>>${year}년</option>
 				</c:forEach>
-			</select> <select id="monthSelect" name="month">
+			</select> 
+			<select id="monthSelect" name="month">
 				<c:forEach var="month" begin="1" end="12">
-					<option value="${month}"
-						<c:if test="${selectedMonth == month}">selected</c:if>>${month}월</option>
+					<option value="${month}" <c:if test="${selectedMonth == month}">selected</c:if>>${month}월
 				</c:forEach>
 			</select>
 			<button type="submit" class="btn btn-outline-secondary btn-sm">조회</button>
@@ -179,8 +177,7 @@
 				<a href="list.od?pageNum=${startPage-1}">[이전]</a>
 			</c:if>
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="list.od?pageNum=${i}"
-					class="${pageInfo.currentPage == i ? 'active' : ''}">[${i}]</a>
+				<a href="list.od?pageNum=${i}" class="${pageInfo.currentPage == i ? 'active' : ''}">[${i}]</a>
 			</c:forEach>
 			<c:if test="${endPage < pageCount}">
 				<a href="list.od?pageNum=${startPage+pageBlock}">[다음]</a>

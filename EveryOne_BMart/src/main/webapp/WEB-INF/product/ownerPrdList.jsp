@@ -41,7 +41,7 @@ function detail(pnum) {
 }
 </script>
 
-<div class="container-fluid">
+<div class="container h-100">
 	<div class="row">
 		<div class="col-lg-12 col-md-6 mb-4">
              <div class="card border-left-info shadow h-100 py-2">
@@ -58,10 +58,8 @@ function detail(pnum) {
         	</div>
     	</div>	
 	</div>
-</div>
 
-<!-- 검색 -->
-<div class="container-fluid">					
+	<!-- 검색 -->
 	<div class="row">
 		<div class="col-xl-12">
 			<div class="card shadow mb-4">
@@ -108,10 +106,8 @@ function detail(pnum) {
 			</div>
 		</div>
 	</div>
-</div>
 
-<!-- 등록한 상품 List -->
-<div class="container-fluid">
+	<!-- 등록한 상품 List -->
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="card shadow mb-4">
@@ -134,31 +130,40 @@ function detail(pnum) {
 						     </thead>
 						     
 						     <tbody>
-						     	<c:forEach var="product" items="${lists}">
-						     	<tr onclick="detail('${product.pnum}')" data-bs-toggle="modal" data-bs-target="#prdModal">
-						     		<td>
-						            	 <h6 class="mb-1">${product.pname}</h6>
-						            	<span class="text-secondary fs-7">상품번호: ${product.pnum}</span>
-						            </td>
-						            <td>
-						                <img src="<%=request.getContextPath()%>/resources/product/${product.pimage}" width="70" height="70">
-						            </td>
-						            <td>
-						            	<fmt:parseDate value="${product.inputdate}" var="inputdate" pattern="yyyy-MM-dd"/>
-							            <h6 class="mb-1"><fmt:formatDate value="${inputdate}" pattern="yyyy-MM-dd"/></h6>
-							        </td>
-							        <td>
-							            <h6 class="mb-1">${product.pcategory}</h6>
-							        </td>
-							        <td>
-							        	<fmt:formatNumber value="${product.price}" var="price" pattern="###,###"/>
-							            <h6 class="mb-1"> &#8361;${price}</h6>
-							        </td>
-							        <td>
-							            <h6 class="mb-1">${product.stock}개</h6>
-							        </td>
-						         </tr>
-						         </c:forEach>
+						     	<c:if test="${fn:length(lists) > 0}">
+							     	<c:forEach var="product" items="${lists}">
+							     	<tr onclick="detail('${product.pnum}')" data-bs-toggle="modal" data-bs-target="#prdModal">
+							     		<td>
+							            	<h6 class="mb-1">${product.pname}</h6>
+							            	<span class="text-secondary fs-7">상품번호: ${product.pnum}</span>
+							            </td>
+							            <td>
+							                <img src="<%=request.getContextPath()%>/resources/product/${product.pimage}" width="70" height="70">
+							            </td>
+							            <td>
+							            	<fmt:parseDate value="${product.inputdate}" var="inputdate" pattern="yyyy-MM-dd"/>
+								            <h6 class="mb-1"><fmt:formatDate value="${inputdate}" pattern="yyyy-MM-dd"/></h6>
+								        </td>
+								        <td>
+								            <h6 class="mb-1">${product.pcategory}</h6>
+								        </td>
+								        <td>
+								        	<fmt:formatNumber value="${product.price}" var="price" pattern="###,###"/>
+								            <h6 class="mb-1"> &#8361;${price}</h6>
+								        </td>
+								        <td>
+								            <h6 class="mb-1">${product.stock}개</h6>
+								        </td>
+							         </tr>
+							         </c:forEach>
+						         </c:if>
+						         <c:if test="${fn:length(lists) == 0}">
+						         	<tr>
+						         		<td colspan="6" class="text-center">
+						         			등록한 상품 내역이 없습니다.
+						         		</td>
+						         	</tr>
+						         </c:if>
 						      </tbody>
 						 </table>
 						 
@@ -176,19 +181,19 @@ function detail(pnum) {
 			</div>	
 		</div>
 	</div>
-</div>
 
-<div class="pagination-wrapper">
-	<nav aria-label="Page navigation example">
-		<ul class="pagination">
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-			</a></li>
-			<li class="page-item">&nbsp;<font class='btn btn-primary'>1</font>&nbsp;</li>
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-			</a></li>
-		</ul>
-	</nav>
+	<div class="pagination-wrapper">
+		<nav aria-label="Page navigation example">
+			<ul class="pagination">
+				<li class="page-item"><a class="page-link" href="#"
+					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+				</a></li>
+				<li class="page-item">&nbsp;<font class='btn btn-primary'>1</font>&nbsp;</li>
+				<li class="page-item"><a class="page-link" href="#"
+					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a></li>
+			</ul>
+		</nav>
+	</div>
 </div>
 <%@ include file="../member/owner/o_bottom.jsp"%>

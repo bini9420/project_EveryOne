@@ -3,6 +3,7 @@
 	
 <%@ include file="../member/owner/o_top.jsp"%>
 <%@ include file="../common/common.jsp" %>
+
 <!-- Begin Page Content -->
 <style>
 	h6 {

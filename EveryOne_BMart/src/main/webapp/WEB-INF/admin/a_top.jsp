@@ -25,10 +25,10 @@
 	
 	<link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 	<link href="resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 	
 	<!-- CSS -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 	<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-rounded/css/uicons-bold-rounded.css">
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-straight/css/uicons-bold-straight.css'>
@@ -146,26 +146,28 @@
 			<div class="sidebar-heading">Manage</div>
 
 
-			<!-- Nav Item - Utilities Collapse Menu -->
+			<!-- 회원관리 메뉴 -->
 			<li class="nav-item">
 				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMember"
 					aria-expanded="true" aria-controls="collapseMember"> 
-					<i class="fas fa-fw fa-wrench"></i> <span>회원관리</span>
+					<i class="fas fa-fw fa-wrench"></i> 
+					<span>회원관리</span>
 				</a>
-				<div id="collapseMember" class="collapse"
-					aria-labelledby="headingMember" data-parent="#accordionSidebar">
+				<div id="collapseMember" class="collapse" aria-labelledby="headingMember" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Member Manage:</h6>
 						<a class="collapse-item" href="aMemberList.mb">일반회원목록</a> 
 						<a class="collapse-item" href="bMemberList.mb">사업자회원목록</a>
-
 					</div>
 				</div>
 			</li>
 			
+			<!-- 상품관리 메뉴 -->
 			<li class="nav-item">
-				<a class="nav-link collapsed" href="adminProductList.prd" data-toggle="collapse" data-target="#collapseProducts" aria-expanded="true" aria-controls="collapseUtilities"> 
-					<i class="fas fa-fw fa-wrench"></i> <span>상품관리</span>
+				<a class="nav-link collapsed" href="adminProductList.prd" data-toggle="collapse" data-target="#collapseProducts" 
+					aria-expanded="true" aria-controls="collapseUtilities"> 
+					<i class="fas fa-fw fa-wrench"></i> 
+					<span>상품관리</span>
 				</a>
 				<div id="collapseProducts" class="collapse" aria-labelledby="headingProducts" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -178,9 +180,12 @@
 				</div>
 			</li>
 			
+			<!-- 매출관리 메뉴 -->
 			<li class="nav-item">
-				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSales" aria-expanded="true" aria-controls="collapseUtilities"> 
-					<i class="fas fa-fw fa-wrench"></i> <span>매출관리</span>
+				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSales" 
+					aria-expanded="true" aria-controls="collapseUtilities"> 
+					<i class="fas fa-fw fa-wrench"></i> 
+					<span>매출관리</span>
 				</a>
 				<div id="collapseSales" class="collapse" aria-labelledby="headingSales" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -210,7 +215,9 @@
 	                  <a class="collapse-item" href="admin_waitBox.dc">결재대기함</a> 
 	                  <a class="collapse-item" href="admin_complete.dc">결재완료함</a> 
 	                  <div class="collapse-divider"></div>
+	                  
 	                  <hr>
+	                  
 	                  <h6 class="collapse-header">기타</h6>
 	                  <a class="collapse-item" href="admin_enterBox.dc">입점신청함</a>
 	                  <a class="collapse-item" href="admin_rcheckBox.dc">리뷰검토함</a>
@@ -268,7 +275,8 @@
 
 						<!-- Nav Item - User Information -->
 						<li class="nav-item dropdown no-arrow">
-							<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" 
+								aria-haspopup="true" aria-expanded="false">
 								<span class="mr-2 d-none d-lg-inline text-primary">${loginInfo.name }</span>
 								<i class="fi fi-bs-admin-alt" style="font-size: 25px;"></i>
 							</a>

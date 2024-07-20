@@ -31,49 +31,45 @@
 	</select>
 
 <select id="getAdminMonthSumCount" resultType="HashMap">
-    SELECT
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '01', 1, 0)) AS "1월_주문수",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '02', 1, 0)) AS "2월_주문수",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '03', 1, 0)) AS "3월_주문수",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '04', 1, 0)) AS "4월_주문수",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '05', 1, 0)) AS "5월_주문수",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '06', 1, 0)) AS "6월_주문수",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '07', 1, 0)) AS "7월_주문수",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '08', 1, 0)) AS "8월_주문수",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '09', 1, 0)) AS "9월_주문수",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '10', 1, 0)) AS "10월_주문수",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '11', 1, 0)) AS "11월_주문수",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '12', 1, 0)) AS "12월_주문수"
-     FROM
-        orderInfo 
-    GROUP BY
-        TO_CHAR(orderdate, 'YYYY')
-    ORDER BY
-        TO_CHAR(orderdate, 'YYYY')
+   SELECT
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '01', pamount, 0)) AS "1월",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '02', pamount, 0)) AS "2월",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '03', pamount, 0)) AS "3월",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '04', pamount, 0)) AS "4월",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '05', pamount, 0)) AS "5월",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '06', pamount, 0)) AS "6월",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '07', pamount, 0)) AS "7월",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '08', pamount, 0)) AS "8월",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '09', pamount, 0)) AS "9월",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '10', pamount, 0)) AS "10월",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '11', pamount, 0)) AS "11월",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '12', pamount, 0)) AS "12월"
+FROM
+    orderInfo
 </select>
 
-<!-- <select id="getAdminMonthSumCount" resultType="HashMap">
-   SUM(DECODE(TO_CHAR(orderdate, 'MM'), '01', o.pamount * p.price, 0)) AS "1월_매출액",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '02', o.pamount * p.price, 0)) AS "2월_매출액",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '03', o.pamount * p.price, 0)) AS "3월_매출액",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '04', o.pamount * p.price, 0)) AS "4월_매출액",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '05', o.pamount * p.price, 0)) AS "5월_매출액",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '06', o.pamount * p.price, 0)) AS "6월_매출액",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '07', o.pamount * p.price, 0)) AS "7월_매출액",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '08', o.pamount * p.price, 0)) AS "8월_매출액",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '09', o.pamount * p.price, 0)) AS "9월_매출액",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '10', o.pamount * p.price, 0)) AS "10월_매출액",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '11', o.pamount * p.price, 0)) AS "11월_매출액",
-        SUM(DECODE(TO_CHAR(orderdate, 'MM'), '12', o.pamount * p.price, 0)) AS "12월_매출액"
-     FROM
-        orderInfo o
-    INNER JOIN
-        product p ON o.pnum = p.pnum
-    GROUP BY
+<select id="getAdminMonthSumCount2" resultType="HashMap">
+	SELECT
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '01', o.pamount * p.price, 0)) AS "1월",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '02', o.pamount * p.price, 0)) AS "2월",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '03', o.pamount * p.price, 0)) AS "3월",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '04', o.pamount * p.price, 0)) AS "4월",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '05', o.pamount * p.price, 0)) AS "5월",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '06', o.pamount * p.price, 0)) AS "6월",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '07', o.pamount * p.price, 0)) AS "7월",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '08', o.pamount * p.price, 0)) AS "8월",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '09', o.pamount * p.price, 0)) AS "9월",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '10', o.pamount * p.price, 0)) AS "10월",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '11', o.pamount * p.price, 0)) AS "11월",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '12', o.pamount * p.price, 0)) AS "12월"
+	FROM
+	    orderInfo o
+	JOIN product p ON o.pnum = p.pnum
+	GROUP BY
+	    TO_CHAR(orderdate, 'YYYY')
+	ORDER BY
         TO_CHAR(orderdate, 'YYYY')
-    ORDER BY
-        TO_CHAR(orderdate, 'YYYY')
-</select> -->
+</select> 
 
 
 

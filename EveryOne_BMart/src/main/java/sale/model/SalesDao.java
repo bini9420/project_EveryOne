@@ -52,6 +52,9 @@ public class SalesDao {
 	public List<Map<String,Integer>> getAdminMonthSumCount(){
 		return sqlSessionTemplate.selectList(namespace+".getAdminMonthSumCount"); 
 	}
+	public List<Map<String,Integer>> getAdminMonthSumCount2(){
+		return sqlSessionTemplate.selectList(namespace+".getAdminMonthSumCount2"); 
+	}
 
 
 

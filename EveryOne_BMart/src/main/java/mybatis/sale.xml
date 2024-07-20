@@ -9,25 +9,19 @@
 
 
 	<select id="getAriaChart" resultType="sale.model.OrderInfoBean">
-		<!-- SELECT TO_CHAR(orderdate, 'MM') AS month, SUM(o.pamount * p.price) AS totalPrice
-               FROM orderInfo o 
-               INNER JOIN product p
-			   ON o.pnum = p.pnum
-			   GROUP BY TO_CHAR(orderdate,'YYYY'), TO_CHAR(orderdate, 'MM')
-			   ORDER BY TO_CHAR(orderdate, 'YYYY'), TO_CHAR(orderdate, 'MM') -->
-			   	SELECT
-				TO_CHAR(orderdate, 'YYYY-MM') AS orderdate,
-				SUM(o.pamount * p.price) AS totalPrice
-				FROM
-				orderInfo o
-				INNER JOIN
-				product p
-				ON
-				o.pnum = p.pnum
-				GROUP BY
-				TO_CHAR(orderdate, 'YYYY-MM')
-				ORDER BY
-				orderdate
+	   	SELECT
+		 TO_CHAR(orderdate, 'YYYY-MM') AS orderdate,
+		 SUM(o.pamount * p.price) AS totalPrice
+		FROM
+		 orderInfo o
+		INNER JOIN
+		 product p
+		ON
+		 o.pnum = p.pnum
+		GROUP BY
+		 TO_CHAR(orderdate, 'YYYY-MM')
+		ORDER BY
+		 orderdate
 	</select>
 
 <select id="getAdminMonthSumCount" resultType="HashMap">
@@ -70,8 +64,6 @@ FROM
 	ORDER BY
         TO_CHAR(orderdate, 'YYYY')
 </select> 
-
-
 
 </mapper>          
      

@@ -54,37 +54,27 @@
                 <tr>
                     <th></th>
                     <c:forEach var="month" items="<%=months %>">
-                    <th>${month }</th>
-                    
+                    	<th>${month }</th>                    
                     </c:forEach>
                  </tr>
+             </thead>
              <tbody>
              	 <tr>
-             	 <td>총 주문수</td>
-             	<c:forEach var="ams" items="${adminMonthlySale.keySet()}">
-             		<td>${adminMonthlySale.get(ams)}개</td>
-             	</c:forEach>
+             	 	<td>총 주문수</td>
+             		<c:forEach var="ams" items="${adminMonthlySale.keySet()}">
+             			<td>${adminMonthlySale.get(ams)}개</td>
+             		</c:forEach>
              	</tr>
              	<tr>
-             	<td>총수입</td>
-             	<c:forEach var="amsl" items="${adminMonthlySale2.keySet()}">
-             		<td>${adminMonthlySale2.get(amsl)}원</td>	
-             	</c:forEach>
-             	</tr>
-             
-             
-                </tbody>
-				</table>
+             		<td>총수입</td>
+             		<c:forEach var="amsl" items="${adminMonthlySale2.keySet()}">
+             			<td>${adminMonthlySale2.get(amsl)}원</td>	
+             		</c:forEach>
+             	</tr>      
+               </tbody>
+			</table>
 					
-						<!--  <canvas id="myBarChart"></canvas>  -->
-
-
-
-
-
-
-
-
+	
 <script>
         // JSON 데이터를 JSP에서 안전하게 전달
         var areaJsonString = ${areaJson};
@@ -165,9 +155,7 @@
             data: data,
             options: options
         });
-        
-        
-        
+       
     </script>
   
     

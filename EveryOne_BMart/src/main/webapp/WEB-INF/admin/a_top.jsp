@@ -169,7 +169,6 @@ button {
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Sales Manage:</h6>
 						<a class="collapse-item" href="top.sale">상품 매출</a> 
-						<a class="collapse-item" href="utilities-border.html">회원 매출</a>
 					</div>
 				</div>
 			</li>

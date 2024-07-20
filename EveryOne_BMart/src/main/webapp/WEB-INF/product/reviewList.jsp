@@ -84,7 +84,7 @@
 						            	<span class="text-secondary fs-7">상품번호: ${product.pnum}</span>
 						            </td>
 						            <td>
-						                <img src="<%=request.getContextPath()%>/resources/product/${product.pimage}" width="70" height="70">
+						                <img src="<%=request.getContextPath()%>/resources/uploadImage/${product.pimage}" width="70" height="70">
 						            </td>
 						            <td>
 						            	<fmt:parseDate value="${product.inputdate}" var="inputdate" pattern="yyyy-MM-dd"/>

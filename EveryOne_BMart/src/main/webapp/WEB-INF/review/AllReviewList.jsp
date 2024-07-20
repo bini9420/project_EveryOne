@@ -74,7 +74,7 @@
 							<td>${review.id}</td>
 							<td>${review.score}</td>
 							<td>${review.rcomment}</td>
-							<td><img src="${pageContext.request.contextPath}/resources/uploadImage/${review.image}" alt="Review Image" width="100" /></td>
+							<td><img src="<%=request.getContextPath()%>/resources/uploadImage/${review.image}" alt="Review Image" width="100" /></td>
 							<td>${review.pnum}</td>
 							<c:if test="${loginInfo.id == 'admin'}">
 								<td>

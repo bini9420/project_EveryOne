@@ -98,4 +98,10 @@
 		insert into member(id, password, name, email1, email2) values(#{id}, '1111', #{name}, #{email1}, #{email2})
 	</insert>
 	
+	<select id="getDescriptionForOwner" resultType="DescriptionBean">
+		select rownum, dsubject, ddate from
+		(select rownum, dsubject, ddate from description where id='admin' order by ddate desc)
+		where rownum <![CDATA[<=]]> 5
+	</select>
+	
 </mapper>

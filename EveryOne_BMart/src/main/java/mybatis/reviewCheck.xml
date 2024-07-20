@@ -103,4 +103,8 @@
 	<delete id="deleteReview">
 		delete from review where pnum=#{pnum} and id=#{id} and to_char(rdate, 'YYYY-MM-DD') like #{rdate}
 	</delete>
+	
+	<select id="getProductName" resultType="product">
+		select * from product where pnum=#{pnum}
+	</select>
 </mapper>

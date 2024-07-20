@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../../common/common.jsp"%>    
     
 <!-- top.jsp -->
 <!DOCTYPE html>
@@ -21,6 +22,13 @@
 		$('#documentWrite').modal('show');
 		$('#requestDocument').css('bgcolor', '#2ac1bc');
 		$('#requestDocumnet').css('border-color', '#bae8e6');
+	}
+	
+	function clickBell() { //종모양 클릭시 빨간색 말풍선 사라짐
+		var bellElement = document.getElementById('bell');
+	    if (bellElement) {
+	        bellElement.style.display = 'none';
+	    }
 	}
 </script>
 
@@ -254,49 +262,30 @@
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                            <a class="nav-link dropdown-toggle" onclick="clickBell()" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
+                                <span class="badge badge-danger badge-counter" id="bell">${dcount}+</span>
                             </a>
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
-                                    Alerts Center
+                                    공지사항
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
+                                	<c:forEach var="description" items="${d_lists}">
                                     <div class="mr-3">
                                         <div class="icon-circle bg-primary">
                                             <i class="fas fa-file-alt text-white"></i>
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                    	<fmt:parseDate value="${description.ddate}" var="ddate" pattern="yyyy-MM-dd"/>
+                                        <div class="small text-gray-500"><fmt:formatDate value="${ddate}" pattern="yyyy-MM-dd"/></div>
+                                        <span class="font-weight-bold">${description.dsubject}</span>
                                     </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
+                                    </c:forEach>
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                             </div>

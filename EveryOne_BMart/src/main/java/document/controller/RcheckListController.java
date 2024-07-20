@@ -1,5 +1,6 @@
 package document.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,13 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import document.model.ReviewcheckDao;
 import model.MemberBean;
+import model.ProductBean;
 import model.ReviewcheckBean;
 import utility.Paging;
 
 @Controller  
 public class RcheckListController {
 	private final String command = "rcheckList.dc";
-	private final String getPage = "reviewCheckList";
+	private final String getPage = "document_rcheckBox";
 
 	@Autowired
 	ReviewcheckDao reviewcheckDao;
@@ -50,7 +52,13 @@ public class RcheckListController {
 		
 		List<ReviewcheckBean> lists = reviewcheckDao.getAllReviewCheck(map, pageInfo);
 		model.addAttribute("lists", lists);
-		System.out.println("rcheck size: " + lists.size());
+		
+		//document_rcheckBox.jsp의 테이블에서 상품명을 출력하기 위하여 review_check 테이블의 상품번호값을 조건으로 반복해서 getProductName을 호출하고 list에 담기 
+		List<ProductBean> plists = new ArrayList<ProductBean>();
+		for(int i=0; i<lists.size(); i++) {
+			plists.add(reviewcheckDao.getProductName(lists.get(i).getPrdnum()));
+		}
+		model.addAttribute("plists", plists);
 		
 		return getPage;
 	}

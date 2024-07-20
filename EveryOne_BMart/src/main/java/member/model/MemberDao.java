@@ -13,6 +13,7 @@ import model.AddressBean;
 import model.EnterBean;
 import model.MemberBean;
 import model.BusinessBean;
+import model.DescriptionBean;
 import model.ReviewBean;
 import model.ReviewDetailBean;
 import utility.MemberListPaging;
@@ -201,5 +202,13 @@ public class MemberDao {
 	//네이버 회원 추가
 	public void naverInsert(MemberBean mb) {
 		sqlSessionTemplate.insert(namespace+".naverInsert",mb);
+	}
+
+	//★ 공지게시판 조회(최근 5개만)
+	public List<DescriptionBean> getDescriptionForOwner(String id) {
+		List<DescriptionBean> lists = new ArrayList<DescriptionBean>();
+		lists = sqlSessionTemplate.selectList(namespace + ".getDescriptionForOwner", id);
+		
+		return lists;
 	}
 }

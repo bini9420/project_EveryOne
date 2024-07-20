@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import model.ProductBean;
 import model.ReviewBean;
 import model.ReviewcheckBean;
 import utility.Paging;
@@ -112,6 +113,13 @@ public class ReviewcheckDao {
 
 	public void deleteReview(Map<String, String> map) {
 		int count = sqlSessionTemplate.delete(namespace + ".deleteReview", map);
-		System.out.println("count: " + count);
+		//System.out.println("count: " + count);
 	}//deleteReview
+
+	public ProductBean getProductName(String pnum) {
+		ProductBean pb = sqlSessionTemplate.selectOne(namespace + ".getProductName", pnum);
+		
+		return pb;
+	}//getProductName
+
 }

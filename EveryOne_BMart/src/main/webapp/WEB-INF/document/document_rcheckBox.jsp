@@ -109,40 +109,40 @@
                   </tr>
                 </thead>
                 <tbody>
-              		<c:forEach var="rcheckDocument" items="${lists}">
-              			<tr onclick="detailDocument('${rcheckDocument.rnum}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                	<c:forEach var="i" begin="0" end="${fn:length(lists)-1}">
+                		<tr onclick="detailDocument('${lists[i].rnum}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
               				<td> 
               					<h6 class="mb-1">[리뷰검토]</h6>
               				</td>
               				<td>
-              					<h6 class="mb-1">${rcheckDocument.rnum}</h6>
+              					<h6 class="mb-1">${lists[i].rnum}</h6>
               				</td> 
               				<td>
-              					<h6 class="mb-1">${rcheckDocument.content}</h6>
+              					<h6 class="mb-1">${lists[i].content}</h6>
               				</td>
               				<td>
-              					<fmt:parseDate value="${rcheckDocument.writeday}" var="writeday" pattern="yyyy-MM-dd HH:mm"/>
+              					<fmt:parseDate value="${lists[i].writeday}" var="writeday" pattern="yyyy-MM-dd HH:mm"/>
               					<h6 class="mb-1"><fmt:formatDate value="${writeday}" pattern="yyyy-MM-dd HH:mm"/></h6>
               				</td>
               				<td>
-              					<h6 class="mb-1">${rcheckDocument.prdnum}</h6>
+              					<h6 class="mb-1">${plists[i].pname}</h6>
               				</td>
               				<!-- 
 							 -1: 반려 / 0: 대기(결재진행중) / 1: 승인(결재완료) / 10: 임시저장
 							-->
 							<td id="documentStatus" align="left">
-							    <c:if test="${rcheckDocument.dstatus eq -1}">
+							    <c:if test="${lists[i].dstatus eq -1}">
 							          <span class="badge rounded-pill bg-danger">반려</span>
 							    </c:if>
-							    <c:if test="${(rcheckDocument.dstatus eq 0) && (rcheckDocument.request eq 1)}">
+							    <c:if test="${(lists[i].dstatus eq 0) && (lists[i].request eq 1)}">
 							          <span class="badge rounded-pill bg-info">대기</span>
 							    </c:if>
-							    <c:if test="${rcheckDocument.dstatus eq 1}">
+							    <c:if test="${lists[i].dstatus eq 1}">
 							          <span class="badge rounded-pill bg-success">승인</span>
 							    </c:if>
 							</td>
               			</tr>
-              		</c:forEach>
+                	</c:forEach>
                 </tbody>
               </table>
               

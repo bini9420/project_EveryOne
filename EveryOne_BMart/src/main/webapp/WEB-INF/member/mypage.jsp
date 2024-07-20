@@ -16,7 +16,7 @@
 				<div class="card-body">
 					<nav class="nav flex-column">
 						<font class="my-2 fw-bold" color="#186E6A">자주찾는메뉴</font>
-							<a class="nav-link text-muted" aria-current="page" href="mypage.mb?index=orderList">
+							<a class="nav-link text-muted" aria-current="page" href="orderList.mall">
 								<i class="fi fi-rr-document icon"></i>
 								주문내역
 							</a>

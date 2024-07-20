@@ -57,6 +57,8 @@
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary">매출관리</h6>
 						<button type="button" class="btn float-right btn-sm btn-outline-primary" onclick="location.href='list.od'">+</button>
+						<h6 class="m-0 font-weight-bold text-primary">상품관리</h6>
+						<button type="button" class="btn float-right btn-sm btn-outline-primary" onClick="location.href='productList_owner.prd'">+</button>
 					</div>
 					<div class="card-body">
 						<div class="text-center">

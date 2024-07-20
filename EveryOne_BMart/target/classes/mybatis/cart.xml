@@ -6,6 +6,7 @@
 	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cart">
+
 	<select id="getCart" resultType="int">
 		select count(*) from cart where id=#{id} and pnum=#{pnum}
 	</select>
@@ -21,4 +22,20 @@
 	<select id="getCartTotalCount" resultType="int">
 		select count(*) from cart where id=#{id}
 	</select>
+	<select id="getCartById" resultType="cart">
+		select * from cart where id = #{id}
+	</select>
+		<update id="updateCartQty" parameterType="map">
+		update cart set qty = #{pqty}
+		where pnum = #{pnum}
+	</update>
+	<delete id="deleteCart">
+		delete from cart 
+		where pnum = #{pnum}
+	</delete>
+	<select id="getQtyByPnum" resultType="Integer">
+		select qty from cart
+		where pnum = #{pnum}
+	</select>
+	
 </mapper>

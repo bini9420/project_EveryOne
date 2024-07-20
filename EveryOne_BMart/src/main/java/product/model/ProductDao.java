@@ -9,6 +9,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import document.model.DocumentBean;
+import model.EnterBean;
+import model.ProductBBean;
 import model.ProductBean;
 import utility.MemberListPaging;
 import utility.PagingPlus;
@@ -124,7 +127,6 @@ public class ProductDao {
 		return pb;
 	}//getProductByPnum_Owner
 
-	
 	//★ ownerPrdDetailView.jsp에서 저장 버튼 클릭시 변경된 내용 수정
 	public int updateProductByOwner(ProductBean product) {
 		int cnt = -100;
@@ -132,6 +134,10 @@ public class ProductDao {
 		
 		return cnt;
 	}//updateProductByOwner
+
+	public ProductBean getProductById(int pnum) {
+		return sqlSessionTemplate.selectOne(namespace + ".selectProductById", pnum);
+	}
 
 	//★ ownerPrdInsertForm.jsp에서 필요
 	public List<ProductBean> getPcategoryListByWriter(String id) {
@@ -145,5 +151,11 @@ public class ProductDao {
 	public void deleteProductByOwner(String pnum) {
 		sqlSessionTemplate.delete(namespace + ".deleteProductByOwner", pnum);
 	}//deleteProduct
+
+	public int updateOwnerProduct(ProductBean product) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.update(namespace + ".updateOwnerProduct", product);
+		return cnt;
+	}
 
 }

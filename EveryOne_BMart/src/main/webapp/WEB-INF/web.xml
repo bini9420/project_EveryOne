@@ -155,6 +155,7 @@
 		<servlet-name>product</servlet-name>
 		<url-pattern>*.prd</url-pattern>
 	</servlet-mapping>
+	
 	<!-- 판매  -->
 	<servlet>
 		<servlet-name>sale</servlet-name>

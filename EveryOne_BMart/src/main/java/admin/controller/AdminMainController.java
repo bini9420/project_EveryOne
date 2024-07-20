@@ -41,13 +41,13 @@ public class AdminMainController {
 			HttpServletRequest request,
 			Model model) {
 		
-		//»ó´Ü Card > °áÀç ´ë±â °Ç¼ö(ÀÏ¹İ °áÀç + ÀÔÁ¡ ¿äÃ»)
+		//ê²°ì¬ìš”ì²­ ëŒ€ê¸°ê±´ìˆ˜
 		int count1 = adminDao.getWaitDocumentCountForAdmin();
 		int count2 = adminDao.getWaitEnterCountForAdmin();
 		int waitCount = count1 + count2;
 		model.addAttribute("waitCount", waitCount);
 		
-		//»ó´Ü Card > È¸¿ø/»óÇ°°ü¸®
+		//íšŒì› ìˆ˜, ìƒí’ˆ ê°œìˆ˜  
 		int memberCount = adminDao.getAllMemberCount();
 		int productCount = adminDao.getAllProductCount();
 		model.addAttribute("memberCount", memberCount);
@@ -55,12 +55,12 @@ public class AdminMainController {
 		
 		
 		
-		//°ü¸®ÀÚ mainÆäÀÌÁö °áÀçÇÔ
+		//AdminMain             
 		List<DocBean> docList = adminDao.getDocumentList(); 
 		model.addAttribute("docList", docList);
 
 
-		//¿ùº° ¸ÅÃâ Â÷Æ®
+		//ì°¨íŠ¸ - ì›”ë³„ ë§¤ì¶œ            Æ®
 		Gson gson = new Gson();
 		JsonArray areaArray = new JsonArray();
 
@@ -75,7 +75,7 @@ public class AdminMainController {
 		String areaJson = gson.toJson(areaArray);
 		model.addAttribute("areaJson", areaJson);
 
-		// ÀÎ±â»óÇ° TOP5 ÆÄÀÌ Â÷Æ®
+		//ë„ë„› ì°¨íŠ¸ -ìƒí’ˆ TOP5        Æ®
 		JsonArray pieArray = new JsonArray();
 		List<ProductBean> plists = salesDao.getRangeTest();
 
@@ -89,15 +89,12 @@ public class AdminMainController {
 			pieArray.add(object);
 		}
 
-
 		String pieJson = gson.toJson(pieArray);
 		model.addAttribute("pieJson", pieJson);
 
-		//Ä«Å×°í¸®º° ¸ÅÃâÂ÷Æ®
-
+		//ì°¨íŠ¸ - ì¹´í…Œê³ ë¦¬ë³„ ë§¤ì¶œ         Æ®
 		JsonArray barArray = new JsonArray();
 		List<ProductBean> clists = salesDao.getCateChart();
-
 
 		for(ProductBean product :clists) {
 			JsonObject object = new JsonObject();
@@ -108,7 +105,6 @@ public class AdminMainController {
 
 		String barJson = gson.toJson(barArray);
 		model.addAttribute("barJson",barJson);
-
 
 
 		return getPage;

@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import model.ProductBean;
 import model.ReviewBean;
 
 
@@ -15,6 +16,7 @@ public class ReviewDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	private String namespace = "review";
+	private String product = "product";
 	
 	public List<ReviewBean> getReviewsByProduct(int pnum) {
 		return sqlSessionTemplate.selectList(namespace + ".getReviewsByProduct",pnum);
@@ -42,6 +44,15 @@ public class ReviewDao {
 	public List<ReviewBean> getAllReviews() {
 		List<ReviewBean> reviews = sqlSessionTemplate.selectList(namespace + ".getAllReviews");
 		return reviews;
+	}
+    public int insertReview(ReviewBean rb) {
+    	int cnt = -1;
+    	cnt = sqlSessionTemplate.insert(namespace+".insertReview", rb);
+    	return cnt;
+    }
+	public ProductBean getProductInfo(int pnum) {
+		ProductBean pb = sqlSessionTemplate.selectOne(product+".getProductInfo", pnum);
+		return pb;
 	}
     
     

@@ -6,6 +6,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="member">
+	<!-- 해당하는 회원 정보 조회 -->
 	<select id = "getMember" resultType = "member">
 		select * from member where id = #{id}
 	</select>
@@ -59,37 +60,45 @@
 
 	</update>
 	
+	<!-- 회원 정보 수정 -->
 	<update id="updateMember">
 		update member 
 		set password=#{password}, name=#{name}, phone1=#{phone1}, phone2=#{phone2}, phone3=#{phone3}, email1=#{email1}, email2=#{email2} 
 		where id=#{id}
 	</update>
 	
+	<!-- 회원 이미지 수정 -->
 	<update id="updateMemberImage">
 		update member set image=#{image} where id=#{id}
 	</update>
 	
+	<!-- 회원가입 시 아이디 중복체크 -->
 	<select id="checkId" resultType="int">
 		select count(*) from member where id=#{id}
 	</select>
 	
+	<!-- 회원가입 -->
 	<insert id="insertMember">
 		insert into member(id, name, password, phone1, phone2, phone3, email1, email2) 
 		values(#{id}, #{name}, #{password}, #{phone1}, #{phone2}, #{phone3}, #{email1}, #{email2})
 	</insert>
 	
+	<!-- 아이디 찾기 -->
 	<select id="getMemberId" resultType="member">
 		select * from member where name=#{name} and phone1=#{phone1} and phone2=#{phone2} and phone3=#{phone3}
 	</select>
 	
+	<!-- 비밀번호 찾기 -->
 	<select id="getMemberPw" resultType="member">
 		select * from member where id=#{id} and name=#{name}
 	</select>
 	
+	<!-- 카카오, 네이버 로그인 시 기존 회원인지 찾기 -->
 	<select id="findMember" resultType="member">
 		select * from member where id=#{id}
 	</select>
 	
+	<!-- 기존 회원이 아니면 회원가입 -->
 	<insert id="kakaoInsert">
 		insert into member(id, password, email1, email2) values(#{id}, '1111', #{email1}, #{email2})
 	</insert>
@@ -104,4 +113,17 @@
 		where rownum <![CDATA[<=]]> 5
 	</select>
 	
+	<!-- 대기 중인 문서 개수 조회 -->
+	<select id="getWaitDocumentCountForAdmin" resultType="int">
+		select count(*) from document where request=1 and dstatus=0
+	</select>
+	
+	<select id = "getBmartMember" resultType = "member">
+		select * from member where id = #{id}
+	</select>
+	
+	<select id="getOrderInfo" resultType="model.OrdersBean">
+		select * from orderinfo 
+		where id = #{id}
+	</select>
 </mapper>

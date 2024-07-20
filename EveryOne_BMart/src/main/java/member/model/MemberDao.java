@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 import model.AddressBean;
 import model.EnterBean;
 import model.MemberBean;
+import model.OrdersBean;
+import model.ProductBean;
 import model.BusinessBean;
 import model.DescriptionBean;
 import model.ReviewBean;
@@ -32,6 +34,8 @@ public class MemberDao {
 	private String business = "business";
 	private String review = "review";
 	private String reviewDetail = "reviewDetail";
+	private String order = "orders.model.Orders";
+	private String product = "product";
 	
 	public MemberBean getMember(String id) {
 		MemberBean member = null;
@@ -211,4 +215,17 @@ public class MemberDao {
 		
 		return lists;
 	}
+	
+	public List<OrdersBean> getOrderInfo(String id) {
+		List<OrdersBean> olist = sqlSessionTemplate.selectList(namespace+".getOrderInfo", id);
+		return olist;
+	}
+	
+	//상품 정보 조회
+	public ProductBean getProductInfo(int pnum) {
+		ProductBean prd = null;
+		prd = sqlSessionTemplate.selectOne(product+".getProductInfo", pnum);
+		return prd;
+	}
+	
 }

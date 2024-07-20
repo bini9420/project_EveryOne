@@ -37,7 +37,7 @@ public class AdminDao {
 	public int getWaitDocumentCountForAdmin() {
 		int count = -100;
 		count = sqlSessionTemplate.selectOne(namespace + ".getWaitDocumentCountForAdmin");
-		
+		System.out.println("wait count: "+count);
 		return count;
 	}//getWaitDocumentCountForAdmin
 

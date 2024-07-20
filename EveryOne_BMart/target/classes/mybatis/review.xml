@@ -38,5 +38,9 @@
 	<select id="getAllReviews" resultType="review">
 		SELECT R.*, P.pnum FROM review R JOIN Product P ON R.pnum = P.pnum
 	</select>
+		<insert id="insertReview">
+		insert into review 
+		values(rseq.nextval,#{id},#{pnum},#{rcomment},#{image jdbcType=VARCHAR},sysdate,#{score},#{onum})
+	</insert>
     
 </mapper>

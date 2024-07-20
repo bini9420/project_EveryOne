@@ -1,6 +1,7 @@
 package mall.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,8 +10,12 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import model.AddressBean;
+import model.CartBean;
 import model.CategoryBean;
 import model.InterestBean;
+import model.MemberBean;
+import model.OrdersBean;
 import model.ProductBean;
 import model.ReviewDetailBean;
 import model.SearchBean;
@@ -35,6 +40,9 @@ public class MallDao {
 	private String cart = "cart";
 	private String review = "review";
 	private String reviewDetail = "reviewDetail";
+	private String order = "orders.model.Orders";
+	private String addr = "address";
+	private String member = "member";
 	
 	//카테고리 띄우기
 	public List<CategoryBean> getAllCategory() {
@@ -213,5 +221,94 @@ public class MallDao {
 		rcount = sqlSessionTemplate.selectOne(review+".getReviewTotalCount", pnum);
 		return rcount;
 	}
+	
+	
+	
+	// ------CHO
+	
+	//장바구니 개수 수정
+	public int updateCartQty(Map<String, String> map) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.update(cart+".updateCartQty", map);
+		return cnt;
+	}
+	
+	//장바구니 리스트 조회
+	public List<CartBean> getCartById(String id) {
+		List<CartBean> clist = new ArrayList<CartBean>();
+		clist = sqlSessionTemplate.selectList(cart+".getCartById", id);
+		return clist;
+	}
+	
+	//장바구니 담긴 상품 삭제
+	public int deleteCart(int pnum) {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.delete(cart+".deleteCart", pnum);
+		return cnt;
+	}
+	
+	//장바구니에 담긴 상품의 주문 개수 조회
+	public int getQtyByPnum(int pnum) {
+		int qty = sqlSessionTemplate.selectOne(cart+".getQtyByPnum", pnum);
+		return qty;
+	}
+	//상품의 재고 개수 조회
+	public int getStockByPnum(int pnum) {
+		int stock = sqlSessionTemplate.selectOne(product +".getStockByPnum", pnum);
+	return stock;
+	}
+
+
+	//상품 정보 조회
+	public MemberBean getBmartMember(String id) {
+		MemberBean mb = null;
+		mb = sqlSessionTemplate.selectOne(member + ".getBmartMember", id);
+		return mb;
+	}
+	
+	//배송지 목록 조회
+	public List<AddressBean> getAddressList(String id) {
+		List<AddressBean> alists = new ArrayList<AddressBean>();
+		alists = sqlSessionTemplate.selectList(addr+".getAddressList", id);
+		return alists;
+	}
+	
+	//주문 정보 삽입
+    public int insertOrder(OrdersBean ob){
+    	int cnt = -1;
+    	cnt = sqlSessionTemplate.insert(order+".insertOrder", ob);
+    	return cnt; 
+    }
+    
+    public List<OrdersBean> getOrderList(String id) {
+    	
+    	List<OrdersBean> olist = new ArrayList<OrdersBean>();
+    	olist = sqlSessionTemplate.selectList(order+".getOrderList", id);
+    	return olist;
+    }
+    
+    public int deleteOrder(int onum) {
+    	int cnt = -1;
+    	cnt = sqlSessionTemplate.delete(order+".deleteOrder", onum);
+    	return cnt;
+    }
+    
+    public int minusStock(int pnum, int minusStock) {
+    	Map<String, Integer> map = new HashMap<String, Integer>();
+    	map.put("pnum", pnum);
+    	map.put("minusStock", minusStock);
+    	int cnt = -1;
+    	cnt = sqlSessionTemplate.update(product+".minusStock", map);
+    	return cnt;
+    }
+    
+    public int plustStock(int pnum, int plusStock) {
+    	Map<String, Integer> map = new HashMap<String, Integer>();
+    	map.put("pnum", pnum);
+    	map.put("plusStock", plusStock);
+    	int cnt = -1;
+    	cnt = sqlSessionTemplate.update(product+".plustStock", map);
+    	return cnt;
+    }
 
 }

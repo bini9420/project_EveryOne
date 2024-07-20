@@ -79,5 +79,16 @@
         AND EXTRACT(MONTH FROM o.orderdate) = #{month}
         ORDER BY o.onum DESC
     </select>
+    	<insert id="insertOrder">
+		insert into orderInfo(onum,id,pnum,pamount,price,contents,way,status,payment,orderdate)
+		values(seqorder.nextval,#{id},#{pnum},#{pamount},#{price},#{contents},#{way},#{status},#{payment},sysdate)
+	</insert>
+	<select id="getOrderList" resultType="OrdersBean">
+		select * from orderinfo 
+		where id = #{id}
+	</select>
+	<delete id="deleteOrder">
+		delete from orderinfo where onum = #{onum}
+	</delete>
 
 </mapper>

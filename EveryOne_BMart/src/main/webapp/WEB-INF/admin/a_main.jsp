@@ -3,6 +3,15 @@
 <%@ include file="../common/common.jsp"%>
 <%@ include file="a_top.jsp"%>
 
+<style>
+ #approveBox:hover {
+ 	cursor: pointer;
+ }
+ #approvalRequest {
+ 	display: inline;
+ }
+</style>
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
      
@@ -15,8 +24,7 @@
 				<div class="card-body">
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
-							<div
-								class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
 								<h4>
 									<a href="aMemberList.mb">회원</a>/<a href="adminProductList.prd">상품관리</a>
 								</h4>
@@ -37,8 +45,7 @@
 				<div class="card-body">
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
-							<div
-								class="text-xs font-weight-bold text-success text-uppercase mb-1">
+							<div class="text-xs font-weight-bold text-success text-uppercase mb-1">
 								<h4>
 									<a href="top.sale">월간수입</a>
 								</h4>

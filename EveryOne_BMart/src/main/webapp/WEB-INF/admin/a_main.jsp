@@ -412,16 +412,20 @@
                 }
                         
 
-                ,select:function(arg)
-                {
+                ,select: function(arg) {
                     var title = prompt("일정을 입력해주세요.");
                     if (title) {
-                        calendar.addEvent({
+                        // 이벤트 객체 생성
+                        var events = {
                             title: title,
                             start: arg.start,
                             end: arg.end
-                        });
-                    }
+                        };
+
+                        // 캘린더에 이벤트 추가
+                        calendar.addEvent(events);
+
+                        
                         var events = new Array();
                         var obj = new Object();
                         
@@ -429,20 +433,32 @@
                         obj.start= arg.start;
                         obj.end= arg.end;
                         events.push(obj);
-                      
-
+                        
+                        
+                        // 서버에 이벤트 데이터 전송
                         $.ajax({
                             url: "addSchedule.scd",
                             method: "POST",
                             dataType: "json",
                             data: JSON.stringify(events),
                             contentType: 'application/json',
+                            success: function(response) {
+                                console.log("이벤트가 성공적으로 추가되었습니다:", response);
+                            },
+                            error: function(xhr, status, error) {
+                                console.error("이벤트 추가 실패:", error);
+                            }
                         });
-                       
-                        
+
+                        // 캘린더 선택 해제
                         calendar.unselect();
-                
+                    } else {
+                        // 제목이 입력되지 않은 경우 처리
+                        
+                        calendar.unselect(); // 제목이 없더라도 선택 해제
                     }
+                }
+
                
 
                 ,eventClick: function(info)

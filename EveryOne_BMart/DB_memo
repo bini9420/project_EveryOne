@@ -453,6 +453,28 @@ select * from cart order by cnum desc;
 select * from state;
 
 
+
+
+
+
+--일정 테이블
+drop table schedule cascade constraints;
+create table schedule (
+   title varchar2(20) primary key,
+   startDate date default sysdate, 
+   endDate date default sysdate
+
+);
+
+
+
+
+INSERT INTO schedule VALUES ('b마트 점검', SYSDATE, SYSDATE);
+INSERT INTO schedule VALUES ('b마트 상품등록',  '24-7-15', '24-7-20');
+INSERT INTO schedule VALUES ('b마트 임원모임', '24-7-16','24-7-16');
+INSERT INTO schedule VALUES ('b마트 공지', '24-7-18', '24-7-19');
+commit;
+
 --최근 3일 이내에 등록한 상품 조회
 select count(*) from product where inputdate between sysdate-3 and sysdate;
 

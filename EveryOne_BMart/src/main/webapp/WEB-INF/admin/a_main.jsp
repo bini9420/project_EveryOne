@@ -46,7 +46,7 @@
 							<div
 								class="text-xs font-weight-bold text-success text-uppercase mb-1">
 								<h5>
-									<a href="top.sale">월간수입</a>
+									<a href="top.sale">연간수입</a>
 								</h5>
 							</div>
 							<div class="h5 mb-0 font-weight-bold text-gray-800"><fmt:formatNumber value="${monthSale}" type="number" />원</div>

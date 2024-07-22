@@ -13,8 +13,9 @@
 
 	<update id="updateMember">
 		update member
-		set password=#{password}, name=#{name}, phone1=#{phone1},
-		phone2=#{phone2}, phone3=#{phone3}, email1=#{email1}, email2=#{email2}
+		set 
+			password=#{password}, name=#{name}, phone1=#{phone1},
+			phone2=#{phone2}, phone3=#{phone3}, email1=#{email1}, email2=#{email2}
 		where id=#{id}
 	</update>
 
@@ -22,7 +23,7 @@
 	<select id="getDocumentList" resultType="doc.model.DocBean">
 		select * from document
 		order by dnum desc
-		FETCH FIRST 5 ROWS ONLY
+		fetch first 5 rows only
 	</select>
 	
 	<select id="getWaitDocumentCountForAdmin" resultType="int">
@@ -46,14 +47,17 @@
 	</select>
 	
 	<select id="getMonthSaleCount" resultType="int">
-	   	SELECT
-		 SUM(o.pamount * p.price) AS totalPrice
+		SELECT
+		    SUM(o.pamount * p.price) AS totalPrice,
+		    TO_CHAR(o.orderdate, 'YYYY') AS orderYear
 		FROM
-		 orderInfo o
+		    orderInfo o
 		INNER JOIN
-		 product p
-		ON
-		 o.pnum = p.pnum		
+		    product p ON o.pnum = p.pnum
+		WHERE
+		    TO_CHAR(o.orderdate, 'YYYY') = TO_CHAR(sysdate,'YYYY') 
+		GROUP BY
+		    TO_CHAR(o.orderdate, 'YYYY')
 	</select>
 	
 	

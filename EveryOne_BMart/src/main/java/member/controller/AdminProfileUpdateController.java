@@ -26,7 +26,7 @@ public class AdminProfileUpdateController {
 
 
 	private final String command="a_profileUpdate.mb";
-	private final String gotoPage="a_main";
+	
 
 
 	@Autowired
@@ -117,10 +117,11 @@ public class AdminProfileUpdateController {
 		
 
 		session.setAttribute("loginInfo", member);
-		out.println("<script> alert('수정이 성공적으로 되었습니다.');");
-		out.println("</script>"); 
-		out.close();
+		out.append("<script>");
+		out.append("alert('성공적으로 수정이 되었습니다!'); location.href='adProfile.mb?index=memberInfoUpdate'");
+		out.append("</script>");
+		return null;
 		
-		return gotoPage;
+		
 	}
 }

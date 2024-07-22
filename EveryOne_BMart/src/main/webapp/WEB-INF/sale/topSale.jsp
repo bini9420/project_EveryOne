@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@include file="../common/common.jsp" %>
 <%@ include file="../admin/a_top.jsp"%>
 
 
@@ -70,9 +71,9 @@
 			</tr>
 			<tr>
 				<td>총수입</td>
-				<c:forEach var="amsl" items="${adminMonthlySale2.keySet()}">
-					<td>${adminMonthlySale2.get(amsl)}원</td>	
-				</c:forEach>
+				  <c:forEach var="amsl" items="${adminMonthlySale2.keySet()}">
+                <td><fmt:formatNumber value="${adminMonthlySale2.get(amsl)}" type="number"/>원</td>    
+            	</c:forEach>
 			</tr>      
 		</tbody>
 	</table>

@@ -66,8 +66,8 @@
 						</tr>
 						<tr>
 							<td>카테고리 <select name="category">
-									<option value="공지사항">공지사항</option>
-									<option value="FAQ">FAQ</option>
+									<option value="공지사항" ${category == '공지사항' ? 'selected' : ''}>공지사항</option>
+                                    					<option value="FAQ" ${category == 'FAQ' ? 'selected' : ''}>FAQ</option>
 							</select>
 							</td>
 						</tr>

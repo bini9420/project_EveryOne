@@ -5,7 +5,7 @@
 
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800 title">B마트 회원목록</h1>
-<div class="card shadow mb-4">
+<div class="card shadow mb-4 w-75 mx-auto">
 	<div class="card-header py-3">
 		<div class="card-body">
 
@@ -26,9 +26,6 @@
 				</form>
 			</div>
 		</div>
-	</div>
-
-	<div class="card-body">
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTable">
 				<thead>
@@ -67,5 +64,4 @@
 		</ul>
 	</nav>
 </div>
-
 <%@include file="../admin/a_bottom.jsp"%>

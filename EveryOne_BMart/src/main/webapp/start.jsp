@@ -33,13 +33,11 @@
 
 <body class="bg-primary">
 	<nav class="navbar navbar-expand-lg bg-light">
-		<div class="container">
-			<ul class="navbar-nav ms-auto" >
-				<li class="nav-item mx-5" >
-					<button  onClick="location='login.ad'" class="btn btn-light">관리자 로그인</button>
-				</li>
-			</ul>
-		</div>
+		<ul class="navbar-nav ms-auto" >
+			<li class="nav-item mx-5" >
+				<button  onClick="location='login.ad'" class="btn btn-light">관리자 로그인</button>
+			</li>
+		</ul>
 	</nav>
 	
 	<nav class="navbar navbar-expand-lg w-75 mx-auto" style="margin-top:200">

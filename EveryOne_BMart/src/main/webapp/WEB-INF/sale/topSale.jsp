@@ -3,11 +3,18 @@
 <%@ include file="../admin/a_top.jsp"%>
 
 
-
-<!-- Begin Page Content -->
-<div class="container-fluid">
-
-	<div class="text-center my-4"><h2>매출 관리</h2></div>
+<h1 class="h3 mb-2 text-gray-800 title">매출 관리</h1>
+<div class="card shadow mx-auto" style="width :80%">
+	<div class="card-header py-3">
+		<div class="search my-2">
+			<div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+				<div class="input-group">
+					<div class="input-group-append">
+					</div>
+				</div>
+			</div>
+		</div>
+<div class="card-body">
 	
 	<!-- Content Row -->
 	<div class="row">
@@ -38,19 +45,6 @@
 				</div>
 			</div>
 		</div>
-		
-		<div class="col-xl-7">
-			<div class="card shadow mb-4">
-				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">상품 카테고리별 매출현황</h6>
-				</div>
-				<div class="card-body">
-					<canvas id="myBarChart"></canvas>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 		
 		
 <% String months[] = {"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"}; %>

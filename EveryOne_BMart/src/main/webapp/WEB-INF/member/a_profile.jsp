@@ -24,7 +24,7 @@
                                         <tr>
                                             <th>사진</th>
                                             <td><% String img = request.getContextPath()+"/resources/uploadImage/"; %>
-                                            	<img src="<%=img%>${adminLists.image}" style="width:100" class="mt-1"/><br>
+                                            	<img src="<%= img %>${adminLists.image}" style="width:100px; height:100px;" class="mt-1"/><br>
 												<!-- 새로 upload -->
 												<input type="file" name="upload" class="my-2">
 												<input type="hidden" name="upload2" value="${adminLists.image}"></td>

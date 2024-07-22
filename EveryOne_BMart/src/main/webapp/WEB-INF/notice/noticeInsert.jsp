@@ -32,21 +32,20 @@
 			</div>
 		</div>
 		<div class="col-sm-8">
-			<form:form action="insert.nt" method="post" class="form-container">
-				<table class="p-4">
-					<tr>
-						<td class="radio-group">
-							상단고정 
-							<input type="radio" name="noti" value="y" required>Y 
-							<input type="radio" name="noti" value="n">N
-						</td>
-					</tr>
-					<tr>
-						<td>
-							카테고리 
-							<select name="category">
-								<option value="공지사항">공지사항</option>
-								<option value="FAQ">FAQ</option>
+			<div class="card bg-light" style="border: 0px">
+				<form:form action="insert.nt" method="POST" class="form-container">
+					<table>
+						<br>
+						<tr>
+							<td class="radio-group">상단고정 <input type="radio" name="noti"
+								value="y" required>Y <input type="radio" name="noti"
+								value="n">N
+							</td>
+						</tr>
+						<tr>
+							<td>카테고리 <select name="category">
+									<option value="공지사항" ${category == '공지사항' ? 'selected' : ''}>공지사항</option>
+                                    					<option value="FAQ" ${category == 'FAQ' ? 'selected' : ''}>FAQ</option>
 							</select>
 						</td>
 					</tr>

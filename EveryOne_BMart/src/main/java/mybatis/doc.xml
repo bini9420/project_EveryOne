@@ -26,6 +26,7 @@
 		where rnum=#{rnum}
 
 	</update>
+	
 	<update id="updateState">
 		update state set dstatus=1
 		where snum=#{snum}

@@ -397,7 +397,7 @@ create table orderInfo(
 );
   
 insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 3, '2024-06-01');
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 2, 3, '2024-06-01');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 3, '2024-06-01');
 
 insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'choi', 10, 1, '2024-07-21');
 insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'jung', 10, 1, '2024-07-21');

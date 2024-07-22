@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import schedule.model.CalendarBean;
 import schedule.model.CalendarDao;
-  
+          
 @Controller
  
 public class CalendarController {

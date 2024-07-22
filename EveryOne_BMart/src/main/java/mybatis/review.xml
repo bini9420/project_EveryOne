@@ -42,5 +42,8 @@
 		insert into review 
 		values(rseq.nextval,#{id},#{pnum},#{rcomment},#{image jdbcType=VARCHAR},sysdate,#{score},#{onum})
 	</insert>
+	<select id="getReivewInfoCount" resultType="int">
+		select count(*) from review where onum = #{onum}
+	</select>
     
 </mapper>

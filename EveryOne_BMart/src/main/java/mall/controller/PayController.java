@@ -3,8 +3,13 @@ package mall.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,7 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import mall.model.MallDao;
 import mall.model.PayInfo;
-import orders.model.OrdersDao;
+import model.AddressBean;
+import model.MemberBean;
+import model.OrdersBean;
+import model.ReviewBean;
 
 @Controller
 public class PayController {
@@ -25,8 +33,7 @@ public class PayController {
 	
 	@RequestMapping(value = command)
 	@ResponseBody
-	public ModelAndView pay(@RequestBody PayInfo payInfo
-			) {
+	public ModelAndView pay(@RequestBody PayInfo payInfo, HttpSession session) {
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -36,6 +43,8 @@ public class PayController {
 		System.out.println("pay 컨트롤러: " + payInfo);
 		
 		model.OrdersBean ob = new model.OrdersBean();
+		MemberBean mb = (MemberBean) session.getAttribute("loginInfo");
+		String id = mb.getId();
 		
 		int[] pnumber = payInfo.getPnum();
 		int[] pamount = payInfo.getQty();

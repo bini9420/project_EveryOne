@@ -7,7 +7,7 @@ public class AddressBean {
 	private int anum;
 	private String id;
 	
-	@NotBlank
+	@NotBlank(message = "배송지를 선택해주세요.")
 	private String alias;
 	@NotBlank
 	private String post;

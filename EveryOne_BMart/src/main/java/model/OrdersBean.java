@@ -2,13 +2,18 @@ package model;
 
 import java.sql.Date;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class OrdersBean {
 	private int onum;
     private String id;
     private int pnum;
     private int pamount;
     private int price;
+    
+    @NotBlank(message = "요청사항을 입력해주세요.")
     private String contents;
+    @NotBlank(message = "배송방법을 선택해주세요.")
     private String way;
     private int status;
     private String payment;

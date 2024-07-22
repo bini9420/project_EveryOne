@@ -70,7 +70,7 @@ public class OrderController {
 	            ProductBean pb = mallDao.getProductInfo(Integer.parseInt(pnum));
 	            plist.add(pb);
 	            
-	            int qty = mallDao.getQtyByPnum(Integer.parseInt(pnum));
+	            int qty = mallDao.getQtyByPnum(pnum, id);
 	            System.out.println("ªÛ«∞ qty: " + qty);
 	            clistQty.add(qty);
 	        }

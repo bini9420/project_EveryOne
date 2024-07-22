@@ -91,6 +91,27 @@ $(document).ready(function() {
         var starValue = $(this).attr('value');
         $('#starRating').val(starValue);
     });
+    
+    $('.reviewForm').submit(function(e) {
+        e.preventDefault(); // 기본 제출 이벤트 방지
+        
+        // AJAX를 사용하여 폼을 제출할 수도 있습니다.
+        $.ajax({
+            type: 'POST',
+            url: 'insertForm.rv',
+            data: $('.reviewForm').serialize(), // 폼 데이터 직렬화
+            success: function(response) {
+                // 리뷰가 등록되었다는 메시지 표시
+                alert("리뷰가 등록되었습니다.");
+                window.opener.location.href = 'orderList.mall';
+                window.close(); // 현재 창 닫기
+            },
+            error: function(xhr, status, error) {
+                // 오류 발생 시 처리
+                console.error('Error:', error);
+            }
+        });
+    });
 });
 </script>
 

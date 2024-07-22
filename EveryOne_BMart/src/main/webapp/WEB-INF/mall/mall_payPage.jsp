@@ -22,7 +22,7 @@
 	    var totalAmount = "${totalAmount}";
 	    var id = "${mb.id}";
 	    var name = "${mb.name}";
-	    var email = "${mb.email1}"+"${mb.email2}";
+	    var email = "${mb.email1}"+"@"+"${mb.email2}";
 	    var pnum = ${pnumList};
 	    var qty = ${qtyList};
 	    var way = "${way}";
@@ -36,7 +36,7 @@
 	    		    pay_method: "card",
 	    		    merchant_uid: "pay"+new Date().getTime(), // 주문 고유 번호
 	    		    name: payname,
-	    		    amount: 100,
+	    		    amount: totalAmount,
 	    		    buyer_email: email,
 	    		    buyer_name: name
 	    		  },function (rsp) {
@@ -70,6 +70,8 @@
     	                  }
 	    	            alert(msg);
 	    	            window.opener.location.href="orderList.mall";
+	    	            window.close();
+	    	            
 	    		  }
 	    		);
 	</script>

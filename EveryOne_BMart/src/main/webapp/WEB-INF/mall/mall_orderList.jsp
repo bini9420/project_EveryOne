@@ -108,6 +108,18 @@
 
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.js"></script>
 <script type="text/javascript">
+$(document).ready(function() {
+    // 문서가 준비되면 실행될 코드
+    $('.ronum').each(function() {
+        var ronum = $(this).val(); // rlist 값 가져오기
+        
+        // i.onum과 rlist 값 비교
+        if (ronum !== '0') {
+            $(this).nextAll('.reviewBtn:first').val('리뷰완료').prop('disabled', true); // 버튼을 리뷰완료로 변경하고 비활성화
+        }
+    });
+});
+
 	function openReviewPopup(pnum, onum, id, pname) {
 	    const options = 'width=900, height=300, top=100, left=500, scrollbars=yes';
 	    const url = 'insertForm.rv?pnum=' + pnum + '&onum=' + onum + '&id=' + id+'&pname='+pname;
@@ -187,6 +199,8 @@
 			</tr>
 			<tr>
 				<td colspan="7" class="reviewTd">
+					<input type="hidden" class="oonum" id="oonum" value="${i.onum}">
+					<input type="hidden" class="ronum" id="ronum" value="${rlist[status.index]}">
 					<input type="button" class="reviewBtn" id="reviewBtn" value="리뷰작성" onclick="openReviewPopup(${i.pnum}, ${i.onum}, '${i.id}', '${plist[status.index].pname}')">
 					<input type="button" class="orderCancel" id="orderCancel" value="주문취소" onclick="deleteOrder(${i.onum},${i.pnum},${i.pamount})">
 				</td>

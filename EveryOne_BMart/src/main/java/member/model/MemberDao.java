@@ -1,6 +1,7 @@
 package member.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -237,5 +238,10 @@ public class MemberDao {
 		prd = sqlSessionTemplate.selectOne(product+".getProductInfo", pnum);
 		return prd;
 	}
+	
+    public int getReivewCountByOnum(int onum) {
+    	int cnt = sqlSessionTemplate.selectOne(namespace+".getReivewCountByOnum", onum);
+    	return cnt;
+    }
 	
 }

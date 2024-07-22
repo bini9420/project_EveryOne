@@ -17,6 +17,7 @@ import model.InterestBean;
 import model.MemberBean;
 import model.OrdersBean;
 import model.ProductBean;
+import model.ReviewBean;
 import model.ReviewDetailBean;
 import model.SearchBean;
 import model.WatchBean;
@@ -248,8 +249,12 @@ public class MallDao {
 	}
 	
 	//장바구니에 담긴 상품의 주문 개수 조회
-	public int getQtyByPnum(int pnum) {
-		int qty = sqlSessionTemplate.selectOne(cart+".getQtyByPnum", pnum);
+	public int getQtyByPnum(String pnum, String id) {
+		Map<String, String> map = new HashMap<String, String>();
+		System.out.println("테스트중:"+ pnum + id);
+		map.put("id", id);
+		map.put("pnum", pnum);
+		int qty = sqlSessionTemplate.selectOne(cart+".getQtyByPnum", map);
 		return qty;
 	}
 	//상품의 재고 개수 조회
@@ -308,6 +313,11 @@ public class MallDao {
     	map.put("plusStock", plusStock);
     	int cnt = -1;
     	cnt = sqlSessionTemplate.update(product+".plustStock", map);
+    	return cnt;
+    }
+    
+    public int getReivewInfoCount(int onum) {
+    	int cnt = sqlSessionTemplate.selectOne(review+".getReivewInfoCount", onum);
     	return cnt;
     }
 

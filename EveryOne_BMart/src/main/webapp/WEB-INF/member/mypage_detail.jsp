@@ -85,6 +85,17 @@
 
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.js"></script>
 <script type="text/javascript">
+$(document).ready(function() {
+    // 문서가 준비되면 실행될 코드
+    $('.ronum').each(function() {
+        var ronum = $(this).val(); // rlist 값 가져오기
+        
+        // i.onum과 rlist 값 비교
+        if (ronum !== '0') {
+            $(this).nextAll('.reviewBtn:first').val('리뷰완료').prop('disabled', true); // 버튼을 리뷰완료로 변경하고 비활성화
+        }
+    });
+});
 	function openReviewPopup(pnum, onum, id, pname) {
 	    const options = 'width=900, height=300, top=100, left=500, scrollbars=yes';
 	    const url = 'insertForm.rv?pnum=' + pnum + '&onum=' + onum + '&id=' + id+'&pname='+pname;
@@ -111,16 +122,28 @@
 					<input type="hidden" name="id" value="${i.id}">
 						<table>
 							<tr>
-								<th class="product_Th" colspan="2">상품</th>
-								<th>가격</th>
-								<th>수량</th>
-								<th>결제금액</th>
-								<th>결제일</th>
-								<th>배송현황</th>
+								<th class="product_Th" colspan="2">
+									상품
+								</th>
+								<th>
+									가격
+								</th>
+								<th>
+									수량
+								</th>
+								<th>
+									결제금액
+								</th>
+								<th>
+									결제일
+								</th>
+								<th>
+									배송현황
+								</th>
 							</tr>
 							<tr>
 								<td class="productImg_Td">
-									<img src="<%=request.getContextPath()+"resources/uploadImage/"%>${plist[status.index].pimage}">
+									<img src="<%=path%>/resources/img/${plist[status.index].pimage}">
 								</td>
 								<td class="pname_Td">
 									<span>${plist[status.index].pname}</span>
@@ -154,6 +177,8 @@
 							</tr>
 							<tr>
 								<td colspan="7" class="reviewTd">
+									<input type="hidden" class="oonum" id="oonum" value="${i.onum}">
+									<input type="hidden" class="ronum" id="ronum" value="${rlist[status.index]}">
 									<input type="button" class="reviewBtn" id="reviewBtn" value="리뷰작성" onclick="openReviewPopup(${i.pnum}, ${i.onum}, '${i.id}', '${plist[status.index].pname}')">
 									<input type="button" class="orderCancel" id="orderCancel" value="주문취소" onclick="deleteOrder(${i.onum},${i.pnum},${i.pamount})">
 								</td>
@@ -174,40 +199,40 @@
 				<h5 class="card-title text-primary fw-bolder">개인정보수정</h5>
 				<div class="my-5">
 					<form:form commandName="member" action="memberUpdate.mb" class="text-muted p-2" enctype="multipart/form-data">
-						<p class="mb-4">
+						<p>
 							<% String img = request.getContextPath()+"/resources/uploadImage/"; %>
-							<img src="<%=img%>${member.image}" style="width:150" class="mt-1"/><br>
+							이미지 : <img src="<%=img%>${member.image}" style="width:100" class="mt-1"/><br>
 							<!-- 새로 upload -->
-							<input type="file" name="upload" class="my-2 form-control" style="width: 300; height: 38">
+							<input type="file" name="upload" class="my-2">
 							<input type="hidden" name="upload2" value="${member.image}">
 						</p>
-						<p class="row mb-4">
-							아이디 : <input type="text" value="${member.id}" class="form-control w-50 ms-3" disabled>
+						<p>
+							아이디 : <input type="text" value="${member.id}" disabled>
 							<input type="hidden" name="id" value="${member.id}">
 						</p>
-						<p class="row mb-4">
-							비밀번호 : <input type="text" class="form-control w-50 ms-3" name="password" value="${member.password}">
+						<p>
+							비밀번호 : <input type="text" name="password" value="${member.password}">
 						</p>
-						<p class="row mb-4">
-							이름 : <input type="text" class="form-control w-50 ms-3" name="name" value="${member.name}">
+						<p>
+							이름 : <input type="text" name="name" value="${member.name}">
 						</p>
-						<p class="row mb-4">
+						<p>
 							핸드폰번호 : 
 							<% String[] phone = {"010","011"}; %>
-							<select name="phone1" class="form-select w-25 mx-2">
+							<select name="phone1">
 								<option value="">선택 안 함
 								<c:forEach var="p" items="<%=phone%>">
 									<option value="${p}" <c:if test="${p eq member.phone1}">selected</c:if>>${p}
 								</c:forEach>
 							</select> - 
-							<input type="text" class="form-control w-25 mx-1" name="phone2" value="${member.phone2}" style="width: 70"> - 
-							<input type="text" class="form-control w-25 mx-1" name="phone3" value="${member.phone3}" style="width: 70">
+							<input type="text" name="phone2" value="${member.phone2}" style="width: 70"> - 
+							<input type="text" name="phone3" value="${member.phone3}" style="width: 70">
 						</p>
-						<p class="row mb-4">
+						<p>
 							이메일 : 
-							<input type="text" class="form-control w-25 mx-3" name="email1" value="${member.email1}" style="width: 150"> @ 
+							<input type="text" name="email1" value="${member.email1}" style="width: 150"> @ 
 							<% String[] email = {"naver.com","gmail.com","daum.net","hanmail.net"}; %>
-							<select name="email2" class="form-select w-25 mx-3">
+							<select name="email2">
 								<option value="">선택 안 함
 								<c:forEach var="e" items="<%=email%>">
 									<option value="${e}" <c:if test="${e eq member.email2}">selected</c:if>>${e}

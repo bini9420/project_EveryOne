@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="mall_top.jsp"%> 
+<%@include file="../common/common.jsp" %> 
+<%@ include file="../mall/mall_top.jsp"%> 
 
 <%
     String path = request.getContextPath();
@@ -16,7 +17,7 @@
     
 
 <style>
-	#orderTable{
+	table{
 		margin-top:50px;
 		margin-bottom: 40px;
 		margin-left: 15%;
@@ -37,7 +38,7 @@
 		font-size: 16px;
 		color: #414141;
 	}
-	#orderTable td{
+	td{
 		padding: 20px;
 		font-size: 14px;
 		color: #414141;
@@ -88,7 +89,7 @@
 		padding-bottom: 20px; 
 	}
 	.sideBannerDiv div, .sideBannerDiv2 div, .sideBannerDiv3 div{
-		width: 200px;
+		width: 220px;
 		text-align: center;
 	}
 	.orderPriceDiv, .delieveryFeeDiv, .resultDiv, .payDiv{
@@ -106,25 +107,22 @@
 		font-size: 20px;
 		font-weight: bold;
 		color: #ffffff;
-		background-color: #2ac1bc;
+		background-color: #1a7cff;
 	}
-/* 	.tossPayment{
-		visibility: visible;
-		position: absolute;
-		opacity: 0;
-	} */
+
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	
     var totalAmount = 0;
-    var delieveryFee = $('.dFee').val();
+    var delieveryFee = parseInt($('.dFee').val());
     $('.amount').each(function() {
         var amount =  parseInt($(this).text().replace(/[^0-9]/g, '')); // 숫자만 추출
        totalAmount += amount;
     });
     var result = parseInt(totalAmount+delieveryFee);
+    $(".dFee").val(delieveryFee.toLocaleString("ko-KR"));
     $(".amount2").val(totalAmount.toLocaleString("ko-KR"));
     $(".orderprice").val(result.toLocaleString("ko-KR"));
     
@@ -149,14 +147,37 @@ function payButton(){
     $('input[name=qty]').each(function() {
         qty.push($(this).val());
     });
-	
+    
+    // 배송지 선택 여부 확인
+    var addrChecked = $('input[name=addr]:checked').val();
+    // 모든 선택사항이 없을 때
+    // 배송지 선택 여부 확인
+    var addrChecked = $('input[name=addr]:checked').val();
+    if (!addrChecked) {
+        alert("배송지를 선택해주세요.");
+        return;
+    }
+
+    // 배송 방법 선택 여부 확인
+    var wayChecked = $('input[name=way]:checked').val();
+    if (!wayChecked) {
+        alert("배송 방법을 선택해주세요.");
+        return;
+    }
+
+    // 결제 수단 선택 여부 확인
+    var paymentChecked = $('input[name=payment]:checked').val();
+    if (!paymentChecked) {
+        alert("결제 수단을 선택해주세요.");
+        return;
+    }
 	if(payment==null){
 		alert("결제수단을 선택해주세요.");
 		return;
 	}else if(payment=='신용카드'){
 		window.open('paypage.mall?pnum='+pnum+'&message='+message+'&way='+way+'&payment='+payment+'&qty='+qty+'&mid='+mid+'&mname='+mname, '_blank', options);
 	}else if(payment=='무통장입금'){
-		
+		window.open('paypage.mall?pnum='+pnum+'&message='+message+'&way='+way+'&payment='+payment+'&qty='+qty+'&mid='+mid+'&mname='+mname, '_blank', options);
 	}
 	
 }
@@ -185,7 +206,7 @@ function payButton(){
 <body>
 <h4 class="title">주문서</h4>
 <form:form id="paymentForm" action="paymentpage.ct" method="get"> 
-<table id="orderTable">
+<table class="">
 	<tr class="productInfoTr">
 		<td colspan="4">
 			<span>주문 상품</span>
@@ -213,7 +234,7 @@ function payButton(){
 	</tr>
 	</c:forEach>
 </table>
-<table class="memberInfoTb" id="orderTable">
+<table class="memberInfoTb">
 		<tr class="memberInfoTr">
 			<td>
 				<span>주문자 정보</span>
@@ -233,7 +254,7 @@ function payButton(){
 				휴대폰
 			</td>
 			<td>
-				${member.phone1}${member.phone2}-${member.phone3}
+				${member.phone1}-${member.phone2}-${member.phone3}
 			</td>
 		</tr>
 		<tr>
@@ -242,12 +263,11 @@ function payButton(){
 			</td>
 			<td>
 				<p>${member.email1}@${member.email2}</p>
-				<p>이메일을 통해 주문처리과정을 보내드립니다.<br>
-				정보 변경은 마이페이지 > 개인정보 수정 메뉴에서 가능합니다.</p>
+				<p>정보 변경은 마이페이지 > 개인정보 수정 메뉴에서 가능합니다.</p>
 			</td>
 		</tr>
 </table>
-<table class="delieveryInfoTb" id="orderTable">
+<table class="delieveryInfoTb">
 		<tr class="delieveryInfoTr">
 			<td>
 				<span>배송 정보</span>
@@ -258,11 +278,11 @@ function payButton(){
 				배송지
 			</td>
 			<td>
-			<c:if test="${fn:length(alists) > 0}">
 			<c:forEach var="addr" begin="0" end="${fn:length(alists)-1}" items="${alists}" step="1" varStatus="status">
-				<input type="radio" name="addr" value="${addr.alias}">${addr.alias}
+				<input type="radio" name="addr" value="${addr.alias}">${addr.alias} [${addr.addr1} ${addr.addr2}]
 			</c:forEach>
-			</c:if>
+			<br>
+			<span id="addrError" style="color: red;"></span>
 			</td>
 		</tr>
 		<tr>
@@ -272,6 +292,8 @@ function payButton(){
 			<td>
 				<input type="radio" name="way" value="배달"> 배달&ensp; 
 				<input type="radio" name="way" value="방문포장"> 방문포장
+				<br>
+				<span id="wayError" style="color: red;"></span>
 			</td>
 		</tr>
 		<tr>
@@ -280,10 +302,12 @@ function payButton(){
 			</td>
 			<td>
 				<textarea rows="1" cols="30" name="message"></textarea>
+				<br>
+				<span id="messageError" style="color: red;"></span>
 			</td>
 		</tr>
 </table>
-<table class="paymentInfoTb" id="orderTable">
+<table class="paymentInfoTb">
 		<tr class="paymentInfoTr">
 			<td>
 				<span>결제 수단</span>
@@ -295,12 +319,7 @@ function payButton(){
 			</td>
 			<td>
 				<input type="radio" id="payment" name="payment" value="신용카드">신용카드&ensp; 
-				<input type="radio" id="payment" name="payment" value="무통장입금">무통장입금
 			</td>
-		</tr>
-		<tr>
-			<div class="tossPayment" id="tossPayment">
-			</div>
 		</tr>
 </table>
 <div class="sideBanner">
@@ -310,7 +329,7 @@ function payButton(){
 				주문 금액
 			</div>
 			<div class="orderPrice2">
-				<input type="text" class="amount2" name="oPrice" value="">
+				<input type="text" class="amount2" name="oPrice" value="">원
 			</div>
 		</div>
 		<div class="delieveryFeeDiv">
@@ -318,7 +337,7 @@ function payButton(){
 				배송 금액
 			</div>
 			<div class="delieveryFee2">
-				<input type="text" class="dFee" name="dFee" value="">
+				<input type="text" class="dFee" name="dFee" value="${dFee}">원
 			</div>
 		</div>
 	</div>
@@ -328,7 +347,7 @@ function payButton(){
 				결제 금액
 			</div>
 			<div class="result2">
-				<input type="text" class="orderprice" name="orderprice" value="">
+				<input type="text" class="orderprice" name="orderprice" value="">원
 			</div>
 		</div>
 	</div>
@@ -343,4 +362,4 @@ function payButton(){
 </form:form>
 </body>
 
-<%@ include file="mall_bottom.jsp"%>  
+<%@ include file="../mall/mall_bottom.jsp"%>  

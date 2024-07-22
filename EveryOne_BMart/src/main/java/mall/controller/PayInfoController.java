@@ -2,17 +2,23 @@ package mall.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import mall.model.MallDao;
+import mall.model.PaynDelieveryInfo;
 import model.MemberBean;
 import model.OrdersBean;
 import model.ProductBean;
@@ -25,6 +31,8 @@ public class PayInfoController {
 	
 	private final String command = "/paypage.mall";
 	private final String getPage = "mall_payPage";
+	private final String getPage2 = "mall_payPage2";
+	private final String gotoPage = "";
 	
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public ModelAndView paymentPage(@RequestParam("pnum") int[] pnum,
@@ -35,6 +43,7 @@ public class PayInfoController {
 			@RequestParam("mid") String mid,
 			@RequestParam("mname") String mname,
 			HttpSession session) {
+		
 		
 		ModelAndView mav = new ModelAndView();
 		

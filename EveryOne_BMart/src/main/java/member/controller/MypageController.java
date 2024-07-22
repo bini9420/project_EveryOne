@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import model.AddressBean;
 import model.MemberBean;
+import model.ReviewBean;
 import member.model.MemberDao;  
 import model.EnterBean;
 import model.ReviewDetailBean;
@@ -54,6 +55,7 @@ public class MypageController {
 				System.out.println(index);
 				List<model.OrdersBean> olist = memberDao.getOrderInfo(member.getId());
 				List<model.ProductBean> plist = new ArrayList<model.ProductBean>();
+				List<Integer> rlist = new ArrayList<Integer>();
 				int pnum = 0;
 				model.ProductBean pb = new model.ProductBean();
 				for(model.OrdersBean orderbean : olist ) {
@@ -61,7 +63,11 @@ public class MypageController {
 					System.out.println("pnum: "+pnum);
 					pb = memberDao.getProductInfo(pnum);
 					plist.add(pb);
+					
+					int rcnt = memberDao.getReivewCountByOnum(orderbean.getOnum());
+					rlist.add(rcnt);
 				}
+				model.addAttribute("rlist", rlist);
 				model.addAttribute("olist", olist);
 				model.addAttribute("plist", plist);
 			}

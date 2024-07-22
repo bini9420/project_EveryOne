@@ -456,17 +456,17 @@ create table review(
 	onum number references orderInfo(onum) on delete cascade
 );
 
-insert into review values(rseq.nextval, 'lee', 10, '맛있어요~!!', null, '2024-07-21', 4, 3);
-insert into review values(rseq.nextval, 'lee',10, '최고', null, '2024-07-14', 5, 4);
-insert into review values(rseq.nextval, 'lee', 10, '맛있다', null, '2024-07-16', 5, 5);
-insert into review values(rseq.nextval, 'lee', 10, '짱', null, '2024-07-19', 4, 6);
-insert into review values(rseq.nextval, 'lee', 10, 'soso~~', null, '2024-07-11', 3, 7);
+insert into review values(rseq.nextval, 'park', 3, '맛있다!', null, '2024-06-02', 4, 1);
+insert into review values(rseq.nextval, 'park', 3, '맛있어요~!!', null, '2024-06-03', 4, 2);
+insert into review values(rseq.nextval, 'choi', 10, '재구매할 예정', null, sysdate, 5, 3);
+insert into review values(rseq.nextval, 'jung', 10, '그냥그래요', null, sysdate, 3, 4);
+insert into review values(rseq.nextval, 'kang', 10, '평범함', null, sysdate, 3, 5);
 
-insert into review values(rseq.nextval, 'park', 3, '맛있다!', null, '2024-06-02', 4, 8);
-insert into review values(rseq.nextval, 'park', 3, '맛있어요~!!', null, '2024-06-03', 4, 9);
-insert into review values(rseq.nextval, 'choi', 10, '재구매할 예정', null, sysdate, 5, 10);
-insert into review values(rseq.nextval, 'jung', 10, '그냥그래요', null, sysdate, 3, 11);
-insert into review values(rseq.nextval, 'kang', 10, '평범함', null, sysdate, 3, 12);
+insert into review values(rseq.nextval, 'lee', 10, '맛있어요~!!', null, '2024-07-21', 4, 6);
+insert into review values(rseq.nextval, 'lee',10, '최고', null, '2024-07-14', 5, 7);
+insert into review values(rseq.nextval, 'lee', 10, '맛있다', null, '2024-07-16', 5, 8);
+insert into review values(rseq.nextval, 'lee', 10, '짱', null, '2024-07-19', 4, 9);
+insert into review values(rseq.nextval, 'lee', 10, 'soso~~', null, '2024-07-11', 3, 10);
 
 
 

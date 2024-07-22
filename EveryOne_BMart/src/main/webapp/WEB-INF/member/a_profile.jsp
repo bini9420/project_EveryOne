@@ -23,7 +23,8 @@
                                     <thead>
                                         <tr>
                                             <th>사진</th>
-                                            <td><% String img = request.getContextPath()+"/resources/uploadImage/"; %>
+                                            <td>
+                                            	<% String img = request.getContextPath()+"/resources/uploadImage/"; %>
                                             	<img src="<%= img %>${adminLists.image}" style="width:100px; height:100px;" class="mt-1"/><br>
 												<!-- 새로 upload -->
 												<input type="file" name="upload" class="my-2">
@@ -37,17 +38,17 @@
 											</td>
 										</tr>
 										<tr>
-                                            <th>이름</th>
-                                             <td> 
-                                            	<input type="text" name="name" value="${adminLists.name}">
-											</td>
-										</tr>
-										<tr>
                                             <th>비밀번호</th>
                                              <td> 
                                             	<input type="text" name="password" value="${adminLists.password}">
                                             </td>
 											
+										</tr>
+										<tr>
+                                            <th>이름</th>
+                                             <td> 
+                                            	<input type="text" name="name" value="${adminLists.name}">
+											</td>
 										</tr>
 										<tr>
                                             <th>전화번호</th>

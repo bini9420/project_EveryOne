@@ -89,9 +89,9 @@
 	    select count(*) as cnt from description
 		    <if test="whatColumn != null and whatColumn != ''">
 		        <choose>
-		            <when test="whatColumn == all">	
-		            
-		            </when>
+		        	<when test="whatColumn == 'all'">
+		        	 	where dsubject like #{keyword} or id like #{keyword}
+		        	</when>
 		            <when test="whatColumn == 'dsubject'">
 		                where dsubject like #{keyword}
 		            </when>
@@ -103,26 +103,21 @@
 	</select>
 	
 	<select id="getDes" resultType="DescriptionBean">
-	    SELECT dnum, id, dsubject, password, ddate, ref, re_step, re_level, dcontent
-    		FROM (
-       		SELECT rownum AS rank, dnum, id, dsubject, password,ddate, ref, re_step, re_level, dcontent
-       			FROM (
-            	SELECT dnum, id, dsubject, password,ddate, ref, re_step, re_level, dcontent
-            		FROM description
-					    <if test="whatColumn != null and whatColumn != ''">
-					        <choose>
-					            <when test="whatColumn == 'dsubject'">
-					                where dsubject like #{keyword}
-					            </when>
-					            <when test="whatColumn == 'id'">
-					                where id like #{keyword}
-					            </when>
-					        </choose>
-						</if>
-			    ORDER BY ref DESC, re_step ASC
-			    )
-		    )
-    	ORDER BY ref DESC, re_step ASC
+	    select * from description 
+	    <if test="whatColumn != null and whatColumn != ''">
+	        <choose>
+	        	<when test="whatColumn == 'all'">
+	        	 	where dsubject like #{keyword} or id like #{keyword}
+	        	</when>
+	            <when test="whatColumn == 'dsubject'">
+	                where dsubject like #{keyword}
+	            </when>
+	            <when test="whatColumn == 'id'">
+	                where id like #{keyword}
+	            </when>
+	        </choose>
+		</if>
+		order by ref desc, re_step asc
 	</select>
 	
 	<insert id="insertDes">

@@ -62,7 +62,7 @@
 		</div>
 	</c:if>
 	<c:if test="${fn:length(ilists) == 0}">
-		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center h-75">
 			<div class="mt-4 mb-4 text-center">
 				<font size="4">찜한 상품이 없습니다.</font>
 			</div>

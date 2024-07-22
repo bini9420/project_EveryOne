@@ -36,7 +36,7 @@ public class descriptionDeleteController {
 		
 		MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo");
 		
-		if("admin".equals(loginInfo.getId())) {
+		if(loginInfo.getId().equals("admin")) {
 			desDao.deleteAdmin(dnum);
 			
 			return getPage + "?pageNumber=" + pageNumber + "&whatColumn=" + whatColumn + "&keyword=" + keyword;

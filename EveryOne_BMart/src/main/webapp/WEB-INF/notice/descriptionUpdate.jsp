@@ -1,148 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="../common/common.jsp"%>
-<!-- Begin Page Content -->
+	pageEncoding="UTF-8"%>	
+	
 <style>
-h6 {
-	display: inline-block;
-}
-
-.btn-outline-primary {
-	width: 30px;
-	height: 30px;
-}
-
-#requestDocument:hover {
-	background-color: #7dc9c6 !important;
-	border-color: #bae8e6 !important;
-}
-
-body {
-	font-family: Arial, sans-serif;
-	background-color: #F5F5F5;
-	color: #333333;
-}
-
-h1 {
-	color: #48D1CC;
-}
-
-form {
-	margin: 20px auto;
-	text-align: center;
-}
-
-select, input[type="text"], input[type="submit"], input[type="button"] {
-	padding: 10px;
-	border: 1px solid #CCCCCC;
-	border-radius: 5px;
-	margin: 5px;
-}
-
-input[type="submit"], input[type="button"] {
-	background-color: #48D1CC;
-	color: white;
-	border: none;
-	cursor: pointer;
-}
-
-input[type="submit"]:hover, input[type="button"]:hover {
-	background-color: #009f8e;
-}
-
-table {
-	width: 80%;
-	margin: 20px auto;
-	border-collapse: collapse;
-}
-
-table, th, td {
-	border: 1px solid #CCCCCC;
-}
-
-th, td {
-	padding: 10px;
-	text-align: center;
-}
-
-th {
-	background-color: #48D1CC;
-	color: white;
-}
-
-td {
-	background-color: white;
-}
-
-a {
-	text-decoration: none;
-	color: #00C7AE;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-.paging {
-	text-align: center;
-	margin: 20px;
-}
-
-.paging a {
-	margin: 0 5px;
-	color: #00C7AE;
-}
-
-.paging a:hover {
-	text-decoration: underline;
-}
+	body {
+		font-family: Arial, sans-serif;
+		background-color: #F5F5F5;
+		color: #333333;
+	}
+	
+	select, input[type="text"], textarea {
+		padding: 5px;
+		border: 1px solid #CCCCCC;
+		border-radius: 5px;
+		margin: 5px;
+	}
+	
+	table {
+		width: 90%;
+		height: 400;
+		margin: 20px auto;
+		border-collapse: collapse;
+		text-align: center
+	}
+	
+	td {
+		padding: 5px;
+		background-color: white;
+		text-align: left;
+	}
+	
+	th {
+		width: 120;
+		background: rgba(42, 193, 188, 0.7);
+		color: white;
+	}
 </style>
 
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
-<script>
-	function show() {
-		$('#documentWrite .modal-content').load("document_write.dc");
-		$('#documentWrite').modal();
-		$('#requestDocument').css('bgcolor', '#2ac1bc');
-		$('#requestDocumnet').css('border-color', '#bae8e6');
-	}
-</script>
+<%@ include file="../admin/a_top.jsp"%>
 
-<%@ include file="../member/owner/o_top.jsp"%>
-<div class="container-fluid">
-
-	<!-- Page Heading -->
-	<div class="d-sm-flex align-items-center justify-content-between mb-3">
-		<h1 class="h3 mb-0 text-gray-800"></h1>
-		<a href="javascript:show()" data-bs-toggle="modal"
-			data-bs-target="#documentWrite"
-			class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-			class="fas fa-download fa-sm text-white-50" id="requestDocument"></i>
-			결재 요청</a>
-
-		<div class="modal fade" id="documentWrite" data-bs-backdrop="static"
-			data-bs-keyboard="false" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content"></div>
-			</div>
-		</div>
+<div class="card shadow mx-auto my-3" style="width :60%">
+	
+	<div class="card-header text-center">
+		<h3 style="font-weight: bold" class="my-2">글 수정하기</h3>
 	</div>
-
-	<!-- Content Row -->
-	<div class="row">
-
-		<!-- Content Column -->
+	
+	<div class="w-75 my-4 py-5 mx-auto">
 		<form:form commandName="db" action="dupdate.nt" method="post">
-			<input type="hidden" name="dnum" value="${db.dnum }">
-			<input type="hidden" name="pageNumber" value="${param.pageNumber }">
-			<table border="1" width="500">
-				<tr>
-					<td align="right" colspan="2"><a
-						href="dlist.nt?whatColumn=${param.whatColumn}&keyword=${param.keyword}&pageNumber=${param.pageNumber}">글목록</a>
-					</td>
-				</tr>
+			<input type="hidden" name="dnum" value="${param.dnum }"> 
+			<input type="hidden" name="pageNumber" value="${param.pageNumber}"> 
+			<input type="hidden" name="whatColumn" value="${param.whatColumn}">
+			<input type="hidden" name="keyword" value="${param.keyword}">
+			
+			<table class="table-bordered">
 				<tr>
 					<th>제목</th>
 					<td><input type="text" name="dsubject" value="${db.dsubject }">
@@ -159,22 +68,18 @@ a:hover {
 							path="password" class="err" /></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="hidden"
-						name="dnum" value="${param.dnum }"> <input type="hidden"
-						name="pageNumber" value="${param.pageNumber}"> <input
-						type="hidden" name="whatColumn" value="${param.whatColumn}">
-						<input type="hidden" name="keyword" value="${param.keyword}">
-						<input type="submit" value="글수정"> <input type="button"
-						value="다시작성" onClick="location.reload()"> <input
-						type="button" value="목록보기"
-						onClick="location.href='dlist.nt?whatColumn=${param.whatColumn}&keyword=${param.keyword}&pageNumber=${param.pageNumber}'">
+					<td colspan="2" style="text-align: center">
+						<input type="submit" value="수정하기" class="btn btn-primary btn-sm"> 
+						
+						<input type="button" value="다시작성" onClick="location.reload()" class="btn btn-primary btn-sm"> 
+						
+						<input type="button" value="목록보기" class="btn btn-primary btn-sm" 
+							onClick="location.href='dlist.nt?whatColumn=${param.whatColumn}&keyword=${param.keyword}&pageNumber=${param.pageNumber}'">
 					</td>
 				</tr>
 			</table>
 		</form:form>
 	</div>
-	<!-- /.container-fluid -->
 </div>
-<!-- End of Main Content -->
 
-<%@ include file="../member/owner/o_bottom.jsp"%>
+<%@include file="../admin/a_bottom.jsp"%>

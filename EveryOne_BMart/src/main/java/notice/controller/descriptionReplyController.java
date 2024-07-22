@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.DescriptionBean;
-import model.MemberBean;
 import notice.model.DescriptionDao;
 
 @Controller
@@ -28,9 +27,8 @@ public class descriptionReplyController {
 	DescriptionDao desDao;
 	
 	private final String command = "dreply.nt";
-	private final String gotoPage = "descriptionReply";
-	private final String goPage = "AdescriptionReply";
-	private final String getPage = "redirect:/dlist.nt";
+	private final String getPage = "descriptionReply";
+	private final String gotoPage = "redirect:/dlist.nt";
 	
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String replyForm(@RequestParam("ref") int ref,
@@ -48,15 +46,8 @@ public class descriptionReplyController {
         model.addAttribute("pageNumber", pageNumber);
         model.addAttribute("whatColumn", whatColumn);
         model.addAttribute("keyword", keyword);
-        MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo");
-        String id = loginInfo.getId();
-		if (id != null && "admin".equals(id)) {
-			
-			return goPage;
-		}else {
-			
-			return gotoPage;
-		}
+        
+		return getPage;
 	}
 	
 	@RequestMapping(value=command, method=RequestMethod.POST)
@@ -84,9 +75,9 @@ public class descriptionReplyController {
 	    map.put("re_step", re_step);
 
 	    desDao.updateReplyStep(map);
-	    int cnt = desDao.replyDes(db);
+	    desDao.replyDes(db);
 		
-		mav.setViewName(getPage);
+		mav.setViewName(gotoPage);
 		mav.addObject("pageNumber", pageNumber);
 		mav.addObject("whatColumn", whatColumn);
 		mav.addObject("keyword", keyword);

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import model.DescriptionBean;
-import model.MemberBean;
 import notice.model.DescriptionDao;
 import utility.Paging;
 
@@ -25,8 +24,7 @@ public class descriptionListController {
 	DescriptionDao desDao;
 	
 	private final String command = "/dlist.nt";
-	private final String gotoPage = "descriptionList";
-	private final String getPage = "AdescriptionList";
+	private final String getPage = "descriptionList";
 	@RequestMapping(command)
 	public String dlist(@RequestParam(value="whatColumn", required=false) String whatColumn,
 						@RequestParam(value="keyword", required=false) String keyword,
@@ -39,28 +37,21 @@ public class descriptionListController {
 			session.setAttribute("destination", "redirect:/dlist.nt");
 			return "redirect:/login.mb";
 		}else {
-		
-		MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo");
-        String id = loginInfo.getId();
-        
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("whatColumn", whatColumn);
-		map.put("keyword", "%" + keyword + "%");
 
-		int totalCount = desDao.getDesCount(map);
-		String url = request.getContextPath() + this.command;
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("whatColumn", whatColumn);
+			map.put("keyword", "%" + keyword + "%");
 
-		Paging pageInfo = new Paging(pageNumber, null, totalCount, url, whatColumn, keyword);
-		
-		List<DescriptionBean> db = desDao.getDes(map,pageInfo);
-		model.addAttribute("db", db);
-		model.addAttribute("pageInfo", pageInfo);
-		
-		 if (id != null && "admin".equals(id)) {
-             return getPage;
-         }
-					
-		return gotoPage;
+			int totalCount = desDao.getDesCount(map);
+			String url = request.getContextPath() + this.command;
+
+			Paging pageInfo = new Paging(pageNumber, null, totalCount, url, whatColumn, keyword);
+
+			List<DescriptionBean> db = desDao.getDes(map,pageInfo);
+			model.addAttribute("db", db);
+			model.addAttribute("pageInfo", pageInfo);
+
+			return getPage;
 		}
 	}
 	

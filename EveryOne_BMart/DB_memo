@@ -461,10 +461,10 @@ create table review(
 );
 
 insert into review values(rseq.nextval, 'park', 4, '맛있어요~!!', null, sysdate, 4, 3);
-insert into review values(rseq.nextval, 'lee', 4, '제로음료 최고', null, sysdate, 5, 4);
-insert into review values(rseq.nextval, 'choi', 4, '애사비 맛있다', null, sysdate, 5, 5);
-insert into review values(rseq.nextval, 'jung', 4, '탄산 짱', null, sysdate, 4, 6);
-insert into review values(rseq.nextval, 'kang', 4, '제로 신기하다', null, sysdate, 3, 7);
+insert into review values(rseq.nextval, 'lee', 4, '최고', null, sysdate, 5, 4);
+insert into review values(rseq.nextval, 'choi', 4, '애있다', null, sysdate, 5, 5);
+insert into review values(rseq.nextval, 'jung', 4, '짱', null, sysdate, 4, 6);
+insert into review values(rseq.nextval, 'kang', 4, 'soso~~', null, sysdate, 3, 7);
 insert into review values(rseq.nextval, 'park', 4, '맛있다!', null, sysdate, 4, 8);
 insert into review values(rseq.nextval, 'lee', 4, '맛있어요~!!', null, sysdate, 4, 9);
 insert into review values(rseq.nextval, 'choi', 4, '재구매할 예정', null, sysdate, 5, 10);
@@ -530,9 +530,9 @@ create table enter (
 insert into enter 
 values('A-1', 'lee', sysdate, '입점을 신청합니다.', '11223344', '04050', '서울 마포구 양화로 140', '애플스토어', 1, null, null, null, 0, sysdate, null, 0);
 
+
 -- 공지사항 테이블
 drop sequence notice_seq;
-
 CREATE SEQUENCE notice_seq 
 START WITH 1 
 INCREMENT BY 1 
@@ -547,21 +547,20 @@ create table notice (
 	content varchar2(100) not null,
 	ndate Date default sysdate,
 	readcount number default 0,
-	noti varchar2(10)	default 'n' not null,
+	noti varchar2(10) default 'n' not null,
 	id varchar2(20) not null,
 	FOREIGN KEY (id) REFERENCES member(id)
 );
 
+
 --게시판 테이블
 drop sequence des_seq;
-
 CREATE SEQUENCE des_seq 
 START WITH 1 
 INCREMENT BY 1 
 NOCACHE;
 
 drop table description CASCADE CONSTRAINTS;
-
 create table description (
 	dnum number primary key,
 	id varchar2(20),

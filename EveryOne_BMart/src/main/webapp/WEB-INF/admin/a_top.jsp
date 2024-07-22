@@ -5,113 +5,118 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
-<!-- Page level custom scripts -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-<script src="././resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="././resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-<script src="././resources/js/sb-admin-2.min.js"></script>
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
-
-
-<!-- Custom fonts for this template-->
-<link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<link rel='stylesheet'href='https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-straight/css/uicons-bold-straight.css'>
-<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-rounded/css/uicons-bold-rounded.css">
-<link href="resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-<link rel='stylesheet'href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-
-<style>
-
-#calendar-container {
-	position: relative;
-	z-index: 1;
-	margin: 50px;
-}
-
-#calendar {
-	max-width: 1100px;
-}
-
-.btn-outline-info {
-	float: right;
-	margin-left: 10px;
-	font-size: 2rem;
-	border: none;
-}
-
-.pagination-wrapper {
-	display: flex;
-	justify-content: center;
-}
-
-.plusbtn {
-	float: right;
-	margin-left: 10px;
-	font-size: 2rem;
-	display: inline-flex;
-}
-
-.content {
-	width: 100%;
-	height: 100px;
-	box-sizing: border-box;
-}
-
-.err {
-	color: red;
-	font-size: 9pt;
-}
-
-.title {
-	text-align: center;
-}
-
-.chart-container {
-	position: relative;
-	height: 85%;
-	width: 85%;
-}
-
-.search {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center; /* 세로축 가운데 정렬 */
-	margin-left: 85%;
-}
-
-.trash {
-	font-size: 30px;
-}
-
-button {
-	border: none; /* 경계선 없애기 */
-	background: none; /* 배경 없애기 */
-	padding: 0; /* 패딩 없애기 */
-	cursor: pointer; /* 커서 포인터로 변경 */
-}
-
-.reading {
-	border: 1px solid;
-}
-
-.profilebtn{
-	text-align: center;	
-
-
-}
-
-
-</style>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	
+	<title>관리자</title>
+	
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	<script src="resources/js/demo/chart-area-demo.js"></script>
+	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script src="resources/js/sb-admin-2.min.js"></script>
+	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
+	
+	
+	<link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+	<link href="resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	
+	<!-- CSS -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-rounded/css/uicons-bold-rounded.css">
+	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-straight/css/uicons-bold-straight.css'>
+	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-straight/css/uicons-regular-straight.css'>
+	
+	<style>
+		.fc-header-toolbar .fc-button {
+			font-size: 12px; /* 작은 글꼴 크기 */
+			padding: 5px 10px; /* 작은 버튼 크기 */
+		}
+		
+		.fc-header-toolbar .fc-button-primary {
+			background-color: #2ac1bc; /* 기본 버튼 배경색 */
+			color: #fff; /* 기본 버튼 글자색 */
+			border-color: #2ac1bc; /* 기본 버튼 테두리 색 */
+		}
+		
+		.fc-header-toolbar .fc-button-primary:hover {
+			background-color: #2ac1bc; /* 마우스 호버 시 배경색 */
+			border-color: #2ac1bc; /* 마우스 호버 시 테두리 색 */
+		}
+		
+		#calendar-container {
+			position: relative;
+			z-index: 1;
+			margin: 50px;
+		}
+		
+		#calendar {
+			max-width: 1100px;
+		}
+		
+		.pagination-wrapper {
+			display: flex;
+			justify-content: center;
+		}
+		
+		.plusbtn {
+			float: right;
+			margin-left: 10px;
+			font-size: 2rem;
+		}
+		
+		.content {
+			width: 100%;
+			height: 100px;
+			box-sizing: border-box;
+		}
+		
+		.err {
+			color: red;
+			font-size: 9pt;
+		}
+		
+		.title {
+			text-align: center;
+		}
+		
+		.chart-container {
+			position: relative;
+			height: 85%;
+			width: 85%;
+		}
+		
+		.search {
+			display: flex;
+			justify-content: flex-end;
+			align-items: center; /* 세로축 가운데 정렬 */
+			margin-left: 75%;
+		}
+		
+		.trash {
+			font-size: 30px;
+		}
+		
+		button {
+			border: none; /* 경계선 없애기 */
+			background: none; /* 배경 없애기 */
+			padding: 0; /* 패딩 없애기 */
+			cursor: pointer; /* 커서 포인터로 변경 */
+		}
+		
+		.reading {
+			border: 1px solid;
+		}
+	</style>
 </head>
 
 <body id="page-top">
@@ -137,6 +142,7 @@ button {
                     <span><b>${loginInfo.name}</b>님</span>
                 </a>
             </li>
+            
             <hr class="sidebar-divider">
             
 			<!-- Nav Item - Utilities Collapse Menu -->

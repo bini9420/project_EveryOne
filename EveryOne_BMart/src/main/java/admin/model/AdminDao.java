@@ -29,7 +29,7 @@ public class AdminDao {
 	
 	public List<DocBean> getDocumentList() {
 		List<DocBean> lists = new ArrayList<DocBean>();
-		lists = sqlSessionTemplate.selectList(namespace + ".getAdminDocument");
+		lists = sqlSessionTemplate.selectList(namespace + ".getDocumentList");
 		
 		System.out.println("Dao에서 list개수: " + lists.size());
 		return lists;

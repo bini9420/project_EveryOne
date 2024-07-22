@@ -9,7 +9,7 @@
 		select * from member where id=#{id}
 	</select>
 
-
+	
 
 	<update id="updateMember">
 		update member
@@ -19,10 +19,8 @@
 	</update>
 
 
-	<select id="getAdminDocument" resultType="doc.model.DocBean">
-		select * from document
-		order by dnum desc
-		FETCH FIRST 5 ROWS ONLY
+	<select id="getDocumentList" resultType="doc.model.DocBean">
+		select * from document where dnum between 1 and 5 order by dnum desc
 	</select>
 	
 	<select id="getWaitDocumentCountForAdmin" resultType="int">

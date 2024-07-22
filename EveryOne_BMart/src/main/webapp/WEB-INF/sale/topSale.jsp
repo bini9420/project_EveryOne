@@ -5,7 +5,7 @@
 
 
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="mx-auto my-5" style="width: 90%">
 
 	<div class="text-center my-4"><h2>매출 관리</h2></div>
 	
@@ -39,7 +39,7 @@
 			</div>
 		</div>
 		
-		<div class="col-xl-7">
+		<!-- <div class="col-xl-7">
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
 					<h6 class="m-0 font-weight-bold text-primary">상품 카테고리별 매출현황</h6>
@@ -48,37 +48,39 @@
 					<canvas id="myBarChart"></canvas>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
+	
+	<% String months[] = {"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"}; %>
+	
+	<table class="table bg-white">
+	    <thead>
+	        <tr>
+	            <th></th>
+	            <c:forEach var="month" items="<%=months %>">
+					<th>${month }</th>                    
+				</c:forEach>
+	    	</tr>
+		</thead>
+		<tbody>
+		 	<tr>
+			 	<td>총 주문수</td>
+				<c:forEach var="ams" items="${adminMonthlySale.keySet()}">
+					<td>${adminMonthlySale.get(ams)}개</td>
+				</c:forEach>
+			</tr>
+			<tr>
+				<td>총수입</td>
+				<c:forEach var="amsl" items="${adminMonthlySale2.keySet()}">
+					<td>${adminMonthlySale2.get(amsl)}원</td>	
+				</c:forEach>
+			</tr>      
+		</tbody>
+	</table>
+	
 </div>
 		
 		
-<% String months[] = {"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"}; %>
-
-<table class="table bg-white">
-    <thead>
-        <tr>
-            <th></th>
-            <c:forEach var="month" items="<%=months %>">
-				<th>${month }</th>                    
-			</c:forEach>
-    	</tr>
-	</thead>
-	<tbody>
-	 	<tr>
-		 	<td>총 주문수</td>
-			<c:forEach var="ams" items="${adminMonthlySale.keySet()}">
-				<td>${adminMonthlySale.get(ams)}개</td>
-			</c:forEach>
-		</tr>
-		<tr>
-			<td>총수입</td>
-			<c:forEach var="amsl" items="${adminMonthlySale2.keySet()}">
-				<td>${adminMonthlySale2.get(amsl)}원</td>	
-			</c:forEach>
-		</tr>      
-	</tbody>
-</table>
 
 
 <script>

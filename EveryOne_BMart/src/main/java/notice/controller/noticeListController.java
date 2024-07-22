@@ -29,8 +29,8 @@ public class noticeListController {
 	public String list(@RequestParam(value="whatColumn", required=false) String whatColumn,
 									@RequestParam(value="keyword", required=false) String keyword,
 									@RequestParam(value="pageNumber", required=false) String pageNumber,
-									HttpServletRequest request,
-									Model model) {
+									HttpServletRequest request, Model model) {
+		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("whatColumn", whatColumn);
 		map.put("keyword", "%" + keyword + "%");
@@ -42,6 +42,7 @@ public class noticeListController {
 
 		List<NoticeBean> lists = noticeDao.getNotice(map,pageInfo);
 		List<NoticeBean> lists2 = noticeDao.getNoticeY(map);
+		
 		model.addAttribute("lists", lists);
 		model.addAttribute("lists2", lists2);
 		model.addAttribute("pageInfo", pageInfo);

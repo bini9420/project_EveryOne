@@ -270,7 +270,7 @@ public class MemberListPaging {
 		*/
 
 		// 뒤쪽
-		if ( this.endPage != this.totalPage) {
+		if ( this.pageNumber != this.totalPage) {
 			// endPage:지금 보는 페이지의 끝(지금 보는 페이지가 13이라면 endPage는 20), totalPage:전체 페이지수
 
 			result += "&nbsp;<a href='" + url  

@@ -399,20 +399,16 @@ create table orderInfo(
 insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 3, '2024-06-01');
 insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 2, 3, '2024-06-01');
 
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 4, 1, '2024-06-09');
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 4, 1, '2024-06-09');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'choi', 10, 1, '2024-07-21');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'jung', 10, 1, '2024-07-21');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'kang', 10, 1, '2024-07-21');
 
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'choi', 4, 1, '2024-06-24');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee',10, 1, '2024-07-11');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 10, 1, '2024-07-19');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 10, 1, '2024-07-16');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 10, 1, '2024-07-14');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 10, 1, '2024-07-21');
 
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'jung', 4, 1, '2024-06-30');
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'kang', 4, 1, '2024-06-30');
-
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 4, 1, '2024-07-01');
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 4, 1, '2024-07-01');
-
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'choi', 4, 1, '2024-07-09');
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'jung', 4, 1, '2024-07-09');
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'kang', 4, 1, '2024-07-09');
 
 --공지사항 테이블
 
@@ -460,16 +456,17 @@ create table review(
 	onum number references orderInfo(onum) on delete cascade
 );
 
-insert into review values(rseq.nextval, 'park', 4, '맛있어요~!!', null, sysdate, 4, 3);
-insert into review values(rseq.nextval, 'lee', 4, '최고', null, sysdate, 5, 4);
-insert into review values(rseq.nextval, 'choi', 4, '애있다', null, sysdate, 5, 5);
-insert into review values(rseq.nextval, 'jung', 4, '짱', null, sysdate, 4, 6);
-insert into review values(rseq.nextval, 'kang', 4, 'soso~~', null, sysdate, 3, 7);
-insert into review values(rseq.nextval, 'park', 4, '맛있다!', null, sysdate, 4, 8);
-insert into review values(rseq.nextval, 'lee', 4, '맛있어요~!!', null, sysdate, 4, 9);
-insert into review values(rseq.nextval, 'choi', 4, '재구매할 예정', null, sysdate, 5, 10);
-insert into review values(rseq.nextval, 'jung', 4, '그냥그래요', null, sysdate, 3, 11);
-insert into review values(rseq.nextval, 'kang', 4, '평범함', null, sysdate, 3, 12);
+insert into review values(rseq.nextval, 'lee', 10, '맛있어요~!!', null, '2024-07-21', 4, 3);
+insert into review values(rseq.nextval, 'lee',10, '최고', null, '2024-07-14', 5, 4);
+insert into review values(rseq.nextval, 'lee', 10, '맛있다', null, '2024-07-16', 5, 5);
+insert into review values(rseq.nextval, 'lee', 10, '짱', null, '2024-07-19', 4, 6);
+insert into review values(rseq.nextval, 'lee', 10, 'soso~~', null, '2024-07-11', 3, 7);
+
+insert into review values(rseq.nextval, 'park', 3, '맛있다!', null, '2024-06-02', 4, 8);
+insert into review values(rseq.nextval, 'park', 3, '맛있어요~!!', null, '2024-06-03', 4, 9);
+insert into review values(rseq.nextval, 'choi', 10, '재구매할 예정', null, sysdate, 5, 10);
+insert into review values(rseq.nextval, 'jung', 10, '그냥그래요', null, sysdate, 3, 11);
+insert into review values(rseq.nextval, 'kang', 10, '평범함', null, sysdate, 3, 12);
 
 
 
@@ -528,7 +525,27 @@ create table enter (
 );
 
 insert into enter 
-values('A-1', 'lee', sysdate, '입점을 신청합니다.', '11223344', '04050', '서울 마포구 양화로 140', '애플스토어', 1, null, null, null, 0, sysdate, null, 0);
+values('A-1', 'lee', sysdate, '입점을 신청합니다.', '11223344', '123456', 'aabbcc', '가', 1, null, null, null, 0, sysdate, null, 0);
+insert into enter 
+values('A-2', 'park', sysdate, '입점을 신청합니다.', '1029384756', '234567', 'ddeeff', '나', 1, null, null, null, 0, sysdate, null, 0);
+insert into enter 
+values('A-3', 'choi', sysdate, '입점을 신청합니다.', '1213141516', '345678', 'gghhii', '다', 1, null, null, null, 0, sysdate, null, 0);
+insert into enter 
+values('A-4', 'jung', sysdate, '입점을 신청합니다.', '23242526', '456789', 'jjkkll', '라', 1, null, null, null, 0, sysdate, null, 0);
+insert into enter 
+values('A-5', 'kang', sysdate, '입점을 신청합니다.', '3344556677', '567890', 'mmnnoo', '마', 1, null, null, null, 0, sysdate, null, 0);
+insert into enter 
+values('A-6', 'yoon', sysdate, '입점을 신청합니다.', '5657585950', '678910', 'ppqqrr', '바', 1, null, null, null, 0, sysdate, null, 0);
+insert into enter 
+values('A-7', 'ahn', sysdate, '입점을 신청합니다.', '090807060', '789101', 'ssttuu', '사', 1, null, null, null, 0, sysdate, null, 0);
+insert into enter 
+values('A-8', 'oh', sysdate, '입점을 신청합니다.', '9966887765', '891011', 'vvwwxx', '아', 1, null, null, null, 0, sysdate, null, 0);
+insert into enter 
+values('A-9', 'yeon', sysdate, '입점을 신청합니다.', '44635342', '910112', 'yyyzzz', '자', 1, null, null, null, 0, sysdate, null, 0);
+insert into enter 
+values('A-10', 'yoona', sysdate, '입점을 신청합니다.', '43425746', '101112', 'abcdefg', '차', 1, null, null, null, 0, sysdate, null, 0);
+insert into enter 
+values('A-11', 'glass', sysdate, '입점을 신청합니다.', '68665235', '111213', 'hijklmnop', '카', 1, null, null, null, 0, sysdate, null, 0);
 
 
 -- 공지사항 테이블
@@ -575,6 +592,21 @@ create table description (
 );
 
 
+--일정 테이블
+drop table schedule cascade constraints;
+create table schedule (
+   title varchar2(20) primary key,
+   startDate date default sysdate, 
+   endDate date default sysdate
+
+);
+
+
+INSERT INTO schedule VALUES ('b마트 점검', SYSDATE, SYSDATE);
+INSERT INTO schedule VALUES ('b마트 상품등록',  '24-7-15', '24-7-20');
+INSERT INTO schedule VALUES ('b마트 임원모임', '24-7-16','24-7-16');
+INSERT INTO schedule VALUES ('b마트 공지', '24-7-18', '24-7-19');
+
 
 commit;
 select * from member;
@@ -591,23 +623,6 @@ select * from state;
 
 
 
---일정 테이블
-drop table schedule cascade constraints;
-create table schedule (
-   title varchar2(20) primary key,
-   startDate date default sysdate, 
-   endDate date default sysdate
-
-);
-
-
-
-
-INSERT INTO schedule VALUES ('b마트 점검', SYSDATE, SYSDATE);
-INSERT INTO schedule VALUES ('b마트 상품등록',  '24-7-15', '24-7-20');
-INSERT INTO schedule VALUES ('b마트 임원모임', '24-7-16','24-7-16');
-INSERT INTO schedule VALUES ('b마트 공지', '24-7-18', '24-7-19');
-commit;
 
 --최근 3일 이내에 등록한 상품 조회
 select count(*) from product where inputdate between sysdate-3 and sysdate;

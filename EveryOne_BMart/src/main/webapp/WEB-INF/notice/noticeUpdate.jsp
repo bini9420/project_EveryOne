@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../common/common.jsp"%>
-<%@ include file="../mall/cs_top.jsp"%>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/style.css">
+<%@ include file="cs_top.jsp"%>
 <div class="container my-5 p-4">
 	<div class="row">
 		<div class="col-sm-4">
@@ -82,4 +79,4 @@
 	</div>
 </div>
 
-<%@ include file="../mall/cs_bottom.jsp"%>
+<%@ include file="cs_bottom.jsp"%>

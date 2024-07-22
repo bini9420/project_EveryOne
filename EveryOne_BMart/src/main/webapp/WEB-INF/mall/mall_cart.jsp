@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="mall_top.jsp"%>
-<%@include file="../common/common.jsp" %>  
 <%@ page import = "javax.servlet.jsp.*" %>
 <%
 	String path = request.getContextPath();
@@ -118,8 +117,8 @@
 	}
 	.header{
 		margin-top: 40px;
-		margin-bottom: 10px;
-		font-size: 20px;
+		margin-bottom: 5px;
+		font-size: 30px;
 		font-weight: bold;
 		text-align: center;
 		color: #414141;
@@ -140,7 +139,7 @@
 	}
 </style>
 
-<script type="text/javascript" src="<%=path%>/resources/js/jquery.js"></script>
+<script type="text/javascript" src="resources/js/jquery.js"></script>
 <script type="text/javascript">
 	
 $(document).ready(function(){
@@ -304,25 +303,6 @@ $(document).ready(function(){
 	}
 	
 </script>
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SB Admin 2 - Login</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-    <!-- Custom styles for this template-->
-    <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
-
-</head>
 <p class="header">장바구니</p>
 <div class="cart">
 <form name="countForm" action="order.mall" method="post" onsubmit="return order();">
@@ -343,8 +323,13 @@ $(document).ready(function(){
 			<input type="checkbox" id="rowSelect" name="rowSelect" class="rowSelect" value="${i.pnum}" onclick="checkTest()">
 		</td>
 		<td class="productImg">
-				<input type="hidden" id="pimage" name="pimage" value="${i.pimage}">
-				<img src="<%=path%>/resources/img/no-pictures.png" width="50px" height="50px" class="product2">
+			<input type="hidden" id="pimage" name="pimage" value="${i.pimage}">
+			<c:if test="${i.pimage ne null}">
+				<img src="<%=request.getContextPath()+"/resources/uploadImage/"%>${i.pimage}" width="50px" height="50px">
+			</c:if>
+			<c:if test="${i.pimage eq null}">
+				<img src="resources/img/no-pictures.png" width="50px" height="50px" class="product2">
+			</c:if>
 		</td>
 		<td class="title">
 		<input type="hidden" id="pname" name="pname" value="${i.pname}">

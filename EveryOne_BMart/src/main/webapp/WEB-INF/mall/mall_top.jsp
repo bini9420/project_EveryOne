@@ -99,7 +99,7 @@
 				<ul class="navbar-nav mb-2 mb-lg-0 ms-lg-5 ps-lg-5">
 					<li class="nav-item ms-lg-5 mx-1">
 						<!-- home icon -->
-						<a class="nav-link active" aria-current="page" href="mypage.mb?index=orderList">
+						<a class="nav-link active" aria-current="page" href="main.mall">
 							<i class="fi fi-rr-home icon"></i>
 						</a>
 					</li>

@@ -1,35 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../mall/cs_top.jsp"%>
+<%@ include file="cs_top.jsp"%>
 
-<%-- <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/style.css"> --%>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(document).ready(
 			function() {
-				$('.title-link')
-						.on(
-								'click',
-								function(e) {
-									e.preventDefault();
-									var nnum = $(this).data('nnum');
-									var contentArea = $('#content-' + nnum);
+				$('.title-link').on('click', function(e) {
+					e.preventDefault();
+					var nnum = $(this).data('nnum');
+					var contentArea = $('#content-' + nnum);
 
-									if (contentArea.is(':visible')) {
-										contentArea.slideUp();
-									} else {
-										$('.content-area').slideUp();
+					if (contentArea.is(':visible')) {
+						contentArea.slideUp();
+					} else {
+						$('.content-area').slideUp();
 
-										fetchContent(nnum, contentArea, $(this)
-												.data('pagenumber'), $(this)
-												.data('whatcolumn'), $(this)
-												.data('keyword'));
-									}
-								});
+						fetchContent(
+								nnum, contentArea, $(this).data('pagenumber'), 
+								$(this).data('whatcolumn'), $(this).data('keyword')
+								);
+					}
+				});
 
-				function fetchContent(nnum, contentArea, pageNumber,
-						whatColumn, keyword) {
+				function fetchContent(nnum, contentArea, pageNumber, whatColumn, keyword) {
 					$.ajax({
 						url : 'content.nt',
 						type : 'GET',
@@ -54,17 +48,16 @@
 				}
 
 				function autoRefresh() {
-					$('.title-link').each(
-							function() {
-								var nnum = $(this).data('nnum');
-								var contentArea = $('#content-' + nnum);
-								if (contentArea.is(':visible')) {
-									fetchContent(nnum, contentArea, $(this)
-											.data('pagenumber'), $(this).data(
-											'whatcolumn'), $(this).data(
-											'keyword'));
-								}
-							});
+					$('.title-link').each(function() {
+						var nnum = $(this).data('nnum');
+						var contentArea = $('#content-' + nnum);
+						if (contentArea.is(':visible')) {
+							fetchContent(nnum, contentArea, $(this)
+									.data('pagenumber'), $(this).data(
+									'whatcolumn'), $(this).data(
+									'keyword'));
+						}
+					});
 				}
 
 				setInterval(autoRefresh, 30000); // Refresh every 30 seconds
@@ -72,8 +65,7 @@
 
 	function Delete(nnum, pageNumber) {
 		if (confirm("정말로 삭제하시겠습니까?")) {
-			location.href = 'delete.nt?nnum=' + nnum + "&pageNumber="
-					+ pageNumber;
+			location.href = 'delete.nt?nnum=' + nnum + "&pageNumber=" + pageNumber;
 		}
 	}
 
@@ -82,64 +74,50 @@
 	}
 </script>
 
-<div class="container my-5 p-4">
+<div class="mx-auto h-75 my-5" style="width:90%">
 	<div class="row">
-		<div class="col-sm-4">
+		<div class="col-sm-3">
 			<div class="card bg-light">
 				<div class="card-body">
 					<nav class="nav flex-column">
-						<!-- <form action="" method="post" class="d-flex">
-							<input type="text" name="keyword" class="form-control w-75"
-								placeholder="search">
-							<button type="button" class="btn btn-secondary ms-2">검색</button>
-						</form> -->
 						<div class="search-form">
 							<form action="list.nt" method="get">
-								<!-- <select name="whatColumn">
-									<option value="all">전체검색</option>
-									<option value="subject">제목</option>
-									<option value="category">구분</option>
-								</select> -->
 								<input type="hidden" name="whatColumn" value="subject">
-								<br> <input type="text" name="keyword"
-									placeholder="검색어를 입력하세요"> <input type="submit"
-									value="검색">
+								<br> 
+								<input type="text" name="keyword" placeholder="검색어를 입력하세요"> 
+								<input type="submit" value="검색">
 							</form>
 						</div>
+						
 						<hr>
-						<font class="my-2" color="#186E6A">배민 B마트</font> <a
-							class="nav-link text-muted" aria-current="page"
-							href="list.nt?whatColumn=category&keyword=FAQ"> FAQ </a> <a
-							class="nav-link text-muted" aria-current="page"
-							href="list.nt?whatColumn=category&keyword=공지사항"> 공지사항 </a>
+						<font class="my-2" color="#186E6A">배민 B마트</font> 
+						<a class="nav-link text-muted" aria-current="page" href="list.nt?whatColumn=category&keyword=FAQ"> FAQ </a> 
+						<a class="nav-link text-muted" aria-current="page" href="list.nt?whatColumn=category&keyword=공지사항"> 공지사항 </a>
+						
 						<hr>
-						<!-- <font class="my-2" color="#186E6A">배민상회</font> <a
-							class="nav-link text-muted" aria-current="page" href="#"> F&A
-						</a> <a class="nav-link text-muted" aria-current="page" href="#">
-							공지사항 </a>
-						<hr>  -->
-						<a class="nav-link text-primary" aria-current="page"
-							href="main.mall"> 배민 B마트로 돌아가기 </a>
+						<a class="nav-link text-primary" aria-current="page" href="main.mall"> 배민 B마트로 돌아가기 </a>
 						<c:if test="${loginInfo.id == 'admin'}">
-							<a class="nav-link text-primary" aria-current="page"
-								href="adminMain.ad"> 관리자페이지로 돌아가기 </a>
+							<a class="nav-link text-primary" aria-current="page" href="adminMain.ad"> 관리자페이지로 돌아가기 </a>
 						</c:if>
-						<!-- <a
-							class="nav-link text-primary" aria-current="page" href="#">
-							배민 상회로 돌아가기 </a> -->
 					</nav>
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-8">
-			<div class="card bg-light" style="border: 0px">
+		<div class="col-sm-9">
+			<div class="card bg-light p-5" style="border: 0px">
 				<div class="containerN">
-					<h1 class="board-title">공지사항</h1>
+					<h2 class="board-title">공지사항</h2>
+					<c:if test="${loginInfo.id == 'admin'}">
+						<div class="text-end my-2">
+							<button class='plus_btn'
+								onclick="location.href='insert.nt?whatColumn=${param.whatColumn }&keyword=${param.keyword}'">추가</button>
+						</div>
+					</c:if>
 					<table class="board-table">
 						<thead>
 							<tr>
 								<th width="10%">구분</th>
-								<th width="60%">제목</th>
+								<th width="50%">제목</th>
 								<th width="20%">작성일</th>
 								<c:if test="${loginInfo.id == 'admin'}">
 									<th>삭제</th>
@@ -158,38 +136,42 @@
 									<c:forEach var="nty" items="${lists2}">
 										<tr>
 											<td align="center">${nty.category}</td>
-											<td align="left"><a href="#" class="title-link"
-												data-nnum="${nty.nnum}"
-												data-pagenumber="${pageInfo.pageNumber}"
-												data-whatcolumn="${param.whatColumn}"
-												data-keyword="${param.keyword}" style="color: #00A2E8">[중요]${nty.subject}</a>
-												<div id="content-${nty.nnum}" class="content-area"></div></td>
-											<td align="center"><fmt:formatDate value="${nty.ndate}"
-													pattern="yyyy-MM-dd" /></td>
+											<td align="left">
+												<a href="#" class="title-link" data-nnum="${nty.nnum}" data-pagenumber="${pageInfo.pageNumber}"
+													data-whatcolumn="${param.whatColumn}" data-keyword="${param.keyword}" style="color: #00A2E8">[중요]${nty.subject}</a>
+												<div id="content-${nty.nnum}" class="content-area"></div>
+											</td>
+											<td align="center">
+												<fmt:formatDate value="${nty.ndate}" pattern="yyyy-MM-dd" />
+											</td>
 											<c:if test="${loginInfo.id == 'admin'}">
-												<td><button type="button" class='plus_btn'
-														onClick="Delete('${nty.nnum}','${pageInfo.pageNumber}')">삭제</button></td>
-												<td><button type="button" class='plus_btn'
-														onClick="goUpdate('${nty.nnum}','${pageInfo.pageNumber}')">수정</button></td>
+												<td>
+													<button type="button" class='plus_btn' onClick="Delete('${nty.nnum}','${pageInfo.pageNumber}')">삭제</button>
+												</td>
+												<td>
+													<button type="button" class='plus_btn' onClick="goUpdate('${nty.nnum}','${pageInfo.pageNumber}')">수정</button>
+												</td>
 											</c:if>
 										</tr>
 									</c:forEach>
 									<c:forEach var="nt" items="${lists}">
 										<tr>
 											<td align="center">${nt.category}</td>
-											<td align="left"><a href="#" class="title-link"
-												data-nnum="${nt.nnum}"
-												data-pagenumber="${pageInfo.pageNumber}"
-												data-whatcolumn="${param.whatColumn}"
-												data-keyword="${param.keyword}">${nt.subject}</a>
-												<div id="content-${nt.nnum}" class="content-area"></div></td>
-											<td align="center"><fmt:formatDate value="${nt.ndate}"
-													pattern="yyyy-MM-dd" /></td>
+											<td align="left">
+												<a href="#" class="title-link" data-nnum="${nt.nnum}" data-pagenumber="${pageInfo.pageNumber}"
+													data-whatcolumn="${param.whatColumn}" data-keyword="${param.keyword}">${nt.subject}</a>
+												<div id="content-${nt.nnum}" class="content-area"></div>
+											</td>
+											<td align="center">
+												<fmt:formatDate value="${nt.ndate}" pattern="yyyy-MM-dd" />
+											</td>
 											<c:if test="${loginInfo.id == 'admin'}">
-												<td><button type="button" class='plus_btn'
-														onClick="Delete('${nt.nnum}','${pageInfo.pageNumber}')">삭제</button></td>
-												<td><button type="button" class='plus_btn'
-														onClick="goUpdate('${nt.nnum}','${pageInfo.pageNumber}')">수정</button></td>
+												<td>
+													<button type="button" class='plus_btn' onClick="Delete('${nt.nnum}','${pageInfo.pageNumber}')">삭제</button>
+												</td>
+												<td>
+													<button type="button" class='plus_btn' onClick="goUpdate('${nt.nnum}','${pageInfo.pageNumber}')">수정</button>
+												</td>
 											</c:if>
 										</tr>
 									</c:forEach>
@@ -197,21 +179,6 @@
 							</c:choose>
 						</tbody>
 					</table>
-					<c:if test="${loginInfo.id == 'admin'}">
-						<!-- <a href="insert.nt">추가</a> -->
-						<button class='plus_btn'
-							onclick="location.href='insert.nt?whatColumn=${param.whatColumn }&keyword=${param.keyword}'">추가</button>
-					</c:if>
-					<!-- <div class="search-form">
-			<form action="list.nt" method="get">
-				<select name="whatColumn">
-					<option value="all">전체검색</option>
-					<option value="subject">제목</option>
-					<option value="category">구분</option>
-				</select> <input type="text" name="keyword" placeholder="검색어를 입력하세요">
-				<input type="submit" value="검색">
-			</form>
-		</div> -->
 					<center>${pageInfo.pagingHtml }</center>
 					<div class="pagination">
 						<c:if test="${count > 0}">
@@ -229,8 +196,7 @@
 								<a href="list.nt?pageNum=${startPage-1}">[이전]</a>
 							</c:if>
 							<c:forEach var="i" begin="${startPage}" end="${endPage}">
-								<a href="list.nt?pageNum=${i}"
-									class="${pageInfo.currentPage == i ? 'active' : ''}">[${i}]</a>
+								<a href="list.nt?pageNum=${i}" class="${pageInfo.currentPage == i ? 'active' : ''}">[${i}]</a>
 							</c:forEach>
 							<c:if test="${endPage < pageCount}">
 								<a href="list.nt?pageNum=${startPage+pageBlock}">[다음]</a>
@@ -243,5 +209,4 @@
 		</div>
 	</div>
 </div>
-
-<%@ include file="../mall/cs_bottom.jsp"%>
+<%@ include file="cs_bottom.jsp"%>

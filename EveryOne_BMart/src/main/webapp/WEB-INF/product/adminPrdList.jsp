@@ -1,7 +1,5 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="../common/common.jsp"%>
 <%@include file="../admin/a_top.jsp"%>
 
 
@@ -47,56 +45,50 @@ function check(){
 
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800 title">상품목록</h1>
-<div class="card shadow mb-4">
+<div class="card shadow mx-auto" style="width :80%">
 	<div class="card-header py-3">
-		<div class="card-body">
-			<div class="search">
-				<form action="adminProductList.prd" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-					<div class="input-group">
-						<input type="text" name="keyword"
-							class="form-control bg-white border-0 small reading"
-							placeholder="Search for..." aria-label="Search"
-							aria-describedby="basic-addon2">
-						<div class="input-group-append">
-							<button class="btn btn-primary" type="submit">
-								<i class="fas fa-search fa-sm"></i>
-							</button>
-						</div>
+		<div style="text-align: right">
+			<form action="adminProductList.prd" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+				<div class="input-group">
+					<input type="text" name="keyword" class="form-control bg-white border-0 small reading"
+						placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+					<div class="input-group-append">
+						<button class="btn btn-primary" type="submit">
+							<i class="fas fa-search fa-sm"></i>
+						</button>
 					</div>
-				</form>
-				<a href="adminProductInsert.prd" class="plusbtn" style="font-size: 15px;"> 
-				<i class="fi fi-br-plus-small" ></i>추가
-				</a>
-			</div>
+				</div>
+			</form>
+			<a href="adminProductInsert.prd" class="btn btn-primary"> 
+				<i class="fi fi-br-plus"></i>
+			</a>
 		</div>
 	</div>
 	
 	<div class="card-body">
-		<div class="table-responsive">
-			<form action="adminProductDelete.prd" method="post">
-				<table class="table table-bordered" id="dataTable">
-					<thead>
-						<tr>
-							<button type="button" onClick="check()">
-								<i class="fi fi-bs-trash-xmark trash"></i>
-							</button>
-						</tr>
-						<tr>
-							<th><input type="checkbox" id="allChk" onclick="allCheck()"></th>
-							<th>상품번호</th>
-							<th>카테고리</th>
-							<th>상품명</th>
-							<th>가격</th>
-							<th>주문횟수</th>
-							<th>상품등록일</th>
-							<th>재고</th>
-							<th>수정</th>
-							<th>삭제</th>
-						</tr>
-					</thead>
-
+		<form action="adminProductDelete.prd" method="post">
+			<table class="table table-bordered text-center" id="dataTable">
+				<thead>
+					<tr>
+						<button type="button" onClick="check()">
+							<i class="fi fi-rs-trash text-secondary trash m-2"></i>
+						</button>
+					</tr>
+					<tr class="bg-secondary text-white">
+						<th><input type="checkbox" id="allChk" onclick="allCheck()"></th>
+						<th>상품번호</th>
+						<th>카테고리</th>
+						<th>상품명</th>
+						<th>가격</th>
+						<th>주문횟수</th>
+						<th>상품등록일</th>
+						<th>재고</th>
+						<th>수정</th>
+						<th>삭제</th>
+					</tr>
+				</thead>
+				<tbody>
 					<c:forEach var="prd" items="${productLists }">
-
 						<tr>
 							<th><input type="checkbox" name="chkRow" value="${prd.pnum }"></th>
 							<th>${prd.pnum }</th>
@@ -110,22 +102,13 @@ function check(){
 							<th><a href="adminProductDelete.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}">삭제</a></th>
 						</tr>
 					</c:forEach>
-					</tbody>
-				</table>
-			</form>
-		</div>
+				</tbody>
+			</table>
+		</form>
 	</div>
-
-
-
-<div class="pagination-wrapper">
-	<nav aria-label="Page navigation example">
-		<ul class="pagination">
-			<li class="page-item">${pageInfo.pagingHtml }</li>
-		</ul>
-	</nav>
+</div>
+<div class="text-center my-3">
+	${pageInfo.pagingHtml }
 </div>
 
-
-
-	<%@include file="../admin/a_bottom.jsp"%>
+<%@include file="../admin/a_bottom.jsp"%>

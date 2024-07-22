@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.NoticeBean;
@@ -26,7 +27,7 @@ public class noticeInsertController {
 	NoticeDao noticeDao;
 	
 	@RequestMapping(value=command, method=RequestMethod.GET)
-	public String insertForm(HttpSession session) {
+	public String insertForm(HttpSession session, @RequestParam(value = "category", required = false) String category) {
 		System.out.println("insert GET");
 		 if(session.getAttribute("loginInfo") == null) {
 			 session.setAttribute("destination", "redirect:/insert.nt");

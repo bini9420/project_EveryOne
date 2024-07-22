@@ -13,7 +13,7 @@
 	<h1 class="h3 mb-2 text-gray-800 title">상품추가</h1>
 	<div class="card shadow mx-auto my-4 w-75">
 		<div class="card-header py-3" style="text-align: right;">
-			<button type="button" class="btn btn-sm btn-secondary" onclick="location.href='productList.prd?pageNumber=${pageNumber}'">
+			<button type="button" class="btn btn-sm btn-secondary" onclick="location.href='adminProductList.prd?pageNumber=${pageNumber}'">
 				<i class="fi fi-rr-list"></i> 목록보기
 			</button>
 			<button type="submit" class="btn btn-primary btn-sm">

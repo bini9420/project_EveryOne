@@ -51,13 +51,8 @@ function check(){
 	<div class="card-header py-3">
 		<div class="card-body">
 
-
-
 			<div class="search">
-				<form action="adminProductList.prd"
-					class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-
-
+				<form action="adminProductList.prd" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 					<div class="input-group">
 						<input type="text" name="keyword"
 							class="form-control bg-white border-0 small reading"
@@ -68,24 +63,16 @@ function check(){
 								<i class="fas fa-search fa-sm"></i>
 							</button>
 						</div>
-
 					</div>
 				</form>
 
-
-
-				<a href="adminProductInsert.prd" class="plusbtn"> 
-				<i class="fi fi-br-plus-small"></i>
+				<a href="adminProductInsert.prd" class="plusbtn" style="font-size: 15px;"> 
+				<i class="fi fi-br-plus-small" ></i>추가
 				</a>
-
 			</div>
 		</div>
-
 	</div>
-
-
-
-
+	
 	<div class="card-body">
 		<div class="table-responsive">
 			<form action="adminProductDelete.prd" method="post">
@@ -113,8 +100,7 @@ function check(){
 					<c:forEach var="prd" items="${productLists }">
 
 						<tr>
-							<th><input type="checkbox" name="chkRow"
-								value="${prd.pnum }"></th>
+							<th><input type="checkbox" name="chkRow" value="${prd.pnum }"></th>
 							<th>${prd.pnum }</th>
 							<th>${prd.pcategory }</th>
 							<th><a href="adminProductDetail.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}" style="color: gray;">${prd.pname }</a></th>
@@ -125,11 +111,8 @@ function check(){
 							<th><a href="adminProductUpdateForm.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}">수정</a></th>
 							<th><a href="adminProductDelete.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}">삭제</a></th>
 						</tr>
-
-
 					</c:forEach>
 					</tbody>
-
 				</table>
 			</form>
 		</div>
@@ -140,14 +123,15 @@ function check(){
 	<div class="pagination-wrapper">
 		<nav aria-label="Page navigation example">
 			<ul class="pagination">
-				<li class="page-item"><a class="page-link" href="#"
-					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-				</a></li>
+				<li class="page-item">
+					<a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
 				<li class="page-item">${pageInfo.pagingHtml }</li>
-
-				<li class="page-item"><a class="page-link" href="#"
-					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-				</a></li>
+				<li class="page-item">
+					<a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
 			</ul>
 		</nav>
 	</div>

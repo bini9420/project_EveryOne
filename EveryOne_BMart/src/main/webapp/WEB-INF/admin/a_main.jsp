@@ -3,15 +3,6 @@
 <%@ include file="../common/common.jsp"%>
 <%@ include file="a_top.jsp"%>
 
-<style>
- #approveBox:hover {
- 	cursor: pointer;
- }
- #approvalRequest {
- 	display: inline;
- }
-</style>
-
 <!-- Begin Page Content -->
 <div class="container-fluid">
      
@@ -24,7 +15,8 @@
 				<div class="card-body">
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
-							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+							<div
+								class="text-xs font-weight-bold text-primary text-uppercase mb-1">
 								<h4>
 									<a href="aMemberList.mb">회원</a>/<a href="adminProductList.prd">상품관리</a>
 								</h4>
@@ -45,7 +37,8 @@
 				<div class="card-body">
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
-							<div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+							<div
+								class="text-xs font-weight-bold text-success text-uppercase mb-1">
 								<h4>
 									<a href="top.sale">월간수입</a>
 								</h4>
@@ -59,10 +52,10 @@
 				</div>
 			</div>
 		</div>
-
+		
 		<!-- Earnings (Monthly) Card Example -->
 		<div class="col-xl-3 col-md-6 mb-4">
-			<div class="card border-left-info shadow h-100 py-2" id="approveBox">
+			<div class="card border-left-info shadow h-100 py-2" onclick="location.href='admin_waitBox.dc'" id="approveBox">
 				<div class="card-body">
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
@@ -71,16 +64,15 @@
 							</div>
 							<div class="row no-gutters align-items-center">
 								<div class="col-auto">
-                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${waitCount}건</div>
-                                </div>
-                                <div class="col">
-                                	 
-                                     <div class="progress progress-sm mr-2">
-                                          <div class="progress-bar bg-info" role="progressbar"
-                                               style="width: ${waitCount*10}" aria-valuenow="${waitCount}" aria-valuemin="0"
-                                               aria-valuemax="10"></div>
-                                     </div> 
-                                </div>
+									<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${waitCount}건</div>
+								</div>
+								<div class="col">
+									<div class="progress progress-sm mr-2">
+										<div class="progress-bar bg-danger" role="progressbar"
+                                             style="width: ${waitCount*10}" aria-valuenow="${waitCount}" aria-valuemin="0"
+                                             aria-valuemax="10"></div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="col-auto">
@@ -254,8 +246,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		</div>
+		</div>		
+	</div>
 </div>		
 		<!-- End of Main Content -->
 
@@ -348,128 +340,152 @@
         }); 
 </script>
 
-<script>
-var calendar = null;
-var initialLocaleCode = 'ko';
 
-$(document).ready(function () {
-    var calendarEl = document.getElementById('calendar');
-    calendar = new FullCalendar.Calendar(calendarEl, {
-        initialDate: '2024-07-16',
-        initialView: 'dayGridMonth',
-        headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridDay,listWeek'
-        },
-     
-      
-        navLinks: true,
-        editable: true,
-        selectable: true,
-        droppable: true, // allows things to be dropped onto the calendar
-        
-       /*  events: function(fetchInfo, successCallback, failureCallback) {
-            $.ajax({
-                url: "/schedule/showSchedule",
-                method: "GET",
-                dataType: "json",
-                success: function(data) {
-                    successCallback(data);
-                },
-                error: function() {
-                    failureCallback();
+
+
+<script>
+        var calendar = null;
+
+        $(document).ready(function(){
+            function loadEvents() {
+                $.ajax({
+                     url: "showSchedule.scd"
+                    ,method: "GET"
+                    ,dataType: "json"
+                    ,success: function(scheduleJson){
+                        calendar.removeAllEvents(); // 모든 기존 일정을 제거
+                        calendar.addEventSource(scheduleJson); // 새 일정을 추가
+                    }
+                    ,error: function(request, status, error){
+                        console.error("Error fetching schedule:", error);
+                    }
+                });
+            }
+            var calendarEl = document.getElementById('calendar');
+
+            calendar = new FullCalendar.Calendar(calendarEl, {
+                 initialDate: '2024-07-16'
+                ,initialView: 'dayGridMonth'
+                ,headerToolbar: {
+                     left: 'prev,next today'
+                    ,center: 'title'
+                    ,right: 'dayGridMonth,timeGridDay,listWeek'
+                }
+                ,navLinks: true
+                ,editable: true
+                ,selectable: true
+                ,droppable: true
+                ,events: [] // 초기에는 비어있음
+                
+                ,eventDrop: function(info) {
+                    if (confirm("'" + info.event.title + "' 일정을 수정하시겠습니까?")) {
+                        
+                    	var events = new Array();
+                    	var obj = new Object();
+                    	
+                    	obj.title = info.event._def.title;
+                        obj.start = info.event._instance.range.start;
+                        obj.end = info.event._instance.range.end;
+                        
+                        
+                        events.push(obj);
+                    }else{
+                    	location.reload();
+                    }
+                    	
+
+                        $.ajax({
+                            url: "updateSchedule.scd",
+                            method: "POST",
+                            dataType: "json",
+                            data: JSON.stringify(events),
+                            contentType: 'application/json',
+                        })
+                }
+                        
+
+                ,select: function(arg) {
+                    var title = prompt("일정을 입력해주세요.");
+                    if (title) {
+                        // 이벤트 객체 생성
+                        var events = {
+                            title: title,
+                            start: arg.start,
+                            end: arg.end
+                        };
+
+                        // 캘린더에 이벤트 추가
+                        calendar.addEvent(events);
+
+                        
+                        var events = new Array();
+                        var obj = new Object();
+                        
+                        obj.title= title;
+                        obj.start= arg.start;
+                        obj.end= arg.end;
+                        events.push(obj);
+                        
+                        
+                        // 서버에 이벤트 데이터 전송
+                        $.ajax({
+                            url: "addSchedule.scd",
+                            method: "POST",
+                            dataType: "json",
+                            data: JSON.stringify(events),
+                            contentType: 'application/json',
+                            success: function(response) {
+                                console.log("이벤트가 성공적으로 추가되었습니다:", response);
+                            },
+                            error: function(xhr, status, error) {
+                                console.error("이벤트 추가 실패:", error);
+                            }
+                        });
+
+                        // 캘린더 선택 해제
+                        calendar.unselect();
+                    } else {
+                        // 제목이 입력되지 않은 경우 처리
+                        
+                        calendar.unselect(); // 제목이 없더라도 선택 해제
+                    }
+                }
+
+               
+
+                ,eventClick: function(info)
+                {
+                    if (confirm("'" + info.event.title + "' 일정을 삭제하시겠습니까?")) {
+                        // 이벤트를 삭제하는 부분
+                        console.log(info.event);
+                        
+                        var events = new Array();
+                        var obj = {
+                            title: info.event._def.title,
+                            start: info.event._instance.range.start,
+                            end: info.event._instance.range.end
+                        };
+                        events.push(obj);
+                        console.log(events);
+
+                        // 서버로 Ajax 요청을 보냄
+                        $.ajax({
+                            url: "deleteSchedule.scd",
+                            method: "POST",
+                            dataType: "json",
+                            data: JSON.stringify(events), // 배열로 전달
+                            contentType: 'application/json',
+                        });
+                        info.event.remove(); // 클라이언트에서 이벤트 제거
+                        loadEvents(); // 페이지 로드 시 일정을 다시 불러옴
+                        calendar.render();
+                    }
                 }
             });
-        },
-         */
-       
-        eventDrop: function (info) {
-            if (confirm("'" + info.event.title + "' 일정을 수정하시겠습니까?")) {
-                var events = [{
-                    title: info.event.title,
-                    start: info.event.start.toISOString(),
-                    end: info.event.end ? info.event.end.toISOString() : null
-                }];
+            loadEvents(); // 페이지 로드 시 일정을 불러옴
+            calendar.render();
+        });
 
-                $.ajax({
-                    url: "/schedule/updateSchedule",
-                    method: "POST",
-                    dataType: "json",
-                    data: JSON.stringify(events),
-                    contentType: 'application/json',
-                })
-                .done(function (result) {
-                    console.log("Event updated successfully:", result);
-                })
-                .fail(function (request, status, error) {
-                    console.error("Error updating event:", error);
-                });
-            }
-        },
+    </script>
 
-        select: function (arg) {
-            var title = prompt('일정을 입력해주세요.');
-            if (title) {
-                calendar.addEvent({
-                    title: title,
-                    start: arg.start,
-                    end: arg.end,
-                    allDay: arg.allDay,
-                });
-
-                var events = [{
-                    title: title,
-                    start: arg.start.toISOString(),
-                    end: arg.end ? arg.end.toISOString() : null
-                }];
-
-                $.ajax({
-                    url: "/schedule/addSchedule",
-                    method: "POST",
-                    dataType: "json",
-                    data: JSON.stringify(events),
-                    contentType: 'application/json',
-                })
-                .done(function (result) {
-                    console.log("Event added successfully:", result);
-                })
-                .fail(function (request, status, error) {
-                    console.error("Error adding event:", error);
-                });
-
-                calendar.unselect();
-            }
-        },
-    
-        eventClick: function (info) {
-            if (confirm("'" + info.event.title + "' 일정을 삭제하시겠습니까?")) {
-                info.event.remove();
-
-                var events = [{
-                    title: info.event.title,
-                    start: info.event.start.toISOString()
-                }];
-
-                $.ajax({
-                    url: "/schedule/deleteSchedule",
-                    method: "POST",
-                    dataType: "json",
-                    data: JSON.stringify(events),
-                    contentType: 'application/json',
-                })
-                .done(function (result) {
-                    console.log("Event deleted successfully:", result);
-                })
-                .fail(function (request, status, error) {
-                    console.error("Error deleting event:", error);
-                });
-            }
-        }
-    });
-
-    calendar.render();
-});
-
-</script>
 <%@ include file="a_bottom.jsp" %>

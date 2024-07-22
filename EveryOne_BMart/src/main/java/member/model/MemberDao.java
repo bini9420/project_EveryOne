@@ -8,6 +8,8 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import model.AddressBean;
 import model.EnterBean;
@@ -22,7 +24,9 @@ import utility.MemberListPaging;
 import utility.ReviewPaging;
 
 
+
 @Component("MemberDao")
+@Repository
 public class MemberDao {
 
 	@Autowired
@@ -36,6 +40,7 @@ public class MemberDao {
 	private String reviewDetail = "reviewDetail";
 	private String order = "orders.model.Orders";
 	private String product = "product";
+
 	
 	public MemberBean getMember(String id) {
 		MemberBean member = null;

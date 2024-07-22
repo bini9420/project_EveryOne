@@ -4,10 +4,21 @@
 	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="admin">
+
 	<select id="getMember" resultType="member">
 		select * from member where id=#{id}
 	</select>
-	
+
+
+
+	<update id="updateMember">
+		update member
+		set password=#{password}, name=#{name}, phone1=#{phone1},
+		phone2=#{phone2}, phone3=#{phone3}, email1=#{email1}, email2=#{email2}
+		where id=#{id}
+	</update>
+
+
 	<select id="getAdminDocument" resultType="doc.model.DocBean">
 		select * from document
 		order by dnum desc
@@ -29,4 +40,5 @@
 	<select id="getAllProductCount" resultType="int">
 		select count(*) from product where id='admin'
 	</select>
+
 </mapper>

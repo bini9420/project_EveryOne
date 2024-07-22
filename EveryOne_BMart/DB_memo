@@ -414,6 +414,30 @@ insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextva
 insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'jung', 4, 1, '2024-07-09');
 insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'kang', 4, 1, '2024-07-09');
 
+--공지사항 테이블
+
+drop sequence des_seq;
+
+CREATE SEQUENCE des_seq 
+START WITH 1 
+INCREMENT BY 1 
+NOCACHE;
+
+drop table description CASCADE CONSTRAINTS;
+
+create table description (
+   dnum number primary key,
+   id varchar2(20),
+   FOREIGN KEY (id) REFERENCES member(id),
+   dsubject varchar2(50) not null,
+   dcontent varchar2(1000) not null,
+   ddate date default sysdate,
+   password varchar2(30),
+   ref number,
+   re_step number not null,
+   re_level number not null
+);
+
 
 
 --리뷰 테이블
@@ -563,6 +587,28 @@ select * from interest order by inum desc;
 select * from cart order by cnum desc;
 select * from state;
 
+
+
+
+
+
+--일정 테이블
+drop table schedule cascade constraints;
+create table schedule (
+   title varchar2(20) primary key,
+   startDate date default sysdate, 
+   endDate date default sysdate
+
+);
+
+
+
+
+INSERT INTO schedule VALUES ('b마트 점검', SYSDATE, SYSDATE);
+INSERT INTO schedule VALUES ('b마트 상품등록',  '24-7-15', '24-7-20');
+INSERT INTO schedule VALUES ('b마트 임원모임', '24-7-16','24-7-16');
+INSERT INTO schedule VALUES ('b마트 공지', '24-7-18', '24-7-19');
+commit;
 
 --최근 3일 이내에 등록한 상품 조회
 select count(*) from product where inputdate between sysdate-3 and sysdate;

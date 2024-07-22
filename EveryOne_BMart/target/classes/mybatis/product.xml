@@ -71,9 +71,11 @@
 	</update>
 
 	<select id="getRangeTest" resultType="product">
-		select rownum, pname, ordercount
-		from (select rownum, pname, ordercount from product order by ordercount desc)
-		where rownum between 1 and 5
+
+	SELECT pname, ordercount
+	FROM (SELECT pname, ordercount
+	FROM (SELECT pname, ordercount FROM product ORDER BY ordercount DESC)
+	WHERE ROWNUM between 1 and 5)
 	</select>
 
 	<select id="getCateChart" resultType="product">

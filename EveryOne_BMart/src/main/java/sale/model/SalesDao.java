@@ -2,6 +2,7 @@ package sale.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,12 +47,21 @@ public class SalesDao {
 		return clists;
 	}
 
+
 	public List<ProductBean> donutChartForOwner(String id) {
 		List<ProductBean> lists = new ArrayList<ProductBean>();
 		lists = sqlSessionTemplate.selectList(namespace2 + ".donutChartForOwner", id); 
 		
 		return lists;
 	}//donutChartForOwner
+
+	public List<Map<String,Integer>> getAdminMonthSumCount(){
+		return sqlSessionTemplate.selectList(namespace+".getAdminMonthSumCount"); 
+	}
+	public List<Map<String,Integer>> getAdminMonthSumCount2(){
+		return sqlSessionTemplate.selectList(namespace+".getAdminMonthSumCount2"); 
+	}
+
 
 
 

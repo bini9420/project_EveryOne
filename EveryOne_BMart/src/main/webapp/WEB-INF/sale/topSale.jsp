@@ -27,24 +27,7 @@
 					</div>
 				</div>
 			</div>
-
-			<!-- Bar Chart -->
-			<div class="card shadow mb-4">
-				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
-				</div>
-				<div class="card-body">
-					<div class="chart-container">
-						<canvas id="myBarChart"></canvas>
-					</div>
-
-				</div>
-			</div>
-
 		</div>
-
-
-
 		<!-- Donut Chart -->
 		<div class="col-xl-4 col-lg-5">
 			<div class="card shadow mb-4">
@@ -62,8 +45,36 @@
 		</div>
 	</div>
 </div>
+		
+		
+<% String months[] = {"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"}; %>
 
-
+        <table class="table bg-white">
+            <thead>
+                <tr>
+                    <th></th>
+                    <c:forEach var="month" items="<%=months %>">
+                    	<th>${month }</th>                    
+                    </c:forEach>
+                 </tr>
+             </thead>
+             <tbody>
+             	 <tr>
+             	 	<td>총 주문수</td>
+             		<c:forEach var="ams" items="${adminMonthlySale.keySet()}">
+             			<td>${adminMonthlySale.get(ams)}개</td>
+             		</c:forEach>
+             	</tr>
+             	<tr>
+             		<td>총수입</td>
+             		<c:forEach var="amsl" items="${adminMonthlySale2.keySet()}">
+             			<td>${adminMonthlySale2.get(amsl)}원</td>	
+             		</c:forEach>
+             	</tr>      
+               </tbody>
+			</table>
+					
+	
 <script>
         // JSON 데이터를 JSP에서 안전하게 전달
         var areaJsonString = ${areaJson};
@@ -101,55 +112,7 @@
             }
         }); 
         
-        // JSON 데이터를 JSP에서 안전하게 전달
-        var barJsonString = ${barJson};
-        var bjsonObject = JSON.stringify(barJsonString);
-        var barData = JSON.parse(bjsonObject);
-        
-
-        var cateList = [];
-        var orderList = [];
-
-        // 데이터 파싱
-        for (var i = 0; i < barData.length; i++) {
-            var c = barData[i];
-            cateList.push(c.pcategory);
-            orderList.push(c.ordercount);
-            console.log("orderList: " + orderList);
-        }
-
-        new Chart(document.getElementById("myBarChart"), {
-            type: 'bar',
-            data: {
-                labels: cateList,
-                datasets: [{
-                    data: orderList,
-                    label: "카테고리별 매출",
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',   // 빨강
-                    'rgba(54, 162, 235, 0.2)',   // 파랑
-                    'rgba(255, 206, 86, 0.2)',   // 노랑
-                    'rgba(75, 192, 192, 0.2)',   // 초록
-                    'rgba(153, 102, 255, 0.2)'   // 보라
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',    // 빨강
-                    'rgba(54, 162, 235, 1)',    // 파랑
-                    'rgba(255, 206, 86, 1)',    // 노랑
-                    'rgba(75, 192, 192, 1)',    // 초록
-                    'rgba(153, 102, 255, 1)'    // 보라
-                ],
-                borderWidth: 1
-            }]
-        },
-               
-            options: {
-                title: {
-                    display: true,
-                    text: ''
-                }
-            }
-        }); 
+       
    
         // JSON 데이터를 JSP에서 안전하게 전달
          var pieJsonString = ${pieJson};
@@ -192,8 +155,8 @@
             data: data,
             options: options
         });
-        
-        
-        
+       
     </script>
+  
+    
 <%@include file="../admin/a_bottom.jsp"%>

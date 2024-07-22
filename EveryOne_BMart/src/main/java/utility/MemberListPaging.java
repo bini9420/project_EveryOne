@@ -8,7 +8,7 @@ public class MemberListPaging {
 	private int pageSize = 10 ; //한 페이지에 보여줄 건수
 	private int beginRow = 0 ; //현재 페이지의 시작 행
 	private int endRow = 0 ; //현재 페이지의 끝 행
-	private int pageCount = 3 ; // 한 화면에 보여줄 페이지 링크 수 (페이지 갯수)
+	private int pageCount = 2 ; // 한 화면에 보여줄 페이지 링크 수 (페이지 갯수)
 	private int beginPage = 0 ; //페이징 처리 시작 페이지 번호
 	private int endPage = 0 ; //페이징 처리 끝 페이지 번호
 	private int offset = 0 ;
@@ -247,24 +247,20 @@ public class MemberListPaging {
 		// 앞쪽
 		if (this.beginPage != 1) { 
 			// 처음 목록보기를 하면 pageNumber는 1이 되고 beginPage도 1이 된다. pageSize:한 화면에 보이는 레코드 수
-			result += "&nbsp;<a href='" + url  
-					+ "&pageNumber=1&pageSize=" + this.pageSize 
-					+ added_param + "'>[처음으로]</a>&nbsp;" ;
 			result += "&nbsp;<a href='" + url 
-					+ "&pageNumber=" + (this.beginPage - 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>[이전]</a>&nbsp;" ;
+					+ "?pageNumber=" + (this.pageNumber - 1 ) + "&pageSize=" + this.pageSize 
+					+ added_param + "' class='btn btn-outline-primary'>&laquo;</a>&nbsp;" ;
 		}
 
 		//가운데
-		for (int i = this.beginPage; i <= this.endPage ; i++) {
-			if ( i == this.pageNumber ) {
-				result += "&nbsp;<font color='red'>[" + i + "]</font>&nbsp;"   ;
-
-			} else {
-				result += "&nbsp;<a href='" + url   
-						+ "&pageNumber=" + i + "&pageSize=" + this.pageSize 
-						+ added_param + "'>[" + i + "]</a>&nbsp;" ;
-			}
+		for (int i = this.beginPage; i <= this.endPage; i++) {
+		    if (i == this.pageNumber) {
+		        result += "&nbsp;<font class='btn btn-primary' >" + i + "</font>&nbsp;";
+		    } else {
+		        result += "&nbsp;<a class='btn btn-outline-primary' href='" + url 
+		                + "?pageNumber=" + i + "&pageSize=" + this.pageSize 
+		                + added_param + "'>" + i + "</a>&nbsp;";
+		    }
 		}
 		/*
 		현재 페이지가 2일 때 result
@@ -278,12 +274,9 @@ public class MemberListPaging {
 			// endPage:지금 보는 페이지의 끝(지금 보는 페이지가 13이라면 endPage는 20), totalPage:전체 페이지수
 
 			result += "&nbsp;<a href='" + url  
-					+ "&pageNumber=" + (this.endPage + 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>[다음]</a>&nbsp;" ;
+					+ "?pageNumber=" + (this.pageNumber + 1 ) + "&pageSize=" + this.pageSize 
+					+ added_param + "' class='btn btn-outline-primary'>&raquo;</a>&nbsp;" ;
 
-			result += "&nbsp;<a href='" + url  
-					+ "&pageNumber=" + (this.totalPage ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>[끝으로]</a>&nbsp;" ;
 		}      
 		return result ;
 	}	

@@ -5,7 +5,6 @@ public class CalendarBean {
 	private String title;
 	private String startDate;
 	private String endDate;
-	private String memo;
 	
 	public String getTitle() {
 		return title;
@@ -26,11 +25,16 @@ public class CalendarBean {
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-	public String getMemo() {
-		return memo;
+	public CalendarBean(String title, String startDate, String endDate) {
+		super();
+		this.title = title;
+		this.startDate = startDate;
+		this.endDate = endDate;
 	}
-	public void setMemo(String memo) {
-		this.memo = memo;
+	public CalendarBean() {
+		super();
 	}
+	
+	
 	
 }

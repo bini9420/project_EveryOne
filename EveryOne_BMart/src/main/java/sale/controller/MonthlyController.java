@@ -1,6 +1,11 @@
 package sale.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,28 +64,39 @@ public class MonthlyController {
 		String pieJson = gson.toJson(pieArray);
 		model.addAttribute("pieJson", pieJson);
 
-
-
-
-
-		JsonArray barArray = new JsonArray();
-		List<ProductBean> clists = salesDao.getCateChart();
-
-
-
-		for(ProductBean product :clists) {
-			JsonObject object = new JsonObject();
-			object.addProperty("pcategory", product.getPcategory());
-			object.addProperty("ordercount", product.getOrdercount());
-			barArray.add(object);
-		}
-		String barJson = gson.toJson(barArray);
-		model.addAttribute("barJson",barJson);
-
-
-		return getPage;
-
+		//월별 매출 테이블
+	  List<Map<String, Integer>> monthSumCount =salesDao.getAdminMonthSumCount();
+	  List<Map<String, Integer>> monthSumCount2 =salesDao.getAdminMonthSumCount2();
+	  
+	  List<Map<String,Integer>> resultList = new ArrayList<Map<String, Integer>>();
+	  
+	  Map<String,Integer> adminMonthlySale = null;
+	  Map<String,Integer> adminMonthlySale2 = null;
+	  
+	  for(Map<String,Integer> map : monthSumCount) {
+	  
+		  adminMonthlySale = new TreeMap<String, Integer>(map);
+		  resultList.add(adminMonthlySale);
+		  Set<String> keyset = adminMonthlySale.keySet();
+		 
+		 for(String key: keyset) {
+		 System.out.println("key:"+key+"/value="+adminMonthlySale.get(key)); }
+	  
+	  }
+	  	for(Map<String,Integer> map1 : monthSumCount2) {
+		  
+		  adminMonthlySale2 = new TreeMap<String, Integer>(map1);
+		  resultList.add(adminMonthlySale2);
+		  
+		  Set<String> keyset = adminMonthlySale2.keySet();
+		  for(String key: keyset) {
+			  System.out.println("key:"+key+"/value="+adminMonthlySale.get(key)); }		  
+	  }
+	 
+	  model.addAttribute("adminMonthlySale",adminMonthlySale);
+	  model.addAttribute("adminMonthlySale2",adminMonthlySale2);
+	
+	  return getPage;	 	        
 	}
-
 
 }

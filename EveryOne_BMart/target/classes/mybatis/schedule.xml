@@ -7,7 +7,6 @@
 	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-
 <mapper namespace="schedule">
 
     <select id="showSchedule" resultType="schedule.model.CalendarBean">
@@ -16,21 +15,31 @@
     </select>
     
     <insert id="addSchedule">
-        INSERT INTO schedule (title, startDate, endDate)
-        VALUES (#{title}, #{startDate}, #{endDate})
+        INSERT INTO schedule (
+            title,
+            startDate,
+            endDate
+        ) VALUES (
+            #{title},
+            TO_DATE(#{startDate}, 'YYYY-MM-DD'),
+            TO_DATE(#{endDate}, 'YYYY-MM-DD')
+        )
     </insert>
     
     <delete id="deleteSchedule">
         DELETE FROM schedule
-        WHERE title = #{title} AND startDate = #{start}
+        WHERE title = #{title}
+        AND startDate = TO_DATE(#{startDate}, 'YYYY-MM-DD')
     </delete>
     
     <update id="updateSchedule">
         UPDATE schedule
-        SET startDate = #{startDate}, endDate = #{endDate}
+        SET startDate = TO_DATE(#{startDate}, 'YYYY-MM-DD'),
+            endDate = TO_DATE(#{endDate}, 'YYYY-MM-DD')
         WHERE title = #{title}
     </update>
     
 </mapper>
+
 
 	

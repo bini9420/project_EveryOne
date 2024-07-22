@@ -26,7 +26,7 @@ public class noticeInsertController {
 	NoticeDao noticeDao;
 	
 	@RequestMapping(value=command, method=RequestMethod.GET)
-	public String insertForm(HttpSession session) {
+	public String insertForm(HttpSession session, @RequestParam(value = "category", required = false) String category) {
 		System.out.println("insert GET");
 		 if(session.getAttribute("loginInfo") == null) {
 			 session.setAttribute("destination", "redirect:/insert.nt");

@@ -40,5 +40,22 @@
 	<select id="getAllProductCount" resultType="int">
 		select count(*) from product where id='admin'
 	</select>
+	
+	 <select id="getDesCount" resultType="int">
+	    select count(*) as cnt from description
+	</select>
+	
+	<select id="getMonthSaleCount" resultType="int">
+	   	SELECT
+		 SUM(o.pamount * p.price) AS totalPrice
+		FROM
+		 orderInfo o
+		INNER JOIN
+		 product p
+		ON
+		 o.pnum = p.pnum		
+	</select>
+	
+	
 
 </mapper>

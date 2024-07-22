@@ -54,11 +54,19 @@ public class AdminMainController {
 		model.addAttribute("productCount", productCount);
 		
 		
+		//게시판 총 수
+		int totalCount = adminDao.getDesCount();
+		model.addAttribute("borderCount",totalCount);
 		
 		//AdminMain             
 		List<DocBean> docList = adminDao.getDocumentList(); 
 		model.addAttribute("docList", docList);
-
+		
+		
+		//월별 총 수입
+		int saleList=adminDao.getMonthSaleCount();
+		model.addAttribute("monthSale",saleList);
+		
 
 		//차트 - 월별 매출            Ʈ
 		Gson gson = new Gson();

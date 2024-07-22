@@ -3,7 +3,7 @@ package admin.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import doc.model.DocBean;
 import model.MemberBean;
+import sale.model.OrderInfoBean;
 
 @Service
 public class AdminDao {
@@ -52,7 +53,18 @@ public class AdminDao {
 		return count;
 	}//getWaitEnterCountForAdmin
 
+	
+	
+	//★ 게시판 목록 총 개수 구하기
+	public int getDesCount() {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.selectOne(namespace+".getDesCount");
+		return cnt;
+	}//getDesCount
 
+	
+	
+	
 	public int getAllMemberCount() {
 		int count = -100;
 		count = sqlSessionTemplate.selectOne(namespace + ".getAllMemberCount");
@@ -68,5 +80,13 @@ public class AdminDao {
 		return count;
 	}//getAllProductCount
 
+	public int getMonthSaleCount() {
+		int count = -1;
+		count = sqlSessionTemplate.selectOne(namespace+".getMonthSaleCount");
+		return count;
+	}
+	
+	
+	
 
 }

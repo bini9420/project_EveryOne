@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@include file="../common/common.jsp" %>
 <%@ include file="a_top.jsp"%>
 
 <style>
@@ -23,9 +24,9 @@
 						<div class="col mr-2">
 							<div
 								class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-								<h4>
+								<h5>
 									<a href="aMemberList.mb">회원</a>/<a href="adminProductList.prd">상품관리</a>
-								</h4>
+								</h5>
 							</div>
 							<div class="h5 mb-0 font-weight-bold text-gray-800">${memberCount}명/${productCount}개</div>
 						</div>
@@ -44,11 +45,11 @@
 						<div class="col mr-2">
 							<div
 								class="text-xs font-weight-bold text-success text-uppercase mb-1">
-								<h4>
+								<h5>
 									<a href="top.sale">월간수입</a>
-								</h4>
+								</h5>
 							</div>
-							<div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800"><fmt:formatNumber value="${monthSale}" type="number" />원</div>
 						</div>
 						<div class="col-auto">
 							<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -59,7 +60,7 @@
 		</div>
 		
 		<div class="col-xl-3 col-md-6 mb-4">
-			<div class="card border-left-info shadow h-100 py-2" onclick="location.href='admin_waitBox.dc'" id="approveBox">
+			<div class="card border-left-info shadow h-100 py-2" id="approveBox">
 				<div class="card-body">
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
@@ -93,10 +94,9 @@
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
 							<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-								<h4><a href="dlist.nt">문의사항</a></h4>
 								<h5><a href="dlist.nt">게시판</a></h5>
 							</div>
-							<div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">${borderCount}개</div>
 						</div>
 						<div class="col-auto">
 							<i class="fas fa-comments fa-2x text-gray-300"></i>

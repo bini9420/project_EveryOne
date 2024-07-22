@@ -18,6 +18,7 @@
 	<script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 	<script src="resources/js/sb-admin-2.min.js"></script>
 	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 	
 	
 	<link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -31,6 +32,7 @@
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-straight/css/uicons-bold-straight.css'>
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-straight/css/uicons-regular-straight.css'>
+	
 	
 	<style>
 		.fc-header-toolbar .fc-button {
@@ -78,7 +80,8 @@
 		
 		.err {
 			color: red;
-			font-size: 9pt;
+			font-weight: bold;
+			font-size: 11pt;
 		}
 		
 		.title {
@@ -112,8 +115,13 @@
 		.reading {
 			border: 1px solid;
 		}
+		
 		.profilebtn{
 			text-align: center;
+		}
+		
+		input[type="submit"]:hover, input[type="button"]:hover {
+			background-color: #25A8A4;
 		}
 	</style>
 </head>
@@ -158,9 +166,9 @@
 				</div>
 			</li>
 			<li class="nav-item">
-			<a class="nav-link collapsed" href="adminProductList.prd" data-toggle="collapse" data-target="#collapseProducts" aria-expanded="true" aria-controls="collapseUtilities"> 
-				<i class="fas fa-fw fa-box"></i> <span>상품관리</span>
-			</a>
+				<a class="nav-link collapsed" href="adminProductList.prd" data-toggle="collapse" data-target="#collapseProducts" aria-expanded="true" aria-controls="collapseUtilities"> 
+					<i class="fas fa-fw fa-box"></i> <span>상품관리</span>
+				</a>
 				<div id="collapseProducts" class="collapse" aria-labelledby="headingProducts" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Product Manage:</h6>
@@ -188,39 +196,34 @@
 			<div class="sidebar-heading">Approve</div>
 
 			<!-- 결재함 메뉴 -->
-	         <li class="nav-item">
-	            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages"> 
-	               <i class="fas fa-fw fa-folder"></i> 
-	               <span>결재함</span>
-	            </a>
-	            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-	               <div class="bg-white py-2 collapse-inner rounded">
-	                  <h6 class="collapse-header">결재함</h6>
-	                  <a class="collapse-item" href="admin_allBox.dc">전체문서함</a> 
-	                  <a class="collapse-item" href="admin_waitBox.dc">결재대기함</a> 
-	                  <a class="collapse-item" href="admin_complete.dc">결재완료함</a> 
-	                  <div class="collapse-divider"></div>
-	                  <hr>
-	                  <h6 class="collapse-header">기타</h6>
-	                  <a class="collapse-item" href="admin_enterBox.dc">입점신청함</a>
-	                  <a class="collapse-item" href="admin_rcheckBox.dc">리뷰검토함</a>
-	               </div>
-	            </div>
-	         </li>
-
-			<!-- Nav Item - Charts -->
-
-			
 			<li class="nav-item">
-				<a class="nav-link" href="list.nt">
-					<i class="fas fa-fw fa-comments"></i> 
-					<span>공지사항</span>
+			   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages"> 
+			      <i class="fas fa-fw fa-folder"></i> 
+			      <span>결재함</span>
+			   </a>
+			   <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+			      <div class="bg-white py-2 collapse-inner rounded">
+			         <h6 class="collapse-header">결재함</h6>
+			         <a class="collapse-item" href="admin_allBox.dc">전체문서함</a> 
+			         <a class="collapse-item" href="admin_waitBox.dc">결재대기함</a> 
+			         <a class="collapse-item" href="admin_complete.dc">결재완료함</a> 
+			         <div class="collapse-divider"></div>
+			         <hr>
+			         <h6 class="collapse-header">기타</h6>
+			         <a class="collapse-item" href="admin_enterBox.dc">입점신청함</a>
+			         <a class="collapse-item" href="admin_rcheckBox.dc">리뷰검토함</a>
+			      </div>
+			   </div>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link" href="list.nt"> 
+					<i class="fas fa-fw fa-comments"></i> <span>공지사항</span>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="dlist.nt">
-					<i class="fas fa-fw fa-comments"></i> 
-					<span>문의사항</span>
+				<a class="nav-link" href="dlist.nt"> 
+					<i class="fas fa-fw fa-comments"></i> <span>문의게시판</span>
 				</a>
 			</li>
 

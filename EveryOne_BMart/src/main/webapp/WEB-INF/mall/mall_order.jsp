@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../common/common.jsp" %> 
-<%@ include file="../mall/mall_top.jsp"%> 
+<%@ include file="mall_top.jsp"%> 
 
 <%
     String path = request.getContextPath();
@@ -17,7 +16,7 @@
     
 
 <style>
-	table{
+	#orderTable{
 		margin-top:50px;
 		margin-bottom: 40px;
 		margin-left: 15%;
@@ -38,7 +37,7 @@
 		font-size: 16px;
 		color: #414141;
 	}
-	td{
+	#orderTable td{
 		padding: 20px;
 		font-size: 14px;
 		color: #414141;
@@ -107,7 +106,7 @@
 		font-size: 20px;
 		font-weight: bold;
 		color: #ffffff;
-		background-color: #1a7cff;
+		background-color: #2ac1bc;
 	}
 /* 	.tossPayment{
 		visibility: visible;
@@ -186,7 +185,7 @@ function payButton(){
 <body>
 <h4 class="title">주문서</h4>
 <form:form id="paymentForm" action="paymentpage.ct" method="get"> 
-<table class="">
+<table id="orderTable">
 	<tr class="productInfoTr">
 		<td colspan="4">
 			<span>주문 상품</span>
@@ -214,7 +213,7 @@ function payButton(){
 	</tr>
 	</c:forEach>
 </table>
-<table class="memberInfoTb">
+<table class="memberInfoTb" id="orderTable">
 		<tr class="memberInfoTr">
 			<td>
 				<span>주문자 정보</span>
@@ -248,7 +247,7 @@ function payButton(){
 			</td>
 		</tr>
 </table>
-<table class="delieveryInfoTb">
+<table class="delieveryInfoTb" id="orderTable">
 		<tr class="delieveryInfoTr">
 			<td>
 				<span>배송 정보</span>
@@ -259,9 +258,11 @@ function payButton(){
 				배송지
 			</td>
 			<td>
+			<c:if test="${fn:length(alists) > 0}">
 			<c:forEach var="addr" begin="0" end="${fn:length(alists)-1}" items="${alists}" step="1" varStatus="status">
 				<input type="radio" name="addr" value="${addr.alias}">${addr.alias}
 			</c:forEach>
+			</c:if>
 			</td>
 		</tr>
 		<tr>
@@ -282,7 +283,7 @@ function payButton(){
 			</td>
 		</tr>
 </table>
-<table class="paymentInfoTb">
+<table class="paymentInfoTb" id="orderTable">
 		<tr class="paymentInfoTr">
 			<td>
 				<span>결제 수단</span>
@@ -342,4 +343,4 @@ function payButton(){
 </form:form>
 </body>
 
-<%@ include file="../mall/mall_bottom.jsp"%>  
+<%@ include file="mall_bottom.jsp"%>  

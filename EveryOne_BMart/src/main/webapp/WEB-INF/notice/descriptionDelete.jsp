@@ -1,21 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../common/common.jsp"%>
-<!-- Begin Page Content -->
 <style>
-h6 {
-	display: inline-block;
-}
-
-.btn-outline-primary {
-	width: 30px;
-	height: 30px;
-}
-
-#requestDocument:hover {
-	background-color: #7dc9c6 !important;
-	border-color: #bae8e6 !important;
-}
 
 body {
 	font-family: Arial, sans-serif;
@@ -27,28 +12,6 @@ h1 {
 	color: #48D1CC;
 }
 
-form {
-	margin: 20px auto;
-	text-align: center;
-}
-
-select, input[type="text"], input[type="submit"], input[type="button"] {
-	padding: 10px;
-	border: 1px solid #CCCCCC;
-	border-radius: 5px;
-	margin: 5px;
-}
-
-input[type="submit"], input[type="button"] {
-	background-color: #48D1CC;
-	color: white;
-	border: none;
-	cursor: pointer;
-}
-
-input[type="submit"]:hover, input[type="button"]:hover {
-	background-color: #009f8e;
-}
 
 table {
 	width: 80%;
@@ -74,42 +37,10 @@ td {
 	background-color: white;
 }
 
-a {
-	text-decoration: none;
-	color: #00C7AE;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-.paging {
-	text-align: center;
-	margin: 20px;
-}
-
-.paging a {
-	margin: 0 5px;
-	color: #00C7AE;
-}
-
-.paging a:hover {
-	text-decoration: underline;
-}
 </style>
 
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
-<script>
-	function show() {
-		$('#documentWrite .modal-content').load("document_write.dc");
-		$('#documentWrite').modal();
-		$('#requestDocument').css('bgcolor', '#2ac1bc');
-		$('#requestDocumnet').css('border-color', '#bae8e6');
-	}
-</script>
-
 <%@ include file="../member/owner/o_top.jsp"%>
+
 <div class="container-fluid">
 
 	<!-- Page Heading -->

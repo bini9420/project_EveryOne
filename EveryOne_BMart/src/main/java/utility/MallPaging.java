@@ -216,7 +216,7 @@ public class MallPaging {
 		}
 		
 		// 앞쪽
-		if (this.beginPage != 1) { 
+		if (this.pageNumber != 1) { 
 			// 처음 목록보기를 하면 pageNumber는 1이 되고 beginPage도 1이 된다. pageSize:한 화면에 보이는 레코드 수
 			result += "&nbsp;<a href='" + url  
 					+ "?pageNumber=1&pageSize=" + this.pageSize 

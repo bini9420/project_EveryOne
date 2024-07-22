@@ -1,211 +1,113 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../common/common.jsp"%>
-<!-- Begin Page Content -->
 <style>
-h6 {
-	display: inline-block;
-}
-
-.btn-outline-primary {
-	width: 30px;
-	height: 30px;
-}
-
-#requestDocument:hover {
-	background-color: #7dc9c6 !important;
-	border-color: #bae8e6 !important;
-}
-
-body {
-	font-family: Arial, sans-serif;
-	background-color: #F5F5F5;
-	color: #333333;
-}
-
-h1 {
-	color: #48D1CC;
-}
-
-form {
-	margin: 20px auto;
-	text-align: center;
-}
-
-select, input[type="text"], input[type="submit"], input[type="button"] {
-	padding: 10px;
-	border: 1px solid #CCCCCC;
-	border-radius: 5px;
-	margin: 5px;
-}
-
-input[type="submit"], input[type="button"] {
-	background-color: #48D1CC;
-	color: white;
-	border: none;
-	cursor: pointer;
-}
-
-input[type="submit"]:hover, input[type="button"]:hover {
-	background-color: #009f8e;
-}
-
-table {
-	width: 80%;
-	margin: 20px auto;
-	border-collapse: collapse;
-}
-
-table, th, td {
-	border: 1px solid #CCCCCC;
-}
-
-th, td {
-	padding: 10px;
-	text-align: center;
-}
-
-th {
-	background-color: #48D1CC;
-	color: white;
-}
-
-td {
-	background-color: white;
-}
-
-a {
-	text-decoration: none;
-	color: #00C7AE;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-.paging {
-	text-align: center;
-	margin: 20px;
-}
-
-.paging a {
-	margin: 0 5px;
-	color: #00C7AE;
-}
-
-.paging a:hover {
-	text-decoration: underline;
-}
+	body {
+		font-family: Arial, sans-serif;
+		background-color: #F5F5F5;
+		color: #363836;
+	}
+	
+	a {
+		text-decoration: none;
+		color: #00C7AE;
+	}
+	
+	a:hover {
+		text-decoration: underline;
+	}
+	
+	.paging {
+		text-align: center;
+		margin: 20px;
+	}
+	
+	.paging a {
+		margin: 0 5px;
+		color: #00C7AE;
+	}
+	
+	.paging a:hover {
+		text-decoration: underline;
+	}
+	
 </style>
 
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
-<script>
-	function show() {
-		$('#documentWrite .modal-content').load("document_write.dc");
-		$('#documentWrite').modal();
-		$('#requestDocument').css('bgcolor', '#2ac1bc');
-		$('#requestDocumnet').css('border-color', '#bae8e6');
-	}
-</script>
+<%@ include file="../admin/a_top.jsp"%>
 
-<%@ include file="../member/owner/o_top.jsp"%>
-<div class="container-fluid">
-
-	<!-- Page Heading -->
-	<div class="d-sm-flex align-items-center justify-content-between mb-3">
-		<h1 class="h3 mb-0 text-gray-800"></h1>
-		<a href="javascript:show()" data-bs-toggle="modal"
-			data-bs-target="#documentWrite"
-			class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-			class="fas fa-download fa-sm text-white-50" id="requestDocument"></i>
-			결재 요청</a>
-
-		<div class="modal fade" id="documentWrite" data-bs-backdrop="static"
-			data-bs-keyboard="false" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content"></div>
-			</div>
-		</div>
+<!-- Begin Page Content -->
+<div class="card shadow mx-auto py-5" style="width :80%; margin-top: 80px">
+	
+	<div class="text-center my-3">
+		<h3 style="font-weight: bold">문의게시판</h3>
 	</div>
 
-	<!-- Content Row -->
-	<div class="row">
-
-		<!-- Content Column -->
-		<form action="dlist.nt">
-			<select name="whatColumn">
-				<option value="all">전체검색</option>
-				<option value="dsubject">제목</option>
-				<option value="id">작성자</option>
-			</select> <input type="text" name="keyword"> <input type="submit"
-				value="검색">
-		</form>
-		<table>
-			<tr>
-				<td colspan="6" align="right"><input type="button" value="추가하기"
-					onClick="location.href='dinsert.nt?whatColumn=${param.whatColumn}&keyword=${param.keyword}&pageNumber=${param.pageNumber}'">
-				</td>
-			</tr>
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-			</tr>
-			<c:choose>
-				<c:when test="${pageInfo.totalCount == 0}">
-					<tr>
-						<td colspan="4">게시판에 저장된 글이 없습니다.</td>
-					</tr>
-				</c:when>
-				<c:otherwise>
-					<c:forEach var="d" items="${db}">
+	<div class="container">
+		<div style="text-align: right">
+			<form action="dlist.nt" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+				<div class="input-group">
+					<select name="whatColumn" style="margin-right: 8; border: 1px solid #CCCCCC; width: 90">
+						<option value="all">전체
+						<option value="id">작성자
+						<option value="dsubject">제목
+					</select>
+					<input type="text" name="keyword" class="form-control bg-light border-0 small reading"
+						placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+					<div class="input-group-append">
+						<button class="btn btn-primary" type="submit">
+							<i class="fas fa-search fa-sm"></i>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div>
+		<table class="table table-striped table-hover table-bordered mx-auto text-center my-4" style="width: 90%">
+			<thead style="background: rgba(42, 193, 188, 0.3); color: black">
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:choose>
+					<c:when test="${pageInfo.totalCount == 0}">
 						<tr>
-							<td>${d.dnum}</td>
-							<td align="left"><c:if test="${d.re_level > 0}">
-									<img src="images/level.gif" width="${20 * d.re_level}"
-										height="15">L
-                            </c:if> <a
-								href="dcontent.nt?dnum=${d.dnum}&pageNumber=${pageInfo.pageNumber}&whatColumn=${param.whatColumn}&keyword=${param.keyword}">${d.dsubject}</a>
-							</td>
-							<td>${d.id}</td>
-							<td><fmt:formatDate value="${d.ddate}" pattern="yyyy-MM-dd" /></td>
+							<td colspan="4">게시판에 저장된 글이 없습니다.</td>
 						</tr>
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="d" items="${db}">
+							<tr>
+								<td>${d.dnum}</td>
+								<td style="text-align: left">
+									<c:if test="${d.re_level > 0}">
+										<img src="images/level.gif" width="${20 * d.re_level}" height="15">L
+		                            </c:if> 
+		                            <a href="dcontent.nt?dnum=${d.dnum}&pageNumber=${pageInfo.pageNumber}&whatColumn=${param.whatColumn}&keyword=${param.keyword}">${d.dsubject}</a>
+								</td>
+								<td>${d.id}</td>
+								<td><fmt:formatDate value="${d.ddate}" pattern="yyyy-MM-dd" /></td>
+							</tr>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="4" style="text-align: right">
+						<button class="btn btn-primary btn-sm"
+							onClick="location.href='dinsert.nt?whatColumn=${param.whatColumn}&keyword=${param.keyword}&pageNumber=${param.pageNumber}'">
+							<i class="fi fi-br-plus"></i> 추가하기
+						</button>
+					</td>
+				</tr>
+			</tfoot>
 		</table>
 	</div>
 	<center>${pageInfo.pagingHtml}</center>
-	<br>
-	<div class="pagination">
-		<c:if test="${count > 0}">
-			<%
-			int pageCount = (Integer) request.getAttribute("count") / (Integer) request.getAttribute("pageSize")
-					+ ((Integer) request.getAttribute("count") % (Integer) request.getAttribute("pageSize") == 0 ? 0 : 1);
-			int pageBlock = 10;
-			int startPage = ((Integer) request.getAttribute("currentPage") - 1) / pageBlock * pageBlock + 1;
-			int endPage = startPage + pageBlock - 1;
-			if (endPage > pageCount) {
-				endPage = pageCount;
-			}
-			%>
-			<c:if test="${startPage > 1}">
-				<a href="list.prd?pageNum=${startPage-1}">[이전]</a>
-			</c:if>
-			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="list.prd?pageNum=${i}"
-					class="${pageInfo.currentPage == i ? 'active' : ''}">[${i}]</a>
-			</c:forEach>
-			<c:if test="${endPage < pageCount}">
-				<a href="list.prd?pageNum=${startPage+pageBlock}">[다음]</a>
-			</c:if>
-		</c:if>
-	</div>
-	<!-- /.container-fluid -->
-</div>
-<!-- End of Main Content -->
 
-<%@ include file="../member/owner/o_bottom.jsp"%>
+</div>
+<%@include file="../admin/a_bottom.jsp"%>

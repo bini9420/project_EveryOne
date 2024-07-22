@@ -22,6 +22,7 @@ public class DescriptionDao {
 	public int getDesCount(Map<String, String> map) {
 		int cnt = -1;
 		cnt = sqlSessionTemplate.selectOne(namespace+".getDesCount",map);
+		System.out.println("des count : "+cnt);
 		return cnt;
 	}
 

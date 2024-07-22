@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.DescriptionBean;
-import model.MemberBean;
 import notice.model.DescriptionDao;
 
 @Controller
@@ -28,9 +27,8 @@ public class descriptionUpdateController {
 	DescriptionDao desDao;
 
 	private final String command = "dupdate.nt";
-	private final String gotoPage = "descriptionUpdate";
-	private final String goPage = "AdescriptionUpdate";
-	private final String getPage = "redirect:/dlist.nt";
+	private final String getPage = "descriptionUpdate";
+	private final String gotoPage = "redirect:/dlist.nt";
 
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String updateDes(@RequestParam(value = "dnum", required = true) int dnum,
@@ -38,18 +36,11 @@ public class descriptionUpdateController {
 			@RequestParam(value = "whatColumn", required = false) String whatColumn,
 			@RequestParam(value = "keyword", required = false) String keyword, HttpSession session, Model model) {
 
-		ModelAndView mav = new ModelAndView();
 		DescriptionBean db = desDao.viewDes(dnum);
 		model.addAttribute("db", db);
 		model.addAttribute("pageNumber", pageNumber);
-		MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo");
-		String id = loginInfo.getId();
-		if (id != null && "admin".equals(id)) {
-
-			return goPage;
-		} else {
-			return gotoPage;
-		}
+		
+		return getPage;
 	}
 
 	@RequestMapping(value = command, method = RequestMethod.POST)
@@ -60,7 +51,7 @@ public class descriptionUpdateController {
 		ModelAndView mav = new ModelAndView();
 
 		if (result.hasErrors()) {
-			mav.setViewName(gotoPage);
+			mav.setViewName(getPage);
 			return mav;
 		}
 		int cnt = -1;
@@ -79,7 +70,7 @@ public class descriptionUpdateController {
 			}
 		}
 
-		mav.setViewName(getPage);
+		mav.setViewName(gotoPage);
 		mav.addObject("pageNumber", pageNumber);
 		mav.addObject("whatColumn", whatColumn);
 		mav.addObject("keyword", keyword);

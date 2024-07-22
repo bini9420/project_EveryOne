@@ -33,6 +33,7 @@
 	<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-rounded/css/uicons-bold-rounded.css">
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-straight/css/uicons-bold-straight.css'>
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-straight/css/uicons-regular-straight.css'>
 	
 	<style>
 		.fc-header-toolbar .fc-button {
@@ -59,13 +60,6 @@
 		
 		#calendar {
 			max-width: 1100px;
-		}
-		
-		.btn-outline-info {
-			float: right;
-			margin-left: 10px;
-			font-size: 2rem;
-			border: none;
 		}
 		
 		.pagination-wrapper {
@@ -104,7 +98,7 @@
 			display: flex;
 			justify-content: flex-end;
 			align-items: center; /* 세로축 가운데 정렬 */
-			margin-left: 85%;
+			margin-left: 75%;
 		}
 		
 		.trash {
@@ -174,8 +168,6 @@
 						<h6 class="collapse-header">Product Manage:</h6>
 						<a class="collapse-item" href="adminProductList.prd">상품목록</a> 
 						<a class="collapse-item" href="adminProductInsert.prd">상품등록</a> 
-						<a class="collapse-item" href="adminProductList.prd">상품수정</a> 
-						<a class="collapse-item" href="productDelete.prd">상품삭제</a>
 					</div>
 				</div>
 			</li>
@@ -191,7 +183,6 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Sales Manage:</h6>
 						<a class="collapse-item" href="top.sale">상품 매출</a> 
-						<a class="collapse-item" href="utilities-border.html">회원 매출</a>
 					</div>
 				</div>
 			</li>

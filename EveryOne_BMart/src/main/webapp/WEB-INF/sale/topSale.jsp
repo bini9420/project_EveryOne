@@ -7,44 +7,24 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
-	<!-- Page Heading -->
-	<h1 class="h3 mb-2 text-gray-800 ">매출그래프</h1>
-	<p class="mb-4"></p>
-
+	<div class="text-center my-4"><h2>매출 관리</h2></div>
+	
 	<!-- Content Row -->
 	<div class="row">
-
-		<div class="col-xl-8 col-lg-7">
-
-			<!-- Area Chart -->
+		<div class="col-xl-8 col-lg-6">
 			<div class="card shadow mb-4">
-				<div class="card-header py-3">
+				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<h6 class="m-0 font-weight-bold text-primary">매출현황</h6>
 				</div>
+				<!-- Aria Chart -->
 				<div class="card-body">
-					<div class="chart-container">
+					<div class="container">
 						<canvas id="myAreaChart"></canvas>
 					</div>
 				</div>
 			</div>
-
-			<!-- Bar Chart -->
-			<div class="card shadow mb-4">
-				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
-				</div>
-				<div class="card-body">
-					<div class="chart-container">
-						<canvas id="myBarChart"></canvas>
-					</div>
-
-				</div>
-			</div>
-
 		</div>
-
-
-
+		
 		<!-- Donut Chart -->
 		<div class="col-xl-4 col-lg-5">
 			<div class="card shadow mb-4">
@@ -54,9 +34,18 @@
 				</div>
 				<!-- Card Body -->
 				<div class="card-body">
-					<div class="chart-container">
-						<canvas id="logNameChart"></canvas>
-					</div>
+					<canvas id="logNameChart"></canvas>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-xl-7">
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">상품 카테고리별 매출현황</h6>
+				</div>
+				<div class="card-body">
+					<canvas id="myBarChart"></canvas>
 				</div>
 			</div>
 		</div>

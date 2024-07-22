@@ -106,6 +106,8 @@ create table business(
   addr2 varchar2(30)
 );
 
+insert into business values('A-1', 'lee', null, '123456', 'aabbcc', '가');
+commit;
 
 
 --카테고리 테이블

@@ -106,6 +106,8 @@ button {
 
 .profilebtn{
 	text-align: center;	
+
+
 }
 
 

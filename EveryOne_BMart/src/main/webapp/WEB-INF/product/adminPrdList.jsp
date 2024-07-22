@@ -50,7 +50,6 @@ function check(){
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<div class="card-body">
-
 			<div class="search">
 				<form action="adminProductList.prd" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 					<div class="input-group">
@@ -65,7 +64,6 @@ function check(){
 						</div>
 					</div>
 				</form>
-
 				<a href="adminProductInsert.prd" class="plusbtn" style="font-size: 15px;"> 
 				<i class="fi fi-br-plus-small" ></i>추가
 				</a>
@@ -120,22 +118,13 @@ function check(){
 
 
 
-	<div class="pagination-wrapper">
-		<nav aria-label="Page navigation example">
-			<ul class="pagination">
-				<li class="page-item">
-					<a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-					</a>
-				</li>
-				<li class="page-item">${pageInfo.pagingHtml }</li>
-				<li class="page-item">
-					<a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-					</a>
-				</li>
-			</ul>
-		</nav>
-	</div>
-
+<div class="pagination-wrapper">
+	<nav aria-label="Page navigation example">
+		<ul class="pagination">
+			<li class="page-item">${pageInfo.pagingHtml }</li>
+		</ul>
+	</nav>
+</div>
 
 
 

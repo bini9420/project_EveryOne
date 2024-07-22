@@ -8,7 +8,7 @@ public class MemberListPaging {
 	private int pageSize = 10 ; //한 페이지에 보여줄 건수
 	private int beginRow = 0 ; //현재 페이지의 시작 행
 	private int endRow = 0 ; //현재 페이지의 끝 행
-	private int pageCount = 2 ; // 한 화면에 보여줄 페이지 링크 수 (페이지 갯수)
+	private int pageCount = 3 ; // 한 화면에 보여줄 페이지 링크 수 (페이지 갯수)
 	private int beginPage = 0 ; //페이징 처리 시작 페이지 번호
 	private int endPage = 0 ; //페이징 처리 끝 페이지 번호
 	private int offset = 0 ;

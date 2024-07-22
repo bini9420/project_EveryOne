@@ -11,14 +11,8 @@
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<div class="card-body">
-
-
-
 			<div class="search">
-				<form action="bMemberList.mb"
-					class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-
-
+				<form action="bMemberList.mb" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 					<div class="input-group">
 						<input type="text" name="keyword"
 							class="form-control bg-white border-0 small reading"
@@ -34,8 +28,6 @@
 			</div>
 		</div>
 	</div>
-
-
 	<div class="card-body">
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTable">
@@ -47,47 +39,40 @@
 						<th>우편주소</th>
 						<th>주소</th>
 						<th>상세주소</th>
-
 					</tr>
 				</thead>
-
-				<c:forEach var="bm" items="${bmemLists }">
-
-					<tr>
-						<th>${bm.bcode }</th>
-						<th>${bm.id }</th>
-						<th>${bm.type }</th>
-						<th>${bm.post }</th>
-						<th>${bm.addr1 }</th>
-						<th>${bm.addr2 }</th>
-
-					</tr>
-
-				</c:forEach>
-
-
+				<tbody>
+					<c:choose>
+						<c:when test="${empty bmemLists}">
+							<tr>
+								<td colspan="6" class="text-center">목록이 없습니다.</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="bm" items="${bmemLists}">
+								<tr>
+									<td>${bm.bcode}</td>
+									<td>${bm.id}</td>
+									<td>${bm.type}</td>
+									<td>${bm.post}</td>
+									<td>${bm.addr1}</td>
+									<td>${bm.addr2}</td>
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</tbody>
 			</table>
-
 		</div>
 	</div>
 </div>
-
-
 <div class="pagination-wrapper">
 	<nav aria-label="Page navigation example">
 		<ul class="pagination">
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-			</a></li>
-			<li class="page-item">${pageInfo.pagingHtml }</li>
-
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-			</a></li>
+			<li class="page-item">${pageInfo.pagingHtml}</li>
 		</ul>
 	</nav>
 </div>
-</form>
-
 
 <%@include file="../admin/a_bottom.jsp"%>
+

@@ -53,6 +53,11 @@ public class MemberDao {
 		return cnt;
 	}//getTotalCount
 
+	public int getBTotalCount(Map<String,String> map) {
+		int cnt = sqlSessionTemplate.selectOne(namespace+".getBTotalCount", map);
+		return cnt;
+	}//getBTotalCount
+	
 	public List<MemberBean> getMemberList(Map<String,String> map, MemberListPaging pageInfo) {
 		RowBounds rowbounds = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
 		return sqlSessionTemplate.selectList(namespace + ".getMemberList", map, rowbounds);

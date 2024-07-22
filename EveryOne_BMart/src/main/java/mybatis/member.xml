@@ -20,9 +20,18 @@
 			or email2 like #{keyword}
 		</if>
 	</select>
+	
+	<select id="getBTotalCount" resultType="int">
+		select count(*) from business
+		<if test="keyword != null and keyword != ''">
+			where id like #{keyword}
+			or name like #{keyword}
+			or email1 like #{keyword}
+			or email2 like #{keyword}
+		</if>
+	</select>
 
-	<select id="getMemberList" resultType="model.MemberBean"
-		parameterType="hashmap">
+	<select id="getMemberList" resultType="model.MemberBean" parameterType="hashmap">
 		select * from member
 		<if test="keyword != null and keyword != ''">
 			where id like #{keyword}
@@ -32,7 +41,7 @@
 		</if>
 	</select>
 
-	<select id="getBMemList" resultType="model.BusinessBean">
+	<select id="getBMemList" resultType="model.BusinessBean" parameterType="hashmap">
 		select * from business
 		<if test="keyword != null and keyword != ''">
 			where id like #{keyword}
@@ -42,7 +51,6 @@
 			or addr1 like #{keyword}
 			or addr2 like #{keyword}
 		</if>
-		order by bcode desc
 	</select>
 
 	<insert id="insertBMember">

@@ -42,12 +42,12 @@ public class BmemberListController {
 			map.put("keyword", null);
 		}
 
-		int totalCount = memberDao.getTotalCount(map); 
+		int totalCount = memberDao.getBTotalCount(map); 
 		String url = request.getContextPath() + "/"+this.command;
 
 		MemberListPaging pageInfo = new MemberListPaging(pageNumber, null, totalCount, url,  keyword);
-
 		List<BusinessBean> bmemberLists = memberDao.getBMemList(map, pageInfo);
+		
 		model.addAttribute("bmemLists", bmemberLists);
 		model.addAttribute("pageInfo", pageInfo);
 

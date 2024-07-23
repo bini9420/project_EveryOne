@@ -4,64 +4,54 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	$(document).ready(
-			function() {
-				$('.title-link').on('click', function(e) {
-					e.preventDefault();
-					var nnum = $(this).data('nnum');
-					var contentArea = $('#content-' + nnum);
+	$(document).ready(function() {
+		$('.title-link').on('click', function(e) {
+			e.preventDefault();
+			var nnum = $(this).data('nnum');
+			var contentArea = $('#content-' + nnum);
 
-					if (contentArea.is(':visible')) {
-						contentArea.slideUp();
-					} else {
-						$('.content-area').slideUp();
+			if (contentArea.is(':visible')) {
+				contentArea.slideUp();
+			} else {
+				$('.content-area').slideUp();
+				fetchContent(nnum, contentArea, $(this).data('pagenumber'), $(this).data('whatcolumn'), $(this).data('keyword'));
+			}
+		});
 
-						fetchContent(
-								nnum, contentArea, $(this).data('pagenumber'), 
-								$(this).data('whatcolumn'), $(this).data('keyword')
-								);
-					}
-				});
-
-				function fetchContent(nnum, contentArea, pageNumber, whatColumn, keyword) {
-					$.ajax({
-						url : 'content.nt',
-						type : 'GET',
-						data : {
-							nnum : nnum,
-							pageNumber : pageNumber,
-							whatColumn : whatColumn,
-							keyword : keyword,
-							_ : new Date().getTime()
-						// cache-busting parameter
-						},
-						success : function(response) {
-							contentArea.html(response).slideDown();
-						},
-						error : function(xhr, status, error) {
-							console.log('Error loading content');
-							console.log('Status: ' + status);
-							console.log('Error: ' + error);
-							alert('Error loading content');
-						}
-					});
+		function fetchContent(nnum, contentArea, pageNumber, whatColumn, keyword) {
+			$.ajax({
+				url: 'content.nt',
+				type: 'GET',
+				data: {
+					nnum: nnum,
+					pageNumber: pageNumber,
+					whatColumn: whatColumn,
+					keyword: keyword,
+					_: new Date().getTime() // cache-busting parameter
+				},
+				success: function(response) {
+					contentArea.html(response).slideDown();
+				},
+				error: function(xhr, status, error) {
+					console.log('Error loading content');
+					console.log('Status: ' + status);
+					console.log('Error: ' + error);
+					alert('Error loading content');
 				}
-
-				function autoRefresh() {
-					$('.title-link').each(function() {
-						var nnum = $(this).data('nnum');
-						var contentArea = $('#content-' + nnum);
-						if (contentArea.is(':visible')) {
-							fetchContent(nnum, contentArea, $(this)
-									.data('pagenumber'), $(this).data(
-									'whatcolumn'), $(this).data(
-									'keyword'));
-						}
-					});
-				}
-
-				setInterval(autoRefresh, 3000); // Refresh every 30 seconds
 			});
+		}
+
+		function autoRefresh() {
+			$('.content-area:visible').each(function() {
+				var contentArea = $(this);
+				var nnum = contentArea.attr('id').split('-')[1];
+				var titleLink = $('.title-link[data-nnum="' + nnum + '"]');
+				fetchContent(nnum, contentArea, titleLink.data('pagenumber'), titleLink.data('whatcolumn'), titleLink.data('keyword'));
+			});
+		}
+
+		setInterval(autoRefresh, 30000); // Refresh every 30 seconds
+	});
 
 	function Delete(nnum, pageNumber) {
 		if (confirm("정말로 삭제하시겠습니까?")) {

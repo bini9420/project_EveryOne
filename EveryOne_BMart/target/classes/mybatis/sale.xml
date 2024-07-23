@@ -26,36 +26,36 @@
 
 <select id="getAdminMonthSumCount" resultType="HashMap">
    SELECT
-    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '01', pamount, 0)) AS "1월",
-    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '02', pamount, 0)) AS "2월",
-    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '03', pamount, 0)) AS "3월",
-    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '04', pamount, 0)) AS "4월",
-    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '05', pamount, 0)) AS "5월",
-    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '06', pamount, 0)) AS "6월",
-    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '07', pamount, 0)) AS "7월",
-    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '08', pamount, 0)) AS "8월",
-    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '09', pamount, 0)) AS "9월",
-    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '10', pamount, 0)) AS "10월",
-    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '11', pamount, 0)) AS "11월",
-    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '12', pamount, 0)) AS "12월"
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '01', pamount, 0)) AS "m1",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '02', pamount, 0)) AS "m2",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '03', pamount, 0)) AS "m3",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '04', pamount, 0)) AS "m4",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '05', pamount, 0)) AS "m5",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '06', pamount, 0)) AS "m6",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '07', pamount, 0)) AS "m7",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '08', pamount, 0)) AS "m8",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '09', pamount, 0)) AS "m9",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '10', pamount, 0)) AS "m10",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '11', pamount, 0)) AS "m11",
+    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '12', pamount, 0)) AS "m12"
 FROM
     orderInfo
 </select>
 
 <select id="getAdminMonthSumCount2" resultType="HashMap">
 	SELECT
-	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '01', o.pamount * p.price, 0)) AS "1월",
-	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '02', o.pamount * p.price, 0)) AS "2월",
-	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '03', o.pamount * p.price, 0)) AS "3월",
-	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '04', o.pamount * p.price, 0)) AS "4월",
-	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '05', o.pamount * p.price, 0)) AS "5월",
-	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '06', o.pamount * p.price, 0)) AS "6월",
-	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '07', o.pamount * p.price, 0)) AS "7월",
-	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '08', o.pamount * p.price, 0)) AS "8월",
-	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '09', o.pamount * p.price, 0)) AS "9월",
-	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '10', o.pamount * p.price, 0)) AS "10월",
-	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '11', o.pamount * p.price, 0)) AS "11월",
-	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '12', o.pamount * p.price, 0)) AS "12월"
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '01', o.pamount * p.price, 0)) AS "m1",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '02', o.pamount * p.price, 0)) AS "m2",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '03', o.pamount * p.price, 0)) AS "m3",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '04', o.pamount * p.price, 0)) AS "m4",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '05', o.pamount * p.price, 0)) AS "m5",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '06', o.pamount * p.price, 0)) AS "m6",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '07', o.pamount * p.price, 0)) AS "m7",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '08', o.pamount * p.price, 0)) AS "m8",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '09', o.pamount * p.price, 0)) AS "m9",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '10', o.pamount * p.price, 0)) AS "m10",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '11', o.pamount * p.price, 0)) AS "m11",
+	    SUM(DECODE(TO_CHAR(orderdate, 'MM'), '12', o.pamount * p.price, 0)) AS "m12"
 	FROM
 	    orderInfo o
 	JOIN product p ON o.pnum = p.pnum

@@ -29,4 +29,8 @@
 	<select id="getAllProductCount" resultType="int">
 		select count(*) from product where id='admin'
 	</select>
+	
+	<select id="getWaitRcheckCountForAdmin" resultType="int">
+		select count(*) from review_check where request=1 and dstatus=0
+	</select>
 </mapper>

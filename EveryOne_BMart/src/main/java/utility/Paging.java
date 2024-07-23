@@ -8,7 +8,7 @@ public class Paging {
 	private int pageSize = 0 ; //한 페이지에 보여줄 건수
 	private int beginRow = 0 ; //현재 페이지의 시작 행
 	private int endRow = 0 ; //현재 페이지의 끝 행
-	private int pageCount = 3 ; // 한 화면에 보여줄 페이지 링크 수 (페이지 갯수)
+	private int pageCount = 2 ; // 한 화면에 보여줄 페이지 링크 수 (페이지 갯수)
 	private int beginPage = 0 ; //페이징 처리 시작 페이지 번호
 	private int endPage = 0 ; //페이징 처리 끝 페이지 번호
 	private int offset = 0 ;
@@ -190,7 +190,7 @@ public class Paging {
 		this.pageNumber = Integer.parseInt( _pageNumber ) ; 
 
 		if( _pageSize == null || _pageSize.equals("null") || _pageSize.equals("") ){
-			_pageSize = "5" ; // 한 페이지에 보여줄 레코드 갯수
+			_pageSize = "3" ; // 한 페이지에 보여줄 레코드 갯수
 		}		
 		this.pageSize = Integer.parseInt( _pageSize ) ;
 		
@@ -227,13 +227,13 @@ public class Paging {
 		/*pageCount=10 : 한 화면에 보일 페이지 수,
 		pageNumber(현재 클릭한 페이지 수)가 12이면 beginPage = 11이 되고, endPage=20이 된다. */
 		
-		//System.out.println("pageNumber:"+pageNumber+"/totalPage:"+totalPage);	
+		System.out.println("pageNumber:"+pageNumber+"/totalPage:"+totalPage);	
 		
 		if( this.endPage > this.totalPage ){
 			this.endPage = this.totalPage ;
 		}
 		
-		//System.out.println("pageNumber2:"+pageNumber+"/totalPage2:"+totalPage);	
+		System.out.println("pageNumber2:"+pageNumber+"/totalPage2:"+totalPage);	
 		this.url = url ; //  /ex/list.ab
 		this.whatColumn = whatColumn ;
 		this.keyword = keyword ;
@@ -251,28 +251,27 @@ public class Paging {
 		String result = "" ;
 		//added_param 변수 : 검색 관련하여 추가되는 파라미터 리스트
 		String added_param = "&whatColumn=" + whatColumn + "&keyword=" + keyword ; // &whatColumn=singer&keyword=아
-		
+		 
 		
 		if (this.beginPage != 1) { // 앞쪽, pageSize:한 화면에 보이는 레코드 수
 			// 처음 목록보기를 하면 pageNumber는 1이 되고 beginPage도 1이 된다. 
 			result += "&nbsp;<a href='" + url  
-					+ "?pageNumber=" + ( 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>맨 처음</a>&nbsp;" ; // 1,2,3페이지를 지나 4페이지가 됐을때(4,5,6페이지) '맨 처음'이 4페이지 앞에 나오도록
+					+ "?pageNumber=1&pageSize=" + this.pageSize 
+					+ added_param + "' class='btn btn-outline-secondary btn-sm'><i class='fi fi-rr-angle-double-small-left'></i></a>&nbsp;" ;
 			result += "&nbsp;<a href='" + url 
-					+ "?pageNumber=" + (this.beginPage - 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>이전</a>&nbsp;" ; //4,5,6페이지를 지나 7페이지(7,11,...)일 때, '이전'이 7페이지 앞에 나오도록
+					+ "?pageNumber=" + (this.pageNumber - 1 ) + "&pageSize=" + this.pageSize 
+					+ added_param + "' class='btn btn-outline-secondary btn-sm'><i class='fi fi-rr-angle-small-left'></i></a>&nbsp;" ;
 		}
 		
 		//가운데
 		for (int i = this.beginPage; i <= this.endPage ; i++) {
 			if ( i == this.pageNumber ) {
-				result += "&nbsp;<font color='red'>" + i + "</font>&nbsp;"	;
-						
+				result += "&nbsp;<font class='btn btn-primary btn-sm'>" + i + "</font>&nbsp;"   ;
+
 			} else {
 				result += "&nbsp;<a href='" + url   
 						+ "?pageNumber=" + i + "&pageSize=" + this.pageSize 
-						+ added_param + "'>" + i + "</a>&nbsp;" ;
-				
+						+ added_param + "' class='btn btn-outline-secondary btn-sm'>" + i + "</a>&nbsp;" ;
 			}
 		}
 		
@@ -284,12 +283,12 @@ public class Paging {
 			// endPage:지금 보는 페이지의 끝(지금 보는 페이지가 13이라면 endPage는 20), totalPage:전체 페이지수
 			
 			result += "&nbsp;<a href='" + url  
-					+ "?pageNumber=" + (this.endPage + 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>다음</a>&nbsp;" ;
-			
+					+ "?pageNumber=" + (this.pageNumber + 1 ) + "&pageSize=" + this.pageSize 
+					+ added_param + "' class='btn btn-outline-secondary btn-sm'><i class='fi fi-rr-angle-small-right'></i></a>&nbsp;" ;
+
 			result += "&nbsp;<a href='" + url  
 					+ "?pageNumber=" + (this.totalPage ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>맨 끝</a>&nbsp;" ;
+					+ added_param + "' class='btn btn-outline-secondary btn-sm'><i class='fi fi-rr-angle-double-small-right'></i></a>&nbsp;" ;
 		}		
 		System.out.println("result2:"+result);
 		// result2 : <a href='/ex/list.ab?pageNumber=1&pageSize=2'>맨 처음</a>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=3&pageSize=2&whatColumn=null&keyword=null'>이전</a>&nbsp;&nbsp;<font color='red'>4</font>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=5&pageSize=2&whatColumn=null&keyword=null'>5</a>&nbsp;

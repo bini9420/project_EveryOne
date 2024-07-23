@@ -104,7 +104,7 @@
 							</td>
 						</c:if>
 						<td>
-							<a href="<%=request.getContextPath()%>/resources/document/${enter.originname}" target='_blank'>${enter.originname}</a>
+							<a href="<%=request.getContextPath()%>/resources/uploadImage/${enter.originname}" target='_blank'>${enter.originname}</a>
 						</td>
 						<c:choose>
 							<c:when test="${enter.dstatus == -1}">

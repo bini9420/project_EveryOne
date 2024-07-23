@@ -20,6 +20,12 @@ public class DocumentDetailController {
 	
 	@RequestMapping(command)
 	public String detail(@RequestParam("dnum") String dnum,
+						 @RequestParam(value="whatColumn", required=false) String whatColumn,
+						 @RequestParam(value="inputDnum", required=false) String inputDnum,
+					     @RequestParam(value="inputTitle", required=false) String inputTitle,
+					     @RequestParam(value="inputDay1", required=false) String inputDay1,
+					     @RequestParam(value="inputDay2", required=false) String inputDay2,
+					     @RequestParam(value="pageNumber", required=false) String pageNumber,
 						 Model model) {
 		DocumentBean document = documentDao.getDocumentByDnum(dnum);
 		model.addAttribute("document", document);

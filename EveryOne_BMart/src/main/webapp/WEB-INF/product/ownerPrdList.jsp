@@ -4,44 +4,47 @@
 <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/tables/table-1/assets/css/table-1.css">
 <style>
-	.fa-list {
-		float: left;
-		margin-right: 5px;
-	}
-	h1 {
-		float: left;
-		top: -10px;
-	}
-	.searchTd {
-		padding: 5px;
-	}
-	.spaceTd {
-		padding-right: 70px;
-	}
-	.testSize {
-		width: 120px;
-	}
-	.col-auto, .mr-2 {
-		display: inline-block;
-		float: left;
-	}
-	#boxname {
-		margin-left: 20px;
-		margin-top: 10px;
-	}
+    .container {
+        overflow: auto; /* .container에만 스크롤을 허용 */
+    }
+    .fa-list {
+        float: left;
+        margin-right: 5px;
+    }
+    h1 {
+        float: left;
+        top: -10px;
+    }
+    .searchTd {
+        padding: 5px;
+    }
+    .spaceTd {
+        padding-right: 70px;
+    }
+    .testSize {
+        width: 120px;
+    }
+    .col-auto, .mr-2 {
+        display: inline-block;
+        float: left;
+    }
+    #boxname {
+        margin-left: 20px;
+        margin-top: 10px;
+    }
 </style>
 
 <%@ include file="../member/owner/o_top.jsp"%>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
-function detail(pnum) {
+function detail(pnum, whatColumn, inputPname, inputPnum, inputDay1, inputDay2, pageNumber) {
     //alert("선택한 상품 번호: " + pnum);
-	$('.modal-content').load("prdDetail_owner.prd?pnum=" + pnum);
+	$('.modal-content').load("prdDetail_owner.prd?pnum=" + pnum + "&inputPname=" + inputPname + "&inputPnum=" + inputPnum + "&inputDay1=" + inputDay1 + "&inputDay2=" + inputDay2 + "&pageNumber=" + pageNumber);
 	$('#prdModal').modal('show');
 }
 </script>
 
-<div class="container">
+<div class="container h-80">
 	<div class="row">
 		<div class="col-lg-12 col-md-6 mb-4">
              <div class="card border-left-info shadow h-100 py-2">
@@ -74,8 +77,6 @@ function detail(pnum) {
 										<option value="전자기기">전자기기
 										<option value="가구/인테리어">가구/인테리어
 										<option value="주방용품">주방용품
-										<option value="반려용품">반려용품
-										<option value="스포츠/레저/캠핑">스포츠/레저/캠핑
 									</select>
 								</td>
 								<td class="searchTd text-gray-800"><b>상&nbsp;&nbsp;품&nbsp;&nbsp;명</b></td>
@@ -132,7 +133,7 @@ function detail(pnum) {
 						     <tbody>
 						     	<c:if test="${fn:length(lists) > 0}">
 							     	<c:forEach var="product" items="${lists}">
-							     	<tr onclick="detail('${product.pnum}')" data-bs-toggle="modal" data-bs-target="#prdModal">
+							     	<tr onclick="detail('${product.pnum}', '${param.whatColumn}', '${param.inputPname}', '${inputPnum}', '${inputDay1}', '${inputDay2}', '${pageplus.pageNumber}')" data-bs-toggle="modal" data-bs-target="#prdModal">
 							     		<td>
 							            	<h6 class="mb-1">${product.pname}</h6>
 							            	<span class="text-secondary fs-7">상품번호: ${product.pnum}</span>
@@ -181,19 +182,9 @@ function detail(pnum) {
 			</div>	
 		</div>
 	</div>
-
-	<div class="pagination-wrapper">
-		<nav aria-label="Page navigation example">
-			<ul class="pagination">
-				<li class="page-item"><a class="page-link" href="#"
-					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-				</a></li>
-				<li class="page-item">&nbsp;<font class='btn btn-primary'>1</font>&nbsp;</li>
-				<li class="page-item"><a class="page-link" href="#"
-					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-				</a></li>
-			</ul>
-		</nav>
+	
+	<div class="text-center my-3">
+		${pageplus.pagingHtml}
 	</div>
 </div>
 <%@ include file="../member/owner/o_bottom.jsp"%>

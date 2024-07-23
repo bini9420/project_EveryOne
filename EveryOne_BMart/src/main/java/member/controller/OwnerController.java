@@ -26,10 +26,10 @@ public class OwnerController {
 	public String main(HttpSession session, Model model) {
 		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
 		
-		//o_top.jsp 부분 알림창(종 모양) 클릭시 공지사항 게시글 최근 5개까지만 띄우기
-		List<DescriptionBean> d_lists = memberDao.getDescriptionForOwner(mb.getId());
-		model.addAttribute("d_lists", d_lists);
-		model.addAttribute("dcount", d_lists.size());
+		//main에 4개의 카드 아래에 공지 게시판 띄우기
+		List<DescriptionBean> dlists = memberDao.getDescriptionForOwner(mb.getId());
+		model.addAttribute("dlists", dlists);
+		System.out.println("owner 공지글: " + dlists.size());
 		
 		return getPage;
 	}

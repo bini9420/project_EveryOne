@@ -164,19 +164,8 @@
                     </div>
                 </div>
             <!-- End of Main Content -->
-            
-<div class="pagination-wrapper">
-	<nav aria-label="Page navigation example">
-		<ul class="pagination">
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-			</a></li>
-			<li class="page-item">&nbsp;<font class='btn btn-primary'>1</font>&nbsp;</li>
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-			</a></li>
-		</ul>
-	</nav>
-</div>
+            <center>
+     			<p align="center">${pageplus.pagingHtml}</p>
+     		</center>
      
 <%@ include file="../admin/a_bottom.jsp" %>

@@ -95,7 +95,7 @@ h6 {
 </script>
 
 <%@ include file="../member/owner/o_top.jsp"%>
-<div class="container-fluid product-list">
+<div class="container-fluid product-list h-100">
 
 	<!-- Page Heading -->
 	<div class="d-sm-flex align-items-center justify-content-between mb-3">

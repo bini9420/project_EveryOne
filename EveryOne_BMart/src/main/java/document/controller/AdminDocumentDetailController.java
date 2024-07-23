@@ -36,6 +36,9 @@ public class AdminDocumentDetailController {
 	public String adminDetail(@RequestParam(value="dnum", required=false) String dnum,
 							  @RequestParam(value="eno", required=false) String eno,
 							  @RequestParam(value="rnum", required=false) String rnum,
+							  @RequestParam(value="whatColumn", required=false) String whatColumn,
+							  @RequestParam(value="keyword", required=false) String keyword,
+							  @RequestParam(value="pageNumber", required=false) String pageNumber,
 							  Model model) {
 		if(dnum != null) {
 			DocumentBean document = documentDao.getDocumentByDnum(dnum);

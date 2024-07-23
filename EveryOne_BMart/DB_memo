@@ -551,7 +551,14 @@ create table description (
 	re_level number not null
 );
 
+--당해 월별 상품 매출 테이블
+drop table salebymonth;
 
+create table salebymonth (
+	pnum number,
+	pname varchar2(30),
+	pamount number 
+);
 
 commit;
 select * from member;

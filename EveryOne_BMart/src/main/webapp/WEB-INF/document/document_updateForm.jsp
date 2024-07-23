@@ -134,7 +134,7 @@
 <%
 	String[] category = {"상품등록", "광고요청", "폐업신청"};
 %>
-<div class="container">
+<div class="container h-100">
 <div class="modal-header d-flex align-items-center"> 
     <!-- Font Awesome Icon for Pen, remove margin for close alignment -->
     <i class="fas fa-pen fa-2x text-gray-500"></i>

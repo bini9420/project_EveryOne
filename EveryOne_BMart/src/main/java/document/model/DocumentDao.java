@@ -7,11 +7,8 @@ import java.util.Map;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
-import document.model.DocumentBean;
 import utility.Paging;
 import utility.PagingPlus;
 
@@ -34,11 +31,11 @@ public class DocumentDao {
 	}//getAllDocument
 
 	public int getTotalCount(Map<String,String> map) { 
-		int totalCount = -100;
-		totalCount = sqlSessionTemplate.selectOne(namespace + ".getTotalCount", map);
+		int cnt = -100;
+		cnt = sqlSessionTemplate.selectOne(namespace + ".getTotalCount", map);
 		
-		//System.out.println("Dao에서 totalCount: " + totalCount);
-		return totalCount;
+		System.out.println("Dao에서 totalCount: " + cnt);
+		return cnt;
 	}//getTotalCount
 
 	public int getWaitDocument(String id) {
@@ -358,5 +355,12 @@ public class DocumentDao {
 	public void insertCategory(String prdcategory) {
 		sqlSessionTemplate.insert(namespace + ".insertCategory", prdcategory);
 	}//insertCategory
+
+	public int getPrdcategoryById(Map<String, String> map) {
+		int count = -1;
+		sqlSessionTemplate.selectOne(namespace + ".getPrdcategoryById", map);
+		
+		return count;
+	}//getPrdcategoryById
 
 }

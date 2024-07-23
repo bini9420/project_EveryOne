@@ -138,7 +138,7 @@
 						                </c:forEach>
 						                </tbody>
 						              </table>
- 										
+						              
  									  <!-- Modal -->
 									  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 										<div class="modal-dialog modal-lg">
@@ -155,19 +155,8 @@
                     </div>
                 </div>
             <!-- End of Main Content -->
+            <center>
+     			<p align="center">${pageInfo.pagingHtml}</p>
+     		</center>
             
-<div class="pagination-wrapper">
-	<nav aria-label="Page navigation example">
-		<ul class="pagination">
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-			</a></li>
-			<li class="page-item">&nbsp;<font class='btn btn-primary'>1</font>&nbsp;</li>
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-			</a></li>
-		</ul>
-	</nav>
-</div>
-     
 <%@ include file="../admin/a_bottom.jsp" %>

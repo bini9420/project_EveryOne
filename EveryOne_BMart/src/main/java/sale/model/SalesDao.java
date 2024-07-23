@@ -12,7 +12,6 @@ import model.ProductBean;
 @Service
 public class SalesDao {
 
-
 	private String namespace="sale";
 	private String namespace2="product";
 
@@ -46,13 +45,25 @@ public class SalesDao {
 		return clists;
 	}
 
-	public List<ProductBean> donutChartForOwner(String id) {
+	public List<ProductBean> bestProduct5ForOwner(String id) {
 		List<ProductBean> lists = new ArrayList<ProductBean>();
-		lists = sqlSessionTemplate.selectList(namespace2 + ".donutChartForOwner", id); 
+		lists = sqlSessionTemplate.selectList(namespace2 + ".bestProduct5ForOwner", id); 
 		
 		return lists;
 	}//donutChartForOwner
 
+	public List<ProductBean> worstProduct5ForOwner(String id) {
+		List<ProductBean> lists = new ArrayList<ProductBean>();
+		lists = sqlSessionTemplate.selectList(namespace2 + ".worstProduct5ForOwner", id); 
+		
+		return lists;
+	}//worstProduct5ForOwner
 
+	public List<ProductBean> getPrdYearSumForOwner(String id) {
+		List<ProductBean> lists = new ArrayList<ProductBean>();
+		lists = sqlSessionTemplate.selectList(namespace2 + ".getPrdYearSumForOwner", id);
+		
+		return lists;
+	}//getPrdYearSumForOwner
 
 }

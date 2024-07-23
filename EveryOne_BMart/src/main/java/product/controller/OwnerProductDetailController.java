@@ -20,7 +20,14 @@ public class OwnerProductDetailController {
 	
 	//GET: ownerPrdList.jsp에서 테이블 row 클릭시 상세보기 페이지 이동
 	@RequestMapping(value=command, method=RequestMethod.GET)
-	public String detail(@RequestParam("pnum") String pnum, Model model) {
+	public String detail(@RequestParam("pnum") String pnum,
+						 @RequestParam(value="whatColumn", required=false) String whatColumn,
+						 @RequestParam(value="inputPname", required=false) String inputPname,
+						 @RequestParam(value="inputPnum", required=false) String inputPnum,
+						 @RequestParam(value="inputDay1", required=false) String inputDay1,
+						 @RequestParam(value="inputDay2", required=false) String inputDay2,
+						 @RequestParam(value="pageNumber", required=false) String pageNumber,
+			   Model model) {
 		ProductBean pb = productDao.getProductByPnum_Owner(pnum);
 		model.addAttribute("product", pb);
 		

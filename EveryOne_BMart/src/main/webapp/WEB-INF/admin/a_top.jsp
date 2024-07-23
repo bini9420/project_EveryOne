@@ -28,6 +28,7 @@
 	<link href="resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 	
 	<!-- CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 	<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-rounded/css/uicons-bold-rounded.css">
@@ -219,8 +220,10 @@
 	                  <hr>
 	                  
 	                  <h6 class="collapse-header">기타</h6>
-	                  <a class="collapse-item" href="admin_enterBox.dc">입점신청함</a>
-	                  <a class="collapse-item" href="admin_rcheckBox.dc">리뷰검토함</a>
+	                  <a class="collapse-item" href="admin_enterBox.dc">입점신청함 &nbsp;&nbsp;
+	                  	<span class="badge text-bg-danger"><c:out value="${'+'}${waitEnter}" /></span></a>
+	                  <a class="collapse-item" href="admin_rcheckBox.dc">리뷰검토함 &nbsp;&nbsp;
+	                  	<span class="badge text-bg-danger"><c:out value="${'+'}${waitRcheck}" /></span></a>
 	               </div>
 	            </div>
 	         </li>

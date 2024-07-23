@@ -289,7 +289,7 @@
 	</select>
 	
 	<select id="getPcategoryListByWriter" resultType="document.model.DocumentBean">
-		select * from document where writer=#{id} and dcategory='상품등록'
+		select * from document where writer=#{id} and dcategory='상품등록' and dstatus=1
 	</select>
 	
 	<delete id="deleteProductByOwner">
@@ -300,9 +300,15 @@
 		update product set price=#{price}, pcontent=#{pcontent}, stock=#{stock} where pnum=#{pnum}
 	</update>
 	
-	<select id="donutChartForOwner" resultType="product">
+	<select id="bestProduct5ForOwner" resultType="product">
 		select rownum, pname, ordercount
 		from (select rownum, pname, ordercount from product where id=#{id} order by ordercount desc)
+		where rownum between 1 and 5 
+	</select>
+	
+	<select id="worstProduct5ForOwner" resultType="product">
+		select rownum, pname, ordercount
+		from (select rownum, pname, ordercount from product where id=#{id} order by ordercount asc)
 		where rownum between 1 and 5 
 	</select>
 	
@@ -311,7 +317,7 @@
     </select>
 	
 	<update id="updateOwnerProduct">
-		update product set pname = #{pname}, price = #{price}, stock = #{stock}, capacity = #{capacity}, pcontent = #{pcontent}, expritydate = #{expritydate}, origin = #{origin}, pcategory = #{pcategory}, inputdate = sysdate, ordercount = #{ordercount}, pimage = #{pimage, jdbcType=VARCHAR}
+		update product set pname = #{pname}, price = #{price}, stock = #{stock}, capacity = #{capacity, jdbcType=VARCHAR}, pcontent = #{pcontent}, pcategory = #{pcategory}, inputdate = sysdate, ordercount = #{ordercount}, pimage = #{pimage, jdbcType=VARCHAR}
     	where pnum = #{pnum}
 	</update>
     
@@ -327,4 +333,21 @@
 	<update id="plustStock" parameterType="map">
 		update product set stock = #{plusStock} where pnum=#{pnum}
 	</update>
+	
+	 <resultMap id="ProductResultMap" type="model.ProductBean">
+        <id property="pnum" column="pnum"/>
+	    <result property="pname" column="pname"/>
+	    <result property="price" column="total_sales"/>  <!-- 매출 총액을 price에 설정 -->
+	    <result property="ordercount" column="total_orders"/>  <!-- 주문 건수를 ordercount에 설정 -->
+    </resultMap>
+	
+	<select id="getPrdYearSumForOwner" resultMap="ProductResultMap">
+		select p.pnum, p.pname, coalesce(count(o.pamount), 0) as total_orders, coalesce(sum(o.pamount * p.price), 0) as total_sales
+		from product p left join orderInfo o on p.pnum=o.pnum
+		and extract(year from o.orderdate) = extract(year from sysdate)
+		where p.id = #{id}
+		group by p.pnum, p.pname
+		order by p.pnum
+	</select>
+	
 </mapper>

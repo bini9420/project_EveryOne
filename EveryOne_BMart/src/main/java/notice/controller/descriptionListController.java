@@ -38,7 +38,7 @@ public class descriptionListController {
 		if(session.getAttribute("loginInfo") == null) { // 
 			session.setAttribute("destination", "redirect:/dlist.nt");
 			return "redirect:/login.mb";
-		}else {
+		} else {
 		
 		MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo");
         String id = loginInfo.getId();

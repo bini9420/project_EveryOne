@@ -31,6 +31,10 @@
 	</style>
 </head>
 
+<%
+	session.invalidate(); //세션 무효화
+%>
+
 <body class="bg-primary">
 	<nav class="navbar navbar-expand-lg bg-light">
 		<div class="container">

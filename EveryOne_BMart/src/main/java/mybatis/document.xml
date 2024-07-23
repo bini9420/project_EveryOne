@@ -488,7 +488,7 @@
 	</update>
 	
 	<update id="requestDocumentByDnum">
-		update document set request=1 where dnum=#{dnum}
+		update document set request=1, approval=0, dstatus=0 where dnum=#{dnum}
 	</update>
 	
 	<select id="getWaitCountForAdmin" resultType="int">
@@ -520,6 +520,10 @@
 	</select>
 	
 	<insert id="insertCategory">
-		insert into category values(cate_seq.nextval, #{prdcategory})
+		insert into category values(cate_seq)
 	</insert>
+	
+	<select id="getPrdcategoryById" resultType="int">
+		select count(*) from document where writer=#{id} and prdcategory=#{prdcategory}
+	</select>
 </mapper>

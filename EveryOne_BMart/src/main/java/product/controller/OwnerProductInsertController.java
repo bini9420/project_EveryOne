@@ -60,7 +60,7 @@ public class OwnerProductInsertController {
 		PrintWriter out = response.getWriter();
 		
 		MultipartFile multi = product.getUpload();
-		String uploadPath = servletContext.getRealPath("/resources/product/");
+		String uploadPath = servletContext.getRealPath("/resources/uploadImage/");
 		
 		int cnt = -1;
 		cnt = productDao.insertProductByOwner(product);

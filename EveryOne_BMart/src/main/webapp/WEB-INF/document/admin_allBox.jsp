@@ -30,9 +30,9 @@
 <%@ include file="../admin/a_top.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script type="text/javascript">
-	function detailDocument(dnum) {
+	function detailDocument(dnum, whatColumn, keyword, pageNumber) {
 	    //alert("선택한 문서 번호: " + dnum);
-		$('.modal-content').load("adminDocument_detail.dc?dnum="+dnum);
+		$('.modal-content').load("adminDocument_detail.dc?dnum="+dnum + "&whatColumn=" + whatColumn + "&keyword=" + keyword + "&pageNumber=" + pageNumber);
 		$('#staticBackdrop').modal('show');
 	}
 </script>
@@ -121,7 +121,7 @@
 						                <tbody>
 						                
 						                <c:forEach var="document" items="${lists}">
-						                	<tr onclick="detailDocument('${document.dnum}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+						                	<tr onclick="detailDocument('${document.dnum}', '${param.whatColumn}', '${param.keyword}', '${param.pageNumber}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 						                		<td>
 						                			[${document.dcategory}]
 						                		</td>
@@ -175,10 +175,8 @@
                 </div>
             <!-- End of Main Content -->
             
-     <div class="container-fluid">
-     	<div class="row">
-     		<p align="center">${pageplus.pageNumber}</p>
-     	</div>
-     </div>
+            <center>
+     			<p align="center">${pageplus.pagingHtml}</p>
+     		</center>
      
 <%@ include file="../admin/a_bottom.jsp" %>

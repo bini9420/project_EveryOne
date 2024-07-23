@@ -348,5 +348,20 @@ public class MallDao {
 		count = sqlSessionTemplate.selectOne(product+".getWatchCount", sb);
 		return count;
 	}
+	
+	public int plusOrderCount(int pnum, int oCount) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("pnum", pnum);
+		map.put("oCount", oCount);
+		int cnt = -1;
+		cnt = sqlSessionTemplate.update(product+".plusOrderCount", map);
+		return cnt;
+	}
+	
+	public int getOrderCount(int pnum) {
+		int ordercount = -1;
+		ordercount = sqlSessionTemplate.selectOne(product+".getOrderCount", pnum);
+		return ordercount;
+	}
 
 }

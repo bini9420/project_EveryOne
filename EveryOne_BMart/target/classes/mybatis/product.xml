@@ -357,5 +357,11 @@
 		group by p.pnum, p.pname
 		order by p.pnum
 	</select>
-	
+	<update id="plusOrderCount" parameterType="map">
+		update product set ordercount = #{oCount}
+		where pnum = #{pnum}
+	</update>
+	<select id="getOrderCount" resultType="int">
+		select ordercount from product where pnum = #{pnum}
+	</select>
 </mapper>

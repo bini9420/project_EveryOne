@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,7 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import mall.model.MallDao;
 import mall.model.PayInfo;
+import model.AddressBean;
 import model.MemberBean;
+import model.OrdersBean;
+import model.ReviewBean;
 
 @Controller
 public class PayController {
@@ -46,11 +52,13 @@ public class PayController {
 		List<model.OrdersBean> olist = new ArrayList<model.OrdersBean>();
 		int cnt = -1; // 장바구니 삭제 성공/실패 확인
 		int mcnt = -1; // 재고수량 차감 성공/실패 확인
+		int pcnt = -1; // 주문수량 증가 성공/실패 확인
+		int oCount = 0; // ordercount + pamount
 		for(int i=0;i<pnumber.length;i++) {
 			
 			int pnum = pnumber[i];
 			int Pamount = pamount[i];
-			
+			System.out.println("pamount 확인: " + Pamount);
 			//주문한 상품 장바구니에서 삭제
 			cnt = mallDao.deleteCart(pnum);
 			System.out.println("주문상품 장바구니 삭제 cnt: " + cnt);
@@ -66,6 +74,14 @@ public class PayController {
 				System.out.println("재고수량 차감 완료");
 			}
 			// 상품 재고수량 차감
+			
+			// product ordercount 증가
+			int ordercount = mallDao.getOrderCount(pnum);
+			System.out.println("ordercount 확인: " + ordercount);
+			oCount = ordercount + Pamount;
+			System.out.println("oCount 확인: " + oCount);
+			pcnt = mallDao.plusOrderCount(pnum, oCount);
+			
 			
 			ob.setId(payInfo.getId());
 			ob.setPnum(pnum);

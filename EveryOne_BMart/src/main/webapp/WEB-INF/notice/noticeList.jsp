@@ -31,6 +31,7 @@
 				},
 				success: function(response) {
 					contentArea.html(response).slideDown();
+					enableAutoRefresh();
 				},
 				error: function(xhr, status, error) {
 					console.log('Error loading content');
@@ -50,7 +51,23 @@
 			});
 		}
 
-		setInterval(autoRefresh, 30000); // Refresh every 30 seconds
+		let autoRefreshInterval;
+
+		function enableAutoRefresh() {
+			if (!autoRefreshInterval) {
+				autoRefreshInterval = setInterval(autoRefresh, 30000); // Refresh every 30 seconds
+			}
+		}
+
+		function disableAutoRefresh() {
+			if (autoRefreshInterval) {
+				clearInterval(autoRefreshInterval);
+				autoRefreshInterval = null;
+			}
+		}
+
+		// 초기 로딩 시 autoRefresh를 비활성화합니다.
+		disableAutoRefresh();
 	});
 
 	function Delete(nnum, pageNumber) {

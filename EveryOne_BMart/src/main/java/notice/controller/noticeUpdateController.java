@@ -28,6 +28,7 @@ public class noticeUpdateController {
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String updateForm(@RequestParam(value="nnum") int nnum,
 							@RequestParam(value="pageNumber", required=false) String pageNumber,
+							@RequestParam(value = "category", required = false) String category,
 							Model model) {
 		
 		NoticeBean nb = noticeDao.viewContent(nnum);
@@ -40,7 +41,8 @@ public class noticeUpdateController {
 	@RequestMapping(value = command, method = RequestMethod.POST)
 	public ModelAndView update(@ModelAttribute("notice") @Valid NoticeBean notice,
 						BindingResult result,
-						@RequestParam("pageNumber") int pageNumber) {
+						@RequestParam("pageNumber") int pageNumber,
+						@RequestParam(value = "category", required = false) String category){
 		
 		ModelAndView mav = new ModelAndView();
 		if(result.hasErrors()) {

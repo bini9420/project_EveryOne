@@ -60,14 +60,15 @@ public class AdminApprovalController {
 				if(count == 0) {
 					documentDao.insertCategory(prdcategory);
 				}
-			}
-			else if(db.getDcategory().equals("광고요청")) { //product 테이블에 ad 칼럼 변경
+			} else if(db.getDcategory().equals("광고요청")) { //product 테이블에 ad 칼럼 변경
 				String pname = documentDao.getPrdname(dnum);
 				documentDao.updateProductAd(pname);
-				
-			} else if(db.getDcategory().equals("폐점신청")) { //business 테이블에서 해당 id 레코드 삭제
+			} else if(db.getDcategory().equals("폐업신청")) { //business 테이블에서 해당 id 레코드 삭제 & product 테이블에서 해당 id로 등록된 물품 삭제
+				System.out.println("here");
 				String writer = documentDao.getWriter(dnum);
+				System.out.println("writer: " + writer);
 				documentDao.deleteBusinessId(writer);
+				documentDao.deleteProductById(writer);
 			}
 			
 			out.println("<script>");

@@ -28,37 +28,42 @@
 </script>
 
 <%@ include file="../member/owner/o_top.jsp"%>
-<div class="container">
+<div class="container h-100">
 	<div class="row">
-	<c:choose>
-		<c:when test="${not empty noReviewsMessage}">
-			<p class="no-products">${noReviewsMessage}</p>
-		</c:when>
-		<c:otherwise>
-			<div class="col-lg-12">
-				<div class="card shadow mb-4">
-					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">전체 리뷰</h6>
-					</div>
-	                                
-					<div class="card-body">
-						<div class="table-responsive">
-							<table class="table bsb-table-xl text-nowrap align-middle m-0" border=1>
-								 <thead>
+		<div class="col-lg-12">
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">전체 리뷰</h6>
+				</div>
+	                               
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table bsb-table-xl text-nowrap align-middle m-0">
+							 <thead>
+								<tr>
+						        	<th>작성자</th>
+									<th>평점</th>
+									<th>Comment</th>
+									<th>이미지</th>
+									<th>상품번호</th>
+									<c:if test="${loginInfo.id == 'admin'}">
+										<th>관리</th>
+									</c:if>
+									<th>요청</th>
+								</tr>
+						     </thead>
+						     
+						     <tbody>
+							 <c:choose>
+								<c:when test="${not empty noReviewsMessage}">
 									<tr>
-							        	<th>작성자</th>
-										<th>평점</th>
-										<th>Comment</th>
-										<th>이미지</th>
-										<th>상품번호</th>
 										<c:if test="${loginInfo.id == 'admin'}">
-											<th>관리</th>
+											<td colspan="7" align="center">${noReviewsMessage}</td>
 										</c:if>
-										<th>요청</th>
+										<td colspan="6" align="center">${noReviewsMessage}</td>
 									</tr>
-							     </thead>
-							     
-							     <tbody>
+								</c:when>
+								<c:otherwise>
 									<c:forEach var="review" items="${reviews}">
 										<tr>
 											<td>${review.id}</td>
@@ -74,19 +79,18 @@
 											<td><button class="btn btn-outline-primary btn-sm" onClick="checkReview('${review.rnum}')">리뷰 검토</button></td>
 										</tr>
 									</c:forEach>
-								</tbody>
-							 </table>
-						</div>
+								</c:otherwise>
+							</c:choose>
+							</tbody>
+						</table>
 					</div>
-				</div>	
-				<div class="center-button">
-                	<button class="btn btn-secondary" onClick="history.back()">돌아가기</button>
-                </div>
-			</div>
-		</c:otherwise>
-	</c:choose>
-	
-		
+				</div>
+			</div>	
+			
+			<div class="center-button">
+               	<button class="btn btn-secondary" onClick="history.back()">돌아가기</button>
+            </div>
+		</div>
 	</div>
 </div>
 <%@ include file="../member/owner/o_bottom.jsp"%>

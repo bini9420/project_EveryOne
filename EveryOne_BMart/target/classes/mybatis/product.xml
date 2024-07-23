@@ -29,7 +29,7 @@
 	<insert id="insertProduct">
 		insert into 
 		product(pnum,id, pname,pimage, price,capacity, pcontent, expritydate, origin, stock, pcategory, inputdate,ordercount, ad) 
-		values(seqprod.nextval,#{id},#{pname},#{pimage,jdbcType=VARCHAR}, #{price}, #{capacity},#{pcontent},#{expritydate}, #{origin},#{stock},#{pcategory},sysdate,0,0)
+		values(seqprod.nextval,#{id},#{pname},#{pimage}, #{price}, #{capacity},#{pcontent},#{expritydate}, #{origin},#{stock},#{pcategory},sysdate,0,0)
 	</insert>
 
 	<delete id="deleteProduct">

@@ -25,7 +25,7 @@ public class reviewInsertController {
 	
 	private final String command = "/insertForm.rv";
 	private final String gotoPage = "reviewForm";
-	private final String gotoPage2 = "redirect:/orderList.mall";
+	private final String gotoPage2 = "redirect:/mypage.mb?index=review";
 	
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public ModelAndView insertForm(@RequestParam("onum") int onum,

@@ -520,10 +520,14 @@
 	</select>
 	
 	<insert id="insertCategory">
-		insert into category values(cate_seq)
+		insert into category values(cate_seq.nextval, #{prdcategory})
 	</insert>
 	
 	<select id="getPrdcategoryById" resultType="int">
 		select count(*) from document where writer=#{id} and prdcategory=#{prdcategory}
 	</select>
+	
+	<delete id="deleteProductById">
+		delete from product where id=#{id}
+	</delete>
 </mapper>

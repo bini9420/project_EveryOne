@@ -36,7 +36,6 @@ public class EnterWriteController {
 	//GET: mall_bottom.jsp에서 입점신청 클릭시 => enter_writeForm.jsp 모달창으로 띄우기
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String enterWrite(@RequestParam("id") String id, Model model, HttpServletResponse response) throws IOException {
-		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
@@ -47,6 +46,7 @@ public class EnterWriteController {
 			out.println("</script>");
 			out.flush();
 		}
+
 		//아이디가 있으면 => 입점신청Form 모달창 띄우기
 		return getPage;
 	}

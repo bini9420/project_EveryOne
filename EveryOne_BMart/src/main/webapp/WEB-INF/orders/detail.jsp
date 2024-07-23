@@ -73,17 +73,7 @@
                 <tr>
                     <th>상태:</th>
                     <td>
-                        <c:choose>
-                            <c:when test="${order.status == 0}">
-                                배송준비중
-                            </c:when>
-                            <c:when test="${order.status == 1}">
-                                배송완료
-                            </c:when>
-                            <c:otherwise>
-                                알 수 없음
-                            </c:otherwise>
-                        </c:choose>
+                       배송완료료
                     </td>
                 </tr>
                 <tr>

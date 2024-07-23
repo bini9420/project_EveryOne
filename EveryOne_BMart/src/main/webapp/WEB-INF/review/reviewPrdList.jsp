@@ -99,6 +99,12 @@ h6 {
 			location.href = 'delete.rv?rnum=' + rnum + '&pnum=' + pnum;
 		}
 	}
+	function checkReview(rnum) {
+		var check = confirm('선택하신 리뷰를 검토요청 하시겠습니까?\n승인시에는 해당 리뷰가 삭제됩니다');
+		if(check) {
+			location.href="rcheckInsert.dc?rnum=" + rnum;			
+		}
+	}
 </script>
 
 <%@ include file="../member/owner/o_top.jsp"%>
@@ -159,7 +165,7 @@ h6 {
 							<td><img src="${pageContext.request.contextPath}/resources/uploadImage/${review.image}" alt="Review Image" width="100" /></td>
 							<c:if test="${loginInfo.id != 'admin'}">
 							<td>
-								<button onClick="#">리뷰 검토 요청</button>
+								<button onClick="checkReview('${review.rnum}')">리뷰 검토 요청</button>
 							</td>
 							</c:if>
 							<c:if test="${loginInfo.id == 'admin'}">

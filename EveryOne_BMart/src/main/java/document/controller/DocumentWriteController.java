@@ -41,7 +41,7 @@ public class DocumentWriteController {
 	public String write(HttpSession session, Model model) {
 		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
 		model.addAttribute("name", mb.getName());
-				
+				 
 		return getPage;
 	}
 	

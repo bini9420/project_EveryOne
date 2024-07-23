@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="mall_top.jsp"%>
-<%@include file="../common/common.jsp" %>  
 <%@ page import = "javax.servlet.jsp.*" %>
+
 <%
 	String path = request.getContextPath();
 %>
@@ -22,14 +22,10 @@
 	  text-decoration: none;
 	  color: inherit;
 	}
-	.amountTr{
-		border-bottom: 1px solid #e6e6e6;
-		border-bottom-width: 2px;
-	}	
 	.cartTable td{
 		padding: 10px;
 	}
-	img{
+	.cartTable img{
 		display: block;
 		margin: auto;
 	}
@@ -119,7 +115,7 @@
 	.header{
 		margin-top: 40px;
 		margin-bottom: 10px;
-		font-size: 20px;
+		font-size: 30px;
 		font-weight: bold;
 		text-align: center;
 		color: #414141;
@@ -226,6 +222,7 @@ $(document).ready(function(){
 	
 	function calculateTotalAmount() {
 	    var totalAmount = 0;
+	    var totalprice = 0;
 	    var dFee = 0;
 	    // 모든 체크된 상품의 가격 합산
 	    $('input[name="rowSelect"]:checked').each(function() {
@@ -233,7 +230,7 @@ $(document).ready(function(){
 	        totalAmount += amount;
 	    });
 	    
-        if(totalAmount > 10000){
+        if(totalAmount === 0 || totalAmount >= 10000){
         	dFee = 0;
         }else{
         	dFee = 3000;
@@ -244,7 +241,7 @@ $(document).ready(function(){
         
 	    var totalPrice = totalAmount + dFee;
 	    $("#totalAmount").val(totalAmount.toLocaleString("ko-KR"));
-	    $("#totalAmount2").text(totalAmount.toLocaleString("ko-KR"));
+	    $("#totalAmount2").text(totalPrice.toLocaleString("ko-KR"));
 	}
 
 	function allCheck(obj){
@@ -394,11 +391,7 @@ $(document).ready(function(){
 			</a>
 		</td>
 	</tr>
-	<tr class="amountTr">
-		<td>
 		<input type="hidden" class="pnum" name="pnum" value="${i.pnum}">
-		</td>
-	</tr>
 </c:forEach>
 </c:if>
 <c:if test="${empty plist}">
@@ -412,8 +405,7 @@ $(document).ready(function(){
 		<td class="dFee" colspan="6">
 			<p class="dtext">1만원 이상 구매 시 무료배송</p>
 			배송비: &ensp; 
-			<span id="delieveryFee2" >
-			</span>원
+			<span id="delieveryFee2" ></span>원
 			<input type="hidden" id="dFee2" name="dFee2" value="">
 		</td>
 	</tr>
@@ -421,8 +413,7 @@ $(document).ready(function(){
 		<td class="total" colspan="6">
 			결제 예정 금액:&ensp; 
 			<input type="hidden" id="totalAmount" value="">
-			<span id="totalAmount2" >
-			</span>원<br>
+			<span id="totalAmount2" ></span>원<br>
 		</td>
 	</tr>
 	<tr>

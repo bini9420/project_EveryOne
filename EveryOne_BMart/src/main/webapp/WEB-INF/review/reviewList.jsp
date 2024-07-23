@@ -169,7 +169,7 @@ h6 {
 					</c:forEach>
 				</table>
 			</c:otherwise>
-		</c:choose>
+		</c:choose> 
 		<button onClick="history.back()">돌아가기</button>
 	</div>
 	<!-- /.container-fluid -->

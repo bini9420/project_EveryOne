@@ -1,30 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../common/common.jsp" %>  
 <%@ include file="../mall/mall_top.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
 	String path = request.getContextPath();
 %>
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SB Admin 2 - Login</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-    <!-- Custom styles for this template-->
-    <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
-
-</head>
 
 <style type="text/css">
 	table{
@@ -33,6 +13,14 @@
 		border: 0px;
 		color: #414141;
 		text-align: center;
+		border-collapse: collapse;
+	}
+	.first_tr{
+		border-top: 3px solid black;
+	}
+	.second_tr{
+		border-collapse: collapse;
+		padding-bottom: 10px;
 	}
 	th{
 		padding: 15px;
@@ -52,8 +40,6 @@
 		width: 10px;
 	}
 	.orderDiv{
-		border: 3px solid #f0f0f0;
-		border-radius: 10px;
 		width: 80%;
 		margin: auto;
 	}
@@ -104,31 +90,88 @@
 	.product_Th{
 		text-align: center;
 	}
+	#showMoreBtn{
+		border: 0px;
+		border-radius: 5px;
+		background-color: #3c3c3c;
+		color: white;	
+		font-weight: bold;
+		width: 150px;
+		height: 50px;
+		font-size: 27px;
+	}
 </style>
 
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-    // 문서가 준비되면 실행될 코드
-    $('.ronum').each(function() {
-        var ronum = $(this).val(); // rlist 값 가져오기
+    $(document).ready(function() {
+        // 문서가 준비되면 실행될 코드
+        $('.ronum').each(function() {
+            var ronum = $(this).val();
+            
+            // i.onum과 rlist 값 비교
+            if (ronum !== '0') {
+                $(this).nextAll('.reviewBtn:first').val('리뷰완료').prop('disabled', true); // 버튼을 리뷰완료로 변경하고 비활성화
+            }
+        });
         
-        // i.onum과 rlist 값 비교
-        if (ronum !== '0') {
-            $(this).nextAll('.reviewBtn:first').val('리뷰완료').prop('disabled', true); // 버튼을 리뷰완료로 변경하고 비활성화
+        var page = 1;
+        var rowsPerPage = 5;
+        var totalProducts = ${fn:length(olist)};
+        
+        var itemsPerPage = 5;
+        var $productRows = $('.second_tr'); // 품목 행 선택
+        var $productRows2 = $('.first_tr'); // 품목 행 선택
+        var $reviewTd= $('.reviewTd'); // 품목 행 선택
+        
+        showHideProductRows(itemsPerPage);
+        
+        $('#showMoreBtn').click(function(event) {
+            event.preventDefault();
+            itemsPerPage += 5; // 예시로 5개씩 더 보이도록 증가
+            showHideProductRows(itemsPerPage);
+        });
+        
+        function showHideProductRows(itemsToShow) {
+            $productRows.each(function(index) {
+                if (index < itemsToShow) {
+                    $(this).show(); // 행을 보이게 처리
+                } else {
+                    $(this).hide(); // 행을 숨기게 처리
+                }
+            });
+            $productRows2.each(function(index) {
+                if (index < itemsToShow) {
+                    $(this).show(); // 행을 보이게 처리
+                } else {
+                    $(this).hide(); // 행을 숨기게 처리
+                }
+            });
+            $reviewTd.each(function(index) {
+                if (index < itemsToShow) {
+                    $(this).show(); // 행을 보이게 처리
+                } else {
+                    $(this).hide(); // 행을 숨기게 처리
+                }
+            });
+            
+            if ($productRows.length > itemsToShow) {
+                $('#showMoreBtn').show(); // 더보기 버튼을 보이게 처리
+            } else {
+                $('#showMoreBtn').hide(); // 더 이상 행이 없으면 더보기 버튼을 숨기게 처리
+            }
         }
     });
-});
 
-	function openReviewPopup(pnum, onum, id, pname) {
-	    const options = 'width=900, height=300, top=100, left=500, scrollbars=yes';
-	    const url = 'insertForm.rv?pnum=' + pnum + '&onum=' + onum + '&id=' + id+'&pname='+pname;
-	    window.open(url, '_blank', options);
-	}
-	
-	function deleteOrder(onum, pnum, pamount){
-		location.href="deleteOrder.mall?onum="+onum+"&pnum="+pnum+"&pamount="+pamount;
-	}
+    function openReviewPopup(pnum, onum, id, pname) {
+        const options = 'width=900, height=300, top=100, left=500, scrollbars=yes';
+        const url = 'insertForm.rv?pnum=' + pnum + '&onum=' + onum + '&id=' + id + '&pname=' + pname;
+        window.open(url, '_blank', options);
+    }
+
+    function deleteOrder(onum, pnum, pamount) {
+        location.href = "deleteOrder.mall?onum=" + onum + "&pnum=" + pnum + "&pamount=" + pamount;
+    }
 </script>
 
 <body>
@@ -136,14 +179,14 @@ $(document).ready(function() {
 	<p>주문 내역<p>
 </div>
 <div class="padrentDiv">
-<c:forEach var="i" begin="0" end="${fn:length(olist) - 1}" items="${olist}" step="1" varStatus="status">
 	<div class="orderDiv">
 	<form action="insertForm.rv" method="post">
-	<input type="hidden" name="pnum" value="${i.pnum}">
-	<input type="hidden" name="onum" value="${i.onum}">
-	<input type="hidden" name="id" value="${i.id}">
-		<table>
-			<tr>
+	<table>
+		<c:forEach var="i" begin="0" end="${fn:length(olist) - 1}" items="${olist}" step="1" varStatus="status">
+		<input type="hidden" name="pnum" value="${i.pnum}">
+		<input type="hidden" name="onum" value="${i.onum}">
+		<input type="hidden" name="id" value="${i.id}">
+			<tr class="first_tr">
 				<th class="product_Th" colspan="2">
 					상품
 				</th>
@@ -163,7 +206,7 @@ $(document).ready(function() {
 					배송현황
 				</th>
 			</tr>
-			<tr>
+			<tr class="second_tr">
 				<td class="productImg_Td">
 					<img src="<%=path%>/resources/img/${plist[status.index].pimage}">
 				</td>
@@ -205,11 +248,15 @@ $(document).ready(function() {
 					<input type="button" class="orderCancel" id="orderCancel" value="주문취소" onclick="deleteOrder(${i.onum},${i.pnum},${i.pamount})">
 				</td>
 			</tr>
+		</c:forEach>
+		    <tr>
+				<td colspan="7" class="orderTd">
+				    <button id="showMoreBtn" style="display: none;">더보기</button>
+				</td>
+   			</tr>
 		</table>
 	</form>
 	</div>
-	<br>
-</c:forEach>
 </div>
 </body>
 

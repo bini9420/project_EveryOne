@@ -28,7 +28,7 @@
 </script>
 
 <%@ include file="../member/owner/o_top.jsp"%>
-<div class="container">
+<div class="container h-100">
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="card shadow mb-4">

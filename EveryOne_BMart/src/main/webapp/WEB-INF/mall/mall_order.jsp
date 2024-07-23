@@ -66,11 +66,13 @@
 	.sideBanner {
 		position: fixed;
 		width: 20%;
-		height: 400px;
+		height: 270px;
 		top: 300px;
 		left: 79%;
 		font-size: 15px;
 		font-weight: bold;
+		box-shadow: 2px 2px 2px 2px #dddddd;
+		
 	}
 	.sideBanner input{
 		border: none;
@@ -204,7 +206,7 @@ function payButton(){
 </head>
 
 <body>
-<h4 class="title">주문서</h4>
+<h2 class="title">주문서</h2>
 <form:form id="paymentForm" action="paymentpage.ct" method="get"> 
 <table class="orderTable">
 	<tr class="productInfoTr">

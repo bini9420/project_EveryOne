@@ -18,6 +18,7 @@ import com.google.gson.JsonObject;
 
 import admin.model.AdminDao;
 import doc.model.DocBean;
+import model.OrdersBean;
 import model.ProductBean;
 import sale.model.OrderInfoBean;
 import sale.model.SalesDao;
@@ -41,6 +42,8 @@ public class AdminMainController {
 			@RequestParam(value="pageNumber", required=false) String pageNumber,
 			HttpServletRequest request, HttpSession session,
 			Model model) {
+		
+		
 		
 		//결재요청 대기건수
 		int count1 = adminDao.getWaitDocumentCountForAdmin();
@@ -123,7 +126,6 @@ public class AdminMainController {
 	         model.addAttribute("barJson",barJson);
 	      }
 
-		
 		return getPage;
 	}
 

@@ -88,13 +88,14 @@ public class PayInfoController {
 			ob.setStatus(0);
 			ob.setPayment(payment);
 			totalAmount += orderPrice;
-			totalAmount = totalAmount + dFee;
 			olist.add(ob);
             if (pb.getId()=="admin") {
                 payname = "πËπŒªÛ»∏";
             }
             pnumList.add(num);
 		}
+		totalAmount += dFee;
+		
 		System.out.println("payname: "+payname);
 		mav.addObject("pnumList", pnumList); // 
 		mav.addObject("orderPriceList", orderPriceList); // 

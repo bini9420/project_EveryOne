@@ -84,6 +84,7 @@ public class AdminDao {
 	public int getMonthSaleCount() {
 		int count = -1;
 		count = sqlSessionTemplate.selectOne(namespace+".getMonthSaleCount");
+		System.out.println("getMonth:"+count);
 		return count;
 	}
 	

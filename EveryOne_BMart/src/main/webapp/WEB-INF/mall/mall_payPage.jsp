@@ -49,7 +49,7 @@
    	                        orderprice: orderprice,
    	                        contents: message,
    	                        way: way,
-   	                        status: "배송 준비 중",
+   	                        status: "배송 완료",
    	                        payment: payment	    	            		
 	    	            }
 	    	                $.ajax({

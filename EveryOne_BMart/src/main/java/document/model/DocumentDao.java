@@ -368,4 +368,12 @@ public class DocumentDao {
 		sqlSessionTemplate.delete(namespace + ".deleteProductById", writer);
 	}//deleteProductById
 
+	//★ 상품등록시 이전에 신청한 건이 있지만 반려당했을 경우 재신청할 수 있도록 반려된 건 확인 
+	public List<DocumentBean> checkApprovePrdcategory(Map<String, String> map) {
+		List<DocumentBean> lists = new ArrayList<DocumentBean>();
+		lists = sqlSessionTemplate.selectList(namespace + ".checkApprovePrdcategory", map);
+		
+		return lists;
+	}//checkApprovePrdcategory
+
 }

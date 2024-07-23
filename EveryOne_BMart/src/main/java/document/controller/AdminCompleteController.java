@@ -20,7 +20,7 @@ import utility.PagingPlus;
 @Controller
 public class AdminCompleteController {
 	
-	private final String command ="admin_complete.dc";
+	private final String command ="/admin_complete.dc";
 	private final String getPage ="admin_completeBox";
 	
 	@Autowired
@@ -44,7 +44,7 @@ public class AdminCompleteController {
 		map.put("inputDay2", inputDay2);
 		
 		int totalCount = documentDao.getCompleteTotalCountForAdmin(map);
-		String url = request.getRequestURI() + this.command;
+		String url = request.getContextPath() + this.command;
 		
 		PagingPlus pageplus = new PagingPlus(pageNumber, null, totalCount, url, whatColumn, inputDnum, inputTitle, inputDay1, inputDay2);
 		model.addAttribute("pageplus", pageplus);

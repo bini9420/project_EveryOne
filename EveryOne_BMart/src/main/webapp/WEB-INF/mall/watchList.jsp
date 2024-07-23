@@ -46,7 +46,7 @@
 						<!-- Product actions-->
 						<div class="card-footer border-top-0 bg-transparent">
 							<div class="text-center">
-								<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?index=watch&id=${loginInfo.id}&pnum=${watch.pnum}&qty=1">장바구니 담기</a>
+								<a class="btn btn-outline-primary mt-auto" href="insertCart.mall?index=watch&id=${loginInfo.id}&pnum=${watch.pnum}&qty=1&range=${param.range}&pageNumber=${pageInfo.pageNumber}">장바구니 담기</a>
 		                    	<c:if test="${fn:length(interestLists) > 0}">
 									<!-- flag를 선언. false일 때만 출력하고 true면 반복문을 빠져나가도록. -->
 				                    <c:set var="flag" value="false"/>
@@ -62,13 +62,13 @@
 				                    </c:forEach>
 				                    <c:if test="${flag}">
 										<a class="btn flex-shrink-0 py-2 px-3 btn-danger"
-				                    	href="updateInterest.mall?page=watch&index=del&id=${loginInfo.id}&pnum=${watch.pnum}&range=${range}">
+				                    	href="updateInterest.mall?page=watch&index=del&id=${loginInfo.id}&pnum=${watch.pnum}&range=${range}&pageNumber=${pageInfo.pageNumber}">
 											<i class="fi fi-rs-heart"></i>
 					                    </a>
 									</c:if>
 			                    	<c:if test="${not flag}">
 				                    	<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger"
-				                    	href="updateInterest.mall?page=watch&index=in&id=${loginInfo.id}&pnum=${watch.pnum}&range=${range}">
+				                    	href="updateInterest.mall?page=watch&index=in&id=${loginInfo.id}&pnum=${watch.pnum}&range=${range}&pageNumber=${pageInfo.pageNumber}">
 					                    	<i class="fi fi-rs-heart"></i>
 					                    </a>
 									</c:if>
@@ -76,7 +76,7 @@
 			                    <!-- 찜목록을 조회할 수 없을 때 -->
 			                    <c:if test="${fn:length(interestLists) == 0}">
 									<a class="btn flex-shrink-0 py-2 px-3 btn-outline-danger"
-									href="updateInterest.mall?page=watch&index=in&id=${loginInfo.id}&pnum=${watch.pnum}&range=${range}">
+									href="updateInterest.mall?page=watch&index=in&id=${loginInfo.id}&pnum=${watch.pnum}&range=${range}&pageNumber=${pageInfo.pageNumber}">
 				                    	<i class="fi fi-rs-heart"></i>
 				                    </a>
 							</c:if>

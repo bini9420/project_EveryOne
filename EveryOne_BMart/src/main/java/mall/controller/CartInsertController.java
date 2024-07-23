@@ -68,13 +68,13 @@ public class CartInsertController {
 						out.println("alert('상품 담기 성공!!'); location.href='detail.mall?pnum="+pnum+"'");
 						
 					}else if(index.equals("interest")) {
-						out.println("alert('상품 담기 성공!!'); location.href='interest.mall'");
+						out.println("alert('상품 담기 성공!!'); location.href='interest.mall?range="+range+"&pageNumber="+pageNumber+"'");
 						
 					}else if(index.equals("watch")) {
-						out.println("alert('상품 담기 성공!!'); location.href='watch.mall'");
+						out.println("alert('상품 담기 성공!!'); location.href='watch.mall?range="+range+"&pageNumber="+pageNumber+"'");
 						
 					}else if(index.equals("best")) {
-						out.println("alert('상품 담기 성공!!'); location.href='bestLists.mall'");
+						out.println("alert('상품 담기 성공!!'); location.href='bestLists.mall?range="+range+"'");
 						
 					}else if(index.equals("category")) {
 						out.println("alert('상품 담기 성공!!'); location.href='plists.mall?category="+category+"&range="+range+"&pageNumber="+pageNumber+"'");
@@ -84,6 +84,9 @@ public class CartInsertController {
 						
 					}else if(index.equals("recently")) {
 						out.println("alert('상품 담기 성공!!'); location.href='plists.mall?range="+range+"&pageNumber="+pageNumber+"'");
+						
+					}else if(index.equals("ad")) {
+						out.println("alert('상품 담기 성공!!'); location.href='adProductList.mall?range="+range+"&pageNumber="+pageNumber+"'");
 						
 					}
 					
@@ -103,13 +106,13 @@ public class CartInsertController {
 						out.println("alert('상품 담기 성공!!'); location.href='detail.mall?pnum="+pnum+"'");
 						
 					}else if(index.equals("interest")) {
-						out.println("alert('상품 담기 성공!!'); location.href='interest.mall'");
+						out.println("alert('상품 담기 성공!!'); location.href='interest.mall?range="+range+"&pageNumber="+pageNumber+"'");
 						
 					}else if(index.equals("watch")) {
-						out.println("alert('상품 담기 성공!!'); location.href='watch.mall'");
+						out.println("alert('상품 담기 성공!!'); location.href='watch.mall?range="+range+"&pageNumber="+pageNumber+"'");
 						
 					}else if(index.equals("best")) {
-						out.println("alert('상품 담기 성공!!'); location.href='bestLists.mall'");
+						out.println("alert('상품 담기 성공!!'); location.href='bestLists.mall?range="+range+"'");
 						
 					}else if(index.equals("category")) {
 						out.println("alert('상품 담기 성공!!'); location.href='plists.mall?category="+category+"&range="+range+"&pageNumber="+pageNumber+"'");
@@ -119,6 +122,9 @@ public class CartInsertController {
 						
 					}else if(index.equals("recently")) {
 						out.println("alert('상품 담기 성공!!'); location.href='plists.mall?range="+range+"&pageNumber="+pageNumber+"'");
+						
+					}else if(index.equals("ad")) {
+						out.println("alert('상품 담기 성공!!'); location.href='adProductList.mall?range="+range+"&pageNumber="+pageNumber+"'");
 						
 					}
 					
@@ -135,10 +141,10 @@ public class CartInsertController {
 							out.println("alert('상품 담기 실패...'); location.href='detail.mall?pnum="+pnum+"'");
 							
 						}else if(index.equals("interest")) {
-							out.println("alert('상품 담기 실패...'); location.href='interest.mall'");
+							out.println("alert('상품 담기 실패...'); location.href='interest.mall?range="+range+"&pageNumber="+pageNumber+"'");
 							
 						}else if(index.equals("watch")) {
-							out.println("alert('상품 담기 실패...'); location.href='watch.mall'");
+							out.println("alert('상품 담기 실패...'); location.href='watch.mall?range="+range+"&pageNumber="+pageNumber+"'");
 							
 						}else if(index.equals("best")) {
 							out.println("alert('상품 담기 실패...'); location.href='bestLists.mall'");
@@ -151,6 +157,9 @@ public class CartInsertController {
 							
 						}else if(index.equals("recently")) {
 							out.println("alert('상품 담기 실패...'); location.href='plists.mall?range="+range+"&pageNumber="+pageNumber+"'");
+							
+						}else if(index.equals("ad")) {
+							out.println("alert('상품 담기 실패...'); location.href='adProductList.mall?range="+range+"&pageNumber="+pageNumber+"'");
 							
 						}
 						

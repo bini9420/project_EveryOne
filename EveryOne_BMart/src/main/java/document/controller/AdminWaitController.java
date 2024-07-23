@@ -19,7 +19,7 @@ import utility.PagingPlus;
 
 @Controller
 public class AdminWaitController {
-	private final String command = "admin_waitBox.dc";
+	private final String command = "/admin_waitBox.dc";
 	private final String getPage = "admin_waitBox";
 	
 	@Autowired
@@ -44,7 +44,7 @@ public class AdminWaitController {
 		map.put("inputDay2", inputDay2);
 		
 		int totalCount = documentDao.getWaitTotalCountForAdmin(map);
-		String url = request.getRequestURI() + this.command;
+		String url = request.getContextPath() + this.command;
 		
 		PagingPlus pageplus = new PagingPlus(pageNumber, null, totalCount, url, whatColumn, inputDnum, inputTitle, inputDay1, inputDay2);
 		model.addAttribute("pageplus", pageplus);

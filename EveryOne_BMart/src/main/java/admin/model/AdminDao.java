@@ -86,7 +86,11 @@ public class AdminDao {
 		return count;
 	}
 	
-	
-	
+	public int getWaitRcheckCountForAdmin() {
+		int count = -100;
+		count = sqlSessionTemplate.selectOne(namespace + ".getWaitRcheckCountForAdmin");
+		
+		return count;
+	}//getWaitRcheckCountForAdmin
 
 }

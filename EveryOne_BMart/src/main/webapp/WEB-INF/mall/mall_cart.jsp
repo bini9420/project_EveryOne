@@ -22,10 +22,6 @@
 	  text-decoration: none;
 	  color: inherit;
 	}
-	.amountTr{
-		border-bottom: 1px solid #e6e6e6;
-		border-bottom-width: 2px;
-	}	
 	.cartTable td{
 		padding: 10px;
 	}
@@ -158,6 +154,10 @@ $(document).ready(function(){
 	
     calculateTotalAmount();
     
+    $('input[name="rowSelect"]').change(function() {
+        calculateTotalAmount();
+    });
+    
     var itemsPerPage = 5;
     var $productRows = $('.countBtn'); // 품목 행 선택
     
@@ -223,10 +223,10 @@ $(document).ready(function(){
 	function calculateTotalAmount() {
 	    var totalAmount = 0;
 	    var dFee = 0;
-	    $('.amount').each(function() {
-	        var amount = parseInt($(this).text().replace(/[^0-9]/g, '')); // 숫자만 추출
+	    // 모든 체크된 상품의 가격 합산
+	    $('input[name="rowSelect"]:checked').each(function() {
+	    	var amount = parseInt($(this).closest('tr').find('.amount').text().replace(/[^0-9]/g, ''));
 	        totalAmount += amount;
-
 	    });
 	    
         if(totalAmount > 10000){
@@ -390,11 +390,7 @@ $(document).ready(function(){
 			</a>
 		</td>
 	</tr>
-	<tr class="amountTr">
-		<td>
 		<input type="hidden" class="pnum" name="pnum" value="${i.pnum}">
-		</td>
-	</tr>
 </c:forEach>
 </c:if>
 <c:if test="${empty plist}">

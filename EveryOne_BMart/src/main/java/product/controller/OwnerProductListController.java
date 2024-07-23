@@ -20,7 +20,7 @@ import utility.PagingPlus;
 
 @Controller
 public class OwnerProductListController {
-	private final String command = "productList_owner.prd";
+	private final String command = "/productList_owner.prd";
 	private final String getPage = "ownerPrdList";
 	
 	private final String commandRV = "listRV.prd";
@@ -50,7 +50,7 @@ public class OwnerProductListController {
 		map.put("id", mb.getId());
 		
 		int totalCount = productDao.getTotalCountForOwner(map);
-		String url = request.getRequestURI() + this.command;
+		String url = request.getContextPath() + this.command;
 		
 		PagingPlus pageplus = new PagingPlus(pageNumber, null, totalCount, url, whatColumn, inputPname, inputPnum, inputDay1, inputDay2);
 		model.addAttribute("pageplus", pageplus);
@@ -82,7 +82,7 @@ public class OwnerProductListController {
 		map.put("id", mb.getId());
 		
 		int totalCount = productDao.getTotalCountForOwner(map);
-		String url = request.getRequestURI() + this.command;
+		String url = request.getContextPath() + this.command;
 		
 		PagingPlus pageplus = new PagingPlus(pageNumber, null, totalCount, url, whatColumn, inputPname, inputPnum, inputDay1, inputDay2);
 		model.addAttribute("pageplus", pageplus);

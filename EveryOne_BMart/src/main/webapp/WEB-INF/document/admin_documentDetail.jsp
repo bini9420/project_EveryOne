@@ -178,23 +178,23 @@
     
     <c:if test="${document.approval eq 0 }">
         <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">닫기</button>
-        <button type="button" id="approveBtn" onclick="approve('${document.dnum}')" class="btn btn-primary me-2">승인</button>
-        <button type="button" id="returnBtn" onclick="returnReason('${document.dnum}')" class="btn btn-danger">반려</button>
+        <button type="button" id="approveBtn" onclick="approve('${document.dnum}', '${param.whatColumn}', '${param.keyword}', '${param.pageNumber}')" class="btn btn-primary me-2">승인</button>
+        <button type="button" id="returnBtn" onclick="returnReason('${document.dnum}', '${param.whatColumn}', '${param.keyword}', '${param.pageNumber}')" class="btn btn-danger">반려</button>
     </c:if>
 </div>
 
 <script>
-	function approve(dnum) {
+	function approve(dnum, whatColumn, keyword, pageNumber) {
 		var result = confirm('선택하신 문서에 대한 결재를 하시겠습니까?');
 		if(result) {
-			location.href='admin_approval.dc?dnum=' + dnum;
+			location.href='admin_approval.dc?dnum=' + dnum + "&whatColumn=" + whatColumn + "&keyword=" + keyword + "&pageNumber=" + pageNumber;
 		}
 	}
 	
-	function returnReason(dnum) {
+	function returnReason(dnum, whatColumn, keyword, pageNumber) {
 		var result = prompt('반려사유를 입력하세요');
 		if(result != null) {
-			location.href='admin_return.dc?dnum=' + dnum + '&reason=' + result;
+			location.href='admin_return.dc?dnum=' + dnum + '&reason=' + result + "&whatColumn=" + whatColumn + "&keyword=" + keyword + "&pageNumber=" + pageNumber;
 		}		
 	}
 </script>

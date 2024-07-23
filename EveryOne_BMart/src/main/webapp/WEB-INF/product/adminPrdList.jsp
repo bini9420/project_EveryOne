@@ -93,8 +93,8 @@ function check(){
 							<th><input type="checkbox" name="chkRow" value="${prd.pnum }"></th>
 							<th>${prd.pnum }</th>
 							<th>${prd.pcategory }</th>
-							<th><a href="adminProductDetail.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}" style="color: gray;">${prd.pname }</a></th>
-							<th>${prd.price }</th>
+							<th><a href="adminProductDetail.prd?pnum=${prd.pnum }&pageNumber=${pageInfo.pageNumber}&keyword=${param.keyword}" style="color: gray;">${prd.pname }</a></th>	
+							<th><fmt:formatNumber value="${prd.price}" type="number"/>원</th>
 							<th>${prd.ordercount }</th>
 							<th>${fn:substring(prd.inputdate, 0, 10)}</th>
 							<th>${prd.stock }</th>

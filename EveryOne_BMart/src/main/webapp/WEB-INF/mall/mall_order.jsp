@@ -66,11 +66,13 @@
 	.sideBanner {
 		position: fixed;
 		width: 20%;
-		height: 400px;
+		height: 270px;
 		top: 300px;
 		left: 79%;
 		font-size: 15px;
 		font-weight: bold;
+		box-shadow: 2px 2px 2px 2px #dddddd;
+		
 	}
 	.sideBanner input{
 		border: none;
@@ -134,6 +136,7 @@ function payButton(){
 	var mid = $('input[name=mid]').val();
 	var mname = $('input[name=mname]').val();
 	var prdnum = $('input[name=pnum]').val();
+	var dFee = parseInt($('.dFee').val().replace(/,/g, ''));
 	var pnum =[];
 	var qty =[];
 	
@@ -174,7 +177,7 @@ function payButton(){
 		alert("결제수단을 선택해주세요.");
 		return;
 	}else if(payment=='신용카드'){
-		window.open('paypage.mall?pnum='+pnum+'&message='+message+'&way='+way+'&payment='+payment+'&qty='+qty+'&mid='+mid+'&mname='+mname, '_blank', options);
+		window.open('paypage.mall?pnum='+pnum+'&message='+message+'&way='+way+'&payment='+payment+'&qty='+qty+'&mid='+mid+'&mname='+mname+'&dFee='+dFee, '_blank', options);
 	}else if(payment=='무통장입금'){
 		window.open('paypage.mall?pnum='+pnum+'&message='+message+'&way='+way+'&payment='+payment+'&qty='+qty+'&mid='+mid+'&mname='+mname, '_blank', options);
 	}

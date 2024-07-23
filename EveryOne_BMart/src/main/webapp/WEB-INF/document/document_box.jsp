@@ -31,9 +31,9 @@
 <%@ include file="../member/owner/o_top.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script type="text/javascript">
-	function detailDocument(dnum) {
+	function detailDocument(dnum, whatColumn, inputDnum, inputTitle, inputDay1, inputDay2, pageNumber) {
 	    //alert("선택한 문서 번호: " + dnum);
-		$('.modal-content').load("document_detail.dc?dnum="+dnum);
+		$('.modal-content').load("document_detail.dc?dnum="+dnum + "&whatColumn=" + whatColumn + "&inputDnum=" + inputDnum + "&inputTitle=" + inputTitle + "&inputDay1=" + inputDay1 + "&inputDay2=" + inputDay2 + "&pageNumber=" + pageNumber);
 		$('#staticBackdrop').modal('show');
 	}
 	
@@ -42,7 +42,6 @@
 	});
 </script>
 
-<!-- document_box.jsp<br> -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 					<div class="row">
@@ -222,7 +221,7 @@
 
 					
 					<!-- 결재문서 목록-->
-					<div class="container-fluid">
+					<div class="container-fluid h-50">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card shadow mb-4">
@@ -245,7 +244,8 @@
 						                <tbody>
 						                
 						                <c:forEach var="document" items="${lists}">
-						                	<tr onclick="detailDocument('${document.dnum}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+						                	<tr onclick="detailDocument('${document.dnum}', '${param.whatColumn}', '${param.inputDnum}', '${param.inputTitle}','${param.inputDay1}', '${param.inputDay2}', '${pageplus.pageNumber}')" 
+						                		data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 						                		<td>
 						                			[${document.dcategory}]
 						                		</td>
@@ -297,21 +297,14 @@
                         </div>
                     </div>
                 </div>
-               </div>
+                
+                <center>
+					<p align="center">
+						${pageplus.pagingHtml}
+					</p>
+				</center>
+             </div>
                 <!-- /.container-fluid -->
             <!-- End of Main Content -->
             
-<div class="pagination-wrapper">
-	<nav aria-label="Page navigation example">
-		<ul class="pagination">
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-			</a></li>
-			<li class="page-item">&nbsp;<font class='btn btn-primary'>1</font>&nbsp;</li>
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-			</a></li>
-		</ul>
-	</nav>
-</div>
 <%@ include file="../member/owner/o_bottom.jsp" %>

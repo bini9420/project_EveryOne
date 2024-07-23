@@ -56,7 +56,7 @@
 
 
 <!-- 등록한 상품 List -->
-<div class="container-fluid">
+<div class="container-fluid h-100">
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="card shadow mb-4">
@@ -112,19 +112,5 @@
 			</div>	
 		</div>
 	</div>
-</div>
-
-<div class="pagination-wrapper">
-	<nav aria-label="Page navigation example">
-		<ul class="pagination">
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-			</a></li>
-			<li class="page-item">&nbsp;<font class='btn btn-primary'>1</font>&nbsp;</li>
-			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-			</a></li>
-		</ul>
-	</nav>
 </div>
 <%@ include file="../member/owner/o_bottom.jsp"%>

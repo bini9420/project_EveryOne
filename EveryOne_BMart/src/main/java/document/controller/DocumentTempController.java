@@ -26,7 +26,7 @@ import utility.Paging;
 @Controller
 public class DocumentTempController {
 
-	private final String command = "document_temp.dc";
+	private final String command = "/document_temp.dc";
 	private final String getPage = "document_tempBox";
 	private final String gotoPage = "redirect:/document_box.dc";
 

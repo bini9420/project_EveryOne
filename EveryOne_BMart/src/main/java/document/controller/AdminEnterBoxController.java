@@ -19,7 +19,7 @@ import utility.Paging;
 
 @Controller
 public class AdminEnterBoxController {
-	private final String command = "admin_enterBox.dc";
+	private final String command = "/admin_enterBox.dc";
 	private final String getPage = "admin_enterBox";
 	
 	@Autowired
@@ -37,13 +37,15 @@ public class AdminEnterBoxController {
 		map.put("keyword", "%" + keyword + "%");
 		
 		int totalCount = enterDao.getEnterTotalCountForAdmin(map);
-		String url = request.getRequestURI() + this.command; 
+		String url = request.getContextPath() + this.command;
+		System.out.println("enter totalCount: " + totalCount);
 		 
 		Paging pageInfo = new Paging(pageNumber, null, totalCount, url, whatColumn, keyword);
 		model.addAttribute("pageInfo", pageInfo); 
 		
 		List<DocumentBean> lists= enterDao.getAllEnterDocumentForAdmin(map, pageInfo);
 		model.addAttribute("lists", lists);
+		System.out.println("enter lists: " + lists.size());
 
 		return getPage;
 	}

@@ -42,8 +42,10 @@ public class PayInfoController {
 			@RequestParam("qty") int[] qty,
 			@RequestParam("mid") String mid,
 			@RequestParam("mname") String mname,
+			@RequestParam("dFee") int dFee,
 			HttpSession session) {
 		
+		System.out.println("dFee222: "+ dFee );
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -85,7 +87,8 @@ public class PayInfoController {
 			ob.setWay(way);
 			ob.setStatus(0);
 			ob.setPayment(payment);
-			totalAmount += orderPrice;	
+			totalAmount += orderPrice;
+			totalAmount = totalAmount + dFee;
 			olist.add(ob);
             if (pb.getId()=="admin") {
                 payname = "πËπŒªÛ»∏";

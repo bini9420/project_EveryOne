@@ -31,6 +31,7 @@ public class UpdateInterestController {
 								@RequestParam(value="category",required=false) String category, 
 								@RequestParam(value="range",required=false) String range, 
 								@RequestParam(value="keyword",required=false) String keyword, 
+								@RequestParam(value="pageNumber",required=false) String pageNumber, 
 								HttpServletResponse response, HttpSession session) throws IOException {
 		
 		response.setContentType("text/html; charset=UTF-8");
@@ -66,14 +67,14 @@ public class UpdateInterestController {
 			//controller로 넘어온 위치에 따라 돌아갈 곳이 달라짐
 			if(page.equals("category")) {
 				String ca = URLEncoder.encode(category, "UTF-8");
-				return "redirect:/plists.mall?category="+ca+"&range="+range;
+				return "redirect:/plists.mall?category="+ca+"&range="+range+"&pageNumber="+pageNumber;
 				
 			}else if(page.equals("keyword")) {
 				String key = URLEncoder.encode(keyword, "UTF-8");
-				return "redirect:/plists.mall?keyword="+key+"&range="+range;
+				return "redirect:/plists.mall?keyword="+key+"&range="+range+"&pageNumber="+pageNumber;
 				
 			}else if(page.equals("new")) {
-				return "redirect:/plists.mall?range="+range;
+				return "redirect:/plists.mall?range="+range+"&pageNumber="+pageNumber;
 				
 			}else if(page.equals("best")) {
 				return "redirect:/bestLists.mall";
@@ -82,10 +83,13 @@ public class UpdateInterestController {
 				return "redirect:/detail.mall?pnum="+pnum;
 				
 			}else if(page.equals("interest")) {
-				return "redirect:/interest.mall";
+				return "redirect:/interest.mall?range="+range+"&pageNumber="+pageNumber;
 				
 			}else if(page.equals("watch")) {
-				return "redirect:/watch.mall";
+				return "redirect:/watch.mall?range="+range+"&pageNumber="+pageNumber;
+				
+			}else if(page.equals("ad")) {
+				return "redirect:/adProductList.mall?range="+range+"&pageNumber="+pageNumber;
 				
 			}else {
 				return "redirect:/main.mall";

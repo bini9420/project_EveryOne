@@ -3,6 +3,7 @@ package admin.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,19 +33,23 @@ public class AdminMainController {
 	AdminDao adminDao;
 
 	@Autowired
-	SalesDao salesDao;
+	SalesDao salesDao; 
 
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String approve(
 			@RequestParam(value="keyword", required=false) String keyword,
 			@RequestParam(value="pageNumber", required=false) String pageNumber,
-			HttpServletRequest request,
+			HttpServletRequest request, HttpSession session,
 			Model model) {
 		
 		//결재요청 대기건수
 		int count1 = adminDao.getWaitDocumentCountForAdmin();
 		int count2 = adminDao.getWaitEnterCountForAdmin();
-		int waitCount = count1 + count2;
+		int count3 = adminDao.getWaitRcheckCountForAdmin();
+		session.setAttribute("waitEnter", count2);
+		session.setAttribute("waitRcheck", count3);
+		
+		int waitCount = count1 + count2 + count3;
 		model.addAttribute("waitCount", waitCount);
 		
 		//회원 수, 상품 개수  
@@ -113,8 +118,7 @@ public class AdminMainController {
 
 		String barJson = gson.toJson(barArray);
 		model.addAttribute("barJson",barJson);
-
-
+		
 		return getPage;
 	}
 

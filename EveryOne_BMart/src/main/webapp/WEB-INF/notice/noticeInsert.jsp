@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="cs_top.jsp"%>
+<!-- <script type="text/javascript">
+	$(function() {
+		$("#ctgrChoice").val("${param.category}").attr("selected", "selected");
+	});
+</script> -->
 
 <div class="mx-auto h-75 my-5" style="width:90%">
 	<div class="row">
@@ -43,10 +48,13 @@
 							</td>
 						</tr>
 						<tr>
-							<td>카테고리 <select name="category">
-									<option value="공지사항" ${category == '공지사항' ? 'selected' : ''}>공지사항</option>
-                                    					<option value="FAQ" ${category == 'FAQ' ? 'selected' : ''}>FAQ</option>
-							</select>
+							<td>카테고리 <select name="category" ${param.category == 'FAQ' || param.category == '공지사항' ? 'disabled' : ''}>
+									<option value="공지사항" ${param.category == '공지사항' ? 'selected' : ''}>공지사항</option>
+									<option value="FAQ" ${param.category == 'FAQ' ? 'selected' : ''}>FAQ</option>
+								</select>
+								<c:if test="${param.category == 'FAQ' || param.category == '공지사항'}">
+									<input type="hidden" name="category" value="${param.category}">
+								</c:if>
 						</td>
 					</tr>
 					<tr>

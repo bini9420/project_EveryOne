@@ -60,7 +60,7 @@
 					});
 				}
 
-				setInterval(autoRefresh, 30000); // Refresh every 30 seconds
+				setInterval(autoRefresh, 3000); // Refresh every 30 seconds
 			});
 
 	function Delete(nnum, pageNumber) {
@@ -110,7 +110,7 @@
 					<c:if test="${loginInfo.id == 'admin'}">
 						<div class="text-end my-2">
 							<button class='plus_btn'
-								onclick="location.href='insert.nt?whatColumn=${param.whatColumn }&keyword=${param.keyword}'">추가</button>
+								onclick="location.href='insert.nt?category=${param.keyword}'">추가</button>
 						</div>
 					</c:if>
 					<table class="board-table">

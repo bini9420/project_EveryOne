@@ -39,7 +39,8 @@ public class noticeInsertController {
 	}
 	
 	@RequestMapping(value=command, method=RequestMethod.POST)
-	public ModelAndView insert(@ModelAttribute("notice") @Valid NoticeBean notice,
+	public ModelAndView insert(@RequestParam(value = "category", required = false) String category,
+								@ModelAttribute("notice") @Valid NoticeBean notice,
 								BindingResult result) {
 		ModelAndView mav = new ModelAndView();
 		if(result.hasErrors()) {

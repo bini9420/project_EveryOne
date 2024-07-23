@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="mall_top.jsp"%>
 <%@ page import = "javax.servlet.jsp.*" %>
+
 <%
 	String path = request.getContextPath();
 %>

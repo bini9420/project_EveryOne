@@ -103,7 +103,7 @@ $(document).ready(function() {
             success: function(response) {
                 // 리뷰가 등록되었다는 메시지 표시
                 alert("리뷰가 등록되었습니다.");
-                window.opener.location.href = 'orderList.mall';
+                window.opener.location.href = 'mypage.mb?index=review';
                 window.close(); // 현재 창 닫기
             },
             error: function(xhr, status, error) {

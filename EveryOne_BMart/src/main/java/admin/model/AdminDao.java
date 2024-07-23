@@ -17,6 +17,7 @@ import sale.model.OrderInfoBean;
 public class AdminDao {
 	
 	private String namespace = "admin";
+	private String order = "orders.model.Orders";
 	
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
@@ -83,6 +84,7 @@ public class AdminDao {
 	public int getMonthSaleCount() {
 		int count = -1;
 		count = sqlSessionTemplate.selectOne(namespace+".getMonthSaleCount");
+		System.out.println("getMonth:"+count);
 		return count;
 	}
 	
@@ -92,5 +94,11 @@ public class AdminDao {
 		
 		return count;
 	}//getWaitRcheckCountForAdmin
+
+	public int getOrderInfoCount() {
+		int cnt = -1;
+		cnt = sqlSessionTemplate.selectOne(order+".getOrderInfoCount");
+		return cnt;
+	}
 
 }

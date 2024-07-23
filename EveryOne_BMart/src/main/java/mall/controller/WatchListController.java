@@ -39,7 +39,7 @@ public class WatchListController {
 		sb.setId(mb.getId());
 		sb.setRange(range);
 		
-		int totalCount = mallDao.getNewProductCount(sb);
+		int totalCount = mallDao.getWatchCount(sb);
 		String url = request.getContextPath()+this.command;
 		
 		MallPaging pageInfo = new MallPaging(pageNumber, null, totalCount, url, null, range, null);

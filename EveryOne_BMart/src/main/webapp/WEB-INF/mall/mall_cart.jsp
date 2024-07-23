@@ -361,10 +361,14 @@ $(document).ready(function(){
 		<td class="productImg">
 				<input type="hidden" id="pimage" name="pimage" value="${i.pimage}">
 				<c:if test="${i.pimage eq null}">
-					<img src="<%=path%>/resources/img/no-pictures.png" width="50px" height="50px" class="product2">
+					<a href="detail.mall?pnum=${i.pnum}">
+						<img src="<%=path%>/resources/img/no-pictures.png" width="50px" height="50px" class="product2">
+					</a>
 				</c:if>
 				<c:if test="${i.pimage ne null}">
-					<img src="<%=request.getContextPath()+"/resources/uploadImage/"%>${i.pimage}" width="65px" height="65px" class="product2">
+					<a href="detail.mall?pnum=${i.pnum}">
+						<img src="<%=request.getContextPath()+"/resources/uploadImage/"%>${i.pimage}" width="65px" height="65px" class="product2">
+					</a>
 				</c:if>
 		</td>
 		<td class="title">

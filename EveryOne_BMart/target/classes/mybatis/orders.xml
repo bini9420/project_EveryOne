@@ -90,5 +90,9 @@
 	<delete id="deleteOrder">
 		delete from orderinfo where onum = #{onum}
 	</delete>
+	
+	<select id="getOrderInfoCount" resultType="int">
+		select count(*) from orderInfo
+	</select>
 
 </mapper>

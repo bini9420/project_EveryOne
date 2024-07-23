@@ -73,6 +73,7 @@ insert into member(id, name, password, phone1, phone2, phone3, email1, email2) v
 commit;
 
 
+
 --회원 배송지 테이블
 drop sequence addrseq;
 create sequence addrseq
@@ -90,8 +91,8 @@ create table address(
   addr1 varchar2(100),
   addr2 varchar2(30)
 );
-
 insert into address values(addrseq.nextval,'lee','학원','04001','서울 마포구 월드컵북로 21','2층');
+
 
 
 
@@ -100,14 +101,12 @@ drop table business cascade constraints;
 create table business(
   bcode varchar2(30) primary key,
   id varchar2(20) references member(id) on delete cascade,
-  type varchar2(30) not null,
   post varchar2(30),
   addr1 varchar2(100),
   addr2 varchar2(30)
 );
 
-insert into business values('A-1', 'lee', null, '123456', 'aabbcc', '가');
-commit;
+
 
 
 --카테고리 테이블
@@ -134,6 +133,8 @@ insert into category values(cate_seq.nextval,'양념·장류·오일');
 insert into category values(cate_seq.nextval,'음료·커피·생수');
 insert into category values(cate_seq.nextval,'우유·유제품');
 insert into category values(cate_seq.nextval,'생활·기타');
+
+
 
 
 --상품 테이블
@@ -298,34 +299,6 @@ values(seqprod.nextval, 'admin', '서울우유', null, 2900, '1000ml', '1등급이 무려
 
 
 
---전자기기
-insert into product 
-values(seqprod.nextval, 'lee', '전기포트', '전기포트.jpg', 49000, '1개', '대용량, 이중구조 무선 전기주전자', null, '중국',  33, '전자기기', sysdate, 10, 0);
-
-insert into product 
-values(seqprod.nextval, 'lee', '드라이기', '드라이기.jpg', 32000, '1개', '2100W 파원 바람으로 빠른 드라이', null, '대한민국',  33, '전자기기', sysdate, 5, 0);
-
-insert into product 
-values(seqprod.nextval, 'lee', '스탠드형 선풍기', '스탠드형 선풍기.jpg', 50000, '1개', '더위를 물러가게 해주는 여름 필수품', null, '대한민국',  44, '전자기기', sysdate, 22, 0);
-
-insert into product 
-values(seqprod.nextval, 'lee', '컬러 레이저 프린터', '컬러 레이저 프린터.jpg', 290000, '1개', '자동양면, 무선 컬러 프린터', null, '중국',  44, '전자기기', sysdate, 12, 0);
-
-insert into product 
-values(seqprod.nextval, 'lee', '믹서기', '믹서기.jpg', 59000, '1개', '100년 역사의 독일 기술력과 디자인', null, '루마니아',  44, '전자기기', sysdate, 4, 0);
-
-insert into product 
-values(seqprod.nextval, 'lee', '6인용 트위프레셔 밥솥(화이트)', '6인용 트위프레셔 밥솥(화이트).jpg', 250000, '1개', '다양하게 즐기는 새로운 밥맛의 경험', null, '대한민국',  55, '전자기기', sysdate, 33, 1);
-
-insert into product 
-values(seqprod.nextval, 'lee', '블렌드포스 글라스', '블렌드포스 글라스.jpg', 86000, '1개', '테팔 파워엘릭스 기술로 최대 30% 더 빠르게!', null, '중국',  55, '전자기기', sysdate, 15, 1);
-
-insert into product 
-values(seqprod.nextval, 'lee', '쿠쿠 전자레인지', '쿠쿠 전자레인지.jpg', 129000, '1개', '어디서 봐도 깔끔', null, '중국',  55, '전자기기', sysdate, 18, 1);
-
-insert into product 
-values(seqprod.nextval, 'lee', '컴팩트 세라믹 스트레이트너', '컴팩트 세라믹 스트레이트너.jpg', 32000, '1개', '딱 필요한 기능만 모아 모발 손상을 줄임!', null, '중국',  33, '전자기기', sysdate, 8, 1);
-
 
 --최근 본 상품
 drop sequence wseq;
@@ -344,6 +317,8 @@ create table watch(
 );
 
 
+
+
 --찜한 상품
 drop sequence iseq;
 create sequence iseq
@@ -358,6 +333,8 @@ create table interest(
   id varchar2(20) references member(id) on delete cascade,
   pnum number references product(pnum) on delete cascade
 );
+
+
 
 
 --장바구니
@@ -375,6 +352,9 @@ create table cart(
   pnum number references product(pnum) on delete cascade,
   qty number default 1
 );
+
+
+
 
 -- 주문 테이블
 drop sequence seqorder;
@@ -398,43 +378,6 @@ create table orderInfo(
 	orderdate date default sysdate
 );
   
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 3, '2024-06-01');
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 3, '2024-06-01');
-
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'choi', 10, 1, '2024-07-21');
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'jung', 10, 1, '2024-07-21');
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'kang', 10, 1, '2024-07-21');
-
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee',10, 1, '2024-07-11');
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 10, 1, '2024-07-19');
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 10, 1, '2024-07-16');
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 10, 1, '2024-07-14');
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 10, 1, '2024-07-21');
-
-
---공지사항 테이블
-
-drop sequence des_seq;
-
-CREATE SEQUENCE des_seq 
-START WITH 1 
-INCREMENT BY 1 
-NOCACHE;
-
-drop table description CASCADE CONSTRAINTS;
-
-create table description (
-   dnum number primary key,
-   id varchar2(20),
-   FOREIGN KEY (id) REFERENCES member(id),
-   dsubject varchar2(50) not null,
-   dcontent varchar2(1000) not null,
-   ddate date default sysdate,
-   password varchar2(30),
-   ref number,
-   re_step number not null,
-   re_level number not null
-);
 
 
 
@@ -458,17 +401,7 @@ create table review(
 	onum number references orderInfo(onum) on delete cascade
 );
 
-insert into review values(rseq.nextval, 'park', 3, '맛있다!', null, '2024-06-02', 4, 1);
-insert into review values(rseq.nextval, 'park', 3, '맛있어요~!!', null, '2024-06-03', 4, 2);
-insert into review values(rseq.nextval, 'choi', 10, '재구매할 예정', null, sysdate, 5, 3);
-insert into review values(rseq.nextval, 'jung', 10, '그냥그래요', null, sysdate, 3, 4);
-insert into review values(rseq.nextval, 'kang', 10, '평범함', null, sysdate, 3, 5);
 
-insert into review values(rseq.nextval, 'lee', 10, '맛있어요~!!', null, '2024-07-21', 4, 6);
-insert into review values(rseq.nextval, 'lee',10, '최고', null, '2024-07-14', 5, 7);
-insert into review values(rseq.nextval, 'lee', 10, '맛있다', null, '2024-07-16', 5, 8);
-insert into review values(rseq.nextval, 'lee', 10, '짱', null, '2024-07-19', 4, 9);
-insert into review values(rseq.nextval, 'lee', 10, 'soso~~', null, '2024-07-11', 3, 10);
 
 -- 결재문서 테이블
 drop table document cascade constraints;
@@ -502,6 +435,28 @@ insert into state values(1, '승인');
 insert into state values(10, '임시저장');
 
 
+-- 문서 테이블
+drop table document cascade constraints;
+create table document (
+   dnum varchar2(15) primary key,
+   dcategory varchar(30),
+   writer varchar2(30) references member(id) on delete cascade,
+   writeday date default sysdate,
+   title varchar2(100),
+   dcontent varchar2(100),
+   prdname varchar2(30),
+   prdcategory varchar2(30),   
+   request number default 0,
+   reason varchar2(100),
+   approval number default 0,
+   approveday date,
+   okimage varchar2(100),
+   dstatus number references state(snum) on delete set null
+);
+
+
+
+
 -- 리뷰검토 문서 테이블
 drop table review_check cascade constraints;
 create table review_check (
@@ -520,6 +475,8 @@ create table review_check (
 	okimage varchar2(100),
 	dstatus number references state(snum) on delete set null
 );
+
+
 
 
 -- 입점신청 문서 테이블
@@ -543,28 +500,6 @@ create table enter (
 	dstatus number references state(snum) on delete set null
 );
 
-insert into enter 
-values('A-1', 'lee', sysdate, '입점을 신청합니다.', '11223344', '123456', 'aabbcc', '가', 1, null, null, null, 0, sysdate, null, 0);
-insert into enter 
-values('A-2', 'park', sysdate, '입점을 신청합니다.', '1029384756', '234567', 'ddeeff', '나', 1, null, null, null, 0, sysdate, null, 0);
-insert into enter 
-values('A-3', 'choi', sysdate, '입점을 신청합니다.', '1213141516', '345678', 'gghhii', '다', 1, null, null, null, 0, sysdate, null, 0);
-insert into enter 
-values('A-4', 'jung', sysdate, '입점을 신청합니다.', '23242526', '456789', 'jjkkll', '라', 1, null, null, null, 0, sysdate, null, 0);
-insert into enter 
-values('A-5', 'kang', sysdate, '입점을 신청합니다.', '3344556677', '567890', 'mmnnoo', '마', 1, null, null, null, 0, sysdate, null, 0);
-insert into enter 
-values('A-6', 'yoon', sysdate, '입점을 신청합니다.', '5657585950', '678910', 'ppqqrr', '바', 1, null, null, null, 0, sysdate, null, 0);
-insert into enter 
-values('A-7', 'ahn', sysdate, '입점을 신청합니다.', '090807060', '789101', 'ssttuu', '사', 1, null, null, null, 0, sysdate, null, 0);
-insert into enter 
-values('A-8', 'oh', sysdate, '입점을 신청합니다.', '9966887765', '891011', 'vvwwxx', '아', 1, null, null, null, 0, sysdate, null, 0);
-insert into enter 
-values('A-9', 'yeon', sysdate, '입점을 신청합니다.', '44635342', '910112', 'yyyzzz', '자', 1, null, null, null, 0, sysdate, null, 0);
-insert into enter 
-values('A-10', 'yoona', sysdate, '입점을 신청합니다.', '43425746', '101112', 'abcdefg', '차', 1, null, null, null, 0, sysdate, null, 0);
-insert into enter 
-values('A-11', 'glass', sysdate, '입점을 신청합니다.', '68665235', '111213', 'hijklmnop', '카', 1, null, null, null, 0, sysdate, null, 0);
 
 
 -- 공지사항 테이블
@@ -575,18 +510,19 @@ INCREMENT BY 1
 NOCACHE;
 
 drop table notice CASCADE CONSTRAINTS;
-
 create table notice (
 	nnum number primary key,
 	category varchar2(20) not null,
-	subject varchar2(30) not null,
-	content varchar2(100) not null,
+	subject varchar2(100) not null,
+	content varchar2(1000) not null,
 	ndate Date default sysdate,
 	readcount number default 0,
 	noti varchar2(10) default 'n' not null,
 	id varchar2(20) not null,
 	FOREIGN KEY (id) REFERENCES member(id)
 );
+
+
 
 
 --게시판 테이블
@@ -601,7 +537,7 @@ create table description (
 	dnum number primary key,
 	id varchar2(20),
 	FOREIGN KEY (id) REFERENCES member(id),
-	dsubject varchar2(50) not null,
+	dsubject varchar2(100) not null,
 	dcontent varchar2(1000) not null,
 	ddate date default sysdate,
 	password varchar2(30),
@@ -609,6 +545,8 @@ create table description (
 	re_step number not null,
 	re_level number not null
 );
+
+
 
 
 --일정 테이블
@@ -619,12 +557,12 @@ create table schedule (
    endDate date default sysdate
 
 );
-
-
 INSERT INTO schedule VALUES ('b마트 점검', SYSDATE, SYSDATE);
 INSERT INTO schedule VALUES ('b마트 상품등록',  '24-7-15', '24-7-20');
 INSERT INTO schedule VALUES ('b마트 임원모임', '24-7-16','24-7-16');
 INSERT INTO schedule VALUES ('b마트 공지', '24-7-18', '24-7-19');
+
+
 
 commit;
 select * from member;
@@ -635,8 +573,6 @@ select * from watch order by wnum desc;
 select * from interest order by inum desc;
 select * from cart order by cnum desc;
 select * from state;
-
-
 
 
 

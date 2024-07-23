@@ -154,6 +154,19 @@
                 $('#showMoreBtn').hide(); // 더 이상 행이 없으면 더보기 버튼을 숨기게 처리
             }
         }
+        // 각 상품의 가격을 계산하여 totalAmount에 반영
+        $('.orderDiv .second_tr').each(function() {
+            var $row = $(this);
+            var price = parseInt($row.find('.hiddenAmount').val()); // 각 상품의 가격 가져오기
+            
+            // 10000원 초과 시 3000원 배송비 추가
+            if (price > 10000) {
+                price += 3000;
+            }
+            
+            // 총 결제금액을 한국 통화 형식으로 표시하여 해당 상품의 .totalAmount에 넣기
+            $row.find('.totalAmount').text(price.toLocaleString("ko-KR"));
+        });
     });
 
     function openReviewPopup(pnum, onum, id, pname) {
@@ -204,7 +217,16 @@
 								</tr>
 								<tr class="second_tr">
 									<td class="productImg_Td">
-										<img src="<%=path%>/resources/img/${plist[status.index].pimage}">
+										<c:if test="${plist[status.index].pimage eq null}">
+											<a href="detail.mall?pnum=${i.pnum}">
+												<img src="<%=path%>/resources/img/no-pictures.png" width="50px" height="50px" class="product2">
+											</a>
+										</c:if>
+										<c:if test="${plist[status.index].pimage ne null}">
+											<a href="detail.mall?pnum=${i.pnum}">
+												<img src="<%=path%>/resources/img/${plist[status.index].pimage}">
+											</a>
+										</c:if>
 									</td>
 									<td class="pname_Td">
 										<span>${plist[status.index].pname}</span>
@@ -216,7 +238,8 @@
 										${i.pamount}개
 									</td>
 									<td>
-										<fmt:formatNumber value="${i.price}" pattern="###,###"></fmt:formatNumber>원
+										<input type="hidden" class="hiddenAmount" value="${i.price}">
+										<span class="totalAmount"></span>원
 									</td>
 									<td class="orderdate">
 										<fmt:parseDate pattern="yyyy-MM-dd" value="${i.orderdate}" var="ymd"/> 

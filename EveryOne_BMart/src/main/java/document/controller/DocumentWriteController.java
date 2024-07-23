@@ -1,9 +1,9 @@
 package document.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -17,7 +17,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
 
 import document.model.DocumentBean;
 import document.model.DocumentDao;
@@ -74,16 +73,19 @@ public class DocumentWriteController {
 			map.put("prdcategory", document.getPrdcategory()); 
 			
 			int count = documentDao.getPrdcategoryById(map); //결재 Form에 작성한 상품 카테고리로 신청한 적이 있는지 조회
-			System.out.println("count: " + count);
 			if(count == 0) {
 				dnum += "B-" + num;
 			} else if(count > 0){
-				out.println("<script>");
-				out.println("alert('입력하신 상품 카테고리로 작성한 상품등록문서가 존재합니다'); location.href='omain.mb'");
-				out.println("</script>");
-				out.flush();
-				
-				return null;
+				List<DocumentBean> lists = documentDao.checkApprovePrdcategory(map); //반려돼도 재신청할 수 있도록 해당 상품카테고리 신청건이 존재할 때 반려건 확인
+				if(lists == null) {
+					out.println("<script>");
+					out.println("alert('입력하신 상품 카테고리로 작성한 상품등록문서가 존재합니다'); location.href='omain.mb'");
+					out.println("</script>");
+					out.flush();
+					
+					return null;
+				}
+				dnum += "B-" + num;
 			}
 		} else if(category.equals("광고요청")) {
 			dnum += "C-" + num; 

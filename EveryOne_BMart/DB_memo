@@ -470,7 +470,24 @@ insert into review values(rseq.nextval, 'lee', 10, '맛있다', null, '2024-07-16',
 insert into review values(rseq.nextval, 'lee', 10, '짱', null, '2024-07-19', 4, 9);
 insert into review values(rseq.nextval, 'lee', 10, 'soso~~', null, '2024-07-11', 3, 10);
 
-
+-- 결재문서 테이블
+drop table document cascade constraints;
+create table document (
+	dnum varchar2(15) primary key,
+	dcategory varchar(30),
+	writer varchar2(30) references member(id) on delete cascade,
+	writeday date default sysdate,
+	title varchar2(100),
+	dcontent varchar2(100),
+	prdname varchar2(30),
+	prdcategory varchar2(30),	
+	request number default 0,
+	reason varchar2(100),
+	approval number default 0,
+	approveday date,
+	okimage varchar2(100),
+	dstatus number references state(snum) on delete set null
+);
 
 -- 결재상태 테이블
 drop table state cascade constraints;

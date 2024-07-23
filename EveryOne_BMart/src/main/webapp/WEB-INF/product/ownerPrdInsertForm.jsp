@@ -38,7 +38,7 @@
 	}
 </style>
 
-<%@ include file="../member/owner/o_top.jsp" %>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	//상품 등록 버튼 클릭 -> 유효성 검사 & insert
@@ -55,10 +55,7 @@
 	                if (!form.checkValidity()) {
 	                    event.preventDefault()
 	                    event.stopPropagation()
-	                } else {
-	                    form.submit(); 
-	                }
-	
+	                } 
 	                form.classList.add('was-validated')
 	            }, false)
 	        })
@@ -70,6 +67,7 @@
 	}
 </script>
 
+<%@ include file="../member/owner/o_top.jsp" %>
 <form name="myform" method="post" enctype="multipart/form-data" novalidate>
 	<!-- Begin Page Content -->
 	 <div class="container">

@@ -87,6 +87,10 @@
 	</div>
 </div>
 
+	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
 <!-- 삭제 클릭했을 때 비밀번호 입력 모달 -->
 <div class="modal fade" id="descriptionDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">

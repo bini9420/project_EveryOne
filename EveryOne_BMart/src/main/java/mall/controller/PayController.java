@@ -79,7 +79,7 @@ public class PayController {
 			ob.setPrice((int) orderprice[i]);
 			ob.setContents(payInfo.getContents());
 			ob.setWay(payInfo.getWay());
-			ob.setStatus(0);
+			ob.setStatus(2);
 			ob.setPayment(payInfo.getPayment());
 			cnt = mallDao.insertOrder(ob);
 			olist.add(ob);

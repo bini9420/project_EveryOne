@@ -21,7 +21,7 @@ import utility.Paging;
 @Controller
 public class DocumentReturnController {
 	
-	private final String command = "document_return.dc";
+	private final String command = "/document_return.dc";
 	private final String getPage = "document_returnBox";
 	
 	@Autowired

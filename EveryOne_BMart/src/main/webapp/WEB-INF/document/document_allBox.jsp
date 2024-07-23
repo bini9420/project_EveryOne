@@ -32,7 +32,7 @@
 	}
 </script>
 
-<div class="container-fruid" id="allBoxContainer">
+<div class="container-fruid h-100" id="allBoxContainer">
 	<div class="row">
 		<div class="col-lg-12 col-md-6 mb-4">
              <div class="card border-left-primary shadow h-100 py-2">

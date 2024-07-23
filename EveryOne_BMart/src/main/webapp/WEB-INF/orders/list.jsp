@@ -75,12 +75,6 @@
 
 <script type="text/javascript" src="resources/js/jquery.js"></script>
 <script>
-    function show() {
-        $('#documentWrite .modal-content').load("document_write.dc");
-        $('#documentWrite').modal();
-        $('#requestDocument').css('bgcolor', '#2ac1bc');
-        $('#requestDocumnet').css('border-color', '#bae8e6');
-    }
     document.getElementById('yearSelect').addEventListener('change', function() {
         document.getElementById('dateForm').submit();
     });
@@ -94,10 +88,6 @@
 	<!-- Page Heading -->
 	<div class="d-sm-flex align-items-center justify-content-between mb-3">
 		<h1 class="h3 mb-0 text-gray-800"></h1>
-		<a href="javascript:show()" data-bs-toggle="modal" data-bs-target="#documentWrite" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-			<i class="fas fa-download fa-sm text-white-50" id="requestDocument"></i>
-			결재 요청
-		</a>
 
 		<div class="modal fade" id="documentWrite" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">

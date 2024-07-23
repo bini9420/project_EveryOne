@@ -25,6 +25,7 @@
 	<link href="resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 	
 	<!-- CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 	<link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-rounded/css/uicons-bold-rounded.css">
@@ -195,25 +196,29 @@
 			<div class="sidebar-heading">Approve</div>
 
 			<!-- 결재함 메뉴 -->
-			<li class="nav-item">
-			   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages"> 
-			      <i class="fas fa-fw fa-folder"></i> 
-			      <span>결재함</span>
-			   </a>
-			   <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-			      <div class="bg-white py-2 collapse-inner rounded">
-			         <h6 class="collapse-header">결재함</h6>
-			         <a class="collapse-item" href="admin_allBox.dc">전체문서함</a> 
-			         <a class="collapse-item" href="admin_waitBox.dc">결재대기함</a> 
-			         <a class="collapse-item" href="admin_complete.dc">결재완료함</a> 
-			         <div class="collapse-divider"></div>
-			         <hr>
-			         <h6 class="collapse-header">기타</h6>
-			         <a class="collapse-item" href="admin_enterBox.dc">입점신청함</a>
-			         <a class="collapse-item" href="admin_rcheckBox.dc">리뷰검토함</a>
-			      </div>
-			   </div>
-			</li>
+	         <li class="nav-item">
+	            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages"> 
+	               <i class="fas fa-fw fa-folder"></i> 
+	               <span>결재함</span>
+	            </a>
+	            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+	               <div class="bg-white py-2 collapse-inner rounded">
+	                  <h6 class="collapse-header">결재함</h6>
+	                  <a class="collapse-item" href="admin_allBox.dc">전체문서함</a> 
+	                  <a class="collapse-item" href="admin_waitBox.dc">결재대기함</a> 
+	                  <a class="collapse-item" href="admin_complete.dc">결재완료함</a> 
+	                  <div class="collapse-divider"></div>
+	                  
+	                  <hr>
+	                  
+	                  <h6 class="collapse-header">기타</h6>
+	                  <a class="collapse-item" href="admin_enterBox.dc">입점신청함 &nbsp;&nbsp;
+	                  	<span class="badge text-bg-danger"><c:out value="${'+'}${waitEnter}" /></span></a>
+	                  <a class="collapse-item" href="admin_rcheckBox.dc">리뷰검토함 &nbsp;&nbsp;
+	                  	<span class="badge text-bg-danger"><c:out value="${'+'}${waitRcheck}" /></span></a>
+	               </div>
+	            </div>
+	         </li>
 
 			<li class="nav-item">
 				<a class="nav-link" href="list.nt"> 

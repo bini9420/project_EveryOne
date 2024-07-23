@@ -609,7 +609,6 @@ INSERT INTO schedule VALUES ('b마트 상품등록',  '24-7-15', '24-7-20');
 INSERT INTO schedule VALUES ('b마트 임원모임', '24-7-16','24-7-16');
 INSERT INTO schedule VALUES ('b마트 공지', '24-7-18', '24-7-19');
 
-
 commit;
 select * from member;
 select * from business;
@@ -619,8 +618,6 @@ select * from watch order by wnum desc;
 select * from interest order by inum desc;
 select * from cart order by cnum desc;
 select * from state;
-
-
 
 
 

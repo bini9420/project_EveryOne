@@ -116,8 +116,8 @@
 	</insert>
 	
 	<select id="getDescriptionForOwner" resultType="DescriptionBean">
-		select rownum, dsubject, ddate from
-		(select rownum, dsubject, ddate from description where id='admin' order by ddate desc)
+		select * from
+		(select rownum, dnum, id, dsubject, dcontent, ddate from description order by ddate desc)
 		where rownum <![CDATA[<=]]> 5
 	</select>
 	

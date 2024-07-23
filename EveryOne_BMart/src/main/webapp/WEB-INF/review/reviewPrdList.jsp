@@ -156,7 +156,7 @@ h6 {
 							<td>${review.id}</td>
 							<td>${review.score}</td>
 							<td>${review.rcomment}</td>
-							<td><img src="${pageContext.request.contextPath}/resources/image/${review.image}" alt="Review Image" width="100" /></td>
+							<td><img src="${pageContext.request.contextPath}/resources/uploadImage/${review.image}" alt="Review Image" width="100" /></td>
 							<c:if test="${loginInfo.id != 'admin'}">
 							<td>
 								<button onClick="#">리뷰 검토 요청</button>

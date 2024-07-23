@@ -57,22 +57,13 @@ public class DocumentRequestController {
 			
 		//상품 카테고리(prdcategory) 설정
 		if(document.getPrdcategory() == null) {
-			document.setPrdcategory("prdcategory");
+			document.setPrdcategory("X");
 		}
 				
 		//상품명(prdname) 설정
 		if(document.getPrdname() == null) {
-			document.setPrdname("prdname");
+			document.setPrdname("X");
 		}
-				
-		System.out.println("dno: " + document.getDnum());
-		System.out.println("dcategory: " + document.getDcategory());
-		System.out.println("writer: " + document.getWriter());
-		System.out.println("writeday: " + document.getWriteday());
-		System.out.println("title: " + document.getTitle());
-		System.out.println("dcontent: " + document.getDcontent());
-		System.out.println("prdcategory: " + document.getPrdcategory());
-		System.out.println("prdname: " + document.getPrdname());
 		
 		if(documentDao.requestDocument(document) > 0) {
 			out.println("<script>");

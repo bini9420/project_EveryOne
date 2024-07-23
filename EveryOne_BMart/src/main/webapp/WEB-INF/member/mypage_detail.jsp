@@ -4,17 +4,17 @@
 <% String path = request.getContextPath(); %>
 
 <style type="text/css">
-	.orderListTable{
+	table{
 		width: 100%;
 		margin: auto;
 		border: 0px;
 		color: #414141;
 		text-align: center;
 	}
-	.orderListTable th{
+	th{
 		padding: 15px;
 	}
-	.orderListTable td{
+	td{
 		padding: 7px;
 		width: 20px;
 	}
@@ -95,6 +95,8 @@
 
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.js"></script>
 <script type="text/javascript">
+<script type="text/javascript" src="<%=path%>/resources/js/jquery.js"></script>
+<script type="text/javascript">
     $(document).ready(function() {
         // 문서가 준비되면 실행될 코드
         $('.ronum').each(function() {
@@ -157,8 +159,8 @@
             var $row = $(this);
             var price = parseInt($row.find('.hiddenAmount').val()); // 각 상품의 가격 가져오기
             
-            // 10000원 초과 시 3000원 배송비 추가
-            if (price > 10000) {
+            // 10000원 미만 3000원 배송비 추가
+            if (price < 10000) {
                 price += 3000;
             }
             
@@ -188,7 +190,7 @@
 					<div class="padrentDiv">
 						<div class="orderDiv">
 						<form action="insertForm.rv" method="post">
-						<table class="orderListTable">
+						<table>
 							<c:forEach var="i" begin="0" end="${fn:length(olist) - 1}" items="${olist}" step="1" varStatus="status">
 							<input type="hidden" name="pnum" value="${i.pnum}">
 							<input type="hidden" name="onum" value="${i.onum}">
@@ -222,7 +224,7 @@
 										</c:if>
 										<c:if test="${plist[status.index].pimage ne null}">
 											<a href="detail.mall?pnum=${i.pnum}">
-												<img src="<%=path%>/resources/uploadImage/${plist[status.index].pimage}">
+												<img src="<%=path%>/resources/img/${plist[status.index].pimage}">
 											</a>
 										</c:if>
 									</td>
@@ -455,6 +457,14 @@
 				    			<tr>
 				    				<td class="pt-2 ps-4 text-muted">
 				    					${rd.pname}
+				    				</td>
+				    			</tr>
+				    			<tr>
+				    				<td class="pt-2 ps-4">
+				    					<c:if test="${rd.image ne null}">
+						    				<% String img = request.getContextPath()+"/resources/uploadImage/"; %>
+						    				<img src="<%=img%>${rd.image}" style="width: 80">
+						    			</c:if>
 				    				</td>
 				    			</tr>
 				    			<tr>

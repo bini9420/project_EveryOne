@@ -171,8 +171,8 @@
             var $row = $(this);
             var price = parseInt($row.find('.hiddenAmount').val()); // 각 상품의 가격 가져오기
             
-            // 10000원 초과 시 3000원 배송비 추가
-            if (price > 10000) {
+            // 10000원 미만 3000원 배송비 추가
+            if (price < 10000) {
                 price += 3000;
             }
             

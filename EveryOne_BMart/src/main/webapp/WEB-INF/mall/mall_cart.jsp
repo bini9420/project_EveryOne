@@ -243,28 +243,31 @@ $(document).ready(function(){
 	    $("#totalAmount").val(totalAmount.toLocaleString("ko-KR"));
 	    $("#totalAmount2").text(totalPrice.toLocaleString("ko-KR"));
 	}
+	
+	function allCheck(obj) {
+	    var check = obj.checked;
+	    if (check == true) {
+	        $('.rowSelect').prop('checked', true);
+	    } else {
+	        $('.rowSelect').prop('checked', false);
+	    }
+	    calculateTotalAmount(); // Call the function to update the total amount
+	}
 
-	function allCheck(obj){
-		var check = obj.checked;
-		
-		if(check==true){
-			$('.rowSelect').prop('checked', true);
-		}else{
-			$('.rowSelect').prop('checked', false);
-		}
+
+	function checkTest() {
+	    var rowCnt = $('input:checkbox[name="rowSelect"]').length;
+	    var rowChkCnt = $('input:checkbox[name="rowSelect"]:checked').length;
+	    
+	    if (rowCnt != rowChkCnt) {
+	        $('input:checkbox[id="selectAll"]').prop("checked", false);
+	    } else {
+	        $('input:checkbox[id="selectAll"]').prop("checked", true);
+	    }
+	    calculateTotalAmount(); // Call the function to update the total amount
 	}
-	function checkTest(){
-		var rowBox = document.getElementById("rowSelect");
-		var allBox = document.getElementById("selectAll");
-		var rowCnt = $('input:checkbox[name="rowSelect"]').length;
-		var rowChkCnt = $('input:checkbox[name="rowSelect"]:checked').length;
-		
-		if(rowCnt != rowChkCnt){
-			$('input:checkbox[id="selectAll"]').prop("checked", false);
-		}else{
-			$('input:checkbox[id="selectAll"]').prop("checked", true);
-		}
-	}
+
+
 	
 	function update(){
          var checkedBoxes = $('input:checkbox[name="rowSelect"]:checked');

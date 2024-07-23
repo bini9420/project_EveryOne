@@ -363,4 +363,9 @@ public class DocumentDao {
 		return count;
 	}//getPrdcategoryById
 
+	//★ 폐점요청 승인시 신청한 ID로 등록한 상품 삭제
+	public void deleteProductById(String writer) {
+		sqlSessionTemplate.delete(namespace + ".deleteProductById", writer);
+	}//deleteProductById
+
 }

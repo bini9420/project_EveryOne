@@ -526,4 +526,8 @@
 	<select id="getPrdcategoryById" resultType="int">
 		select count(*) from document where writer=#{id} and prdcategory=#{prdcategory}
 	</select>
+	
+	<delete id="deleteProductById">
+		delete from product where id=#{id}
+	</delete>
 </mapper>

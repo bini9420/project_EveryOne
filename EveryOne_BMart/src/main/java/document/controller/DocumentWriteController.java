@@ -87,7 +87,7 @@ public class DocumentWriteController {
 			}
 		} else if(category.equals("堡绊夸没")) {
 			dnum += "C-" + num; 
-		} else if(category.equals("企诀夸没")) {
+		} else if(category.equals("企诀脚没")) {
 			dnum += "D-" + num;
 		} 
 		document.setDnum(dnum);

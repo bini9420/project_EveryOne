@@ -4,17 +4,17 @@
 <% String path = request.getContextPath(); %>
 
 <style type="text/css">
-	table{
+	.orederTable{
 		width: 100%;
 		margin: auto;
 		border: 0px;
 		color: #414141;
 		text-align: center;
 	}
-	th{
+	.orederTable th{
 		padding: 15px;
 	}
-	td{
+	.orederTable td{
 		padding: 7px;
 		width: 20px;
 	}
@@ -177,7 +177,7 @@
 					<div class="padrentDiv">
 						<div class="orderDiv">
 						<form action="insertForm.rv" method="post">
-						<table>
+						<table class="orederTable">
 							<c:forEach var="i" begin="0" end="${fn:length(olist) - 1}" items="${olist}" step="1" varStatus="status">
 							<input type="hidden" name="pnum" value="${i.pnum}">
 							<input type="hidden" name="onum" value="${i.onum}">

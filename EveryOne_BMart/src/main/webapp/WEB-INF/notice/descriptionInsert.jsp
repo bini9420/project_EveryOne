@@ -37,10 +37,10 @@
 
 <%@include file="../common/common.jsp"%>
 
-<c:if test="${id eq admin}">
+<c:if test="${id eq 'admin'}">
 	<%@ include file="../admin/a_top.jsp"%>
 </c:if>
-<c:if test="${id ne admin}">
+<c:if test="${id ne 'admin'}">
 	<%@ include file="../member/owner/o_top.jsp"%>
 </c:if>
 

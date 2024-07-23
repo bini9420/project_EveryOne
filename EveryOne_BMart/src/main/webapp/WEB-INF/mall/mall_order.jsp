@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../common/common.jsp" %> 
 <%@ include file="../mall/mall_top.jsp"%> 
 
 <%
@@ -220,7 +219,12 @@ function payButton(){
 	<input type="hidden" name="mid" value="${id}">
 	<tr class="product">
 		<td class="productImg">
+			<c:if test="${i.pimage eq null}">
 				<img src="<%=path%>/resources/img/no-pictures.png" width="50px" height="50px"> 
+			</c:if>
+			<c:if test="${i.pimage ne null}">
+				<img src="<%=request.getContextPath()+"/resources/uploadImage/"%>${i.pimage}" width="50px" height="50px"> 
+			</c:if>
 		</td>
 		<td>
 			${i.pname}

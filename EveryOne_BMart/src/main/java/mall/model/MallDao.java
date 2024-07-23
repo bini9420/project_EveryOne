@@ -17,7 +17,6 @@ import model.InterestBean;
 import model.MemberBean;
 import model.OrdersBean;
 import model.ProductBean;
-import model.ReviewBean;
 import model.ReviewDetailBean;
 import model.SearchBean;
 import model.WatchBean;
@@ -334,6 +333,20 @@ public class MallDao {
 		List<ProductBean> adProductList = new ArrayList<ProductBean>();
 		adProductList = sqlSessionTemplate.selectList(product+".getAdProductList", sb, rb);
 		return adProductList;
+	}
+
+	//찜한 상품 개수 조회
+	public int getInterestCount(SearchBean sb) {
+		int count = -1;
+		count = sqlSessionTemplate.selectOne(product+".getInterestCount", sb);
+		return count;
+	}
+
+	//최근 본 상품 개수 조회
+	public int getWatchCount(SearchBean sb) {
+		int count = -1;
+		count = sqlSessionTemplate.selectOne(product+".getWatchCount", sb);
+		return count;
 	}
 
 }

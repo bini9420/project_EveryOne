@@ -398,8 +398,9 @@ create table orderInfo(
 	orderdate date default sysdate
 );
   
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 3, '2024-06-01');
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 3, '2024-06-01');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 1, '2024-06-01');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'park', 3, 1, '2024-06-01');
+
 
 insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'choi', 10, 1, '2024-07-21');
 insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'jung', 10, 1, '2024-07-21');
@@ -407,9 +408,14 @@ insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextva
 
 insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee',10, 1, '2024-07-11');
 insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 10, 1, '2024-07-19');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee',10, 5, '2024-07-11');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 10, 5, '2024-07-19');
 insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 10, 1, '2024-07-16');
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 10, 1, '2024-07-14');
-insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 10, 1, '2024-07-21');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 10, 1, '2024-08-14');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 10, 2, '2024-08-21');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 10, 20, '2024-09-21');
+insert into orderInfo(onum, id, pnum, pamount, orderdate) values(seqorder.nextval, 'lee', 10, 1, '2024-09-21');
+
 
 
 --공지사항 테이블
@@ -548,6 +554,8 @@ insert into enter
 values('A-10', 'yoona', sysdate, '입점을 신청합니다.', '43425746', '101112', 'abcdefg', '차', 1, null, null, null, 0, sysdate, null, 0);
 insert into enter 
 values('A-11', 'glass', sysdate, '입점을 신청합니다.', '68665235', '111213', 'hijklmnop', '카', 1, null, null, null, 0, sysdate, null, 0);
+insert into enter 
+values('A-12', 'do', sysdate, '입점을 신청합니다.', '68665235', '111333', 'wewewe', '타', 1, null, null, null, 0, sysdate, null, 0);
 
 
 -- 공지사항 테이블

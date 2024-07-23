@@ -9,4 +9,7 @@
 	<select id="getAllCategory" resultType="category">
 		select * from category
 	</select>
+	<select id="getCategoryList" resultType="category">
+		select * from category where num between 1 and 10
+	</select>
 </mapper>

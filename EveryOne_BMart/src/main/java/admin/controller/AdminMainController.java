@@ -68,7 +68,7 @@ public class AdminMainController {
 		model.addAttribute("docList", docList);
 		
 		
-		//월별 총 수입
+		//연 수입
 		int saleList=adminDao.getMonthSaleCount();
 		model.addAttribute("monthSale",saleList);
 		

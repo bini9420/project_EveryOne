@@ -3,8 +3,6 @@
 <%@include file="../admin/a_top.jsp"%>
 
 
-<%String pcate[]={"쌀/잡곡/견과","국/탕/찌개","음료/커피/생수","정육/수산/계란","라면/면","과일/채소","양념/장류/오일","우유/유제품","햄/어묵/통조림","생활/기타"}; %>
-
 <form:form commandName="product" name="myform" action="adminProductInsert.prd" method="post" enctype="multipart/form-data">
 
 	<input type="hidden" name="pageNumber" value="${pageNumber}">
@@ -26,9 +24,9 @@
 					<th>카테고리</th>
 					<td>
 						<select name="pcategory">
-							<c:forEach var="cate" items="<%=pcate %>">
-								<option value="${cate}"
-									<c:if test="${product.cate eq cate}">selected</c:if>>${cate}</option>
+							<c:forEach var="category" items="${cate}">
+								<option value="${category.name}"
+									<c:if test="${product.pcategory eq category.name}">selected</c:if>>${category.name}</option>
 							</c:forEach>
 						</select>
 					</td>

@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import model.CategoryBean;
 import model.ProductBean;
 import utility.MemberListPaging;
 import utility.PagingPlus;
@@ -17,6 +18,7 @@ import utility.PagingPlus;
 public class ProductDao {
 
 	private String namespace = "product";
+	private String namespace2 = "category";
 
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
@@ -45,6 +47,14 @@ public class ProductDao {
 		return count;
 	}// getTotalCount
 
+	
+	public List<CategoryBean> getCategoryList(){
+		List<CategoryBean> clists = new ArrayList<CategoryBean>();
+		clists= sqlSessionTemplate.selectList(namespace2+".getCategoryList");
+		System.out.println("clists.size()"+clists.size());
+		return clists;
+	}
+	
 	public int insertProduct(ProductBean pb) {
 		int cnt = -1;
 		cnt = sqlSessionTemplate.insert(namespace + ".insertProduct", pb);

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="mall_top.jsp"%>
-<%@include file="../common/common.jsp" %>  
 <%@ page import = "javax.servlet.jsp.*" %>
 <%
 	String path = request.getContextPath();
@@ -29,7 +28,7 @@
 	.cartTable td{
 		padding: 10px;
 	}
-	img{
+	.cartTable img{
 		display: block;
 		margin: auto;
 	}
@@ -119,7 +118,7 @@
 	.header{
 		margin-top: 40px;
 		margin-bottom: 10px;
-		font-size: 20px;
+		font-size: 30px;
 		font-weight: bold;
 		text-align: center;
 		color: #414141;
@@ -412,8 +411,7 @@ $(document).ready(function(){
 		<td class="dFee" colspan="6">
 			<p class="dtext">1만원 이상 구매 시 무료배송</p>
 			배송비: &ensp; 
-			<span id="delieveryFee2" >
-			</span>원
+			<span id="delieveryFee2" ></span>원
 			<input type="hidden" id="dFee2" name="dFee2" value="">
 		</td>
 	</tr>
@@ -421,8 +419,7 @@ $(document).ready(function(){
 		<td class="total" colspan="6">
 			결제 예정 금액:&ensp; 
 			<input type="hidden" id="totalAmount" value="">
-			<span id="totalAmount2" >
-			</span>원<br>
+			<span id="totalAmount2" ></span>원<br>
 		</td>
 	</tr>
 	<tr>

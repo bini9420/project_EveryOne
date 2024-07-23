@@ -4,17 +4,17 @@
 <% String path = request.getContextPath(); %>
 
 <style type="text/css">
-	table{
+	.orderList{
 		width: 100%;
 		margin: auto;
 		border: 0px;
 		color: #414141;
 		text-align: center;
 	}
-	th{
+	.orderList th{
 		padding: 15px;
 	}
-	td{
+	.orderList td{
 		padding: 7px;
 		width: 20px;
 	}
@@ -93,8 +93,6 @@
 	}
 </style>
 
-<script type="text/javascript" src="<%=path%>/resources/js/jquery.js"></script>
-<script type="text/javascript">
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -190,7 +188,7 @@
 					<div class="padrentDiv">
 						<div class="orderDiv">
 						<form action="insertForm.rv" method="post">
-						<table>
+						<table class="orderList">
 							<c:forEach var="i" begin="0" end="${fn:length(olist) - 1}" items="${olist}" step="1" varStatus="status">
 							<input type="hidden" name="pnum" value="${i.pnum}">
 							<input type="hidden" name="onum" value="${i.onum}">
@@ -224,7 +222,7 @@
 										</c:if>
 										<c:if test="${plist[status.index].pimage ne null}">
 											<a href="detail.mall?pnum=${i.pnum}">
-												<img src="<%=path%>/resources/img/${plist[status.index].pimage}">
+												<img src="<%=path%>/resources/uploadImage/${plist[status.index].pimage}">
 											</a>
 										</c:if>
 									</td>
@@ -457,14 +455,6 @@
 				    			<tr>
 				    				<td class="pt-2 ps-4 text-muted">
 				    					${rd.pname}
-				    				</td>
-				    			</tr>
-				    			<tr>
-				    				<td class="pt-2 ps-4">
-				    					<c:if test="${rd.image ne null}">
-						    				<% String img = request.getContextPath()+"/resources/uploadImage/"; %>
-						    				<img src="<%=img%>${rd.image}" style="width: 80">
-						    			</c:if>
 				    				</td>
 				    			</tr>
 				    			<tr>

@@ -9,11 +9,12 @@
 	
 	a {
 		text-decoration: none;
-		color: #00C7AE;
+		color: rgb(42, 193, 188);
 	}
 	
 	a:hover {
 		text-decoration: underline;
+		font-weight: bold
 	}
 	
 	.paging {

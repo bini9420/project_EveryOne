@@ -177,8 +177,6 @@ function payButton(){
 		return;
 	}else if(payment=='신용카드'){
 		window.open('paypage.mall?pnum='+pnum+'&message='+message+'&way='+way+'&payment='+payment+'&qty='+qty+'&mid='+mid+'&mname='+mname+'&dFee='+dFee, '_blank', options);
-	}else if(payment=='무통장입금'){
-		window.open('paypage.mall?pnum='+pnum+'&message='+message+'&way='+way+'&payment='+payment+'&qty='+qty+'&mid='+mid+'&mname='+mname, '_blank', options);
 	}
 	
 }

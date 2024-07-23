@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../mall/mall_top.jsp"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
 	String path = request.getContextPath();
 %>
 
 <style type="text/css">
-	table{
+	.orderListTable{
 		width: 90%;
 		margin: auto;
 		border: 0px;
@@ -24,12 +23,12 @@
 		padding-bottom: 10px;
 		box-shadow: 2px 2px 2px 2px #a8a8a8;
 	}
-	th{
+	.orderListTable th{
 		font-size: 18px;
 		padding: 15px;
 		color: white;
 	}
-	td{
+	.orderListTable td{
 		padding: 7px;
 		width: 20px;
 	}
@@ -202,7 +201,7 @@
 <div class="padrentDiv">
 	<div class="orderDiv">
 	<form action="insertForm.rv" method="post">
-	<table>
+	<table class="orderListTable">
 		<c:forEach var="i" begin="0" end="${fn:length(olist) - 1}" items="${olist}" step="1" varStatus="status">
 		<input type="hidden" name="pnum" value="${i.pnum}">
 		<input type="hidden" name="onum" value="${i.onum}">

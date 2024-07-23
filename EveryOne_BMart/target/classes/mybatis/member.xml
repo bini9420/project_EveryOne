@@ -134,4 +134,7 @@
 		select * from orderinfo 
 		where id = #{id}
 	</select>
+	<select id="getReivewCountByOnum" resultType="int">
+		select count(*) from review where onum = #{onum}
+	</select>
 </mapper>

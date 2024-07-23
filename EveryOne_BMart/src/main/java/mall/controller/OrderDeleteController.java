@@ -13,7 +13,7 @@ import mall.model.MallDao;
 public class OrderDeleteController {
 	
 	private final String command = "/deleteOrder.mall";
-	private final String getPage = "redirect:/orderList.mall";
+	private final String getPage = "redirect:/mypage.mb?index=orderList";
 	
 	@Autowired
 	MallDao mallDao;

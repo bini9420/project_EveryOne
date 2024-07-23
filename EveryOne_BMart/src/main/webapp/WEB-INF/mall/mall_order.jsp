@@ -17,7 +17,7 @@
     
 
 <style>
-	table{
+	.orderTable{
 		margin-top:50px;
 		margin-bottom: 40px;
 		margin-left: 15%;
@@ -38,7 +38,7 @@
 		font-size: 16px;
 		color: #414141;
 	}
-	td{
+	.orderTable td{
 		padding: 20px;
 		font-size: 14px;
 		color: #414141;
@@ -103,13 +103,12 @@
 	.payDiv input{
 		text-align: center;
 		height: 50px;
-		width: 190px;
+		width: 180px;
 		font-size: 20px;
 		font-weight: bold;
 		color: #ffffff;
-		background-color: #1a7cff;
+		background-color: #2ac1bc;
 	}
-
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -206,7 +205,7 @@ function payButton(){
 <body>
 <h4 class="title">주문서</h4>
 <form:form id="paymentForm" action="paymentpage.ct" method="get"> 
-<table class="">
+<table class="orderTable">
 	<tr class="productInfoTr">
 		<td colspan="4">
 			<span>주문 상품</span>
@@ -234,7 +233,7 @@ function payButton(){
 	</tr>
 	</c:forEach>
 </table>
-<table class="memberInfoTb">
+<table class="memberInfoTb orderTable">
 		<tr class="memberInfoTr">
 			<td>
 				<span>주문자 정보</span>
@@ -267,7 +266,7 @@ function payButton(){
 			</td>
 		</tr>
 </table>
-<table class="delieveryInfoTb">
+<table class="delieveryInfoTb orderTable">
 		<tr class="delieveryInfoTr">
 			<td>
 				<span>배송 정보</span>
@@ -307,7 +306,7 @@ function payButton(){
 			</td>
 		</tr>
 </table>
-<table class="paymentInfoTb">
+<table class="paymentInfoTb orderTable">
 		<tr class="paymentInfoTr">
 			<td>
 				<span>결제 수단</span>
@@ -354,7 +353,7 @@ function payButton(){
 	<div class="sideBannerDiv3">
 		<div class="payDiv">
 			<div class="pay2">
-				<input type="button" class="payBtn" value="결제하기" onclick="payButton()">
+				<input type="button" class="btn btn-primary btn-lg" value="결제하기" onclick="payButton()">
 			</div>
 		</div>
 	</div>

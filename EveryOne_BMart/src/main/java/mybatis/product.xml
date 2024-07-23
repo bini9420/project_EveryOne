@@ -150,15 +150,6 @@
 	<!-- 신상품에 해당하는 상품 조회 -->
 	<select id="getNewProductCount" resultType="int">
 		select count(*) from product where inputdate between sysdate-3 and sysdate
-		<if test="range == 'recently'">
-			order by pnum desc
-		</if>
-		<if test="range == 'highPrice'">
-			order by price desc
-		</if>
-		<if test="range == 'rowPrice'">
-			order by price
-		</if>
 	</select>
 	
 	<select id="getNewProductRange" resultType="product">
@@ -177,18 +168,6 @@
 	<!-- 검색어에 해당하는 상품 조회 -->
 	<select id="getKeywordCount" resultType="int">
 		select count(*) from product where pname like #{keyword} or pcategory like #{keyword} 
-		<if test="range == 'recently'">
-			order by pnum desc
-		</if>
-		<if test="range == 'highPrice'">
-			order by price desc
-		</if>
-		<if test="range == 'rowPrice'">
-			order by price
-		</if>
-		<if test="range == 'best'">
-			order by ordercount desc
-		</if>
 	</select>
 	
  	<select id="getKeywordRange" resultType="product">
@@ -204,6 +183,33 @@
 		</if>
 		<if test="range == 'best'">
 			order by ordercount desc
+		</if>
+	</select>
+	
+	<!-- 광고상품 조회 -->
+	<select id="getAdProductCount" resultType="int">
+		select count(*) from product where ad = 1 
+		<if test="range == 'recently'">
+			order by pnum desc
+		</if>
+		<if test="range == 'highPrice'">
+			order by price desc
+		</if>
+		<if test="range == 'rowPrice'">
+			order by price
+		</if>
+	</select>
+	
+ 	<select id="getAdProductList" resultType="product">
+		select * from product where ad = 1 
+		<if test="range == 'recently'">
+			order by pnum desc
+		</if>
+		<if test="range == 'highPrice'">
+			order by price desc
+		</if>
+		<if test="range == 'rowPrice'">
+			order by price
 		</if>
 	</select>
 	

@@ -260,7 +260,7 @@ public class MallDao {
 	//상품의 재고 개수 조회
 	public int getStockByPnum(int pnum) {
 		int stock = sqlSessionTemplate.selectOne(product +".getStockByPnum", pnum);
-	return stock;
+		return stock;
 	}
 
 
@@ -320,5 +320,20 @@ public class MallDao {
     	int cnt = sqlSessionTemplate.selectOne(review+".getReivewInfoCount", onum);
     	return cnt;
     }
+    
+    
+    //광고상품 조회
+	public int getAdProductCount(SearchBean sb) {
+		int cnt= -1;
+		cnt = sqlSessionTemplate.selectOne(product+".getAdProductCount", sb);
+		return cnt;
+	}
+
+	public List<ProductBean> getAdProductList(SearchBean sb, MallPaging pageInfo) {
+		RowBounds rb = new RowBounds(pageInfo.getOffset(), pageInfo.getLimit());
+		List<ProductBean> adProductList = new ArrayList<ProductBean>();
+		adProductList = sqlSessionTemplate.selectList(product+".getAdProductList", sb, rb);
+		return adProductList;
+	}
 
 }

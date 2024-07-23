@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import model.DescriptionBean;
+import model.MemberBean;
 import notice.model.DescriptionDao;
 
 @Controller
@@ -33,6 +34,9 @@ public class descriptionContentController {
 			return "redirect:/login.mb";
 			
 		} else {
+
+			MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
+			model.addAttribute("id", mb.getId());
 			
 			DescriptionBean db = desDao.viewDes(dnum);
 			model.addAttribute("db", db);

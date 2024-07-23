@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import model.DescriptionBean;
+import model.MemberBean;
 import notice.model.DescriptionDao;
 import utility.Paging;
 
@@ -32,6 +33,9 @@ public class descriptionListController {
 						HttpServletRequest request,
 						HttpSession session,
 						Model model) {
+		
+		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
+		model.addAttribute("id", mb.getId());
 		
 		if(session.getAttribute("loginInfo") == null) { // 
 			session.setAttribute("destination", "redirect:/dlist.nt");

@@ -153,7 +153,7 @@
 		    	<table class="mx-auto my-4 bg-white" style="width: 700">
 		    		<c:forEach var="rd" items="${rdetail}">
 		    			<tr style="border-top: 1px solid gray">
-		    				<td rowspan="5" class="p-4" style="background: rgba(42, 193, 188, 0.2); border-right: 1px solid gray">
+		    				<td rowspan="5" class="p-4" style="background: rgba(42, 193, 188, 0.2); border-right: 1px solid gray; width: 35%">
 								<c:forEach var="i" begin="1" end="${5-rd.score}">
 									<i class="fi fi-sr-star text-white"></i>
 								</c:forEach>
@@ -168,14 +168,6 @@
 		    			<tr>
 		    				<td class="pt-3 ps-4 text-muted">
 		    					${rd.pname}
-		    				</td>
-		    			</tr>
-		    			<tr>
-		    				<td class="pt-2 ps-4">
-		    					<c:if test="${rd.image ne null}">
-				    				<% String img = request.getContextPath()+"/resources/uploadImage/"; %>
-				    				<img src="<%=img%>${rd.image}" style="width: 80">
-				    			</c:if>
 		    				</td>
 		    			</tr>
 		    			<tr>

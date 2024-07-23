@@ -4,17 +4,17 @@
 <% String path = request.getContextPath(); %>
 
 <style type="text/css">
-	table{
+	.orderListTable{
 		width: 100%;
 		margin: auto;
 		border: 0px;
 		color: #414141;
 		text-align: center;
 	}
-	th{
+	.orderListTable th{
 		padding: 15px;
 	}
-	td{
+	.orderListTable td{
 		padding: 7px;
 		width: 20px;
 	}
@@ -190,7 +190,7 @@
 					<div class="padrentDiv">
 						<div class="orderDiv">
 						<form action="insertForm.rv" method="post">
-						<table>
+						<table class="orderListTable">
 							<c:forEach var="i" begin="0" end="${fn:length(olist) - 1}" items="${olist}" step="1" varStatus="status">
 							<input type="hidden" name="pnum" value="${i.pnum}">
 							<input type="hidden" name="onum" value="${i.onum}">
@@ -457,14 +457,6 @@
 				    			<tr>
 				    				<td class="pt-2 ps-4 text-muted">
 				    					${rd.pname}
-				    				</td>
-				    			</tr>
-				    			<tr>
-				    				<td class="pt-2 ps-4">
-				    					<c:if test="${rd.image ne null}">
-						    				<% String img = request.getContextPath()+"/resources/uploadImage/"; %>
-						    				<img src="<%=img%>${rd.image}" style="width: 80">
-						    			</c:if>
 				    				</td>
 				    			</tr>
 				    			<tr>

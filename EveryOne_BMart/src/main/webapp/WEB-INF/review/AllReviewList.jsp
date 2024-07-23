@@ -44,7 +44,6 @@
 						        	<th>작성자</th>
 									<th>평점</th>
 									<th>Comment</th>
-									<th>이미지</th>
 									<th>상품번호</th>
 									<c:if test="${loginInfo.id == 'admin'}">
 										<th>관리</th>
@@ -69,7 +68,6 @@
 											<td>${review.id}</td>
 											<td>${review.score}</td>
 											<td>${review.rcomment}</td>
-											<td><img src="${pageContext.request.contextPath}/resources/uploadImage/${review.image}" alt="Review Image" width="100"/></td>
 											<td>${review.pnum}</td>
 											<c:if test="${loginInfo.id == 'admin'}">
 												<td>

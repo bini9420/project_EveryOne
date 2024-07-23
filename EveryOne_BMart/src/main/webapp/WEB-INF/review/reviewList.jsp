@@ -141,7 +141,6 @@ h6 {
 						<th>작성자</th>
 						<th>평점</th>
 						<th>Comment</th>
-						<th>이미지</th>
 						<c:if test="${loginInfo.id != 'admin'}">
 						<th></th>
 						</c:if>
@@ -154,7 +153,6 @@ h6 {
 							<td>${review.id}</td>
 							<td>${review.score}</td>
 							<td>${review.rcomment}</td>
-							<td><img src="${pageContext.request.contextPath}/resources/uploadImage/${review.image}" alt="Review Image" width="100" /></td>
 							<c:if test="${loginInfo.id != 'admin'}">
 							<td>
 								<button onClick="javascript:review()">리뷰 검토 요청</button>

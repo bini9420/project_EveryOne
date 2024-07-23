@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../common/common.jsp"%>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/prdStyle.css">
 <!-- Begin Page Content -->
 <style>
 h6 {
@@ -108,30 +105,15 @@ h6 {
 </script>
 
 <%@ include file="../member/owner/o_top.jsp"%>
-<div class="container-fluid product-list">
-
-	<!-- Page Heading -->
-	<div class="d-sm-flex align-items-center justify-content-between mb-3">
-		<h1 class="h3 mb-0 text-gray-800"></h1>
-		<a href="javascript:show()" data-bs-toggle="modal"
-			data-bs-target="#documentWrite"
-			class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-			class="fas fa-download fa-sm text-white-50" id="requestDocument"></i>
-			결재 요청</a>
-
-		<div class="modal fade" id="documentWrite" data-bs-backdrop="static"
-			data-bs-keyboard="false" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content"></div>
-			</div>
-		</div>
+<div class="card shadow mx-auto py-5" style="width :80%; margin-top: 80px">
+	
+	<div class="text-center my-3">
+		<h3 style="font-weight: bold">상품별 리뷰 확인</h3>
 	</div>
-
-	<!-- Content Row -->
-	<div class="row">
-
-		<!-- Content Column -->
+	<div class="container">
+		<div class="text-end">
+			<button onClick="history.back()" class="btn btn-primary btn-sm">돌아가기</button>
+		</div>
 		<p>
 			<c:if test="${empty noReviewsMessage}">
 			평균 별점:
@@ -144,12 +126,11 @@ h6 {
 				<p>${noReviewsMessage}</p>
 			</c:when>
 			<c:otherwise>
-				<table border="1">
-					<tr>
+				<table class="table table-striped table-hover table-bordered mx-auto text-center my-4">
+					<tr style="background: rgba(42, 193, 188, 0.3); color: black">
 						<th>작성자</th>
 						<th>평점</th>
 						<th>Comment</th>
-						<th>이미지</th>
 						<c:if test="${loginInfo.id != 'admin'}">
 						<th></th>
 						</c:if>
@@ -162,10 +143,9 @@ h6 {
 							<td>${review.id}</td>
 							<td>${review.score}</td>
 							<td>${review.rcomment}</td>
-							<td><img src="${pageContext.request.contextPath}/resources/uploadImage/${review.image}" alt="Review Image" width="100" /></td>
 							<c:if test="${loginInfo.id != 'admin'}">
 							<td>
-								<button onClick="checkReview('${review.rnum}')">리뷰 검토 요청</button>
+								<button onClick="checkReview('${review.rnum}')" class="btn btn-primary">리뷰 검토 요청</button>
 							</td>
 							</c:if>
 							<c:if test="${loginInfo.id == 'admin'}">
@@ -178,7 +158,6 @@ h6 {
 				</table>
 			</c:otherwise>
 		</c:choose>
-		<button onClick="history.back()">돌아가기</button>
 	</div>
 	<!-- /.container-fluid -->
 </div>

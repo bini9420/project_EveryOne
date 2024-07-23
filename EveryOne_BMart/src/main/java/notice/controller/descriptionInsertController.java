@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.DescriptionBean;
+import model.MemberBean;
 import notice.model.DescriptionDao;
 
 @Controller
@@ -26,11 +28,15 @@ public class descriptionInsertController {
 	private final String gotoPage = "redirect:/dlist.nt";
 	
 	@RequestMapping(value=command, method=RequestMethod.GET)
-	public String dinsertForm(HttpSession session) {
+	public String dinsertForm(HttpSession session, Model model) {
 		if(session.getAttribute("loginInfo") == null) { // 
 			session.setAttribute("destination", gotoPage);
 			return "redirect:/login.mb";
 		}else {
+
+			MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
+			model.addAttribute("id", mb.getId());
+			
 			return getPage;
 		}
 	}

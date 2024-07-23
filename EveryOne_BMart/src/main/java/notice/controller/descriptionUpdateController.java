@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.DescriptionBean;
+import model.MemberBean;
 import notice.model.DescriptionDao;
 
 @Controller
@@ -39,6 +40,9 @@ public class descriptionUpdateController {
 		DescriptionBean db = desDao.viewDes(dnum);
 		model.addAttribute("db", db);
 		model.addAttribute("pageNumber", pageNumber);
+
+		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
+		model.addAttribute("id", mb.getId());
 		
 		return getPage;
 	}

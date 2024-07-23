@@ -8,7 +8,7 @@
 <mapper namespace="reviewDetail">
 	<select id="getReviewDetailCount" resultType="int">
 		select count(*) 
-		from ( select r.rnum, r.pnum, r.image, r.score, r.id, p.pname, r.rcomment, r.rdate from review r join product p on r.pnum=p.pnum) 
+		from ( select r.rnum, r.pnum, r.score, r.id, p.pname, r.rcomment, r.rdate from review r join product p on r.pnum=p.pnum) 
 		where pnum=#{pnum} 
 		<if test="range == 'recently'">
 			order by rnum desc
@@ -23,7 +23,7 @@
 	
 	<select id="getReviewDetail" resultType="reviewDetail">
 		select *
-		from ( select r.rnum, r.pnum, r.image, r.score, r.id, p.pname, r.rcomment, r.rdate from review r join product p on r.pnum=p.pnum) 
+		from ( select r.rnum, r.pnum, r.score, r.id, p.pname, r.rcomment, r.rdate from review r join product p on r.pnum=p.pnum) 
 		where pnum=#{pnum} 
 		<if test="range == 'recently'">
 			order by rnum desc
@@ -38,19 +38,19 @@
 	
 	<select id="getReviewCountById" resultType="int">
 		select count(*) 
-		from ( select r.rnum, r.pnum, r.image, r.score, r.id, p.pname, r.rcomment, r.rdate from review r join product p on r.pnum=p.pnum) 
+		from ( select r.rnum, r.pnum, r.score, r.id, p.pname, r.rcomment, r.rdate from review r join product p on r.pnum=p.pnum) 
 		where id=#{id} order by rdate desc
 	</select>
 	
 	<select id="getReviewById" resultType="reviewDetail">
 		select * 
-		from ( select r.rnum, r.pnum, r.image, r.score, r.id, p.pname, r.rcomment, r.rdate from review r join product p on r.pnum=p.pnum) 
+		from ( select r.rnum, r.pnum, r.score, r.id, p.pname, r.rcomment, r.rdate from review r join product p on r.pnum=p.pnum) 
 		where id=#{id} order by rdate desc
 	</select>
 	
 	<select id="getReviewDetailByRnum" resultType="reviewDetail">
 		select * 
-		from ( select r.rnum, r.pnum, r.image, r.score, r.id, p.pname, r.rcomment, r.rdate from review r join product p on r.pnum=p.pnum) 
+		from ( select r.rnum, r.pnum, r.score, r.id, p.pname, r.rcomment, r.rdate from review r join product p on r.pnum=p.pnum) 
 		where rnum=#{rnum}
 	</select>
 </mapper>

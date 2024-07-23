@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +33,7 @@ public class descriptionDeleteController {
 							@RequestParam("pageNumber") int pageNumber,
 							@RequestParam("whatColumn") String whatColumn,
 							@RequestParam("keyword") String keyword,
-							HttpSession session) {
+							HttpSession session, Model model) {
 		
 		MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo");
 		
@@ -41,6 +42,9 @@ public class descriptionDeleteController {
 			
 			return getPage + "?pageNumber=" + pageNumber + "&whatColumn=" + whatColumn + "&keyword=" + keyword;
 		}
+
+		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
+		model.addAttribute("id", mb.getId());
 		
 		return gotoPage;
 	}

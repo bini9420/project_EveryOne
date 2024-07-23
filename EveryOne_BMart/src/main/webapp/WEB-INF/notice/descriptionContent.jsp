@@ -34,11 +34,17 @@
 
 </style>
 
-<%@ include file="../admin/a_top.jsp"%>
+<%@include file="../common/common.jsp"%>
 
-<a href="top.sale"></a>
+<c:if test="${id eq admin}">
+	<%@ include file="../admin/a_top.jsp"%>
+</c:if>
+<c:if test="${id ne admin}">
+	<%@ include file="../member/owner/o_top.jsp"%>
+</c:if>
+
 <!-- Begin Page Content -->
-<div class="card shadow mx-auto py-5" style="width :80%; margin-top: 100px">
+<div class="card shadow mx-auto py-5" style="width :80%; margin-top: 100px; margin-bottom: 120px">
 	<div class="text-center my-3">
 		<h3 style="font-weight: bold">글 상세보기</h3>
 	</div>
@@ -107,5 +113,9 @@
 	</div>
 </div>
 
-
-<%@include file="../admin/a_bottom.jsp"%>
+<c:if test="${id eq admin}">
+	<%@ include file="../admin/a_bottom.jsp"%>
+</c:if>
+<c:if test="${id ne admin}">
+	<%@ include file="../member/owner/o_bottom.jsp"%>
+</c:if>

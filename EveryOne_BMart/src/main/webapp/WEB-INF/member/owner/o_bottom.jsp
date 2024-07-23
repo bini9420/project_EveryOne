@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <!-- bottom.jsp -->    
 <!-- Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+        
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
@@ -11,9 +14,7 @@
             </footer>
             <!-- End of Footer -->
 
-        </div>
-        <!-- End of Content Wrapper -->
-
+		</div>
     </div>
     <!-- End of Page Wrapper -->
 
@@ -58,6 +59,10 @@
     <!-- Page level custom scripts -->
     <script src="<%=request.getContextPath()%>/resources/js/demo/chart-area-demo.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/demo/chart-pie-demo.js"></script>
+    
+    
+	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

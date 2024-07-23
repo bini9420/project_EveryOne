@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.DescriptionBean;
+import model.MemberBean;
 import notice.model.DescriptionDao;
 
 @Controller
@@ -46,7 +47,10 @@ public class descriptionReplyController {
         model.addAttribute("pageNumber", pageNumber);
         model.addAttribute("whatColumn", whatColumn);
         model.addAttribute("keyword", keyword);
-        
+
+		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
+		model.addAttribute("id", mb.getId());
+		
 		return getPage;
 	}
 	

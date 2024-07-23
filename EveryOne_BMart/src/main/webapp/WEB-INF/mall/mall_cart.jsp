@@ -22,10 +22,6 @@
 	  text-decoration: none;
 	  color: inherit;
 	}
-	.amountTr{
-		border-bottom: 1px solid #e6e6e6;
-		border-bottom-width: 2px;
-	}	
 	.cartTable td{
 		padding: 10px;
 	}
@@ -394,11 +390,7 @@ $(document).ready(function(){
 			</a>
 		</td>
 	</tr>
-	<tr class="amountTr">
-		<td>
 		<input type="hidden" class="pnum" name="pnum" value="${i.pnum}">
-		</td>
-	</tr>
 </c:forEach>
 </c:if>
 <c:if test="${empty plist}">

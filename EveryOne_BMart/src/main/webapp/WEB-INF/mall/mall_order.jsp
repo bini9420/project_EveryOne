@@ -66,11 +66,13 @@
 	.sideBanner {
 		position: fixed;
 		width: 20%;
-		height: 400px;
+		height: 270px;
 		top: 300px;
 		left: 79%;
 		font-size: 15px;
 		font-weight: bold;
+		box-shadow: 2px 2px 2px 2px #dddddd;
+		
 	}
 	.sideBanner input{
 		border: none;

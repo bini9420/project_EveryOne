@@ -95,8 +95,6 @@
 
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.js"></script>
 <script type="text/javascript">
-<script type="text/javascript" src="<%=path%>/resources/js/jquery.js"></script>
-<script type="text/javascript">
     $(document).ready(function() {
         // 문서가 준비되면 실행될 코드
         $('.ronum').each(function() {
@@ -224,7 +222,7 @@
 										</c:if>
 										<c:if test="${plist[status.index].pimage ne null}">
 											<a href="detail.mall?pnum=${i.pnum}">
-												<img src="<%=path%>/resources/img/${plist[status.index].pimage}">
+												<img src="<%=path%>/resources/uploadImage/${plist[status.index].pimage}">
 											</a>
 										</c:if>
 									</td>

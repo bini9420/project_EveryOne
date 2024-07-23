@@ -76,4 +76,8 @@
 	<insert id="insertBusiness">
 		insert into business values(#{businesscode}, #{writer}, #{postnum}, #{addr1}, #{addr2})
 	</insert>
+	
+	<select id="getEnterById" resultType="int">
+		select count(*) from enter where writer=#{id}
+	</select>
 </mapper>

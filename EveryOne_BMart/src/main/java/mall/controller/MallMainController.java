@@ -51,6 +51,7 @@ public class MallMainController {
 			//장바구니 상품 개수 조회
 			int cartTotalCount = mallDao.getCartTotalCount(loginInfo.getId());
 			session.setAttribute("cartTotalCount", cartTotalCount);
+			
 		}
 		
 		return getPage;

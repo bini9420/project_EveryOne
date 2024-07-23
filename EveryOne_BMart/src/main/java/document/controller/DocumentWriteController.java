@@ -74,13 +74,16 @@ public class DocumentWriteController {
 			map.put("prdcategory", document.getPrdcategory()); 
 			
 			int count = documentDao.getPrdcategoryById(map); //결재 Form에 작성한 상품 카테고리로 신청한 적이 있는지 조회
-			if(count > 0) {
+			System.out.println("count: " + count);
+			if(count == 0) {
 				dnum += "B-" + num;
-			} else {
+			} else if(count > 0){
 				out.println("<script>");
-				out.println("alert('입력하신 상품 카테고리로 결재된 상품등록문서가 존재합니다'); location.href='omain.mb'");
+				out.println("alert('입력하신 상품 카테고리로 작성한 상품등록문서가 존재합니다'); location.href='omain.mb'");
 				out.println("</script>");
 				out.flush();
+				
+				return null;
 			}
 		} else if(category.equals("광고요청")) {
 			dnum += "C-" + num; 

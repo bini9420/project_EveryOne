@@ -108,7 +108,7 @@
 <!-- Core theme JS-->
 <script src="resources/js/scripts.js"></script>
 
-<!-- 입점요청 Form 띄우기 -->
+<!-- 입점신청 Form 띄우기 -->
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 <script>
 	function show(id) {

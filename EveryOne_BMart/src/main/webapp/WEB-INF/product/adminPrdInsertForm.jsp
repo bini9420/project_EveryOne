@@ -3,7 +3,7 @@
 <%@include file="../admin/a_top.jsp"%>
 
 
-<%String pcate[]={"쌀/잡곡/견과","국/탕/찌개","음료/커피/생수","정육/수산/계란","라면/면","과일/채소","양념/장류/오일","우유/유제품","햄/어묵/통조림","생활/기타"}; %>
+<%String pcate[]={"쌀·잡곡·견과","국/탕/찌개","음료/커피/생수","정육/수산/계란","라면/면","과일/채소","양념/장류/오일","우유/유제품","햄/어묵/통조림","생활/기타"}; %>
 
 <form:form commandName="product" name="myform" action="adminProductInsert.prd" method="post" enctype="multipart/form-data">
 

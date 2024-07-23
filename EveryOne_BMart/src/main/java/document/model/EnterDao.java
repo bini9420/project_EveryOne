@@ -84,5 +84,13 @@ public class EnterDao {
 	public void insertBusiness(EnterBean eb) {
 		sqlSessionTemplate.insert(namespace + ".insertBusiness", eb);
 	}//insertBusiness
+
+	//★ 로그인한 ID가 입점신청한 내역이 있는지 확인 
+	public int getEnterById(String id) {
+		int count = -1;
+		count = sqlSessionTemplate.selectOne(namespace + ".getEnterById", id);
+		
+		return count;
+	}//getEnterById
 }
  

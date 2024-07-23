@@ -520,7 +520,7 @@
 	</select>
 	
 	<insert id="insertCategory">
-		insert into category values(cate_seq)
+		insert into category values(cate_seq.nextval, #{prdcategory})
 	</insert>
 	
 	<select id="getPrdcategoryById" resultType="int">

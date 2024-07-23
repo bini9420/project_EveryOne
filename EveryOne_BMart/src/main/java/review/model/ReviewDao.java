@@ -41,8 +41,8 @@ public class ReviewDao {
         sqlSessionTemplate.delete(namespace + ".adminDeleteReview", rnum);
     }
 
-	public List<ReviewBean> getAllReviews() {
-		List<ReviewBean> reviews = sqlSessionTemplate.selectList(namespace + ".getAllReviews");
+	public List<ReviewBean> getAllReviews(String id) {
+		List<ReviewBean> reviews = sqlSessionTemplate.selectList(namespace + ".getAllReviews", id);
 		return reviews;
 	}
     public int insertReview(ReviewBean rb) {

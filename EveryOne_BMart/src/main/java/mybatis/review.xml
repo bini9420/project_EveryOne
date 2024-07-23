@@ -37,6 +37,7 @@
 	
 	<select id="getAllReviews" resultType="review">
 		SELECT R.*, P.pnum FROM review R JOIN Product P ON R.pnum = P.pnum
+		where p.id=#{id}
 	</select>
 		<insert id="insertReview">
 		insert into review 

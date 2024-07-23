@@ -45,7 +45,7 @@
 		<div style="text-align: right">
 			<form action="dlist.nt" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 				<div class="input-group">
-					<select name="whatColumn" style="margin-right: 8; border: 1px solid #CCCCCC; width: 90">
+					<select name="whatColumn" style="margin-right: 8; border: 1px solid #CCCCCC; width: 90" class="form-select">
 						<option value="all">전체
 						<option value="id">작성자
 						<option value="dsubject">제목

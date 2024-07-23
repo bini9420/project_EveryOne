@@ -33,9 +33,9 @@
 		delete from cart 
 		where pnum = #{pnum}
 	</delete>
-	<select id="getQtyByPnum" resultType="Integer">
+	<select id="getQtyByPnum" parameterType="map" resultType="Integer">
 		select qty from cart
-		where pnum = #{pnum}
+		where pnum = #{pnum} and id = #{id}
 	</select>
 	
 </mapper>

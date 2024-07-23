@@ -2,10 +2,12 @@ package document.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +49,12 @@ public class DocumentWriteController {
 	//POST: document_writeForm.jsp에서 요청 클릭시
 	@RequestMapping(value=command, method=RequestMethod.POST)
 	public String write(@ModelAttribute("document") DocumentBean document, BindingResult result,
-						HttpSession session, Model model) {
+						HttpSession session, Model model, HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
+		
 		if(result.hasErrors()) {
 			return getPage;
 		}
@@ -62,7 +69,19 @@ public class DocumentWriteController {
 		String dnum = "";
 		
 		if(category.equals("상품등록")) {
-			dnum += "B-" + num;
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("id", mb.getId());
+			map.put("prdcategory", document.getPrdcategory()); 
+			
+			int count = documentDao.getPrdcategoryById(map); //결재 Form에 작성한 상품 카테고리로 신청한 적이 있는지 조회
+			if(count > 0) {
+				dnum += "B-" + num;
+			} else {
+				out.println("<script>");
+				out.println("alert('입력하신 상품 카테고리로 결재된 상품등록문서가 존재합니다'); location.href='omain.mb'");
+				out.println("</script>");
+				out.flush();
+			}
 		} else if(category.equals("광고요청")) {
 			dnum += "C-" + num; 
 		} else if(category.equals("폐업요청")) {
@@ -70,8 +89,12 @@ public class DocumentWriteController {
 		} 
 		document.setDnum(dnum);
 		
+		//상품카테고리(prdcategory) 설정
+		if(document.getPrdcategory() == null) {
+			document.setPrdcategory("X");
+		}
+		
 		//작성자(writer) 설정
-		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
 		document.setWriter(mb.getId()); 
 		
 		int cnt = -1;

@@ -20,8 +20,8 @@ import utility.PagingPlus;
 
 @Controller
 public class ProductListController {
-	private final String command = "productList.prd";
-	private final String getPage = "productListForOwner";
+	private final String command = "/productList.prd";
+	private final String getPage = "ownerPrdList";
 	
 	@Autowired
 	ProductDao productDao;
@@ -47,7 +47,7 @@ public class ProductListController {
 		map.put("id", mb.getId());
 		
 		int totalCount = productDao.getTotalCountForOwner(map);
-		String url = request.getRequestURI() + this.command;
+		String url = request.getContextPath() + this.command;
 		
 		PagingPlus pageplus = new PagingPlus(pageNumber, null, totalCount, url, whatColumn, inputPname, inputPnum, inputDay1, inputDay2);
 		model.addAttribute("pageplus", pageplus);

@@ -285,9 +285,6 @@
 				 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				 	<input class="form-check-input" type="radio" name="prdcategory" id="flexRadioDefault3" value="주방용품">
 				 	<label class="form-check-label" for="flexRadioDefault3">주방용품</label>
-				 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				 	<input class="form-check-input" type="radio" name="prdcategory" id="flexRadioDefault4" value="반려용품1">
-				 	<label class="form-check-label" for="flexRadioDefault4">반려용품</label>
 				</div>			     
 			     <div class="invalid-feedback">
 			         상품등록 신청시 카테고리 입력은 필수입니다

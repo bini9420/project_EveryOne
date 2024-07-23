@@ -18,7 +18,7 @@ import utility.PagingPlus;
 
 @Controller
 public class AdminAllBoxController {
-	private final String command = "admin_allBox.dc";
+	private final String command = "/admin_allBox.dc";
 	private final String getPage = "admin_allBox";
 	
 	@Autowired
@@ -41,7 +41,7 @@ public class AdminAllBoxController {
 		map.put("inputDay2", inputDay2);
 		
 		int totalCount = documentDao.getTotalCountForAdmin(map);
-		String url = request.getRequestURI() + this.command;
+		String url = request.getContextPath() + this.command;
 		
 		PagingPlus pageplus = new PagingPlus(pageNumber, null, totalCount, url, whatColumn, inputDnum, inputTitle, inputDay1, inputDay2);
 		model.addAttribute("pageplus", pageplus);

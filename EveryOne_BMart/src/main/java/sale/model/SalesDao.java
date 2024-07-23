@@ -13,9 +13,8 @@ import model.ProductBean;
 @Service
 public class SalesDao {
 
-
 	private String namespace="sale";
-	private String namespace2="product";
+	private String namespace2="product"; 
 
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
@@ -47,10 +46,16 @@ public class SalesDao {
 		return clists;
 	}
 
-
 	public List<ProductBean> donutChartForOwner(String id) {
 		List<ProductBean> lists = new ArrayList<ProductBean>();
 		lists = sqlSessionTemplate.selectList(namespace2 + ".donutChartForOwner", id); 
+		
+		return lists;
+	}//donutChartForOwner
+	
+	public List<ProductBean> bestProduct5ForOwner(String id) {
+		List<ProductBean> lists = new ArrayList<ProductBean>();
+		lists = sqlSessionTemplate.selectList(namespace2 + ".bestProduct5ForOwner", id); 
 		
 		return lists;
 	}//donutChartForOwner
@@ -58,11 +63,24 @@ public class SalesDao {
 	public List<Map<String,Integer>> getAdminMonthSumCount(){
 		return sqlSessionTemplate.selectList(namespace+".getAdminMonthSumCount"); 
 	}
+	
 	public List<Map<String,Integer>> getAdminMonthSumCount2(){
 		return sqlSessionTemplate.selectList(namespace+".getAdminMonthSumCount2"); 
 	}
 
 
+	public List<ProductBean> worstProduct5ForOwner(String id) {
+		List<ProductBean> lists = new ArrayList<ProductBean>();
+		lists = sqlSessionTemplate.selectList(namespace2 + ".worstProduct5ForOwner", id); 
+		
+		return lists;
+	}//worstProduct5ForOwner
 
+	public List<ProductBean> getPrdYearSumForOwner(String id) {
+		List<ProductBean> lists = new ArrayList<ProductBean>();
+		lists = sqlSessionTemplate.selectList(namespace2 + ".getPrdYearSumForOwner", id);
+		
+		return lists;
+	}//getPrdYearSumForOwner
 
 }

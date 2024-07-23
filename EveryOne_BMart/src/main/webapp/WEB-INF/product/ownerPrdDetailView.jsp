@@ -61,10 +61,9 @@
                     <tr>
                         <td align="center">
                         	<img src="<%=request.getContextPath()%>/resources/uploadImage/${product.pimage}" width="250" height="250">
-				 			<input class="form-control form-control-sm" type="file" name="upload">
 				 		</td>
 				 		<td id="contentTd">
-				 			<textarea class="form-control" id="prdContent" style="height: 300px" name="pcontent">${product.pcontent}</textarea>
+				 			<textarea class="form-control" id="prdContent" style="height: 250px" name="pcontent" disabled>${product.pcontent}</textarea>
 				 		</td>
                     </tr>
                 </table>
@@ -77,33 +76,31 @@
                 <table class="table bsb-table-xl text-nowrap align-middle m-0" id="table3">
                     <tr>
                     	<th><label for="prdCategory" class="form-label">카테고리</label></th>
-                    	<td><input type="text" class="form-control form-control-sm" name="pcategory" value="${product.pcategory}"></td>
+                    	<td><input type="text" class="form-control form-control-sm" name="pcategory" value="${product.pcategory}" disabled></td>
                     </tr>
                     <tr>
                     	<fmt:formatNumber value="${product.price}" var="price" pattern="###,###"/>
                     	<th><label for="prdPrice" class="form-label">가격</label></th>
-                    	<td><input type="text" class="form-control form-control-sm" name="price" value="&#8361;${price}"></td>
+                    	<td><input type="text" class="form-control form-control-sm" name="price" value="&#8361;${price}" disabled></td>
                     </tr>
                     <tr>
                     	<th><label for="prdStock" class="form-label">재고</label></th>
                     	<td> 
-                    		<button type="button" class="btn btn-outline-primary btn-sm" id="minusBtn" onclick="minus()">-</button>
-						    <input type="text" class="form-control form-control-sm" name="stock" value="${product.stock}" id="stockInput" style="width: 10%">
-						    <button type="button" class="btn btn-outline-primary btn-sm" id="plusBtn" onclick="plus()">+</button>
+						    <input type="text" class="form-control form-control-sm" name="stock" value="${product.stock}" id="stockInput" style="width: 10%" disabled>
 						</td>
                     </tr>
                     <tr>
                     	<th><label for="prdAd" class="form-label">광고유무</label></th>
                     	<td>
 							 <div class="form-check">
-							    <input class="form-check-input" type="radio" name="ad" id="flexRadioDefault1" value="1"
-							           <c:if test="${product.ad == 1}">checked</c:if>>
+							    <input class="form-check-input" type="radio" id="flexRadioDefault1"
+							           <c:if test="${product.ad == 1}">checked</c:if> disabled>
 							    <label class="form-check-label" for="flexRadioDefault1">
 							        O
 							    </label>
 							    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							    <input class="form-check-input" type="radio" name="ad" id="flexRadioDefault2" value="0"
-							           <c:if test="${product.ad == 0}">checked</c:if>>
+							    <input class="form-check-input" type="radio" id="flexRadioDefault2"
+							           <c:if test="${product.ad == 0}">checked</c:if> disabled>
 							    <label class="form-check-label" for="flexRadioDefault2">
 							        X
 							    </label>    
@@ -123,28 +120,7 @@
 		<span class="text">닫기</span>
 	</a>
     <!-- 수정 버튼 -->
-    <a href="owner_prdUpdate.prd?pnum=${product.pnum}" class="btn btn-outline-warning btn-icon-split" id="updateBtn">
+    <a href="owner_prdUpdate.prd?pnum=${product.pnum}&whatColumn=${param.whatColumn}&inputPname=${param.inputPname}&inputPnum=${param.inputPnum}&inputDay1=${param.inputDay1}&inputDay2=${param.inputDay2}&pageNumber=${param.pageNumber}" class="btn btn-outline-warning btn-icon-split" id="updateBtn">
 		<span class="text">수정</span>
 	</a>    
 </div>
-
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
-<script type="text/javascript">
-	function minus() {
-		alert(1);
-		var stockInput = $('#stockInput');
-        var currentStock = parseInt(stockInput.val());
-        if (currentStock > 0) {
-            currentStock--;
-            stockInput.val(currentStock);
-        }
-	}
-	
-	function plus() {
-		alert(2);
-		var stockInput = $('#stockInput');
-        var currentStock = parseInt(stockInput.val());
-        currentStock++;
-        stockInput.val(currentStock);
-	}
-</script>

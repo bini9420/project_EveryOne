@@ -231,6 +231,7 @@ public class PagingPlus {
 		this.pageSize = Integer.parseInt( _pageSize ) ;
 		
 		this.limit = pageSize ; // 한 페이지에 보여줄 레코드 갯수
+		System.out.println("limit: " + limit);
 
 		this.totalCount = totalCount ; 
 
@@ -248,6 +249,7 @@ public class PagingPlus {
 		}
 		
 		this.offset = ( pageNumber - 1 ) * pageSize ; 
+		System.out.println("offfset: " + offset);
 		/*offset : 
 			한 페이지에 2개씩 출력할 때,
 			3페이지 클릭하면 앞에 4개 건너뛰고 5번째 부터 나와야 한다. 
@@ -283,59 +285,48 @@ public class PagingPlus {
 	
 	}
 	
-	private String getPagingHtml( String url ){ //페이징 문자열을 만든다.
-		System.out.println("getPagingHtml url:"+url); // ex/list.ab (몇 페이지를 눌러도 list.ab가 요청되도록)
-	
-		
-		String result = "" ;
-		//added_param 변수 : 검색 관련하여 추가되는 파라미터 리스트
-		//String added_param = "&dcategory=" + whatColumn + "&keyword=" + keyword ; // &whatColumn=singer&keyword=아
-		String added_param = "&whatColumn=" + whatColumn + "&inputDnum=" + inputDnum + "&inputTitle=" + inputTitle + "&inputDay1=" + inputDay1 + "&inputDay2=" + inputDay2; // &whatColumn=singer&keyword=아
-		
-		
-		if (this.beginPage != 1) { // 앞쪽, pageSize:한 화면에 보이는 레코드 수
-			// 처음 목록보기를 하면 pageNumber는 1이 되고 beginPage도 1이 된다. 
-			result += "&nbsp;<a href='" + url  
-					+ "?pageNumber=" + ( 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>맨 처음</a>&nbsp;" ; // 1,2,3페이지를 지나 4페이지가 됐을때(4,5,6페이지) '맨 처음'이 4페이지 앞에 나오도록
-			result += "&nbsp;<a href='" + url 
-					+ "?pageNumber=" + (this.beginPage - 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>이전</a>&nbsp;" ; //4,5,6페이지를 지나 7페이지(7,11,...)일 때, '이전'이 7페이지 앞에 나오도록
-		}
-		
-		//가운데
-		for (int i = this.beginPage; i <= this.endPage ; i++) {
-			if ( i == this.pageNumber ) {
-				result += "&nbsp;<font color='red'>" + i + "</font>&nbsp;"	;
-						
-			} else {
-				result += "&nbsp;<a href='" + url   
-						+ "?pageNumber=" + i + "&pageSize=" + this.pageSize 
-						+ added_param + "'>" + i + "</a>&nbsp;" ;
-				
-			}
-		}
-		
-		System.out.println("result:"+result);
-		System.out.println();
-		// result:&nbsp;<a href='/ex/list.ab?pageNumber=1&pageSize=2&whatColumn=null&keyword=null'>1</a>&nbsp;&nbsp;<font color='red'>2</font>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=3&pageSize=2&whatColumn=null&keyword=null'>3</a>&nbsp;
-		
-		if ( this.endPage != this.totalPage) { // 뒤쪽
-			// endPage:지금 보는 페이지의 끝(지금 보는 페이지가 13이라면 endPage는 20), totalPage:전체 페이지수
-			
-			result += "&nbsp;<a href='" + url  
-					+ "?pageNumber=" + (this.endPage + 1 ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>다음</a>&nbsp;" ;
-			
-			result += "&nbsp;<a href='" + url  
-					+ "?pageNumber=" + (this.totalPage ) + "&pageSize=" + this.pageSize 
-					+ added_param + "'>맨 끝</a>&nbsp;" ;
-		}		
-		//System.out.println("result2:"+result);
-		// result2 : <a href='/ex/list.ab?pageNumber=1&pageSize=2'>맨 처음</a>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=3&pageSize=2&whatColumn=null&keyword=null'>이전</a>&nbsp;&nbsp;<font color='red'>4</font>&nbsp;&nbsp;<a href='/ex/list.ab?pageNumber=5&pageSize=2&whatColumn=null&keyword=null'>5</a>&nbsp;
-		
-		return result ;
-	}	
-	
+	private String getPagingHtml(String url) { // 페이징 문자열을 만든다.
+	    System.out.println("getPagingHtml url:" + url); // ex/list.ab (몇 페이지를 눌러도 list.ab가 요청되도록)
+	    
+	    StringBuilder result = new StringBuilder();
+	    // added_param 변수 : 검색 관련하여 추가되는 파라미터 리스트
+	    String added_param = "&whatColumn=" + (whatColumn == null ? "" : whatColumn) 
+	                        + "&inputDnum=" + (inputDnum == null ? "" : inputDnum) 
+	                        + "&inputTitle=" + (inputTitle == null ? "" : inputTitle) 
+	                        + "&inputDay1=" + (inputDay1 == null ? "" : inputDay1) 
+	                        + "&inputDay2=" + (inputDay2 == null ? "" : inputDay2);
+	    
+	    if (this.beginPage > 1) { // 앞쪽, pageSize: 한 화면에 보이는 레코드 수
+	        result.append("&nbsp;<a href='").append(url)
+	              .append("?pageNumber=1&pageSize=").append(this.pageSize)
+	              .append(added_param).append("' class='btn btn-outline-secondary btn-sm'><i class='fi fi-rr-angle-double-small-left'></i></a>&nbsp;");
+	        result.append("&nbsp;<a href='").append(url)
+	              .append("?pageNumber=").append(this.pageNumber - 1).append("&pageSize=").append(this.pageSize)
+	              .append(added_param).append("' class='btn btn-outline-secondary btn-sm'><i class='fi fi-rr-angle-small-left'></i></a>&nbsp;");
+	    }
+	    
+	    // 가운데
+	    for (int i = this.beginPage; i <= this.endPage; i++) {
+	        if (i == this.pageNumber) {
+	            result.append("&nbsp;<span class='btn btn-primary btn-sm'>").append(i).append("</span>&nbsp;");
+	        } else {
+	            result.append("&nbsp;<a href='").append(url)
+	                  .append("?pageNumber=").append(i).append("&pageSize=").append(this.pageSize)
+	                  .append(added_param).append("' class='btn btn-outline-secondary btn-sm'>").append(i).append("</a>&nbsp;");
+	        }
+	    }
+	    
+	    if (this.endPage < this.totalPage) { // 뒤쪽
+	        result.append("&nbsp;<a href='").append(url)
+	              .append("?pageNumber=").append(this.pageNumber + 1).append("&pageSize=").append(this.pageSize)
+	              .append(added_param).append("' class='btn btn-outline-secondary btn-sm'><i class='fi fi-rr-angle-small-right'></i></a>&nbsp;");
+	        result.append("&nbsp;<a href='").append(url)
+	              .append("?pageNumber=").append(this.totalPage).append("&pageSize=").append(this.pageSize)
+	              .append(added_param).append("' class='btn btn-outline-secondary btn-sm'><i class='fi fi-rr-angle-double-small-right'></i></a>&nbsp;");
+	    }
+	    
+	    return result.toString();
+	}
+
 }
 

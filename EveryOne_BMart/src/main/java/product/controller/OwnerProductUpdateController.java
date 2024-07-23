@@ -28,7 +28,6 @@ public class OwnerProductUpdateController {
 	
 	@RequestMapping(value=command, method=RequestMethod.POST)
 	public void update(ProductBean product, HttpServletResponse response) throws IOException {
-		System.out.println("¿©±â¿ä");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		

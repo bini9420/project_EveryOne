@@ -38,15 +38,14 @@
 <!-- Bootstrap JavaScript 로드 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-Ygo40xjq8a1+urx6cXhZYn5qN08yDQd6ikP6b8YdU0vg8D1UGtP9rVSo0nsNMznE" crossorigin="anonymous"></script>
 <script>
-	function deleteItem(dnum) {
+	function deleteItem(dnum, whatColumn, inputDnum, inputTitle, inputDay1, inputDay2, pageNumber) {
 		const isCheck = confirm('정말 삭제하시겠습니까?');
 		if(isCheck) {
-			location.href='document_delete.dc?dnum=' + dnum;
+			location.href='document_delete.dc?dnum=' + dnum + "&whatColumn=" + whatColumn + "&inputDnum=" + inputDnum + "&inputTitle=" + inputTitle + "&inputDay1=" + inputDay1 + "&inputDay2=" + inputDay2 + "&pageNumber=" + pageNumber;
 		}
 	}
 </script>
 
-<input type="hidden" name="dnum" value="${document.dnum}">
 <!-- 모달 본문 -->
 <div class="modal-header">
     <h1 class="modal-title fs-5" id="staticBackdropLabel" align="left"><b>[${document.dcategory}] ${document.title}</b></h1>
@@ -194,15 +193,15 @@
     
     <c:if test="${document.request eq 0}">
     	<button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-        <button type="button" id="deleteBtn" onclick="deleteItem('${document.dnum}')" class="btn btn-danger">삭제</button>
-        <button type="button" id="writeBtn" onclick="location.href='document_update.dc?dnum=${document.dnum}'" class="btn btn-warning">수정</button>
+        <button type="button" id="deleteBtn" onclick="deleteItem('${document.dnum}', '${param.whatColumn}', '${param.inputDnum}', '${param.inputTitle}','${param.inputDay1}', '${param.inputDay2}', '${param.pageNumber}')" class="btn btn-danger">삭제</button>
+        <button type="button" id="writeBtn" onclick="location.href='document_update.dc?dnum=${document.dnum}&whatColumn=${param.whatColumn}&inputDnum=${param.inputDnum}&inputTitle=${param.inputTitle}&inputDay1=${param.inputDay1}&inputDay2=${param.inputDay2}&pageNumber=${param.pageNumber}'" class="btn btn-warning">수정</button>
         <button type="submit" id="requestBtn" onclick="location.href='document_request.dc?dnum=${document.dnum}'" class="btn btn-primary">요청</button>
     </c:if>
     
     <c:if test="${(document.approval eq 0) && (document.request eq 1)}">
         <button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-        <button type="button" id="deleteBtn" onclick="deleteItem('${document.dnum}')" class="btn btn-danger">삭제</button>
-        <button type="button" id="writeBtn" onclick="location.href='document_update.dc?dnum=${document.dnum}'" class="btn btn-warning">수정</button>
+        <button type="button" id="deleteBtn" onclick="deleteItem('${document.dnum}', '${param.whatColumn}', '${param.inputDnum}', '${param.inputTitle}','${param.inputDay1}', '${param.inputDay2}', '${param.pageNumber}')" class="btn btn-danger">삭제</button>
+        <button type="button" id="writeBtn" onclick="location.href='document_update.dc?dnum=${document.dnum}&whatColumn=${param.whatColumn}&inputDnum=${param.inputDnum}&inputTitle=${param.inputTitle}&inputDay1=${param.inputDay1}&inputDay2=${param.inputDay2}&pageNumber=${param.pageNumber}'" class="btn btn-warning">수정</button>
     </c:if>
 </div>
 

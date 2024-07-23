@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import model.DescriptionBean;
+import model.MemberBean;
 import notice.model.DescriptionDao;
 import utility.Paging;
 
@@ -36,8 +37,11 @@ public class descriptionListController {
 		if(session.getAttribute("loginInfo") == null) { // 
 			session.setAttribute("destination", "redirect:/dlist.nt");
 			return "redirect:/login.mb";
-		}else {
-
+		} else {
+		
+			MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo");
+	        String id = loginInfo.getId();
+	        
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("whatColumn", whatColumn);
 			map.put("keyword", "%" + keyword + "%");

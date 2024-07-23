@@ -19,7 +19,7 @@ import utility.Paging;
 
 @Controller
 public class AdminRcheckBoxController {
-	private final String command = "admin_rcheckBox.dc";
+	private final String command = "/admin_rcheckBox.dc";
 	private final String getPage = "admin_rcheckBox";
 	
 	@Autowired
@@ -37,7 +37,7 @@ public class AdminRcheckBoxController {
 		map.put("keyword", "%" + keyword + "%");
 		
 		int totalCount = reviewcheckDao.getRcheckTotalCountForAdmin(map);
-		String url = request.getRequestURI() + this.command; 
+		String url = request.getContextPath() + this.command;
 		 
 		Paging pageInfo = new Paging(pageNumber, null, totalCount, url, whatColumn, keyword);
 		model.addAttribute("pageInfo", pageInfo); 

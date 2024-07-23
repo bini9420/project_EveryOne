@@ -24,7 +24,7 @@ import utility.Paging;
 @Controller
 public class DocumentWaitController {
 
-	private final String command = "document_wait.dc";
+	private final String command = "/document_wait.dc";
 	private final String getPage = "document_waitBox";
 	
 	@Autowired

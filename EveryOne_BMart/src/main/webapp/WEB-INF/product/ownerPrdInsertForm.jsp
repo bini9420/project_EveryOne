@@ -84,7 +84,7 @@
 	
 						
 	<!-- 상품 정보 입력-->
-	<div class="container">
+	<div class="container h-80">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card shadow mb-4">

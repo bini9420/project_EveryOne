@@ -1,9 +1,5 @@
 package document.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +39,7 @@ public class DocumentBoxController {
 					   HttpSession session,
 					   Model model) {
 		MemberBean mb = (MemberBean)session.getAttribute("loginInfo");
+		System.out.println("pageNumber: " + pageNumber);
 
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("whatColumn", whatColumn);
@@ -52,15 +49,10 @@ public class DocumentBoxController {
 		map.put("inputDay2", inputDay2);
 		map.put("id", mb.getId());
 		
-		System.out.println("inputDay1: " + inputDay1);
-		System.out.println("inputDay2: " + inputDay2);
-		
 		int totalCount = documentDao.getTotalCount(map);
-		System.out.println("totalCount: " + totalCount);
-		String url = request.getRequestURI() + this.command;
+		String url = request.getContextPath() + this.command;
 		
 		PagingPlus pageplus = new PagingPlus(pageNumber, null, totalCount, url, whatColumn, inputDnum, inputTitle, inputDay1, inputDay2);
-		//Paging pageInfo = new Paging(pageNumber, null, totalCount, url, whatColumn, keyword);
 		model.addAttribute("pageplus", pageplus);
 		
 		//전체 문서

@@ -236,7 +236,7 @@
 					</c:if>
 					<c:if test="${plist[status.index].pimage ne null}">
 						<a href="detail.mall?pnum=${i.pnum}">
-							<img src="<%=path%>/resources/img/${plist[status.index].pimage}">
+							<img src="<%=path%>/resources/uploadImage/${plist[status.index].pimage}">
 						</a>
 					</c:if>
 				</td>

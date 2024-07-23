@@ -358,8 +358,7 @@ public class DocumentDao {
 
 	public int getPrdcategoryById(Map<String, String> map) {
 		int count = -1;
-		sqlSessionTemplate.selectOne(namespace + ".getPrdcategoryById", map);
-		
+		count = sqlSessionTemplate.selectOne(namespace + ".getPrdcategoryById", map);
 		return count;
 	}//getPrdcategoryById
 

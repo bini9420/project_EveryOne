@@ -1,6 +1,8 @@
 package review.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +20,11 @@ public class ReviewDao {
 	private String namespace = "review";
 	private String product = "product";
 	
-	public List<ReviewBean> getReviewsByProduct(int pnum) {
-		return sqlSessionTemplate.selectList(namespace + ".getReviewsByProduct",pnum);
+	public List<ReviewBean> getReviewsByProduct(int pnum,String id) {
+		Map<String, Object> params = new HashMap<String, Object>();
+	    params.put("pnum", pnum);
+	    params.put("id", id);
+		return sqlSessionTemplate.selectList(namespace + ".getReviewsByProduct",params);
 	}
 
 	public double getAverageScore(int pnum) {

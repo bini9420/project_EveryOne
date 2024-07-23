@@ -1,137 +1,109 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../common/common.jsp"%>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 <!-- Begin Page Content -->
 <style>
-h6 {
-	display: inline-block;
-}
-
-.btn-outline-primary {
-	width: 30px;
-	height: 30px;
-}
-
-#requestDocument:hover {
-	background-color: #7dc9c6 !important;
-	border-color: #bae8e6 !important;
-}
-
-/* New CSS rules for the order details section */
-.order-details {
-	width: 100%;
-	margin: 20px 0;
-}
-
-.order-details h5 {
-	text-align: center;
-	margin-bottom: 20px;
-}
-
-.order-details .content-container {
-	margin: auto;
-	width: 50%;
-	text-align: center;
-	border: 1px solid #ddd;
-	padding: 20px;
-	border-radius: 8px;
-	background-color: #f9f9f9;
-}
-
-.order-details .content-container p {
-	margin: 10px 0;
-	font-size: 16px;
-}
-
-.order-details .content-container strong {
-	color: #333;
-}
-
-.order-details .content-container button {
-	margin-top: 20px;
-	padding: 10px 20px;
-	background-color: #48D1CC;
-	color: #fff;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
-.order-details .content-container button:hover {
-	background-color: #48D1CC;
-}
+    .table-details {
+        margin: 20px 0;
+    }
+    .table-details th {
+        width: 30%;
+        text-align: right;
+        padding-right: 20px;
+    }
+    .table-details td {
+        width: 70%;
+        text-align: left;
+        padding-left: 20px;
+    }
+    .table-details .total-row {
+        font-weight: bold;
+        background-color: #f2f2f2;
+    }
+    .btn-custom {
+        background-color: #48D1CC;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        padding: 10px 20px;
+    }
+    .btn-custom:hover {
+        background-color: #3bb8b2;
+    }
 </style>
 
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
-<script>
-	function show() {
-		$('#documentWrite .modal-content').load("document_write.dc");
-		$('#documentWrite').modal();
-		$('#requestDocument').css('bgcolor', '#2ac1bc');
-		$('#requestDocumnet').css('border-color', '#bae8e6');
-	}
-</script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 
 <%@ include file="../member/owner/o_top.jsp"%>
-<div class="container-fluid">
+<div class="container-fluid h-100">
 
-	<!-- Page Heading -->
-	<div class="d-sm-flex align-items-center justify-content-between mb-3">
-		<h1 class="h3 mb-0 text-gray-800"></h1>
-		<a href="javascript:show()" data-bs-toggle="modal"
-			data-bs-target="#documentWrite"
-			class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-			class="fas fa-download fa-sm text-white-50" id="requestDocument"></i>
-			결재 요청</a>
-
-		<div class="modal fade" id="documentWrite" data-bs-backdrop="static"
-			data-bs-keyboard="false" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content"></div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Content Row -->
-	<div class="row order-details">
-		<h5 class="card-title text-primary fw-bolder">주문내역</h5>
-		<div class="content-container">
-			<p>
-				<strong>주문번호:</strong> ${order.onum}
-			</p>
-			<p>
-				<strong>고객 ID:</strong> ${order.id}
-			</p>
-			<p>
-				<strong>상품번호:</strong> ${order.pnum}
-			</p>
-			<p>
-				<strong>수량:</strong> ${order.pamount}
-			</p>
-			<p>
-				<strong>금액:</strong> ${order.price}
-			</p>
-			<p>
-				<strong>배송 방법:</strong> ${order.way}
-			</p>
-			<p>
-				<strong>상태:</strong> ${order.status}
-			</p>
-			<p>
-				<strong>요청사항:</strong> ${order.contents}
-			</p>
-			<p>
-				<strong>결제 방법:</strong> ${order.payment}
-			</p>
-			<p>
-				<strong>주문일:</strong> ${order.orderdate}
-			</p>
-			<button
-				onClick="location.href='list.od?pageNumber=${param.pageNumber}'">돌아가기</button>
-		</div>
-	</div>
+    <!-- Content Row -->
+    <div class="row justify-content-center">
+        <h5 class="card-title text-primary fw-bolder">주문 상세 정보</h5>
+        <table class="table table-bordered table-details">
+            <tbody width="">
+                <tr>
+                    <th>주문번호:</th>
+                    <td>${order.onum}</td>
+                </tr>
+                <tr>
+                    <th>고객 ID:</th>
+                    <td>${order.id}</td>
+                </tr>
+                <tr>
+                    <th>상품번호:</th>
+                    <td>${order.pnum}</td>
+                </tr>
+                <tr>
+                    <th>수량:</th>
+                    <td>${order.pamount}</td>
+                </tr>
+                <tr>
+                    <th>금액:</th>
+                    <td><fmt:formatNumber value="${order.price}" pattern="#,###" /></td>
+                </tr>
+                <tr>
+                    <th>배송 방법:</th>
+                    <td>${order.way}</td>
+                </tr>
+                <tr>
+                    <th>상태:</th>
+                    <td>
+                        <c:choose>
+                            <c:when test="${order.status == 0}">
+                                배송준비중
+                            </c:when>
+                            <c:when test="${order.status == 1}">
+                                배송완료
+                            </c:when>
+                            <c:otherwise>
+                                알 수 없음
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                </tr>
+                <tr>
+                    <th>요청사항:</th>
+                    <td>${order.contents}</td>
+                </tr>
+                <tr>
+                    <th>결제 방법:</th>
+                    <td>${order.payment}</td>
+                </tr>
+                <tr>
+                    <th>주문일:</th>
+                    <td>${order.orderdate}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-center">
+            <button class="btn-custom" onClick="location.href='list.od?pageNumber=${param.pageNumber}'">돌아가기</button>
+        </div>
+    </div>
 </div>
 
 <!-- /.container-fluid -->

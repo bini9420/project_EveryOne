@@ -42,7 +42,7 @@
 							<a class="nav-link text-muted" aria-current="page" href="mypage.mb?index=addressInfo">
 								배송지 관리
 							</a>
-						<c:if test="${enter ne null}">
+						<c:if test="${enter.approveday ne null}">
 							<hr>
 							<font class="my-2 fw-bold" color="#186E6A">사업</font>
 								<a class="nav-link text-muted" aria-current="page" data-bs-toggle="modal" href="#resultModal">

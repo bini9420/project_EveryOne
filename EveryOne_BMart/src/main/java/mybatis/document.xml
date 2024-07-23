@@ -530,4 +530,9 @@
 	<delete id="deleteProductById">
 		delete from product where id=#{id}
 	</delete>
+	
+	<select id="checkApprovePrdcategory" resultType="document.model.DocumentBean">
+		select rownum, dnum, writer, prdcategory 
+		from (select dnum, writer, prdcategory from document where writer=#{id} and prdcategory=#{prdcategory} and dstatus=-1)
+	</select>
 </mapper>

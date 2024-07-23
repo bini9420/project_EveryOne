@@ -84,18 +84,7 @@
 									<td>${order.pnum}</td>
 									<td>${order.pamount}</td>
 									<td><fmt:formatNumber value="${order.price}" pattern="#,###" /></td>
-									<td>
-										<c:choose>
-											<c:when test="${order.status == 0}">
-												배송준비중
-											</c:when>
-											<c:when test="${order.status == 1}">
-												배송완료
-											</c:when>
-											<c:otherwise>
-												알 수 없음
-											</c:otherwise>
-										</c:choose>
+									<td>배송완료
 									</td>
 									<td><a href="detail.od?onum=${order.onum}">상세보기</a></td>
 								</tr>

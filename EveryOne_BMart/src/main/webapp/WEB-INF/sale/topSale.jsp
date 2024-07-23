@@ -51,7 +51,7 @@
 		</div> -->
 	</div>
 	
-	<%-- <% String months[] = {"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"}; %>
+	<% String months[] = {"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"}; %>
 	
 	<table class="table bg-white">
 	    <thead>
@@ -64,22 +64,27 @@
 		</thead>
 		<tbody>
 		 	<tr>
-			 	<td>총 주문수</td>
-            <c:forEach var="month" items="<%= months %>">
-                <td>${adminMonthlySale[month]}개</td>
+			 	 <td>총 주문수</td>
+        <c:forEach var="amsMap" items="${monthSumCount}">
+            <c:forEach var="entry" items="${amsMap.entrySet()}">
+                <td>${entry.value}개</td>
             </c:forEach>
-        </tr>
-        <tr>
-            <td>총수입</td>
-            <c:forEach var="month" items="<%= months %>">
-                <td><fmt:formatNumber value="${adminMonthlySale2[month]}" type="number"/>원</td>
+        </c:forEach>
+    </tr>
+    <!-- 총 수입을 표시하는 행 -->
+    <tr>
+        <td>총수입</td>
+        <c:forEach var="amslMap" items="${monthSumCount2}">
+            <c:forEach var="entry" items="${amslMap.entrySet()}">
+                <td><fmt:formatNumber value="${entry.value}" type="number"/>원</td>
             </c:forEach>
+        </c:forEach>
 			</tr>      
 		</tbody>
 	</table>
 	
-		 --%>
 </div>
+		
 		
 
 
@@ -164,3 +169,4 @@
 
 
 <%@include file="../admin/a_bottom.jsp"%>
+

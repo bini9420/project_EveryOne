@@ -141,7 +141,7 @@ h6 {
 				name="upload"> <br> <br>
 			<button type="submit">수정</button>
 			<br>
-			<button onClick="history.back()">돌아가기</button>
+			<button type="button" onclick="history.back()">돌아가기</button>
 		</form>
 	</div>
 	<!-- /.container-fluid -->

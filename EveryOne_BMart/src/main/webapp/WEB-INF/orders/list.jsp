@@ -50,7 +50,7 @@
 		<div class="col-xl-12">
 		<div class="card shadow mb-4">
 	        <div class="card-header py-3">
-	            <h6 class="m-0 font-weight-bold text-primary">등록한 상품 전체 리뷰</h6>
+	            <h6 class="m-0 font-weight-bold text-primary">등록한 상품 전체 매출</h6>
 	        </div>
 	                                
 			<div class="card-body">
@@ -84,7 +84,19 @@
 									<td>${order.pnum}</td>
 									<td>${order.pamount}</td>
 									<td><fmt:formatNumber value="${order.price}" pattern="#,###" /></td>
-									<td>${order.status}</td>
+									<td>
+										<c:choose>
+											<c:when test="${order.status == 0}">
+												배송준비중
+											</c:when>
+											<c:when test="${order.status == 1}">
+												배송완료
+											</c:when>
+											<c:otherwise>
+												알 수 없음
+											</c:otherwise>
+										</c:choose>
+									</td>
 									<td><a href="detail.od?onum=${order.onum}">상세보기</a></td>
 								</tr>
 								<c:set var="totalAmount" value="${totalAmount + order.price}" />

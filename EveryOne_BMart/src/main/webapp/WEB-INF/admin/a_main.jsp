@@ -385,7 +385,7 @@
                         // 이벤트 객체 생성
                         var events = {
                             title: title,
-                            start: arg.start,
+                            start:  arg.start,
                             end: arg.end
                         };
 
@@ -397,11 +397,12 @@
                         var obj = new Object();
                         
                         obj.title= title;
-                        obj.start= arg.start;
-                        obj.end= arg.end;
+                        obj.start= arg.startStr;
+                        obj.end= arg.endStr;
+                                                                       
                         events.push(obj);
                         
-                        
+                       
                         // 서버에 이벤트 데이터 전송
                         $.ajax({
                             url: "addSchedule.scd",

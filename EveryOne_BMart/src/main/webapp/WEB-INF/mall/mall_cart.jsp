@@ -7,7 +7,7 @@
 	String path = request.getContextPath();
 %>
 <style type="text/css">
-	table{
+	.cartTable{
 		border-collapse: collapse;
 		width: 70%;
 	}
@@ -26,7 +26,7 @@
 		border-bottom: 1px solid #e6e6e6;
 		border-bottom-width: 2px;
 	}	
-	td{
+	.cartTable td{
 		padding: 10px;
 	}
 	img{
@@ -60,21 +60,21 @@
 	.sum, .total{
 		text-align: right;
 	}
-	tr:last-child{
+	.cartTable tr:last-child{
 		border-bottom: inherit;
 	}
-	tr:last-child td{
+	.cartTable tr:last-child td{
 		text-align: center;
 	}
-	tr:last-child input{
+	.cartTable tr:last-child input{
 		border: 0px;
 		border-radius: 5px;
 		background-color: #2ac1bc;
 		color: white;
 		font-weight: bold;
-		width: 200px;
-		height: 60px;
-		font-size: 30px;
+		width: 150px;
+		height: 50px;
+		font-size: 27px;
 	}
 	#selectAll{
 		cursor:pointer;
@@ -134,9 +134,9 @@
 		background-color: #3c3c3c;
 		color: white;	
 		font-weight: bold;
-		width: 200px;
-		height: 60px;
-		font-size: 30px;
+		width: 150px;
+		height: 50px;
+		font-size: 27px;
 	}
 	.dtext{
 		width: 210px;
@@ -147,7 +147,7 @@
 		font-weight: bold;
 		padding: 5px;
 		text-align: center;
-		margin-left: 80%;
+		margin-left: 84%;
 	}
 </style>
 
@@ -339,7 +339,7 @@ $(document).ready(function(){
 <p class="header">장바구니</p>
 <div class="cart">
 <form name="countForm" action="order.mall" method="post" onsubmit="return order();">
-<table align="center">
+<table align="center" class="cartTable">
 	<tr class="firstTr">
 		<td colspan="5" >
 			<input type="checkbox" id="selectAll" name="selectAll" onclick="allCheck(this)">&ensp;&ensp;전체선택
@@ -356,7 +356,12 @@ $(document).ready(function(){
 		</td>
 		<td class="productImg">
 				<input type="hidden" id="pimage" name="pimage" value="${i.pimage}">
-				<img src="<%=path%>/resources/img/no-pictures.png" width="50px" height="50px" class="product2">
+				<c:if test="${i.pimage eq null}">
+					<img src="<%=path%>/resources/img/no-pictures.png" width="50px" height="50px" class="product2">
+				</c:if>
+				<c:if test="${i.pimage ne null}">
+					<img src="<%=request.getContextPath()+"/resources/uploadImage/"%>${i.pimage}" width="65px" height="65px" class="product2">
+				</c:if>
 		</td>
 		<td class="title">
 		<input type="hidden" id="pname" name="pname" value="${i.pname}">

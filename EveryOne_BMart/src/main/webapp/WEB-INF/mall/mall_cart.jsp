@@ -222,6 +222,7 @@ $(document).ready(function(){
 	
 	function calculateTotalAmount() {
 	    var totalAmount = 0;
+	    var totalprice = 0;
 	    var dFee = 0;
 	    // 모든 체크된 상품의 가격 합산
 	    $('input[name="rowSelect"]:checked').each(function() {
@@ -229,7 +230,7 @@ $(document).ready(function(){
 	        totalAmount += amount;
 	    });
 	    
-        if(totalAmount > 10000){
+        if(totalAmount === 0 || totalAmount >= 10000){
         	dFee = 0;
         }else{
         	dFee = 3000;
@@ -240,7 +241,7 @@ $(document).ready(function(){
         
 	    var totalPrice = totalAmount + dFee;
 	    $("#totalAmount").val(totalAmount.toLocaleString("ko-KR"));
-	    $("#totalAmount2").text(totalAmount.toLocaleString("ko-KR"));
+	    $("#totalAmount2").text(totalPrice.toLocaleString("ko-KR"));
 	}
 
 	function allCheck(obj){

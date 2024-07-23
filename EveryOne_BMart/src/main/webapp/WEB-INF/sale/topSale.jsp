@@ -51,7 +51,7 @@
 		</div> -->
 	</div>
 	
-	<% String months[] = {"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"}; %>
+	<%-- <% String months[] = {"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"}; %>
 	
 	<table class="table bg-white">
 	    <thead>
@@ -65,21 +65,21 @@
 		<tbody>
 		 	<tr>
 			 	<td>총 주문수</td>
-				<c:forEach var="ams" items="${adminMonthlySale.keySet()}">
-					<td>${adminMonthlySale.get(ams)}개</td>
-				</c:forEach>
-			</tr>
-			<tr>
-				<td>총수입</td>
-				  <c:forEach var="amsl" items="${adminMonthlySale2.keySet()}">
-                <td><fmt:formatNumber value="${adminMonthlySale2.get(amsl)}" type="number"/>원</td>    
-            	</c:forEach>
+            <c:forEach var="month" items="<%= months %>">
+                <td>${adminMonthlySale[month]}개</td>
+            </c:forEach>
+        </tr>
+        <tr>
+            <td>총수입</td>
+            <c:forEach var="month" items="<%= months %>">
+                <td><fmt:formatNumber value="${adminMonthlySale2[month]}" type="number"/>원</td>
+            </c:forEach>
 			</tr>      
 		</tbody>
 	</table>
 	
+		 --%>
 </div>
-		
 		
 
 
